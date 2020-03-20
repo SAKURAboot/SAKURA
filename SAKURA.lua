@@ -1,18 +1,15 @@
 
 --[[
-_  __  _____   _____   ____    _____   ____
-| |/ / | ____| | ____| |  _ \  | ____| |  _ \
-| ' /  |  _|   |  _|   | |_) | |  _|   | |_) |
-| . \  | |___  | |___  |  __/  | |___  |
-|_|\_\ |_____| |_____| |_|     |_____| |_| \_\
-تم كتابه وبرمجة السورس بوسطه المطور
-القيصر كرارWRITING THE SOURCE BY : @LLX8XLL
-
-WRITING THE SOURCE BY : @LLX8XLL
-CH SOURCE : @KEEPER_CH
-
+┏━━━┓┏━━━┓┏┓┏━┓┏┓━┏┓┏━━━┓┏━━━┓
+┃┏━┓┃┃┏━┓┃┃┃┃┏┛┃┃━┃┃┃┏━┓┃┃┏━┓┃
+┃┗━━┓┃┃━┃┃┃┗┛┛━┃┃━┃┃┃┗━┛┃┃┃━┃┃
+┗━━┓┃┃┗━┛┃┃┏┓┃━┃┃━┃┃┃┏┓┏┛┃┗━┛┃
+┃┗━┛┃┃┏━┓┃┃┃┃┗┓┃┗━┛┃┃┃┃┗┓┃┏━┓┃
+┗━━━┛┗┛━┗┛┗┛┗━┛┗━━━┛┗┛┗━┛┗┛━┗┛
+تم برمجة من قبل > @JJEJJ
+تم برمجة من قبل > @MMMM_27
 ]]
---- Start Source By Karrar KeePer »»»»»»»
+--- Start Source By Karrar SAKURA »»»»»»»
 local tdcli = dofile("tdcli.lua")
 local KPJS = dofile('./JSON.lua')
 local serpent = require("serpent")
@@ -142,7 +139,7 @@ print("\027[" .. color.black[1] .. ";" .. color.green[2] .. "m\n➡➡[•• ا
 end
 create_config_auto()
 
-file = io.open("keeper", "w")
+file = io.open("SAKURA", "w")
 file:write([[
 token="]]..Token_..[["
 COUNTER=1
@@ -150,7 +147,7 @@ while(true) do
 while true ; do
 
 curl "https://api.telegram.org/bot"$token"/sendmessage" -F
-./TG -s ./KEEPER.lua $@ --bot=$token
+./TG -s ./SAKURA.lua $@ --bot=$token
 
 sleep 5
 done
@@ -160,7 +157,7 @@ done
 ]])
 file:close()
 sleep(1)
-os.execute(' screen -S keeper ./keeper')
+os.execute(' screen -S SAKURA ./SAKURA')
 end
 local serialize_to_file = function(data, file, uglify)
 file = io.open(file, "w+")
@@ -186,39 +183,39 @@ return config
 end
 _redis = load_redis()
 sudos = dofile("Config.lua") ---- all sudos
-KEEPER_SUDO = sudos.KpOwner   -------bot owner
-KEEPER_TOKEN = sudos.Token -----KEEPER_TOKEN
+SAKURA_SUDO = sudos.KpOwner   -------bot owner
+SAKURA_TOKEN = sudos.Token -----SAKURA_TOKEN
 bot_id = sudos.Bot_ID ---id bot
-KEEPER = tonumber(_redis.Bot_ID)
+SAKURA = tonumber(_redis.Bot_ID)
 
 function Run()
-print('\27[93m>Developer:\27[39m'..' '..'@keeper_ch')
+print('\27[93m>Developer:\27[39m'..' '..'@SAKURATEM')
 end
-------------------------boT ID   BY keePer ----------------------
+------------------------boT ID   BY SAKURA ----------------------
 print(string.sub(_redis.Bot_ID,1,0))
-local bot_id = redis:get(KEEPER.."Bot:KpBotAccount") or tonumber(_redis.Bot_ID)
+local bot_id = redis:get(SAKURA.."Bot:KpBotAccount") or tonumber(_redis.Bot_ID)
 local save_config = function()
 serialize_to_file(_config, "./Config.lua")
 end
 local setdata = function()
 local config = loadfile("./Config.lua")()
 for v, user in pairs(config.Sudo_Users) do
-redis:sadd(KEEPER.."Bot:KpSudos", user)
+redis:sadd(SAKURA.."Bot:KpSudos", user)
 end
-redis:setex(KEEPER.."bot:reload", 7230, true)
-redis:set(KEEPER.."Bot:KpOwnerBot", config.KpOwner or 0)
-redis:set(KEEPER.."Bot:Run", config.Run or 0)
+redis:setex(SAKURA.."bot:reload", 7230, true)
+redis:set(SAKURA.."Bot:KpOwnerBot", config.KpOwner or 0)
+redis:set(SAKURA.."Bot:Run", config.Run or 0)
 local Api = config.Token:match("(%d+)")
 local RD = RNM or 0
 if Api then
-redis:set(KEEPER.."Bot:Api_ID", Api)
+redis:set(SAKURA.."Bot:Api_ID", Api)
 end
 function AuthoritiesEn()
 local hash = "Bot:KpSudos"
-local list = redis:smembers(KEEPER..hash)
-local OwnerKP_ = redis:get(KEEPER.."Bot:KpOwnerBot")
+local list = redis:smembers(SAKURA..hash)
+local OwnerKP_ = redis:get(SAKURA.."Bot:KpOwnerBot")
 local text = "List of Authorities :\n"
-local user_info_ = redis:get(KEEPER.."user:Name" .. OwnerKP_)
+local user_info_ = redis:get(SAKURA.."user:Name" .. OwnerKP_)
 local username = user_info_
 if user_info_ then
 text = text .. [[
@@ -236,14 +233,14 @@ text = text .. [[
 else
 end
 for k, v in pairs(list) do
-local user_info = redis:get(KEEPER.."user:Name" .. v)
+local user_info = redis:get(SAKURA.."user:Name" .. v)
 if user_info then
 local username = user_info
 text = text .. k .. " - [" .. username .. "] \n"
 end
 end
 local hash2 = "Bot:Admins"
-local list2 = redis:smembers(KEEPER..hash2)
+local list2 = redis:smembers(SAKURA..hash2)
 if #list2 ~= 0 then
 text = text .. [[
 
@@ -254,20 +251,20 @@ text = text .. [[
 else
 end
 for k, v in pairs(list2) do
-local user_info = redis:get(KEEPER.."user:Name" .. v)
+local user_info = redis:get(SAKURA.."user:Name" .. v)
 if user_info then
 local username = user_info
 text = text .. k .. " - [" .. username .. "] \n"
 end
 end
-redis:set(KEEPER.."AuthoritiesEn", text)
+redis:set(SAKURA.."AuthoritiesEn", text)
 end
 function AuthoritiesFa()
 local hash = "Bot:KpSudos"
-local list = redis:smembers(KEEPER..hash)
-local OwnerKP_ = redis:get(KEEPER.."Bot:KpOwnerBot")
+local list = redis:smembers(SAKURA..hash)
+local OwnerKP_ = redis:get(SAKURA.."Bot:KpOwnerBot")
 local text = "◯↲ قائمه قاده المجموعه :\n"
-local user_info_ = redis:get(KEEPER.."user:Name" .. OwnerKP_)
+local user_info_ = redis:get(SAKURA.."user:Name" .. OwnerKP_)
 local username = user_info_
 if user_info_ then
 text = text .. "✧↲ المدراء : \n" .. username
@@ -277,36 +274,36 @@ text = text .. "\n◯↲ المطورين :\n"
 else
 end
 for k, v in pairs(list) do
-local user_info = redis:get(KEEPER.."user:Name" .. v)
+local user_info = redis:get(SAKURA.."user:Name" .. v)
 if user_info then
 local username = user_info
 text = text .. k .. " - [" .. username .. "] \n"
 end
 end
 local hash2 = "Bot:Admins"
-local list2 = redis:smembers(KEEPER..hash2)
+local list2 = redis:smembers(SAKURA..hash2)
 if #list2 ~= 0 then
 text = text .. "\n⇦ الادمنيــه :\n"
 else
 end
 for k, v in pairs(list2) do
-local user_info = redis:get(KEEPER.."user:Name" .. v)
+local user_info = redis:get(SAKURA.."user:Name" .. v)
 if user_info then
 local username = user_info
 text = text .. k .. " - [" .. username .. "] \n"
 end
 end
-redis:set(KEEPER.."AuthoritiesFa", text)
+redis:set(SAKURA.."AuthoritiesFa", text)
 end
 AuthoritiesEn()
 AuthoritiesFa()
 end
 ---------------------deldata----------------------------------------
 local deldata = function()
-redis:del(KEEPER.."Bot:KpSudos")
-redis:del(KEEPER.."Bot:KpOwnerBot")
-redis:del(KEEPER.."Bot:Token")
-redis:del(KEEPER.."Bot:Channel")
+redis:del(SAKURA.."Bot:KpSudos")
+redis:del(SAKURA.."Bot:KpOwnerBot")
+redis:del(SAKURA.."Bot:Token")
+redis:del(SAKURA.."Bot:Channel")
 setdata()
 end
 local sendBotStartMessage = function(bot_user_id, chat_id, parameter, cb)
@@ -332,17 +329,17 @@ local usr = io.popen("whoami"):read("*a")-------whoami server
 usr = string.gsub(usr, "^%s+", "")
 usr = string.gsub(usr, "%s+$", "")
 usr = string.gsub(usr, "[\n\r]+", " ")
-redis:set(KEEPER.."Bot:ServerUser", usr)----------ServerUser
-redis:del(KEEPER.."MatchApi")
-redis:del(KEEPER.."Set_Our_ID")
-redis:del(KEEPER.."Open:Chats")
-local KPdata = redis:get(KEEPER.."Botid" .. bot_id) or "\n"
-local BotKPdata = redis:get(KEEPER.."KpOwnerBot" .. config.KpOwner) or "\n"
-if redis:get(KEEPER.."Rank:Data") then
+redis:set(SAKURA.."Bot:ServerUser", usr)----------ServerUser
+redis:del(SAKURA.."MatchApi")
+redis:del(SAKURA.."Set_Our_ID")
+redis:del(SAKURA.."Open:Chats")
+local KPdata = redis:get(SAKURA.."Botid" .. bot_id) or "\n"
+local BotKPdata = redis:get(SAKURA.."KpOwnerBot" .. config.KpOwner) or "\n"
+if redis:get(SAKURA.."Rank:Data") then
 print("\027[" .. color.yellow[1] .. ";" .. color.black[2] .. "m" .. KPdata .. "\027[00m")
 print("\027[" .. color.yellow[1] .. ";" .. color.black[2] .. "m" .. BotKPdata .. "\027[00m")
 for v, user in pairs(config.Sudo_Users) do
-local SudoData = redis:get(KEEPER.."KpSudos" .. user)
+local SudoData = redis:get(SAKURA.."KpSudos" .. user)
 if SudoData then
 print("\027[" .. color.yellow[1] .. ";" .. color.black[2] .. "m" .. SudoData .. "\027[00m")
 end
@@ -371,7 +368,7 @@ local result = cmd:read("*all")
 return result
 end
 local BotInfo = function(extra, result)
-redis:set(KEEPER.."Our_ID", result.id_)
+redis:set(SAKURA.."Our_ID", result.id_)
 end
 local getindex = function(t, id)
 for i, v in pairs(t) do
@@ -384,54 +381,53 @@ end
 local setnumbergp = function()
 local setnumbergp_two = function(user_id)
 local hashs = "sudo:data:" .. user_id
-local lists = redis:smembers(KEEPER..hashs)
-redis:del(KEEPER.."SudoNumberGp" .. user_id)
+local lists = redis:smembers(SAKURA..hashs)
+redis:del(SAKURA.."SudoNumberGp" .. user_id)
 for k, v in pairs(lists) do
-redis:incr(KEEPER.."SudoNumberGp" .. user_id)
+redis:incr(SAKURA.."SudoNumberGp" .. user_id)
 end
 end
 local setnumbergp_three = function(user_id)
 local hashss = "sudo:data:" .. user_id
-local lists = redis:smembers(KEEPER..hashss)
-redis:del(KEEPER.."SudoNumberGp" .. user_id)
+local lists = redis:smembers(SAKURA..hashss)
+redis:del(SAKURA.."SudoNumberGp" .. user_id)
 for k, v in pairs(lists) do
-redis:incr(KEEPER.."SudoNumberGp" .. user_id)
+redis:incr(SAKURA.."SudoNumberGp" .. user_id)
 end
 end
-local list = redis:smembers(KEEPER.."Bot:Admins")
+local list = redis:smembers(SAKURA.."Bot:Admins")
 for k, v in pairs(list) do
 setnumbergp_two(v)
 end
-local lists = redis:smembers(KEEPER.."Bot:KpSudos")
+local lists = redis:smembers(SAKURA.."Bot:KpSudos")
 for k, v in pairs(lists) do
 setnumbergp_three(v)
 end
-redis:setex(KEEPER.."bot:reload", 7230, true)
+redis:setex(SAKURA.."bot:reload", 7230, true)
 end
 
-local Bot_Channel = redis:get(KEEPER.."Bot:Channel") or tostring(_redis.Channel)
+local Bot_Channel = redis:get(SAKURA.."Bot:Channel") or tostring(_redis.Channel)
 local sudo_users = _config.Sudo_Users
-local Kp_Owner = redis:get(KEEPER.."Bot:KpOwnerBot")
-local run = redis:get(KEEPER.."Bot:Run") or "True"
-if not redis:get(KEEPER.."setnumbergp") then
+local Kp_Owner = redis:get(SAKURA.."Bot:KpOwnerBot")
+local run = redis:get(SAKURA.."Bot:Run") or "True"
+if not redis:get(SAKURA.."setnumbergp") then
 setnumbergp()
-redis:setex(KEEPER.."setnumbergp", 5 * hour, true)
+redis:setex(SAKURA.."setnumbergp", 5 * hour, true)
 end
 
 print("\27[0;31m>>"..[[
-_  __  _____   _____   ____    _____   ____
-| |/ / | ____| | ____| |  _ \  | ____| |  _ \
-| ' /  |  _|   |  _|   | |_) | |  _|   | |_) |
-| . \  | |___  | |___  |  __/  | |___  |  _ <
-|_|\_\ |_____| |_____| |_|     |_____| |_| \_\
+ ___   _____ _   _ _   _ ___   _____ 
+(  _ \(  _  ) ) ( ) ) ( )  _ \(  _  )
+| (_(_) (_) | |/ /| | | | (_) ) (_) |
+ \__ \(  _  )   ( | | | |    /(  _  )
+( )_) | | | | |\ \| (_) | |\ \| | | |
+ \____)_) (_)_) (_)_____)_) (_)_) (_)
 ]].."\n\027[00m")
 print("\27[0;35m>>"..[[
-تم كتابه السورس بوسطه المطور
-القيصر كرار
-WRITING THE SOURCE BY : @LLX8XLL
-CH SOURCE : @keeper_ch
+تم برمجة من قبل > @JJEJJ
+تم برمجة من قبل > @MMMM_27
 ]].."\n\027[00m")
------------------------function is_KP----------by keeper------------------------
+-----------------------function is_KP----------by SAKURA------------------------
 local is_KP = function(msg)
 local var = false
 if msg.sender_user_id_ == tonumber(Kp_Owner) then
@@ -449,7 +445,7 @@ end
 ----------------is_sudo----------------------------------------------
 local is_sudo = function(msg)
 local var = false
-if redis:sismember(KEEPER.."Bot:KpSudos", msg.sender_user_id_) then
+if redis:sismember(SAKURA.."Bot:KpSudos", msg.sender_user_id_) then
 var = true
 end
 if msg.sender_user_id_ == tonumber(Kp_Owner) then
@@ -459,7 +455,7 @@ return var
 end
 local is_sudoid = function(user_id)
 local var = false
-if redis:sismember(KEEPER.."Bot:KpSudos", user_id) then
+if redis:sismember(SAKURA.."Bot:KpSudos", user_id) then
 var = true
 end
 if user_id == tonumber(Kp_Owner) then
@@ -470,11 +466,11 @@ end
 local is_admin = function(user_id)
 local var = false
 local hashsb = "Bot:Admins"
-local admin = redis:sismember(KEEPER..hashsb, user_id)
+local admin = redis:sismember(SAKURA..hashsb, user_id)
 if admin then
 var = true
 end
-if redis:sismember(KEEPER.."Bot:KpSudos", user_id) then
+if redis:sismember(SAKURA.."Bot:KpSudos", user_id) then
 var = true
 end
 if user_id == tonumber(Kp_Owner) then
@@ -486,16 +482,16 @@ end
 local is_monshi = function(user_id, chat_id)
 local var = false
 local hashssk = "bot:monshis:" .. chat_id
-local monshi = redis:sismember(KEEPER..hashssk, user_id)
+local monshi = redis:sismember(SAKURA..hashssk, user_id)
 local hashs = "Bot:Admins"
-local admin = redis:sismember(KEEPER..hashs, user_id)
+local admin = redis:sismember(SAKURA..hashs, user_id)
 if monshi then
 var = true
 end
 if admin then
 var = true
 end
-if redis:sismember(KEEPER.."Bot:KpSudos", user_id) then
+if redis:sismember(SAKURA.."Bot:KpSudos", user_id) then
 var = true
 end
 if user_id == tonumber(Kp_Owner) then
@@ -507,11 +503,11 @@ end
 local is_owner = function(user_id, chat_id)
 local var = false
 local hashssk = "bot:monshis:" .. chat_id
-local monshi = redis:sismember(KEEPER..hashssk, user_id)
+local monshi = redis:sismember(SAKURA..hashssk, user_id)
 local hashs = "Bot:Admins"
-local admin = redis:sismember(KEEPER..hashs, user_id)
+local admin = redis:sismember(SAKURA..hashs, user_id)
 local hash = "bot:owners:" .. chat_id
-local owner = redis:sismember(KEEPER..hash, user_id)
+local owner = redis:sismember(SAKURA..hash, user_id)
 if monshi then
 var = true
 end
@@ -521,7 +517,7 @@ end
 if owner then
 var = true
 end
-if redis:sismember(KEEPER.."Bot:KpSudos", user_id) then
+if redis:sismember(SAKURA.."Bot:KpSudos", user_id) then
 var = true
 end
 if user_id == tonumber(Kp_Owner) then
@@ -533,14 +529,14 @@ end
 local is_momod = function(user_id, chat_id)
 local var = false
 local hash = "bot:momod:" .. chat_id
-local momod = redis:sismember(KEEPER..hash, user_id)
+local momod = redis:sismember(SAKURA..hash, user_id)
 local hashs = "Bot:Admins"
-local admin = redis:sismember(KEEPER..hashs, user_id)
+local admin = redis:sismember(SAKURA..hashs, user_id)
 local hashssk = "bot:monshis:" .. chat_id
-local monshi = redis:sismember(KEEPER..hashssk, user_id)
+local monshi = redis:sismember(SAKURA..hashssk, user_id)
 local hashss = "bot:owners:" .. chat_id
-local owner = redis:sismember(KEEPER..hashss, user_id)
-local our_id = redis:get(KEEPER.."Our_ID") or 0
+local owner = redis:sismember(SAKURA..hashss, user_id)
+local our_id = redis:get(SAKURA.."Our_ID") or 0
 if momod then
 var = true
 end
@@ -554,7 +550,7 @@ end
 if admin then
 var = true
 end
-if redis:sismember(KEEPER.."Bot:KpSudos", user_id) then
+if redis:sismember(SAKURA.."Bot:KpSudos", user_id) then
 var = true
 end
 if user_id == tonumber(Kp_Owner) then
@@ -569,15 +565,15 @@ end
 local is_vipmem = function(user_id, chat_id)
 local var = false
 local hash = "bot:momod:" .. chat_id
-local momod = redis:sismember(KEEPER..hash, user_id)
+local momod = redis:sismember(SAKURA..hash, user_id)
 local hashs = "Bot:Admins"
-local admin = redis:sismember(KEEPER..hashs, user_id)
+local admin = redis:sismember(SAKURA..hashs, user_id)
 local hashssk = "bot:monshis:" .. chat_id
-local monshi = redis:sismember(KEEPER..hashssk, user_id)
+local monshi = redis:sismember(SAKURA..hashssk, user_id)
 local hashss = "bot:owners:" .. chat_id
-local owner = redis:sismember(KEEPER..hashss, user_id)
+local owner = redis:sismember(SAKURA..hashss, user_id)
 local hashsss = "bot:vipmem:" .. chat_id
-local vipmem = redis:sismember(KEEPER..hashsss, user_id)
+local vipmem = redis:sismember(SAKURA..hashsss, user_id)
 if vipmem then
 var = true
 end
@@ -593,7 +589,7 @@ end
 if admin then
 var = true
 end
-if redis:sismember(KEEPER.."Bot:KpSudos", user_id) then
+if redis:sismember(SAKURA.."Bot:KpSudos", user_id) then
 var = true
 end
 if user_id == tonumber(Kp_Owner) then
@@ -605,11 +601,11 @@ end
 local is_vipmems = function(user_id)
 local var = false
 local hashsss = "bot:vipmems:"
-local vipmems = redis:sismember(KEEPER..hashsss, user_id)
+local vipmems = redis:sismember(SAKURA..hashsss, user_id)
 if vipmems then
 var = true
 end
-if redis:sismember(KEEPER.."Bot:KpSudos", user_id) then
+if redis:sismember(SAKURA.."Bot:KpSudos", user_id) then
 var = true
 end
 if user_id == tonumber(Kp_Owner) then
@@ -635,7 +631,7 @@ end
 local is_banned = function(user_id, chat_id)
 local var = false
 local hash = "bot:banned:" .. chat_id
-local banned = redis:sismember(KEEPER..hash, user_id)
+local banned = redis:sismember(SAKURA..hash, user_id)
 if banned then
 var = true
 end
@@ -645,7 +641,7 @@ end
 local is_gbanned = function(user_id)
 local var = false
 local hash = "bot:gban:"
-local gbanned = redis:sismember(KEEPER..hash, user_id)
+local gbanned = redis:sismember(SAKURA..hash, user_id)
 if gbanned then
 var = true
 end
@@ -656,8 +652,8 @@ local is_muted = function(user_id, chat_id)
 local var = false
 local hash = "bot:muted:" .. chat_id
 local hash2 = "bot:muted:" .. chat_id .. ":" .. user_id
-local muted = redis:sismember(KEEPER..hash, user_id)
-local muted2 = redis:get(KEEPER..hash2)
+local muted = redis:sismember(SAKURA..hash, user_id)
+local muted2 = redis:get(SAKURA..hash2)
 if muted then
 var = true
 end
@@ -666,7 +662,7 @@ var = true
 end
 return var
 end
------------------------------------------BY KEEPER-----------------------------------
+-----------------------------------------BY SAKURA-----------------------------------
 local Forward = function(chat_id, from_chat_id, message_id, cb)
 tdcli_function({
 ID = "ForwardMessages",
@@ -845,8 +841,8 @@ end
 return P
 end
 local Time = function()--------------Time--
-if redis:get(KEEPER.."GetTime") then
-local data = redis:get(KEEPER.."GetTime")
+if redis:get(SAKURA.."GetTime") then
+local data = redis:get(SAKURA.."GetTime")
 local jdat = json.decode(data)
 local A = jdat.FAtime
 local B = jdat.FAdate
@@ -856,7 +852,7 @@ else
 local url, res = http.request("")
 if res == 200 then
 local jdat = json.decode(url)
-redis:setex(KEEPER.."GetTime", 10, url)
+redis:setex(SAKURA.."GetTime", 10, url)
 local A = jdat.FAtime
 local B = jdat.FAdate
 if A and B then
@@ -934,7 +930,7 @@ last_name_ = last_name,
 user_id_ = user_id
 }
 }
-}, dl_cb, nil)                                ----- By KEEPER-----
+}, dl_cb, nil)                                ----- By SAKURA-----
 end
 local sendPhoto = function(chat_id, reply_to_message_id, disable_notification, from_background, reply_markup, photo, caption)
 tdcli_function({
@@ -998,9 +994,9 @@ end
 ------------------function Join CH------------------------------------------
 function Kp_JoinCh(msg)
 local var = true
-if redis:get(KEEPER.."Kpjoin1") then
-local channel = ''..redis:get(KEEPER..'Kpch1')..''
-local url , res = https.request('https://api.telegram.org/bot'..KEEPER_TOKEN..'/getchatmember?chat_id='..channel..'&user_id='..msg.sender_user_id_)
+if redis:get(SAKURA.."Kpjoin1") then
+local channel = ''..redis:get(SAKURA..'Kpch1')..''
+local url , res = https.request('https://api.telegram.org/bot'..SAKURA_TOKEN..'/getchatmember?chat_id='..channel..'&user_id='..msg.sender_user_id_)
 local data = KPJS:decode(url)
 if res ~= 200 or data.result.status == "left" or data.result.status == "kicked" then
 var = false
@@ -1012,29 +1008,29 @@ else
 return var
 end
 end
-local tmkeeper = function(msg)
+local tmSAKURA = function(msg)
 if is_KpiD(msg.sender_user_id_) then
-keeper  = "المطور  👨‍✈️"
+SAKURA  = "المطور  👨‍✈️"
 elseif is_sudoid(msg.sender_user_id_) then
-keeper = "المطور  🕵🏻‍♂️"
+SAKURA = "المطور  🕵🏻‍♂️"
 elseif is_admin(msg.sender_user_id_) then
-keeper = "الادمن 👨🏻‍🎓"
+SAKURA = "الادمن 👨🏻‍🎓"
 elseif is_vipmems(msg.sender_user_id_) then
-keeper = "المميز عام 👨🏽‍🔧"
+SAKURA = "المميز عام 👨🏽‍🔧"
 elseif is_monshi(msg.sender_user_id_, msg.chat_id_) then
-keeper = "المنشىء 👨🏻‍💼"
+SAKURA = "المنشىء 👨🏻‍💼"
 elseif is_owner(msg.sender_user_id_, msg.chat_id_) then
-keeper = "المدير 🤴🏻"
+SAKURA = "المدير 🤴🏻"
 elseif is_momod(msg.sender_user_id_, msg.chat_id_) then
-keeper = "الادمن 👨🏻‍🎤"
+SAKURA = "الادمن 👨🏻‍🎤"
 elseif is_vipmem(msg.sender_user_id_, msg.chat_id_) then
-keeper = "عضو مميز 👷‍♂️ "
+SAKURA = "عضو مميز 👷‍♂️ "
 else
-keeper = "العضو 🙎🏻‍♂️"
+SAKURA = "العضو 🙎🏻‍♂️"
 end
-return keeper
+return SAKURA
 end
-----------------KP_TM_NM----BY KEEPER-----------------------------------
+----------------KP_TM_NM----BY SAKURA-----------------------------------
 local KP_TM_NM = function(msgs)
 local KP_TM = ''
 if msgs < 100 then
@@ -1142,7 +1138,7 @@ user_id_ = userid
 end
 function title_name(GroupID) 
 tdcli_function({ID ="GetChat",chat_id_=GroupID},function(arg,data)---title_name
-redis:set(KEEPER..'group:name'..GroupID,data.title_) end,nil) return redis:get(KEEPER..'group:name'..GroupID) end
+redis:set(SAKURA..'group:name'..GroupID,data.title_) end,nil) return redis:get(SAKURA..'group:name'..GroupID) end
 local sendDocument = function(chat_id, reply_to_message_id, disable_notification, from_background, reply_markup, document, caption, cb, cmd)
 local input_message_content = {
 ID = "InputMessageDocument",
@@ -1178,7 +1174,7 @@ local checkChatInviteLink = function(link, cb)
 tdcli_function({
 ID = "CheckChatInviteLink",
 invite_link_ = link
-}, cb or dl_cb, nil)             ---BY KEEPER---
+}, cb or dl_cb, nil)             ---BY SAKURA---
 end
 local function sendVideo(chat_id, reply_to_message_id, disable_notification, from_background, reply_markup, video, duration, width, height, caption, cb, cmd)
 local input_message_content = {
@@ -1280,7 +1276,7 @@ end
 -----------------------getGroupLink by ID---------------------------------------------
 local getGroupLink = function(msg, chat_id)
 local chat = tostring(chat_id)
-link = redis:get(KEEPER.."bot:group:link" .. chat)
+link = redis:get(SAKURA.."bot:group:link" .. chat)
 if link then
 send(msg.chat_id_, msg.id_, 1, "📬¦ رابط المجموعه :\n" .. link, 1, "md")
 else
@@ -1406,150 +1402,150 @@ file_id_ = file_id
 end
 -------------SETING antispam-------------------------------------------------------------------------
 local resetgroup = function(chat_id)
-redis:del(KEEPER.."bot:muteall" .. chat_id)
-redis:del(KEEPER.."bot:text:mute" .. chat_id)
-redis:del(KEEPER.."bot:photo:mute" .. chat_id)
-redis:del(KEEPER.."bot:video:mute" .. chat_id)
-redis:del(KEEPER.."bot:selfvideo:mute" .. chat_id)
-redis:del(KEEPER.."bot:gifs:mute" .. chat_id)
-redis:del(KEEPER.."anti-flood:" .. chat_id)
-redis:del(KEEPER.."flood:max:" .. chat_id)
-redis:del(KEEPER.."bot:sens:spam" .. chat_id)
-redis:del(KEEPER.."floodstatus" .. chat_id)
-redis:del(KEEPER.."bot:music:mute" .. chat_id)
-redis:del(KEEPER.."bot:bots:mute" .. chat_id)
-redis:del(KEEPER.."bot:duplipost:mute" .. chat_id)
-redis:del(KEEPER.."bot:inline:mute" .. chat_id)
-redis:del(KEEPER.."bot:cmds" .. chat_id)
-redis:del(KEEPER.."bot:bots:mute" .. chat_id)
-redis:del(KEEPER.."bot:voice:mute" .. chat_id)
-redis:del(KEEPER.."editmsg" .. chat_id)
-redis:del(KEEPER.."bot:links:mute" .. chat_id)
-redis:del(KEEPER.."bot:pin:mute" .. chat_id)
-redis:del(KEEPER.."bot:sticker:mute" .. chat_id)
-redis:del(KEEPER.."bot:tgservice:mute" .. chat_id)
-redis:del(KEEPER.."bot:webpage:mute" .. chat_id)
-redis:del(KEEPER.."bot:strict" .. chat_id)
-redis:del(KEEPER.."bot:hashtag:mute" .. chat_id)
-redis:del(KEEPER.."tags:lock" .. chat_id)
-redis:del(KEEPER.."bot:location:mute" .. chat_id)
-redis:del(KEEPER.."bot:contact:mute" .. chat_id)
-redis:del(KEEPER.."bot:english:mute" .. chat_id)
-redis:del(KEEPER.."bot:arabic:mute" .. chat_id)
-redis:del(KEEPER.."bot:forward:mute" .. chat_id)
-redis:del(KEEPER.."bot:member:lock" .. chat_id)
-redis:del(KEEPER.."bot:document:mute" .. chat_id)
-redis:del(KEEPER.."markdown:lock" .. chat_id)
-redis:del(KEEPER.."Game:lock" .. chat_id)
-redis:del(KEEPER.."bot:spam:mute" .. chat_id)
-redis:del(KEEPER.."post:lock" .. chat_id)
-redis:del(KEEPER.."bot:welcome" .. chat_id)
-redis:del(KEEPER.."delidstatus" .. chat_id)
-redis:del(KEEPER.."delpro:" .. chat_id)
-redis:del(KEEPER.."sharecont" .. chat_id)
-redis:del(KEEPER.."sayedit" .. chat_id)
-redis:del(KEEPER.."welcome:" .. chat_id)
-redis:del(KEEPER.."bot:group:link" .. chat_id)
-redis:del(KEEPER.."bot:filters:" .. chat_id)
-redis:del(KEEPER.."bot:muteall:Time" .. chat_id)
-redis:del(KEEPER.."bot:muteall:start" .. chat_id)
-redis:del(KEEPER.."bot:muteall:stop" .. chat_id)
-redis:del(KEEPER.."bot:muteall:start_Unix" .. chat_id)
-redis:del(KEEPER.."bot:muteall:stop_Unix" .. chat_id)
-redis:del(KEEPER.."bot:muteall:Run" .. chat_id)
-redis:del(KEEPER.."bot:muted:" .. chat_id)
+redis:del(SAKURA.."bot:muteall" .. chat_id)
+redis:del(SAKURA.."bot:text:mute" .. chat_id)
+redis:del(SAKURA.."bot:photo:mute" .. chat_id)
+redis:del(SAKURA.."bot:video:mute" .. chat_id)
+redis:del(SAKURA.."bot:selfvideo:mute" .. chat_id)
+redis:del(SAKURA.."bot:gifs:mute" .. chat_id)
+redis:del(SAKURA.."anti-flood:" .. chat_id)
+redis:del(SAKURA.."flood:max:" .. chat_id)
+redis:del(SAKURA.."bot:sens:spam" .. chat_id)
+redis:del(SAKURA.."floodstatus" .. chat_id)
+redis:del(SAKURA.."bot:music:mute" .. chat_id)
+redis:del(SAKURA.."bot:bots:mute" .. chat_id)
+redis:del(SAKURA.."bot:duplipost:mute" .. chat_id)
+redis:del(SAKURA.."bot:inline:mute" .. chat_id)
+redis:del(SAKURA.."bot:cmds" .. chat_id)
+redis:del(SAKURA.."bot:bots:mute" .. chat_id)
+redis:del(SAKURA.."bot:voice:mute" .. chat_id)
+redis:del(SAKURA.."editmsg" .. chat_id)
+redis:del(SAKURA.."bot:links:mute" .. chat_id)
+redis:del(SAKURA.."bot:pin:mute" .. chat_id)
+redis:del(SAKURA.."bot:sticker:mute" .. chat_id)
+redis:del(SAKURA.."bot:tgservice:mute" .. chat_id)
+redis:del(SAKURA.."bot:webpage:mute" .. chat_id)
+redis:del(SAKURA.."bot:strict" .. chat_id)
+redis:del(SAKURA.."bot:hashtag:mute" .. chat_id)
+redis:del(SAKURA.."tags:lock" .. chat_id)
+redis:del(SAKURA.."bot:location:mute" .. chat_id)
+redis:del(SAKURA.."bot:contact:mute" .. chat_id)
+redis:del(SAKURA.."bot:english:mute" .. chat_id)
+redis:del(SAKURA.."bot:arabic:mute" .. chat_id)
+redis:del(SAKURA.."bot:forward:mute" .. chat_id)
+redis:del(SAKURA.."bot:member:lock" .. chat_id)
+redis:del(SAKURA.."bot:document:mute" .. chat_id)
+redis:del(SAKURA.."markdown:lock" .. chat_id)
+redis:del(SAKURA.."Game:lock" .. chat_id)
+redis:del(SAKURA.."bot:spam:mute" .. chat_id)
+redis:del(SAKURA.."post:lock" .. chat_id)
+redis:del(SAKURA.."bot:welcome" .. chat_id)
+redis:del(SAKURA.."delidstatus" .. chat_id)
+redis:del(SAKURA.."delpro:" .. chat_id)
+redis:del(SAKURA.."sharecont" .. chat_id)
+redis:del(SAKURA.."sayedit" .. chat_id)
+redis:del(SAKURA.."welcome:" .. chat_id)
+redis:del(SAKURA.."bot:group:link" .. chat_id)
+redis:del(SAKURA.."bot:filters:" .. chat_id)
+redis:del(SAKURA.."bot:muteall:Time" .. chat_id)
+redis:del(SAKURA.."bot:muteall:start" .. chat_id)
+redis:del(SAKURA.."bot:muteall:stop" .. chat_id)
+redis:del(SAKURA.."bot:muteall:start_Unix" .. chat_id)
+redis:del(SAKURA.."bot:muteall:stop_Unix" .. chat_id)
+redis:del(SAKURA.."bot:muteall:Run" .. chat_id)
+redis:del(SAKURA.."bot:muted:" .. chat_id)
 end
 local resetsettings = function(chat_id, cb)
-redis:del(KEEPER.."bot:muteall" .. chat_id)
-redis:del(KEEPER.."bot:text:mute" .. chat_id)
-redis:del(KEEPER.."bot:photo:mute" .. chat_id)
-redis:del(KEEPER.."bot:video:mute" .. chat_id)
-redis:del(KEEPER.."bot:selfvideo:mute" .. chat_id)
-redis:del(KEEPER.."bot:gifs:mute" .. chat_id)
-redis:del(KEEPER.."anti-flood:" .. chat_id)
-redis:del(KEEPER.."flood:max:" .. chat_id)
-redis:del(KEEPER.."bot:sens:spam" .. chat_id)
-redis:del(KEEPER.."bot:music:mute" .. chat_id)
-redis:del(KEEPER.."bot:bots:mute" .. chat_id)
-redis:del(KEEPER.."bot:duplipost:mute" .. chat_id)
-redis:del(KEEPER.."bot:inline:mute" .. chat_id)
-redis:del(KEEPER.."bot:cmds" .. chat_id)
-redis:del(KEEPER.."bot:voice:mute" .. chat_id)
-redis:del(KEEPER.."editmsg" .. chat_id)
-redis:del(KEEPER.."bot:links:mute" .. chat_id)
-redis:del(KEEPER.."bot:pin:mute" .. chat_id)
-redis:del(KEEPER.."bot:sticker:mute" .. chat_id)
-redis:del(KEEPER.."bot:tgservice:mute" .. chat_id)
-redis:del(KEEPER.."bot:webpage:mute" .. chat_id)
-redis:del(KEEPER.."bot:strict" .. chat_id)
-redis:del(KEEPER.."bot:hashtag:mute" .. chat_id)
-redis:del(KEEPER.."tags:lock" .. chat_id)
-redis:del(KEEPER.."bot:location:mute" .. chat_id)
-redis:del(KEEPER.."bot:contact:mute" .. chat_id)
-redis:del(KEEPER.."bot:english:mute" .. chat_id)
-redis:del(KEEPER.."bot:member:lock" .. chat_id)
-redis:del(KEEPER.."bot:arabic:mute" .. chat_id)
-redis:del(KEEPER.."bot:forward:mute" .. chat_id)
-redis:del(KEEPER.."bot:document:mute" .. chat_id)
-redis:del(KEEPER.."markdown:lock" .. chat_id)
-redis:del(KEEPER.."Game:lock" .. chat_id)
-redis:del(KEEPER.."bot:spam:mute" .. chat_id)
-redis:del(KEEPER.."post:lock" .. chat_id)
-redis:del(KEEPER.."sayedit" .. chat_id)
-redis:del(KEEPER.."bot:muteall:Time" .. chat_id)
-redis:del(KEEPER.."bot:muteall:start" .. chat_id)
-redis:del(KEEPER.."bot:muteall:stop" .. chat_id)
-redis:del(KEEPER.."bot:muteall:start_Unix" .. chat_id)
-redis:del(KEEPER.."bot:muteall:stop_Unix" .. chat_id)
-redis:del(KEEPER.."bot:muteall:Run" .. chat_id)
+redis:del(SAKURA.."bot:muteall" .. chat_id)
+redis:del(SAKURA.."bot:text:mute" .. chat_id)
+redis:del(SAKURA.."bot:photo:mute" .. chat_id)
+redis:del(SAKURA.."bot:video:mute" .. chat_id)
+redis:del(SAKURA.."bot:selfvideo:mute" .. chat_id)
+redis:del(SAKURA.."bot:gifs:mute" .. chat_id)
+redis:del(SAKURA.."anti-flood:" .. chat_id)
+redis:del(SAKURA.."flood:max:" .. chat_id)
+redis:del(SAKURA.."bot:sens:spam" .. chat_id)
+redis:del(SAKURA.."bot:music:mute" .. chat_id)
+redis:del(SAKURA.."bot:bots:mute" .. chat_id)
+redis:del(SAKURA.."bot:duplipost:mute" .. chat_id)
+redis:del(SAKURA.."bot:inline:mute" .. chat_id)
+redis:del(SAKURA.."bot:cmds" .. chat_id)
+redis:del(SAKURA.."bot:voice:mute" .. chat_id)
+redis:del(SAKURA.."editmsg" .. chat_id)
+redis:del(SAKURA.."bot:links:mute" .. chat_id)
+redis:del(SAKURA.."bot:pin:mute" .. chat_id)
+redis:del(SAKURA.."bot:sticker:mute" .. chat_id)
+redis:del(SAKURA.."bot:tgservice:mute" .. chat_id)
+redis:del(SAKURA.."bot:webpage:mute" .. chat_id)
+redis:del(SAKURA.."bot:strict" .. chat_id)
+redis:del(SAKURA.."bot:hashtag:mute" .. chat_id)
+redis:del(SAKURA.."tags:lock" .. chat_id)
+redis:del(SAKURA.."bot:location:mute" .. chat_id)
+redis:del(SAKURA.."bot:contact:mute" .. chat_id)
+redis:del(SAKURA.."bot:english:mute" .. chat_id)
+redis:del(SAKURA.."bot:member:lock" .. chat_id)
+redis:del(SAKURA.."bot:arabic:mute" .. chat_id)
+redis:del(SAKURA.."bot:forward:mute" .. chat_id)
+redis:del(SAKURA.."bot:document:mute" .. chat_id)
+redis:del(SAKURA.."markdown:lock" .. chat_id)
+redis:del(SAKURA.."Game:lock" .. chat_id)
+redis:del(SAKURA.."bot:spam:mute" .. chat_id)
+redis:del(SAKURA.."post:lock" .. chat_id)
+redis:del(SAKURA.."sayedit" .. chat_id)
+redis:del(SAKURA.."bot:muteall:Time" .. chat_id)
+redis:del(SAKURA.."bot:muteall:start" .. chat_id)
+redis:del(SAKURA.."bot:muteall:stop" .. chat_id)
+redis:del(SAKURA.."bot:muteall:start_Unix" .. chat_id)
+redis:del(SAKURA.."bot:muteall:stop_Unix" .. chat_id)
+redis:del(SAKURA.."bot:muteall:Run" .. chat_id)
 end
 local panel_one = function(chat_id)
-redis:set(KEEPER.."bot:webpage:mute" .. chat_id, true)
-redis:set(KEEPER.."bot:inline:mute" .. chat_id, true)
-redis:set(KEEPER.."bot:bots:mute" .. chat_id, true)
-redis:set(KEEPER.."tags:lock" .. chat_id, true)
-redis:set(KEEPER.."markdown:lock" .. chat_id, true)
-redis:set(KEEPER.."bot:links:mute" .. chat_id, true)
-redis:set(KEEPER.."bot:hashtag:mute" .. chat_id, true)
-redis:set(KEEPER.."bot:spam:mute" .. chat_id, true)
-redis:set(KEEPER.."anti-flood:" .. chat_id, true)
-redis:set(KEEPER.."Game:lock" .. chat_id, true)
-redis:set(KEEPER.."bot:panel" .. chat_id, "one")
+redis:set(SAKURA.."bot:webpage:mute" .. chat_id, true)
+redis:set(SAKURA.."bot:inline:mute" .. chat_id, true)
+redis:set(SAKURA.."bot:bots:mute" .. chat_id, true)
+redis:set(SAKURA.."tags:lock" .. chat_id, true)
+redis:set(SAKURA.."markdown:lock" .. chat_id, true)
+redis:set(SAKURA.."bot:links:mute" .. chat_id, true)
+redis:set(SAKURA.."bot:hashtag:mute" .. chat_id, true)
+redis:set(SAKURA.."bot:spam:mute" .. chat_id, true)
+redis:set(SAKURA.."anti-flood:" .. chat_id, true)
+redis:set(SAKURA.."Game:lock" .. chat_id, true)
+redis:set(SAKURA.."bot:panel" .. chat_id, "one")
 end
 local panel_two = function(chat_id)
-redis:set(KEEPER.."bot:webpage:mute" .. chat_id, true)
-redis:set(KEEPER.."bot:inline:mute" .. chat_id, true)
-redis:set(KEEPER.."bot:bots:mute" .. chat_id, true)
-redis:set(KEEPER.."tags:lock" .. chat_id, true)
-redis:set(KEEPER.."markdown:lock" .. chat_id, true)
-redis:set(KEEPER.."bot:links:mute" .. chat_id, true)
-redis:set(KEEPER.."bot:hashtag:mute" .. chat_id, true)
-redis:set(KEEPER.."bot:spam:mute" .. chat_id, true)
-redis:set(KEEPER.."anti-flood:" .. chat_id, true)
-redis:set(KEEPER.."Game:lock" .. chat_id, true)
-redis:set(KEEPER.."post:lock" .. chat_id, true)
-redis:set(KEEPER.."bot:forward:mute" .. chat_id, true)
-redis:set(KEEPER.."bot:photo:mute" .. chat_id, true)
-redis:set(KEEPER.."bot:video:mute" .. chat_id, true)
-redis:set(KEEPER.."bot:selfvideo:mute" .. chat_id, true)
-redis:set(KEEPER.."bot:gifs:mute" .. chat_id, true)
-redis:set(KEEPER.."bot:sticker:mute" .. chat_id, true)
-redis:set(KEEPER.."bot:location:mute" .. chat_id, true)
-redis:set(KEEPER.."bot:document:mute" .. chat_id, true)
-redis:set(KEEPER.."bot:panel" .. chat_id, "two")
+redis:set(SAKURA.."bot:webpage:mute" .. chat_id, true)
+redis:set(SAKURA.."bot:inline:mute" .. chat_id, true)
+redis:set(SAKURA.."bot:bots:mute" .. chat_id, true)
+redis:set(SAKURA.."tags:lock" .. chat_id, true)
+redis:set(SAKURA.."markdown:lock" .. chat_id, true)
+redis:set(SAKURA.."bot:links:mute" .. chat_id, true)
+redis:set(SAKURA.."bot:hashtag:mute" .. chat_id, true)
+redis:set(SAKURA.."bot:spam:mute" .. chat_id, true)
+redis:set(SAKURA.."anti-flood:" .. chat_id, true)
+redis:set(SAKURA.."Game:lock" .. chat_id, true)
+redis:set(SAKURA.."post:lock" .. chat_id, true)
+redis:set(SAKURA.."bot:forward:mute" .. chat_id, true)
+redis:set(SAKURA.."bot:photo:mute" .. chat_id, true)
+redis:set(SAKURA.."bot:video:mute" .. chat_id, true)
+redis:set(SAKURA.."bot:selfvideo:mute" .. chat_id, true)
+redis:set(SAKURA.."bot:gifs:mute" .. chat_id, true)
+redis:set(SAKURA.."bot:sticker:mute" .. chat_id, true)
+redis:set(SAKURA.."bot:location:mute" .. chat_id, true)
+redis:set(SAKURA.."bot:document:mute" .. chat_id, true)
+redis:set(SAKURA.."bot:panel" .. chat_id, "two")
 end
 local panel_three = function(chat_id)
-redis:set(KEEPER.."bot:inline:mute" .. chat_id, true)
-redis:set(KEEPER.."bot:bots:mute" .. chat_id, true)
-redis:set(KEEPER.."markdown:lock" .. chat_id, true)
-redis:set(KEEPER.."bot:links:mute" .. chat_id, true)
-redis:set(KEEPER.."bot:spam:mute" .. chat_id, true)
-redis:set(KEEPER.."bot:sens:spam" .. chat_id, 500)
-redis:set(KEEPER.."anti-flood:" .. chat_id, true)
-redis:set(KEEPER.."Game:lock" .. chat_id, true)
-redis:set(KEEPER.."bot:cmds" .. chat_id, true)
-redis:set(KEEPER.."bot:duplipost:mute" .. chat_id, true)
-redis:set(KEEPER.."bot:panel" .. chat_id, "three")
+redis:set(SAKURA.."bot:inline:mute" .. chat_id, true)
+redis:set(SAKURA.."bot:bots:mute" .. chat_id, true)
+redis:set(SAKURA.."markdown:lock" .. chat_id, true)
+redis:set(SAKURA.."bot:links:mute" .. chat_id, true)
+redis:set(SAKURA.."bot:spam:mute" .. chat_id, true)
+redis:set(SAKURA.."bot:sens:spam" .. chat_id, 500)
+redis:set(SAKURA.."anti-flood:" .. chat_id, true)
+redis:set(SAKURA.."Game:lock" .. chat_id, true)
+redis:set(SAKURA.."bot:cmds" .. chat_id, true)
+redis:set(SAKURA.."bot:duplipost:mute" .. chat_id, true)
+redis:set(SAKURA.."bot:panel" .. chat_id, "three")
 end
 local function exportChatInviteLink(chat_id, cb, cmd)
   tdcli_function ({
@@ -1757,28 +1753,28 @@ end
 local who_add = function(chat)
 local user_id
 local user = false
-local list1 = redis:smembers(KEEPER.."Bot:KpSudos")
-local list2 = redis:smembers(KEEPER.."Bot:Admins")
+local list1 = redis:smembers(SAKURA.."Bot:KpSudos")
+local list2 = redis:smembers(SAKURA.."Bot:Admins")
 for k, v in pairs(list1) do
 local hash = "sudo:data:" .. v
-local is_add = redis:sismember(KEEPER..hash, chat)
+local is_add = redis:sismember(SAKURA..hash, chat)
 if is_add then
 user_id = v
 end
 end
 for k, v in pairs(list2) do
 local hash = "sudo:data:" .. v
-local is_add = redis:sismember(KEEPER..hash, chat)
+local is_add = redis:sismember(SAKURA..hash, chat)
 if is_add then
 user_id = v
 end
 end
 local hash = "sudo:data:" .. Kp_Owner
-if redis:sismember(KEEPER..hash, chat) then
+if redis:sismember(SAKURA..hash, chat) then
 user_id = Kp_Owner
 end
 if user_id then
-local user_info = redis:get(KEEPER.."user:Name" .. user_id)
+local user_info = redis:get(SAKURA.."user:Name" .. user_id)
 if user_info then
 user = user_info
 end
@@ -1829,7 +1825,7 @@ end
 local check_filter_words = function(msg, value)
 local hash = "bot:filters:" .. msg.chat_id_
 if hash then
-local names = redis:hkeys(KEEPER..hash)
+local names = redis:hkeys(SAKURA..hash)
 local text = ""
 for i = 1, #names do
 if string.match(value, names[i]) and not is_momod(msg.sender_user_id_, msg.chat_id_) then
@@ -1844,30 +1840,30 @@ end
 end
 end
 end 
-redis:set(KEEPER.."bot:Uptime", os.time())
+redis:set(SAKURA.."bot:Uptime", os.time())
 ----------------tdcli_update_callback---------------------------------------------------------------------------
 function tdcli_update_callback(data)
-local our_id = redis:get(KEEPER.."Our_ID") or 0
-local api_id = redis:get(KEEPER.."Bot:Api_ID") or 0
+local our_id = redis:get(SAKURA.."Our_ID") or 0
+local api_id = redis:get(SAKURA.."Bot:Api_ID") or 0
 if data.ID == "UpdateNewMessage" then
 local msg = data.message_
 local d = data.disable_notification_
 local chat = chats[msg.chat_id_]
-redis:sadd(KEEPER.."groups:users" .. msg.chat_id_, msg.sender_user_id_)--save users gp
-redis:incr(KEEPER.."msgs:"..msg.sender_user_id_..":"..msg.chat_id_.."")--save msgs gp
+redis:sadd(SAKURA.."groups:users" .. msg.chat_id_, msg.sender_user_id_)--save users gp
+redis:incr(SAKURA.."msgs:"..msg.sender_user_id_..":"..msg.chat_id_.."")--save msgs gp
 if msg.content_.ID == "MessageChatDeleteMember" then
 if tonumber(msg.content_.user_.id_) == tonumber(_redis.Bot_ID) then
-local user_info_ = redis:get(KEEPER.."user:Name" .. msg.sender_user_id_)
-local UserKeeper = user_info_
+local user_info_ = redis:get(SAKURA.."user:Name" .. msg.sender_user_id_)
+local UserSAKURA = user_info_
 if user_info_ then 
 local sudoed = tonumber(Kp_Owner)
-local iD_keeper = [[
+local iD_SAKURA = [[
 • تم طردِ البوت ، من المجموعه »
 
 - معلومات عن الشخص »
 
 ⛲️┊ايديـه ~ (]]..msg.sender_user_id_..[[)
-🚤┊معرفه ~ []]..UserKeeper..[[]
+🚤┊معرفه ~ []]..UserSAKURA..[[]
 
 - معلومات المجموعه »
 
@@ -1879,17 +1875,17 @@ local iD_keeper = [[
 
 ✓‏
 ‌‏]]
-send(sudoed, 0, 1,iD_keeper, 1, "md")
-redis:del(KEEPER.."bot:enable:" .. msg.chat_id_)
-redis:srem(KEEPER.."bot:groups", msg.chat_id_)
+send(sudoed, 0, 1,iD_SAKURA, 1, "md")
+redis:del(SAKURA.."bot:enable:" .. msg.chat_id_)
+redis:srem(SAKURA.."bot:groups", msg.chat_id_)
 end end end
 if msg.content_.ID == "MessageChatAddMembers" then
-redis:incr(KEEPER..'kpaddcon'..msg.chat_id_..':'..msg.sender_user_id_)
+redis:incr(SAKURA..'kpaddcon'..msg.chat_id_..':'..msg.sender_user_id_)
 if msg.date_ < os.time() - 40 then
 print("\027[" .. color.white[1] .. ";" .. color.magenta[2] .. "m>>> OLD MSG <<<\027[00m")
 return false
 end
-if not redis:get(KEEPER.."Set_Our_ID") then
+if not redis:get(SAKURA.."Set_Our_ID") then
 tdcli_function({ID = "GetMe"}, BotInfo, nil)
 end
 if tonumber(msg.sender_user_id_) == tonumber(api_id) then
@@ -1901,7 +1897,7 @@ print("\027[" .. color.red[1] .. ";" .. color.black[2] .. "m>>>>>>> [ Config.Ero
 return false
 end
 end
-if not redis:get(KEEPER.."Rank:Data") then
+if not redis:get(SAKURA.."Rank:Data") then
 for v, user in pairs(sudo_users) do
 do
 -------------------function outputsudo--------------------------------------------------------
@@ -1916,7 +1912,7 @@ sudousername = "---"
 end
 local sudouserid = result.id_ or "---"
 if result.first_name_ then
-redis:set(KEEPER.."KpSudos" .. user, "> Sudo User ID : " .. sudouserid .. [[
+redis:set(SAKURA.."KpSudos" .. user, "> Sudo User ID : " .. sudouserid .. [[
 
 > Sudo User Name : ]] .. sudoname .. [[
 
@@ -1940,7 +1936,7 @@ else
 botownerusername = "---"
 end
 local botowneruserid = result.id_ or "---"
-redis:set(KEEPER.."KpOwnerBot" .. Kp_Owner, "> Bot Owner ID : " .. botowneruserid .. [[
+redis:set(SAKURA.."KpOwnerBot" .. Kp_Owner, "> Bot Owner ID : " .. botowneruserid .. [[
 
 > Bot Owner Name : ]] .. botownername .. [[
 
@@ -1961,7 +1957,7 @@ else
 botusername = "---"
 end
 local botuserid = result.id_ or "---"
-redis:set(KEEPER.."Botid" .. result.id_, "> Bot ID : " .. botuserid .. [[
+redis:set(SAKURA.."Botid" .. result.id_, "> Bot ID : " .. botuserid .. [[
 
 > Bot Name : ]] .. botname .. [[
 
@@ -1969,7 +1965,7 @@ redis:set(KEEPER.."Botid" .. result.id_, "> Bot ID : " .. botuserid .. [[
 
 ---------------]])
 else
-redis:set(KEEPER.."Botid" .. bot_id, [[
+redis:set(SAKURA.."Botid" .. bot_id, [[
 > Bot ID : ---
 > Bot Name : ---
 > Bot Username : ---
@@ -1977,57 +1973,57 @@ redis:set(KEEPER.."Botid" .. bot_id, [[
 end
 end
 getUser(bot_id, outputbot)
-redis:setex(KEEPER.."Rank:Data", 700, true)
+redis:setex(SAKURA.."Rank:Data", 700, true)
 end
-if redis:get(KEEPER.."bot:reload") and 30 > tonumber(redis:ttl(KEEPER.."bot:reload")) then
+if redis:get(SAKURA.."bot:reload") and 30 > tonumber(redis:ttl(SAKURA.."bot:reload")) then
 load_config()
 setnumbergp()
-redis:setex(KEEPER.."bot:reload", 7230, true)
+redis:setex(SAKURA.."bot:reload", 7230, true)
 print("\027[" .. color.black[1] .. ";" .. color.green[2] .. "m>>> Bot Reloaded <<<\027[00m")
 end
-if not redis:get(KEEPER.."bot:reload2") then
-redis:del(KEEPER.."bot:groups")
-redis:del(KEEPER.."bot:userss")
-redis:setex(KEEPER.."bot:reloadingtime", 22 * hour, true)
-redis:setex(KEEPER.."bot:reload2", week, true)
-redis:setex(KEEPER.."bot:reload3", 2222 * day, true)
-redis:setex(KEEPER.."bot:reload4", 2222 * day, true)
+if not redis:get(SAKURA.."bot:reload2") then
+redis:del(SAKURA.."bot:groups")
+redis:del(SAKURA.."bot:userss")
+redis:setex(SAKURA.."bot:reloadingtime", 22 * hour, true)
+redis:setex(SAKURA.."bot:reload2", week, true)
+redis:setex(SAKURA.."bot:reload3", 2222 * day, true)
+redis:setex(SAKURA.."bot:reload4", 2222 * day, true)
 end
-if redis:get(KEEPER.."bot:reload3") and 500 >= tonumber(redis:ttl(KEEPER.."bot:reload3")) then
+if redis:get(SAKURA.."bot:reload3") and 500 >= tonumber(redis:ttl(SAKURA.."bot:reload3")) then
 local hash = "bot:groups"
-local list = redis:smembers(KEEPER..hash)
+local list = redis:smembers(SAKURA..hash)
 for k, v in pairs(list) do
-if not redis:get(KEEPER.."bot:enable:" .. v) and not redis:get(KEEPER.."bot:charge:" .. v) then
+if not redis:get(SAKURA.."bot:enable:" .. v) and not redis:get(SAKURA.."bot:charge:" .. v) then
 resetgroup(v)
 chat_leave(v, bot_id)
-redis:srem(KEEPER..hash, v)
+redis:srem(SAKURA..hash, v)
 end
 end
-redis:del(KEEPER.."bot:reload3")
+redis:del(SAKURA.."bot:reload3")
 end
-if redis:get(KEEPER.."bot:reload4") and redis:ttl(KEEPER.."bot:reload4") <= 600 then
+if redis:get(SAKURA.."bot:reload4") and redis:ttl(SAKURA.."bot:reload4") <= 600 then
 local reload_data_sudo = function()
 local hashsudo = "Bot:KpSudos"
-local listsudo = redis:smembers(KEEPER..hashsudo)
+local listsudo = redis:smembers(SAKURA..hashsudo)
 for k, v in pairs(listsudo) do
 local hashdata = "sudo:data:" .. v
-local listdata = redis:smembers(KEEPER..hashdata)
+local listdata = redis:smembers(SAKURA..hashdata)
 for k, gp in pairs(listdata) do
-if not redis:sismember(KEEPER.."bot:groups", gp) then
-redis:srem(KEEPER..hashdata, gp)
+if not redis:sismember(SAKURA.."bot:groups", gp) then
+redis:srem(SAKURA..hashdata, gp)
 end
 end
 end
 end
 local reload_data_admins = function()
 local hashadmin = "Bot:Admins"
-local listadmin = redis:smembers(KEEPER..hashadmin)
+local listadmin = redis:smembers(SAKURA..hashadmin)
 for k, v in pairs(listadmin) do
 local hashdata = "sudo:data:" .. v
-local listdata = redis:smembers(KEEPER..hashdata)
+local listdata = redis:smembers(SAKURA..hashdata)
 for k, gp in pairs(listdata) do
-if not redis:sismember(KEEPER.."bot:groups", gp) then
-redis:srem(KEEPER..hashdata, gp)
+if not redis:sismember(SAKURA.."bot:groups", gp) then
+redis:srem(SAKURA..hashdata, gp)
 end
 end
 end
@@ -2036,21 +2032,21 @@ reload_data_sudo()
 reload_data_admins()
 end
 ------------------------------EXpirepannel GP ----------------------------------------------------------
-local expiretime = redis:ttl(KEEPER.."bot:charge:" .. msg.chat_id_)
-if not redis:get(KEEPER.."bot:charge:" .. msg.chat_id_) and redis:get(KEEPER.."bot:enable:" .. msg.chat_id_) then
-redis:del(KEEPER.."bot:enable:" .. msg.chat_id_)
-redis:srem(KEEPER.."bot:groups", msg.chat_id_)
+local expiretime = redis:ttl(SAKURA.."bot:charge:" .. msg.chat_id_)
+if not redis:get(SAKURA.."bot:charge:" .. msg.chat_id_) and redis:get(SAKURA.."bot:enable:" .. msg.chat_id_) then
+redis:del(SAKURA.."bot:enable:" .. msg.chat_id_)
+redis:srem(SAKURA.."bot:groups", msg.chat_id_)
 end
-if redis:get(KEEPER.."bot:charge:" .. msg.chat_id_) and not redis:get(KEEPER.."bot:enable:" .. msg.chat_id_) then
-redis:set(KEEPER.."bot:enable:" .. msg.chat_id_, true)
+if redis:get(SAKURA.."bot:charge:" .. msg.chat_id_) and not redis:get(SAKURA.."bot:enable:" .. msg.chat_id_) then
+redis:set(SAKURA.."bot:enable:" .. msg.chat_id_, true)
 end
-if not redis:get(KEEPER.."bot:expirepannel:" .. msg.chat_id_) and redis:get(KEEPER.."bot:charge:" .. msg.chat_id_) and tonumber(expiretime) < tonumber(day) and tonumber(expiretime) >= 3600 then
+if not redis:get(SAKURA.."bot:expirepannel:" .. msg.chat_id_) and redis:get(SAKURA.."bot:charge:" .. msg.chat_id_) and tonumber(expiretime) < tonumber(day) and tonumber(expiretime) >= 3600 then
 local id = tostring(msg.chat_id_)
 if id:match("-100(%d+)") then
 local v = tonumber(Kp_Owner)
-local list = redis:smembers(KEEPER.."bot:owners:" .. msg.chat_id_)
+local list = redis:smembers(SAKURA.."bot:owners:" .. msg.chat_id_)
 if list[1] or list[2] or list[3] or list[4] then
-user_info = redis:get(KEEPER.."user:Name" .. (list[1] or list[2] or list[3] or list[4]))
+user_info = redis:get(SAKURA.."user:Name" .. (list[1] or list[2] or list[3] or list[4]))
 end
 if user_info then
 owner = user_info
@@ -2063,47 +2059,47 @@ sudo = User
 else
 sudo = "لا يوجد  "
 end
-send(v, 0, 1, "💲┊ سوف تنتهي صلاحيه المجموعه\n🔅┊الرابط : " .. (redis:get(KEEPER.."bot:group:link" .. msg.chat_id_) or "لا يوجد ") .. "\n🚫┊ الايدي » " .. msg.chat_id_ .. "", 1, "html")
-redis:setex(KEEPER.."bot:expirepannel:" .. msg.chat_id_, 43200, true)
+send(v, 0, 1, "💲┊ سوف تنتهي صلاحيه المجموعه\n🔅┊الرابط : " .. (redis:get(SAKURA.."bot:group:link" .. msg.chat_id_) or "لا يوجد ") .. "\n🚫┊ الايدي » " .. msg.chat_id_ .. "", 1, "html")
+redis:setex(SAKURA.."bot:expirepannel:" .. msg.chat_id_, 43200, true)
 end
 end
 ------------------------Autoleave FOR BOT----------------------------------------------------
-if redis:get(KEEPER.."autoleave") == "On" then
+if redis:get(SAKURA.."autoleave") == "On" then
 local id = tostring(msg.chat_id_)
-if not redis:get(KEEPER.."bot:enable:" .. msg.chat_id_) and id:match("-100(%d+)") and not redis:get(KEEPER.."bot:autoleave:" .. msg.chat_id_) then
-redis:setex(KEEPER.."bot:autoleave:" .. msg.chat_id_, 1400, true)
+if not redis:get(SAKURA.."bot:enable:" .. msg.chat_id_) and id:match("-100(%d+)") and not redis:get(SAKURA.."bot:autoleave:" .. msg.chat_id_) then
+redis:setex(SAKURA.."bot:autoleave:" .. msg.chat_id_, 1400, true)
 end
-local autoleavetime = tonumber(redis:ttl(KEEPER.."bot:autoleave:" .. msg.chat_id_))
+local autoleavetime = tonumber(redis:ttl(SAKURA.."bot:autoleave:" .. msg.chat_id_))
 local time = 400
 if tonumber(autoleavetime) < tonumber(time) and tonumber(autoleavetime) > 150 then
-redis:set(KEEPER.."lefting" .. msg.chat_id_, true)
+redis:set(SAKURA.."lefting" .. msg.chat_id_, true)
 end
 local id = tostring(msg.chat_id_)
-if id:match("-100(%d+)") and redis:get(KEEPER.."lefting" .. msg.chat_id_) then
-if not redis:get(KEEPER.."bot:enable:" .. msg.chat_id_) and not redis:get(KEEPER.."bot:charge:" .. msg.chat_id_) then
-redis:del(KEEPER.."lefting" .. msg.chat_id_)
-redis:del(KEEPER.."bot:autoleave:" .. msg.chat_id_)
+if id:match("-100(%d+)") and redis:get(SAKURA.."lefting" .. msg.chat_id_) then
+if not redis:get(SAKURA.."bot:enable:" .. msg.chat_id_) and not redis:get(SAKURA.."bot:charge:" .. msg.chat_id_) then
+redis:del(SAKURA.."lefting" .. msg.chat_id_)
+redis:del(SAKURA.."bot:autoleave:" .. msg.chat_id_)
 chat_leave(msg.chat_id_, bot_id)
 local v = tonumber(Kp_Owner)
 send(v, 0, 1, "💲┊ تم مغادره المجموعــه\n🔱┊ الاسم » 👇🏾\n🏮┊ ("..title_name(msg.chat_id_)..")\n🚫┊ الايدي » " .. msg.chat_id_, 1, "html")
-redis:srem(KEEPER.."bot:groups", msg.chat_id_)
-elseif redis:get(KEEPER.."bot:enable:" .. msg.chat_id_) then
-redis:del(KEEPER.."lefting" .. msg.chat_id_)
+redis:srem(SAKURA.."bot:groups", msg.chat_id_)
+elseif redis:get(SAKURA.."bot:enable:" .. msg.chat_id_) then
+redis:del(SAKURA.."lefting" .. msg.chat_id_)
 end
 end
-elseif redis:get(KEEPER.."bot:charge:" .. msg.chat_id_) == "Trial" and 500 > redis:ttl(KEEPER.."bot:charge:" .. msg.chat_id_) then
+elseif redis:get(SAKURA.."bot:charge:" .. msg.chat_id_) == "Trial" and 500 > redis:ttl(SAKURA.."bot:charge:" .. msg.chat_id_) then
 local v = tonumber(Kp_Owner)
 send(v, 0, 1, "💲┊ تم مغادره المجموعــه\n🔱┊ الاسم » ("..title_name(msg.chat_id_)..")\n🚫┊ الايدي » " .. msg.chat_id_, 1, "html")
-redis:srem(KEEPER.."bot:groups", msg.chat_id_)
+redis:srem(SAKURA.."bot:groups", msg.chat_id_)
 chat_leave(msg.chat_id_, bot_id)
-redis:del(KEEPER.."bot:charge:" .. msg.chat_id_)
+redis:del(SAKURA.."bot:charge:" .. msg.chat_id_)
 end
 local idf = tostring(msg.chat_id_)
 if idf:match("-100(%d+)") then
 local chatname = chat and chat and chat.title_
 local svgroup = "group:Name" .. msg.chat_id_
 if chat and chatname then
-redis:set(KEEPER..svgroup, chatname)
+redis:set(SAKURA..svgroup, chatname)
 end
 end
 local check_username = function(extra, result)
@@ -2114,17 +2110,17 @@ local username = result.username_
 local svuser = "user:Name" .. result.id_
 local id = result.id_
 if username then
-redis:set(KEEPER..svuser, "@" .. username)
+redis:set(SAKURA..svuser, "@" .. username)
 else
-redis:set(KEEPER..svuser, name)
+redis:set(SAKURA..svuser, name)
 end
 end
 getUser(msg.sender_user_id_, check_username)
-if redis:get(KEEPER.."clerk") == "On" then
+if redis:get(SAKURA.."clerk") == "On" then
 local clerk = function(extra, result)
 if not is_admin(result.id_) then
-local textc = redis:get(KEEPER.."textsec")
-if not redis:get(KEEPER.."secretary_:" .. msg.chat_id_) and textc then
+local textc = redis:get(SAKURA.."textsec")
+if not redis:get(SAKURA.."secretary_:" .. msg.chat_id_) and textc then
 textc = textc:gsub("FIRSTNAME", result.first_name_ or "")
 textc = textc:gsub("LASTNAME", result.last_name_ or "")
 if result.username_ then
@@ -2134,7 +2130,7 @@ textc = textc:gsub("USERNAME", "")
 end
 textc = textc:gsub("USERID", result.id_ or "")
 send(msg.chat_id_, msg.id_, 1, textc, 1, "html")
-redis:setex(KEEPER.."secretary_:" .. msg.chat_id_, day, true)
+redis:setex(SAKURA.."secretary_:" .. msg.chat_id_, day, true)
 end
 end
 end
@@ -2143,13 +2139,13 @@ getUser(msg.sender_user_id_, clerk)
 end
 end
 -----------------status_welcome IN GP-------------------------------------------------------------------------
-local status_welcome = (redis:get(KEEPER..'status:welcome:'..msg.chat_id_) or 'disable')
+local status_welcome = (redis:get(SAKURA..'status:welcome:'..msg.chat_id_) or 'disable')
 if status_welcome == 'enable' then
 if msg.content_.ID == "MessageChatJoinByLink" then
 if not is_banned(msg.chat_id_,msg.sender_user_id_) then
 function wlc(extra,result,success)
-if redis:get(KEEPER..'welcome:'..msg.chat_id_) then
-text = redis:get(KEEPER..'welcome:'..msg.chat_id_)
+if redis:get(SAKURA..'welcome:'..msg.chat_id_) then
+text = redis:get(SAKURA..'welcome:'..msg.chat_id_)
 else
 text = 'اهلا عزيزي {firstname}\nنورت المجموعه 🌸'
 end
@@ -2162,14 +2158,14 @@ getUser(msg.sender_user_id_,wlc)
 end
 end
 end
-local status_welcome = (redis:get(KEEPER..'status:welcome:'..msg.chat_id_) or 'disable')
+local status_welcome = (redis:get(SAKURA..'status:welcome:'..msg.chat_id_) or 'disable')
 if status_welcome == 'enable' then
 if msg.content_.members_ and msg.content_.members_[0] and msg.content_.members_[0].type_.ID == 'UserTypeGeneral' then
 if msg.content_.ID == "MessageChatAddMembers" then
 if not is_banned(msg.chat_id_,msg.content_.members_[0].id_) then
 function wlc_m(extra,result,success)
-if redis:get(KEEPER..'welcome:'..msg.chat_id_) then
-text = redis:get(KEEPER..'welcome:'..msg.chat_id_)
+if redis:get(SAKURA..'welcome:'..msg.chat_id_) then
+text = redis:get(SAKURA..'welcome:'..msg.chat_id_)
 else
 text = 'اهلا عزيزي {firstname}\nنورت المجموعه 🌸'
 end
@@ -2184,31 +2180,31 @@ getUser(msg.sender_user_id_,wlc_m)
 end
 end
 ----------------- save all msg bot --------------------------
-redis:incr(KEEPER.."bot:allmsgs")
+redis:incr(SAKURA.."bot:allmsgs")
 if msg.chat_id_ then
 local id = tostring(msg.chat_id_)
 if id:match("-100(%d+)") then
-if not redis:sismember(KEEPER.."bot:groups", msg.chat_id_) then
-redis:sadd(KEEPER.."bot:groups", msg.chat_id_)
+if not redis:sismember(SAKURA.."bot:groups", msg.chat_id_) then
+redis:sadd(SAKURA.."bot:groups", msg.chat_id_)
 end
 elseif id:match("^(%d+)") then
-if not redis:sismember(KEEPER.."bot:userss", msg.chat_id_) then
-redis:sadd(KEEPER.."bot:userss", msg.chat_id_)
+if not redis:sismember(SAKURA.."bot:userss", msg.chat_id_) then
+redis:sadd(SAKURA.."bot:userss", msg.chat_id_)
 end
-elseif not redis:sismember(KEEPER.."bot:groups", msg.chat_id_) then
-redis:sadd(KEEPER.."bot:groups", msg.chat_id_)
+elseif not redis:sismember(SAKURA.."bot:groups", msg.chat_id_) then
+redis:sadd(SAKURA.."bot:groups", msg.chat_id_)
 end
 end
 ---------------type the msg--------------------------------------------------
 if msg.content_ then
 if msg.content_.ID == "MessageText" then
-redis:incr(KEEPER.."text:"..msg.sender_user_id_..":"..msg.chat_id_.."")
+redis:incr(SAKURA.."text:"..msg.sender_user_id_..":"..msg.chat_id_.."")
 text = msg.content_.text_
 print("\027[" .. color.black[1] .. ";" .. color.yellow[2] .. "m>> [ Text ] <<\027[00m")
 msg_type = "MSG:Text"
 end
 if msg.content_.ID == "MessagePhoto" then
-redis:incr(KEEPER.."Photo:"..msg.sender_user_id_..":"..msg.chat_id_.."")
+redis:incr(SAKURA.."Photo:"..msg.sender_user_id_..":"..msg.chat_id_.."")
 print("\027[" .. color.black[1] .. ";" .. color.yellow[2] .. "m>> [ Photo ] <<\027[00m")
 msg_type = "MSG:Photo"
 end
@@ -2221,11 +2217,11 @@ print("\027[" .. color.black[1] .. ";" .. color.yellow[2] .. "m>> [ Document ] <
 msg_type = "MSG:Document"
 end
 if msg.content_.ID == "MessageSticker" then
-redis:incr(KEEPER.."sticker:"..msg.sender_user_id_..":"..msg.chat_id_.."")
-if not redis:get(KEEPER.."lock_STCK"..msg.chat_id_) then
-if not redis:get(KEEPER..'lock:add'..msg.chat_id_) then
-local KEEPER = {"منور انت ، 😙","اه باع وجهك شكد نضيف 😅","هذا منو ، 😏","تسمحلي ابوسك ☹️😹","مليان ضحك مليان 😹❤️","تف على هذا  ويهك 💦😹","اذا حاته ممكن الرقم 😆😹","تدري صار "..(redis:get(KEEPER.."sticker:"..msg.sender_user_id_..":"..msg.chat_id_.."")).." ملصق داز  شهالتبذير 🤔😹","كافي ملصقات مشايف 😫"}
-send(msg.chat_id_, msg.id_, 1,""..KEEPER[math.random(#KEEPER)].."", 1, 'md')
+redis:incr(SAKURA.."sticker:"..msg.sender_user_id_..":"..msg.chat_id_.."")
+if not redis:get(SAKURA.."lock_STCK"..msg.chat_id_) then
+if not redis:get(SAKURA..'lock:add'..msg.chat_id_) then
+local SAKURA = {"منور انت ، 😙","اه باع وجهك شكد نضيف 😅","هذا منو ، 😏","تسمحلي ابوسك ☹️😹","مليان ضحك مليان 😹❤️","تف على هذا  ويهك 💦😹","اذا حاته ممكن الرقم 😆😹","تدري صار "..(redis:get(SAKURA.."sticker:"..msg.sender_user_id_..":"..msg.chat_id_.."")).." ملصق داز  شهالتبذير 🤔😹","كافي ملصقات مشايف 😫"}
+send(msg.chat_id_, msg.id_, 1,""..SAKURA[math.random(#SAKURA)].."", 1, 'md')
 end
 end
 print("\027[" .. color.black[1] .. ";" .. color.yellow[2] .. "m>> [ Sticker ] <<\027[00m")
@@ -2240,17 +2236,17 @@ print("\027[" .. color.black[1] .. ";" .. color.yellow[2] .. "m>> [ Game ] <<\02
 msg_type = "MSG:Game"
 end
 if msg.content_.ID == "MessageVoice" then
-redis:incr(KEEPER.."Voice:"..msg.sender_user_id_..":"..msg.chat_id_.."")
+redis:incr(SAKURA.."Voice:"..msg.sender_user_id_..":"..msg.chat_id_.."")
 print("\027[" .. color.black[1] .. ";" .. color.yellow[2] .. "m>> [ Voice ] <<\027[00m")
 msg_type = "MSG:Voice"
 end
 if msg.content_.ID == "MessageVideo" then
-redis:incr(KEEPER.."Video:"..msg.sender_user_id_..":"..msg.chat_id_.."")
+redis:incr(SAKURA.."Video:"..msg.sender_user_id_..":"..msg.chat_id_.."")
 print("\027[" .. color.black[1] .. ";" .. color.yellow[2] .. "m>> [ Video ] <<\027[00m")
 msg_type = "MSG:Video"
 end
 if msg.content_.ID == "MessageAnimation" then
-redis:incr(KEEPER.."Gif:"..msg.sender_user_id_..":"..msg.chat_id_.."")
+redis:incr(SAKURA.."Gif:"..msg.sender_user_id_..":"..msg.chat_id_.."")
 print("\027[" .. color.black[1] .. ";" .. color.yellow[2] .. "m>> [ Gif ] <<\027[00m")
 msg_type = "MSG:Gif"
 end
@@ -2259,7 +2255,7 @@ print("\027[" .. color.black[1] .. ";" .. color.yellow[2] .. "m>> [ Location ] <
 msg_type = "MSG:Location"
 end
 if msg.content_.ID == "MessageUnsupported" then
-redis:incr(KEEPER.."SelfVideo:"..msg.sender_user_id_..":"..msg.chat_id_.."")
+redis:incr(SAKURA.."SelfVideo:"..msg.sender_user_id_..":"..msg.chat_id_.."")
 print("\027[" .. color.black[1] .. ";" .. color.yellow[2] .. "m>> [ Self Video ] <<\027[00m")
 msg_type = "MSG:SelfVideo"
 end
@@ -2296,87 +2292,87 @@ end end
 ----------------------------------save_rep_in_gp----------------------------------------------
 text = msg.content_.text_
 if msg.content_.text_  or msg.content_.video_ or msg.content_.sticker_ or msg.content_.voice_ or msg.content_.animation_ then
-local content_text = redis:get(KEEPER..'add:repgp'..msg.sender_user_id_..''..msg.chat_id_..'')
+local content_text = redis:get(SAKURA..'add:repgp'..msg.sender_user_id_..''..msg.chat_id_..'')
 if content_text == 'save_repgp' then
-redis:del(KEEPER..'add:repgp'..msg.sender_user_id_..''..msg.chat_id_..'')
-local content_text = redis:get(KEEPER..'addreplaygp:'..msg.sender_user_id_..''..msg.chat_id_..'')
+redis:del(SAKURA..'add:repgp'..msg.sender_user_id_..''..msg.chat_id_..'')
+local content_text = redis:get(SAKURA..'addreplaygp:'..msg.sender_user_id_..''..msg.chat_id_..'')
 if msg.content_.video_ then
-redis:set(KEEPER..'video_repgp'..content_text..''..msg.chat_id_..'', msg.content_.video_.video_.persistent_id_)
+redis:set(SAKURA..'video_repgp'..content_text..''..msg.chat_id_..'', msg.content_.video_.video_.persistent_id_)
 end
 if msg.content_.sticker_ then
-redis:set(KEEPER..'stecker_repgp'..content_text..''..msg.chat_id_..'', msg.content_.sticker_.sticker_.persistent_id_)
+redis:set(SAKURA..'stecker_repgp'..content_text..''..msg.chat_id_..'', msg.content_.sticker_.sticker_.persistent_id_)
 end
 if msg.content_.voice_ then
-redis:set(KEEPER..'voice_repgp'..content_text..''..msg.chat_id_..'', msg.content_.voice_.voice_.persistent_id_)
+redis:set(SAKURA..'voice_repgp'..content_text..''..msg.chat_id_..'', msg.content_.voice_.voice_.persistent_id_)
 end
 if msg.content_.animation_ then
-redis:set(KEEPER..'gif_repgp'..content_text..''..msg.chat_id_..'', msg.content_.animation_.animation_.persistent_id_)
+redis:set(SAKURA..'gif_repgp'..content_text..''..msg.chat_id_..'', msg.content_.animation_.animation_.persistent_id_)
 end
 if msg.content_.text_ then
-redis:set(KEEPER..'text_repgp'..content_text..''..msg.chat_id_..'', msg.content_.text_)
+redis:set(SAKURA..'text_repgp'..content_text..''..msg.chat_id_..'', msg.content_.text_)
 end
 redis:sadd('rep_owner'..msg.chat_id_..'',content_text)
 send(msg.chat_id_, msg.id_, 1, "📌┊ تم حفظ الرد بنجاح\n", 1, 'md')
-redis:del(KEEPER..'addreplaygp:'..msg.sender_user_id_..''..msg.chat_id_..'')
+redis:del(SAKURA..'addreplaygp:'..msg.sender_user_id_..''..msg.chat_id_..'')
 return false end end
-if msg.content_.text_ and not redis:get(KEEPER..'lock_reeeep'..msg.chat_id_) then
-if redis:get(KEEPER..'video_repgp'..msg.content_.text_..''..msg.chat_id_..'') then
-sendVideo(msg.chat_id_, msg.id_, 0, 1,nil, redis:get(KEEPER..'video_repgp'..msg.content_.text_..''..msg.chat_id_..''))
+if msg.content_.text_ and not redis:get(SAKURA..'lock_reeeep'..msg.chat_id_) then
+if redis:get(SAKURA..'video_repgp'..msg.content_.text_..''..msg.chat_id_..'') then
+sendVideo(msg.chat_id_, msg.id_, 0, 1,nil, redis:get(SAKURA..'video_repgp'..msg.content_.text_..''..msg.chat_id_..''))
 end
-if redis:get(KEEPER..'voice_repgp'..msg.content_.text_..''..msg.chat_id_..'')  then
-sendVoice(msg.chat_id_, msg.id_, 0, 1, nil, redis:get(KEEPER..'voice_repgp'..msg.content_.text_..''..msg.chat_id_..''))
+if redis:get(SAKURA..'voice_repgp'..msg.content_.text_..''..msg.chat_id_..'')  then
+sendVoice(msg.chat_id_, msg.id_, 0, 1, nil, redis:get(SAKURA..'voice_repgp'..msg.content_.text_..''..msg.chat_id_..''))
 end
-if  redis:get(KEEPER..'gif_repgp'..msg.content_.text_..''..msg.chat_id_..'') then
-sendDocument(msg.chat_id_, msg.id_, 0, 1, nil, redis:get(KEEPER..'gif_repgp'..msg.content_.text_..''..msg.chat_id_..''))
+if  redis:get(SAKURA..'gif_repgp'..msg.content_.text_..''..msg.chat_id_..'') then
+sendDocument(msg.chat_id_, msg.id_, 0, 1, nil, redis:get(SAKURA..'gif_repgp'..msg.content_.text_..''..msg.chat_id_..''))
 end
-if redis:get(KEEPER..'stecker_repgp'..msg.content_.text_..''..msg.chat_id_..'') then
-sendSticker(msg.chat_id_, msg.id_, 0, 1,nil, redis:get(KEEPER..'stecker_repgp'..msg.content_.text_..''..msg.chat_id_..''))
+if redis:get(SAKURA..'stecker_repgp'..msg.content_.text_..''..msg.chat_id_..'') then
+sendSticker(msg.chat_id_, msg.id_, 0, 1,nil, redis:get(SAKURA..'stecker_repgp'..msg.content_.text_..''..msg.chat_id_..''))
 end
-if redis:get(KEEPER..'text_repgp'..msg.content_.text_..''..msg.chat_id_..'') then
-send(msg.chat_id_, msg.id_, 1, redis:get(KEEPER..'text_repgp'..msg.content_.text_..''..msg.chat_id_..'') ,  1, 'md')
+if redis:get(SAKURA..'text_repgp'..msg.content_.text_..''..msg.chat_id_..'') then
+send(msg.chat_id_, msg.id_, 1, redis:get(SAKURA..'text_repgp'..msg.content_.text_..''..msg.chat_id_..'') ,  1, 'md')
 end
 end
 ---------------------------------in all gps---------------------------------------------------
 text = msg.content_.text_
 if msg.content_.text_  or msg.content_.video_ or msg.content_.sticker_ or msg.content_.voice_ or msg.content_.animation_ then
-local content_text = redis:get(KEEPER.."add:repallt"..msg.sender_user_id_)
+local content_text = redis:get(SAKURA.."add:repallt"..msg.sender_user_id_)
 if content_text == 'save_rep' then
-redis:del(KEEPER.."add:repallt"..msg.sender_user_id_)
-local content_text = redis:get(KEEPER.."addreply2:"..msg.sender_user_id_)
+redis:del(SAKURA.."add:repallt"..msg.sender_user_id_)
+local content_text = redis:get(SAKURA.."addreply2:"..msg.sender_user_id_)
 if msg.content_.video_ then
-redis:set(KEEPER.."video_repall"..content_text, msg.content_.video_.video_.persistent_id_)
+redis:set(SAKURA.."video_repall"..content_text, msg.content_.video_.video_.persistent_id_)
 end
 if msg.content_.sticker_ then
-redis:set(KEEPER.."stecker_repall"..content_text, msg.content_.sticker_.sticker_.persistent_id_)
+redis:set(SAKURA.."stecker_repall"..content_text, msg.content_.sticker_.sticker_.persistent_id_)
 end
 if msg.content_.voice_ then
-redis:set(KEEPER.."voice_repall"..content_text, msg.content_.voice_.voice_.persistent_id_)
+redis:set(SAKURA.."voice_repall"..content_text, msg.content_.voice_.voice_.persistent_id_)
 end
 if msg.content_.animation_ then
-redis:set(KEEPER.."gif_repall"..content_text, msg.content_.animation_.animation_.persistent_id_)
+redis:set(SAKURA.."gif_repall"..content_text, msg.content_.animation_.animation_.persistent_id_)
 end
 if msg.content_.text_ then
-redis:set(KEEPER.."text_repall"..content_text, msg.content_.text_)
+redis:set(SAKURA.."text_repall"..content_text, msg.content_.text_)
 end
 redis:sadd('rep_sudo',content_text)
 send(msg.chat_id_, msg.id_, 1, "📌┊ تم حفظ الرد بنجاح\n", 1, 'md')
-redis:del(KEEPER.."addreply2:"..msg.sender_user_id_)
+redis:del(SAKURA.."addreply2:"..msg.sender_user_id_)
 return false end end
-if msg.content_.text_ and not redis:get(KEEPER..'lock_reeeep'..msg.chat_id_) then
-if redis:get(KEEPER.."video_repall"..msg.content_.text_) then
-sendVideo(msg.chat_id_, msg.id_, 0, 1,nil, redis:get(KEEPER.."video_repall"..msg.content_.text_))
+if msg.content_.text_ and not redis:get(SAKURA..'lock_reeeep'..msg.chat_id_) then
+if redis:get(SAKURA.."video_repall"..msg.content_.text_) then
+sendVideo(msg.chat_id_, msg.id_, 0, 1,nil, redis:get(SAKURA.."video_repall"..msg.content_.text_))
 end
-if redis:get(KEEPER.."voice_repall"..msg.content_.text_)  then
-sendVoice(msg.chat_id_, msg.id_, 0, 1, nil, redis:get(KEEPER.."voice_repall"..msg.content_.text_))
+if redis:get(SAKURA.."voice_repall"..msg.content_.text_)  then
+sendVoice(msg.chat_id_, msg.id_, 0, 1, nil, redis:get(SAKURA.."voice_repall"..msg.content_.text_))
 end
-if  redis:get(KEEPER.."gif_repall"..msg.content_.text_) then
-sendDocument(msg.chat_id_, msg.id_, 0, 1, nil, redis:get(KEEPER.."gif_repall"..msg.content_.text_))
+if  redis:get(SAKURA.."gif_repall"..msg.content_.text_) then
+sendDocument(msg.chat_id_, msg.id_, 0, 1, nil, redis:get(SAKURA.."gif_repall"..msg.content_.text_))
 end
-if redis:get(KEEPER.."stecker_repall"..msg.content_.text_) then
-sendSticker(msg.chat_id_, msg.id_, 0, 1,nil, redis:get(KEEPER.."stecker_repall"..msg.content_.text_))
+if redis:get(SAKURA.."stecker_repall"..msg.content_.text_) then
+sendSticker(msg.chat_id_, msg.id_, 0, 1,nil, redis:get(SAKURA.."stecker_repall"..msg.content_.text_))
 end
-if redis:get(KEEPER.."text_repall"..msg.content_.text_) then
-send(msg.chat_id_, msg.id_, 1, redis:get(KEEPER.."text_repall"..msg.content_.text_) ,  1, "md")
+if redis:get(SAKURA.."text_repall"..msg.content_.text_) then
+send(msg.chat_id_, msg.id_, 1, redis:get(SAKURA.."text_repall"..msg.content_.text_) ,  1, "md")
 end
 end
 if not d and chat then
@@ -2387,42 +2383,42 @@ do_notify(chat and chat.title_, msg.content_.ID)
 end
 end
 local flmax = "flood:max:" .. msg.chat_id_
-if not redis:get(KEEPER..flmax) then
+if not redis:get(SAKURA..flmax) then
 floodMax = 5
 else
-floodMax = tonumber(redis:get(KEEPER..flmax))
+floodMax = tonumber(redis:get(SAKURA..flmax))
 end
 local pm = "flood:" .. msg.sender_user_id_ .. ":" .. msg.chat_id_ .. ":msgs"
-if not redis:get(KEEPER..pm) then
+if not redis:get(SAKURA..pm) then
 msgs = 0
 else
-msgs = tonumber(redis:get(KEEPER..pm))
+msgs = tonumber(redis:get(SAKURA..pm))
 end
 local TIME_CHECK = 2
 local TIME_CHECK_PV = 2
 local hashflood = "anti-flood:" .. msg.chat_id_
 if msgs > floodMax - 1 then
-if redis:get(KEEPER.."floodstatus" .. msg.chat_id_) == "Kicked" then
+if redis:get(SAKURA.."floodstatus" .. msg.chat_id_) == "Kicked" then
 del_all_msgs(msg.chat_id_, msg.sender_user_id_)
 chat_kick(msg.chat_id_, msg.sender_user_id_)
-elseif redis:get(KEEPER.."floodstatus" .. msg.chat_id_) == "DelMsg" then
+elseif redis:get(SAKURA.."floodstatus" .. msg.chat_id_) == "DelMsg" then
 del_all_msgs(msg.chat_id_, msg.sender_user_id_)
 else
 del_all_msgs(msg.chat_id_, msg.sender_user_id_)
 end
 end
 local pmonpv = "antiattack:" .. msg.sender_user_id_ .. ":" .. msg.chat_id_ .. ":msgs"
-if not redis:get(KEEPER..pmonpv) then
+if not redis:get(SAKURA..pmonpv) then
 msgsonpv = 0
 else
-msgsonpv = tonumber(redis:get(KEEPER..pmonpv))
+msgsonpv = tonumber(redis:get(SAKURA..pmonpv))
 end
 if msgsonpv > 12 then
 blockUser(msg.sender_user_id_)
 end
 local idmem = tostring(msg.chat_id_)
-if idmem:match("^(%d+)") and not is_admin(msg.sender_user_id_) and not redis:get(KEEPER.."Filtering:" .. msg.sender_user_id_) then
-redis:setex(KEEPER..pmonpv, TIME_CHECK_PV, msgsonpv + 1)
+if idmem:match("^(%d+)") and not is_admin(msg.sender_user_id_) and not redis:get(SAKURA.."Filtering:" .. msg.sender_user_id_) then
+redis:setex(SAKURA..pmonpv, TIME_CHECK_PV, msgsonpv + 1)
 end
 function delmsg(extra, result)
 for k, v in pairs(result.messages_) do
@@ -2439,15 +2435,15 @@ if not is_momod(msg.sender_user_id_, msg.chat_id_) and not is_vipmem(msg.sender_
 if msg.content_.caption_ then
 text = msg.content_.caption_
 if text and (text:match("[Hh][Tt][Tt][Pp][Ss]://") or text:match("[Hh][Tt][Tt][Pp]://") or text:match(".[Ii][Rr]") or text:match(".[Cc][Oo][Mm]") or text:match(".[Oo][Rr][Gg]") or text:match("[Ww][Ww][Ww].")) then
-if redis:get(KEEPER.."keed_link"..msg.chat_id_) then
+if redis:get(SAKURA.."keed_link"..msg.chat_id_) then
 local id = msg.id_
 local msgs = {
 [0] = id
 }
 local chat = msg.chat_id_
 delete_msg(chat, msgs)
-HTTPS.request("https://api.telegram.org/bot" .. KEEPER_TOKEN .. "/restrictChatMember?chat_id=" .. msg.chat_id_ .. "&user_id=" .. msg.sender_user_id_ .. "&can_send_messages=false&can_send_media_messages=false&can_send_other_messages=false&can_add_web_page_previews=false")
-redis:sadd(KEEPER..'bot:keed:'..msg.chat_id_, msg.sender_user_id_)
+HTTPS.request("https://api.telegram.org/bot" .. SAKURA_TOKEN .. "/restrictChatMember?chat_id=" .. msg.chat_id_ .. "&user_id=" .. msg.sender_user_id_ .. "&can_send_messages=false&can_send_media_messages=false&can_send_other_messages=false&can_add_web_page_previews=false")
+redis:sadd(SAKURA..'bot:keed:'..msg.chat_id_, msg.sender_user_id_)
 print_del_msg("Deleted Because [Lock] [keed_link]")
 end
 end
@@ -2455,15 +2451,15 @@ end
 if msg.content_.text_ then
 text = msg.content_.text_
 if text:match("كس") or text:match("طيز") or text:match("ديس") or text:match("زب") or text:match("انيجمك") or text:match("انيج") or text:match("نيج") or text:match("ديوس") or text:match("عير") or text:match("كسختك") or text:match("كسمك") or text:match("كسربك") or text:match("بلاع") or text:match("ابو العيوره") or text:match("منيوج") or text:match("كحبه") or text:match("اخ الكحبه") or text:match("اخو الكحبه") or text:match("الكحبه") or text:match("كسك") or text:match("طيزك") or text:match("عير بطيزك") or text:match("كس امك") or text:match("امك الكحبه") or text:match("عيرك") or text:match("عير بيك") or text:match("صرمك") then
-if redis:get(KEEPER.."keed_fosh"..msg.chat_id_) then
+if redis:get(SAKURA.."keed_fosh"..msg.chat_id_) then
 local id = msg.id_
 local msgs = {
 [0] = id
 }
 local chat = msg.chat_id_
 delete_msg(chat, msgs)
-HTTPS.request("https://api.telegram.org/bot" .. KEEPER_TOKEN .. "/restrictChatMember?chat_id=" .. msg.chat_id_ .. "&user_id=" .. msg.sender_user_id_ .. "&can_send_messages=false&can_send_media_messages=false&can_send_other_messages=false&can_add_web_page_previews=false")
-redis:sadd(KEEPER..'bot:keed:'..msg.chat_id_, msg.sender_user_id_)
+HTTPS.request("https://api.telegram.org/bot" .. SAKURA_TOKEN .. "/restrictChatMember?chat_id=" .. msg.chat_id_ .. "&user_id=" .. msg.sender_user_id_ .. "&can_send_messages=false&can_send_media_messages=false&can_send_other_messages=false&can_add_web_page_previews=false")
+redis:sadd(SAKURA..'bot:keed:'..msg.chat_id_, msg.sender_user_id_)
 print_del_msg("Deleted Because [Lock] [keed_fosh]")
 end
 end
@@ -2471,240 +2467,240 @@ end
 if msg.content_.caption_ then
 text = msg.content_.caption_
 if text and text:match("(.*)(@)(.*)")  then
-if redis:get(KEEPER.."keed_user"..msg.chat_id_) then
+if redis:get(SAKURA.."keed_user"..msg.chat_id_) then
 local id = msg.id_
 local msgs = {
 [0] = id
 }
 local chat = msg.chat_id_
 delete_msg(chat, msgs)
-redis:sadd(KEEPER..'bot:keed:'..msg.chat_id_, msg.sender_user_id_)
-HTTPS.request("https://api.telegram.org/bot" .. KEEPER_TOKEN .. "/restrictChatMember?chat_id=" .. msg.chat_id_ .. "&user_id=" .. msg.sender_user_id_ .. "&can_send_messages=false&can_send_media_messages=false&can_send_other_messages=false&can_add_web_page_previews=false")
-redis:sadd(KEEPER..'bot:keed:'..msg.chat_id_, msg.sender_user_id_)
+redis:sadd(SAKURA..'bot:keed:'..msg.chat_id_, msg.sender_user_id_)
+HTTPS.request("https://api.telegram.org/bot" .. SAKURA_TOKEN .. "/restrictChatMember?chat_id=" .. msg.chat_id_ .. "&user_id=" .. msg.sender_user_id_ .. "&can_send_messages=false&can_send_media_messages=false&can_send_other_messages=false&can_add_web_page_previews=false")
+redis:sadd(SAKURA..'bot:keed:'..msg.chat_id_, msg.sender_user_id_)
 print_del_msg("Deleted Because [Lock] [keed_user]")
 end
 end
 end
 if text and text:match("(.*)(@)(.*)")  then
-if redis:get(KEEPER.."keed_user"..msg.chat_id_) then
+if redis:get(SAKURA.."keed_user"..msg.chat_id_) then
 local id = msg.id_
 local msgs = {
 [0] = id
 }
 local chat = msg.chat_id_
 delete_msg(chat, msgs)
-redis:sadd(KEEPER..'bot:keed:'..msg.chat_id_, msg.sender_user_id_)
-HTTPS.request("https://api.telegram.org/bot" .. KEEPER_TOKEN .. "/restrictChatMember?chat_id=" .. msg.chat_id_ .. "&user_id=" .. msg.sender_user_id_ .. "&can_send_messages=false&can_send_media_messages=false&can_send_other_messages=false&can_add_web_page_previews=false")
-redis:sadd(KEEPER..'bot:keed:'..msg.chat_id_, msg.sender_user_id_)
+redis:sadd(SAKURA..'bot:keed:'..msg.chat_id_, msg.sender_user_id_)
+HTTPS.request("https://api.telegram.org/bot" .. SAKURA_TOKEN .. "/restrictChatMember?chat_id=" .. msg.chat_id_ .. "&user_id=" .. msg.sender_user_id_ .. "&can_send_messages=false&can_send_media_messages=false&can_send_other_messages=false&can_add_web_page_previews=false")
+redis:sadd(SAKURA..'bot:keed:'..msg.chat_id_, msg.sender_user_id_)
 print_del_msg("Deleted Because [Lock] [keed_user]")
 end
 end
 if msg.content_.ID == "MessagePhoto" then
-if redis:get(KEEPER.."keed_photo" .. msg.chat_id_) then
+if redis:get(SAKURA.."keed_photo" .. msg.chat_id_) then
 local id = msg.id_
 local msgs = {
 [0] = id
 }
 local chat = msg.chat_id_
 delete_msg(chat, msgs)
-redis:sadd(KEEPER..'bot:keed:'..msg.chat_id_, msg.sender_user_id_)
-HTTPS.request("https://api.telegram.org/bot" .. KEEPER_TOKEN .. "/restrictChatMember?chat_id=" .. msg.chat_id_ .. "&user_id=" .. msg.sender_user_id_ .. "&can_send_messages=false&can_send_media_messages=false&can_send_other_messages=false&can_add_web_page_previews=false")
-redis:sadd(KEEPER..'bot:keed:'..msg.chat_id_, msg.sender_user_id_)
+redis:sadd(SAKURA..'bot:keed:'..msg.chat_id_, msg.sender_user_id_)
+HTTPS.request("https://api.telegram.org/bot" .. SAKURA_TOKEN .. "/restrictChatMember?chat_id=" .. msg.chat_id_ .. "&user_id=" .. msg.sender_user_id_ .. "&can_send_messages=false&can_send_media_messages=false&can_send_other_messages=false&can_add_web_page_previews=false")
+redis:sadd(SAKURA..'bot:keed:'..msg.chat_id_, msg.sender_user_id_)
 print_del_msg("Deleted Because [Lock] [keed_photo]")
 end end
 if text and (text:match("[Hh][Tt][Tt][Pp][Ss]://") or text:match("[Hh][Tt][Tt][Pp]://") or text:match(".[Ii][Rr]") or text:match(".[Cc][Oo][Mm]") or text:match(".[Oo][Rr][Gg]") or text:match("[Ww][Ww][Ww].")) then
-if redis:get(KEEPER.."keed_link"..msg.chat_id_) then
+if redis:get(SAKURA.."keed_link"..msg.chat_id_) then
 local id = msg.id_
 local msgs = {
 [0] = id
 }
 local chat = msg.chat_id_
 delete_msg(chat, msgs)
-HTTPS.request("https://api.telegram.org/bot" .. KEEPER_TOKEN .. "/restrictChatMember?chat_id=" .. msg.chat_id_ .. "&user_id=" .. msg.sender_user_id_ .. "&can_send_messages=false&can_send_media_messages=false&can_send_other_messages=false&can_add_web_page_previews=false")
-redis:sadd(KEEPER..'bot:keed:'..msg.chat_id_, msg.sender_user_id_)
+HTTPS.request("https://api.telegram.org/bot" .. SAKURA_TOKEN .. "/restrictChatMember?chat_id=" .. msg.chat_id_ .. "&user_id=" .. msg.sender_user_id_ .. "&can_send_messages=false&can_send_media_messages=false&can_send_other_messages=false&can_add_web_page_previews=false")
+redis:sadd(SAKURA..'bot:keed:'..msg.chat_id_, msg.sender_user_id_)
 print_del_msg("Deleted Because [Lock] [keed_link]")
 end
 end
-if redis:get(KEEPER.."keed_text"..msg.chat_id_) then
+if redis:get(SAKURA.."keed_text"..msg.chat_id_) then
 local id = msg.id_
 local msgs = {
 [0] = id
 }
 local chat = msg.chat_id_
 delete_msg(chat, msgs)
-redis:sadd(KEEPER..'bot:keed:'..msg.chat_id_, msg.sender_user_id_)
-HTTPS.request("https://api.telegram.org/bot" .. KEEPER_TOKEN .. "/restrictChatMember?chat_id=" .. msg.chat_id_ .. "&user_id=" .. msg.sender_user_id_ .. "&can_send_messages=false&can_send_media_messages=false&can_send_other_messages=false&can_add_web_page_previews=false")
-redis:sadd(KEEPER..'bot:keed:'..msg.chat_id_, msg.sender_user_id_)
+redis:sadd(SAKURA..'bot:keed:'..msg.chat_id_, msg.sender_user_id_)
+HTTPS.request("https://api.telegram.org/bot" .. SAKURA_TOKEN .. "/restrictChatMember?chat_id=" .. msg.chat_id_ .. "&user_id=" .. msg.sender_user_id_ .. "&can_send_messages=false&can_send_media_messages=false&can_send_other_messages=false&can_add_web_page_previews=false")
+redis:sadd(SAKURA..'bot:keed:'..msg.chat_id_, msg.sender_user_id_)
 print_del_msg("Deleted Because [Lock] [keed_text]")
 end
 if text and text:match("(.*)(#)(.*)")  then
-if redis:get(KEEPER.."keed_hashtag"..msg.chat_id_) then
+if redis:get(SAKURA.."keed_hashtag"..msg.chat_id_) then
 local id = msg.id_
 local msgs = {
 [0] = id
 }
 local chat = msg.chat_id_
 delete_msg(chat, msgs)
-redis:sadd(KEEPER..'bot:keed:'..msg.chat_id_, msg.sender_user_id_)
-HTTPS.request("https://api.telegram.org/bot" .. KEEPER_TOKEN .. "/restrictChatMember?chat_id=" .. msg.chat_id_ .. "&user_id=" .. msg.sender_user_id_ .. "&can_send_messages=false&can_send_media_messages=false&can_send_other_messages=false&can_add_web_page_previews=false")
-redis:sadd(KEEPER..'bot:keed:'..msg.chat_id_, msg.sender_user_id_)
+redis:sadd(SAKURA..'bot:keed:'..msg.chat_id_, msg.sender_user_id_)
+HTTPS.request("https://api.telegram.org/bot" .. SAKURA_TOKEN .. "/restrictChatMember?chat_id=" .. msg.chat_id_ .. "&user_id=" .. msg.sender_user_id_ .. "&can_send_messages=false&can_send_media_messages=false&can_send_other_messages=false&can_add_web_page_previews=false")
+redis:sadd(SAKURA..'bot:keed:'..msg.chat_id_, msg.sender_user_id_)
 print_del_msg("Deleted Because [Lock] [keed_hashtag]")
 end
 end
 if msg.forward_info_ then
 if msg.forward_info_.ID == "MessageForwardedFromUser" or msg.forward_info_.ID == "MessageForwardedPost" then
-if redis:get(KEEPER.."keed_fwd"..msg.chat_id_) then
+if redis:get(SAKURA.."keed_fwd"..msg.chat_id_) then
 local id = msg.id_
 local msgs = {
 [0] = id
 }
 local chat = msg.chat_id_
 delete_msg(chat, msgs)
-redis:sadd(KEEPER..'bot:keed:'..msg.chat_id_, msg.sender_user_id_)
-HTTPS.request("https://api.telegram.org/bot" .. KEEPER_TOKEN .. "/restrictChatMember?chat_id=" .. msg.chat_id_ .. "&user_id=" .. msg.sender_user_id_ .. "&can_send_messages=false&can_send_media_messages=false&can_send_other_messages=false&can_add_web_page_previews=false")
-redis:sadd(KEEPER..'bot:keed:'..msg.chat_id_, msg.sender_user_id_)
+redis:sadd(SAKURA..'bot:keed:'..msg.chat_id_, msg.sender_user_id_)
+HTTPS.request("https://api.telegram.org/bot" .. SAKURA_TOKEN .. "/restrictChatMember?chat_id=" .. msg.chat_id_ .. "&user_id=" .. msg.sender_user_id_ .. "&can_send_messages=false&can_send_media_messages=false&can_send_other_messages=false&can_add_web_page_previews=false")
+redis:sadd(SAKURA..'bot:keed:'..msg.chat_id_, msg.sender_user_id_)
 print_del_msg("Deleted Because [Lock] [keed_fwd]")
 end
 end
 end
 if msg.content_.ID == "MessageSticker" then
-if redis:get(KEEPER.."keed_stecker"..msg.chat_id_) then
+if redis:get(SAKURA.."keed_stecker"..msg.chat_id_) then
 local id = msg.id_
 local msgs = {
 [0] = id
 }
 local chat = msg.chat_id_
 delete_msg(chat, msgs)
-redis:sadd(KEEPER..'bot:keed:'..msg.chat_id_, msg.sender_user_id_)
-HTTPS.request("https://api.telegram.org/bot" .. KEEPER_TOKEN .. "/restrictChatMember?chat_id=" .. msg.chat_id_ .. "&user_id=" .. msg.sender_user_id_ .. "&can_send_messages=false&can_send_media_messages=false&can_send_other_messages=false&can_add_web_page_previews=false")
-redis:sadd(KEEPER..'bot:keed:'..msg.chat_id_, msg.sender_user_id_)
+redis:sadd(SAKURA..'bot:keed:'..msg.chat_id_, msg.sender_user_id_)
+HTTPS.request("https://api.telegram.org/bot" .. SAKURA_TOKEN .. "/restrictChatMember?chat_id=" .. msg.chat_id_ .. "&user_id=" .. msg.sender_user_id_ .. "&can_send_messages=false&can_send_media_messages=false&can_send_other_messages=false&can_add_web_page_previews=false")
+redis:sadd(SAKURA..'bot:keed:'..msg.chat_id_, msg.sender_user_id_)
 print_del_msg("Deleted Because [Lock] [keed_stecker]")
 end
 end
 if msg.content_.ID == "MessageAudio" then
-if redis:get(KEEPER.."keed_audio"..msg.chat_id_) then
+if redis:get(SAKURA.."keed_audio"..msg.chat_id_) then
 local id = msg.id_
 local msgs = {
 [0] = id
 }
 local chat = msg.chat_id_
 delete_msg(chat, msgs)
-redis:sadd(KEEPER..'bot:keed:'..msg.chat_id_, msg.sender_user_id_)
-HTTPS.request("https://api.telegram.org/bot" .. KEEPER_TOKEN .. "/restrictChatMember?chat_id=" .. msg.chat_id_ .. "&user_id=" .. msg.sender_user_id_ .. "&can_send_messages=false&can_send_media_messages=false&can_send_other_messages=false&can_add_web_page_previews=false")
-redis:sadd(KEEPER..'bot:keed:'..msg.chat_id_, msg.sender_user_id_)
+redis:sadd(SAKURA..'bot:keed:'..msg.chat_id_, msg.sender_user_id_)
+HTTPS.request("https://api.telegram.org/bot" .. SAKURA_TOKEN .. "/restrictChatMember?chat_id=" .. msg.chat_id_ .. "&user_id=" .. msg.sender_user_id_ .. "&can_send_messages=false&can_send_media_messages=false&can_send_other_messages=false&can_add_web_page_previews=false")
+redis:sadd(SAKURA..'bot:keed:'..msg.chat_id_, msg.sender_user_id_)
 print_del_msg("Deleted Because [Lock] [keed_audio]")
 end
 end
 if msg.content_.ID == "MessageVoice" then
-if redis:get(KEEPER.."keed_voice"..msg.chat_id_) then
+if redis:get(SAKURA.."keed_voice"..msg.chat_id_) then
 local id = msg.id_
 local msgs = {
 [0] = id
 }
 local chat = msg.chat_id_
 delete_msg(chat, msgs)
-redis:sadd(KEEPER..'bot:keed:'..msg.chat_id_, msg.sender_user_id_)
-HTTPS.request("https://api.telegram.org/bot" .. KEEPER_TOKEN .. "/restrictChatMember?chat_id=" .. msg.chat_id_ .. "&user_id=" .. msg.sender_user_id_ .. "&can_send_messages=false&can_send_media_messages=false&can_send_other_messages=false&can_add_web_page_previews=false")
-redis:sadd(KEEPER..'bot:keed:'..msg.chat_id_, msg.sender_user_id_)
+redis:sadd(SAKURA..'bot:keed:'..msg.chat_id_, msg.sender_user_id_)
+HTTPS.request("https://api.telegram.org/bot" .. SAKURA_TOKEN .. "/restrictChatMember?chat_id=" .. msg.chat_id_ .. "&user_id=" .. msg.sender_user_id_ .. "&can_send_messages=false&can_send_media_messages=false&can_send_other_messages=false&can_add_web_page_previews=false")
+redis:sadd(SAKURA..'bot:keed:'..msg.chat_id_, msg.sender_user_id_)
 print_del_msg("Deleted Because [Lock] [keed_voice]")
 end
 end
 if msg.content_.ID == "MessageVideo" then
-if redis:get(KEEPER.."keed_video"..msg.chat_id_) then
+if redis:get(SAKURA.."keed_video"..msg.chat_id_) then
 local id = msg.id_
 local msgs = {
 [0] = id
 }
 local chat = msg.chat_id_
 delete_msg(chat, msgs)
-redis:sadd(KEEPER..'bot:keed:'..msg.chat_id_, msg.sender_user_id_)
-HTTPS.request("https://api.telegram.org/bot" .. KEEPER_TOKEN .. "/restrictChatMember?chat_id=" .. msg.chat_id_ .. "&user_id=" .. msg.sender_user_id_ .. "&can_send_messages=false&can_send_media_messages=false&can_send_other_messages=false&can_add_web_page_previews=false")
-redis:sadd(KEEPER..'bot:keed:'..msg.chat_id_, msg.sender_user_id_)
+redis:sadd(SAKURA..'bot:keed:'..msg.chat_id_, msg.sender_user_id_)
+HTTPS.request("https://api.telegram.org/bot" .. SAKURA_TOKEN .. "/restrictChatMember?chat_id=" .. msg.chat_id_ .. "&user_id=" .. msg.sender_user_id_ .. "&can_send_messages=false&can_send_media_messages=false&can_send_other_messages=false&can_add_web_page_previews=false")
+redis:sadd(SAKURA..'bot:keed:'..msg.chat_id_, msg.sender_user_id_)
 print_del_msg("Deleted Because [Lock] [keed_video]")
 end
 end
 if msg.content_.ID == "MessageAnimation" then
-if redis:get(KEEPER.."keed_gif"..msg.chat_id_) then
+if redis:get(SAKURA.."keed_gif"..msg.chat_id_) then
 local id = msg.id_
 local msgs = {
 [0] = id
 }
 local chat = msg.chat_id_
 delete_msg(chat, msgs)
-redis:sadd(KEEPER..'bot:keed:'..msg.chat_id_, msg.sender_user_id_)
-HTTPS.request("https://api.telegram.org/bot" .. KEEPER_TOKEN .. "/restrictChatMember?chat_id=" .. msg.chat_id_ .. "&user_id=" .. msg.sender_user_id_ .. "&can_send_messages=false&can_send_media_messages=false&can_send_other_messages=false&can_add_web_page_previews=false")
-redis:sadd(KEEPER..'bot:keed:'..msg.chat_id_, msg.sender_user_id_)
+redis:sadd(SAKURA..'bot:keed:'..msg.chat_id_, msg.sender_user_id_)
+HTTPS.request("https://api.telegram.org/bot" .. SAKURA_TOKEN .. "/restrictChatMember?chat_id=" .. msg.chat_id_ .. "&user_id=" .. msg.sender_user_id_ .. "&can_send_messages=false&can_send_media_messages=false&can_send_other_messages=false&can_add_web_page_previews=false")
+redis:sadd(SAKURA..'bot:keed:'..msg.chat_id_, msg.sender_user_id_)
 print_del_msg("Deleted Because [Lock] [keed_gif]")
 end
 end
 if msg.content_.ID == "MessageContact" then
-if redis:get(KEEPER.."keed_contect"..msg.chat_id_) then
+if redis:get(SAKURA.."keed_contect"..msg.chat_id_) then
 local id = msg.id_
 local msgs = {
 [0] = id
 }
 local chat = msg.chat_id_
 delete_msg(chat, msgs)
-redis:sadd(KEEPER..'bot:keed:'..msg.chat_id_, msg.sender_user_id_)
-HTTPS.request("https://api.telegram.org/bot" .. KEEPER_TOKEN .. "/restrictChatMember?chat_id=" .. msg.chat_id_ .. "&user_id=" .. msg.sender_user_id_ .. "&can_send_messages=false&can_send_media_messages=false&can_send_other_messages=false&can_add_web_page_previews=false")
-redis:sadd(KEEPER..'bot:keed:'..msg.chat_id_, msg.sender_user_id_)
+redis:sadd(SAKURA..'bot:keed:'..msg.chat_id_, msg.sender_user_id_)
+HTTPS.request("https://api.telegram.org/bot" .. SAKURA_TOKEN .. "/restrictChatMember?chat_id=" .. msg.chat_id_ .. "&user_id=" .. msg.sender_user_id_ .. "&can_send_messages=false&can_send_media_messages=false&can_send_other_messages=false&can_add_web_page_previews=false")
+redis:sadd(SAKURA..'bot:keed:'..msg.chat_id_, msg.sender_user_id_)
 print_del_msg("Deleted Because [Lock] [keed_contect]")
 end
 end
 if text and text:match("[\216-\219][\128-\191]") then
-if redis:get(KEEPER.."keed_arbic"..msg.chat_id_) then
+if redis:get(SAKURA.."keed_arbic"..msg.chat_id_) then
 local id = msg.id_
 local msgs = {
 [0] = id
 }
 local chat = msg.chat_id_
 delete_msg(chat, msgs)
-redis:sadd(KEEPER..'bot:keed:'..msg.chat_id_, msg.sender_user_id_)
-HTTPS.request("https://api.telegram.org/bot" .. KEEPER_TOKEN .. "/restrictChatMember?chat_id=" .. msg.chat_id_ .. "&user_id=" .. msg.sender_user_id_ .. "&can_send_messages=false&can_send_media_messages=false&can_send_other_messages=false&can_add_web_page_previews=false")
-redis:sadd(KEEPER..'bot:keed:'..msg.chat_id_, msg.sender_user_id_)
+redis:sadd(SAKURA..'bot:keed:'..msg.chat_id_, msg.sender_user_id_)
+HTTPS.request("https://api.telegram.org/bot" .. SAKURA_TOKEN .. "/restrictChatMember?chat_id=" .. msg.chat_id_ .. "&user_id=" .. msg.sender_user_id_ .. "&can_send_messages=false&can_send_media_messages=false&can_send_other_messages=false&can_add_web_page_previews=false")
+redis:sadd(SAKURA..'bot:keed:'..msg.chat_id_, msg.sender_user_id_)
 print_del_msg("Deleted Because [Lock] [keed_arbic]")
 end
 end
 if msg.content_.ID == "MessageDocument" then
-if redis:get(KEEPER.."keed_Document"..msg.chat_id_) then
+if redis:get(SAKURA.."keed_Document"..msg.chat_id_) then
 local id = msg.id_
 local msgs = {
 [0] = id
 }
 local chat = msg.chat_id_
 delete_msg(chat, msgs)
-redis:sadd(KEEPER..'bot:keed:'..msg.chat_id_, msg.sender_user_id_)
-HTTPS.request("https://api.telegram.org/bot" .. KEEPER_TOKEN .. "/restrictChatMember?chat_id=" .. msg.chat_id_ .. "&user_id=" .. msg.sender_user_id_ .. "&can_send_messages=false&can_send_media_messages=false&can_send_other_messages=false&can_add_web_page_previews=false")
-redis:sadd(KEEPER..'bot:keed:'..msg.chat_id_, msg.sender_user_id_)
+redis:sadd(SAKURA..'bot:keed:'..msg.chat_id_, msg.sender_user_id_)
+HTTPS.request("https://api.telegram.org/bot" .. SAKURA_TOKEN .. "/restrictChatMember?chat_id=" .. msg.chat_id_ .. "&user_id=" .. msg.sender_user_id_ .. "&can_send_messages=false&can_send_media_messages=false&can_send_other_messages=false&can_add_web_page_previews=false")
+redis:sadd(SAKURA..'bot:keed:'..msg.chat_id_, msg.sender_user_id_)
 print_del_msg("Deleted Because [Lock] [keed_Document]")
 end
 end
 if text and text:match("[ASDFGHJKLQWERTYUIOPZXCVBNMasdfghjklqwertyuiopzxcvbnm]") then
-if redis:get(KEEPER.."keed_english"..msg.chat_id_) then
+if redis:get(SAKURA.."keed_english"..msg.chat_id_) then
 local id = msg.id_
 local msgs = {
 [0] = id
 }
 local chat = msg.chat_id_
 delete_msg(chat, msgs)
-redis:sadd(KEEPER..'bot:keed:'..msg.chat_id_, msg.sender_user_id_)
-HTTPS.request("https://api.telegram.org/bot" .. KEEPER_TOKEN .. "/restrictChatMember?chat_id=" .. msg.chat_id_ .. "&user_id=" .. msg.sender_user_id_ .. "&can_send_messages=false&can_send_media_messages=false&can_send_other_messages=false&can_add_web_page_previews=false")
-redis:sadd(KEEPER..'bot:keed:'..msg.chat_id_, msg.sender_user_id_)
+redis:sadd(SAKURA..'bot:keed:'..msg.chat_id_, msg.sender_user_id_)
+HTTPS.request("https://api.telegram.org/bot" .. SAKURA_TOKEN .. "/restrictChatMember?chat_id=" .. msg.chat_id_ .. "&user_id=" .. msg.sender_user_id_ .. "&can_send_messages=false&can_send_media_messages=false&can_send_other_messages=false&can_add_web_page_previews=false")
+redis:sadd(SAKURA..'bot:keed:'..msg.chat_id_, msg.sender_user_id_)
 print_del_msg("Deleted Because [Lock] [keed_english]")
 end
 end
 if msg.content_.entities_ then
 if msg.content_.entities_[0] then
 if msg.content_.entities_[0] and msg.content_.entities_[0].ID == "MessageEntityUrl" or msg.content_.entities_[0].ID == "MessageEntityTextUrl" then
-if redis:get(KEEPER.."keed_markdon"..msg.chat_id_) then
+if redis:get(SAKURA.."keed_markdon"..msg.chat_id_) then
 local id = msg.id_
 local msgs = {
 [0] = id
 }
 local chat = msg.chat_id_
 delete_msg(chat, msgs)
-HTTPS.request("https://api.telegram.org/bot" .. KEEPER_TOKEN .. "/restrictChatMember?chat_id=" .. msg.chat_id_ .. "&user_id=" .. msg.sender_user_id_ .. "&can_send_messages=false&can_send_media_messages=false&can_send_other_messages=false&can_add_web_page_previews=false")
-redis:sadd(KEEPER..'bot:keed:'..msg.chat_id_, msg.sender_user_id_)
+HTTPS.request("https://api.telegram.org/bot" .. SAKURA_TOKEN .. "/restrictChatMember?chat_id=" .. msg.chat_id_ .. "&user_id=" .. msg.sender_user_id_ .. "&can_send_messages=false&can_send_media_messages=false&can_send_other_messages=false&can_add_web_page_previews=false")
+redis:sadd(SAKURA..'bot:keed:'..msg.chat_id_, msg.sender_user_id_)
 print_del_msg("Deleted Because [Lock] [keed_markdon]")
 end
 end
@@ -2727,23 +2723,23 @@ local chat = msg.chat_id_
 delete_msg(chat, msgs)
 return
 end
-if not redis:get(KEEPER.."bot:muted:Time" .. msg.chat_id_ .. ":" .. msg.sender_user_id_) and redis:sismember(KEEPER.."bot:muted:" .. msg.chat_id_, msg.sender_user_id_) then
-redis:srem(KEEPER.."bot:muted:" .. msg.chat_id_, msg.sender_user_id_)
+if not redis:get(SAKURA.."bot:muted:Time" .. msg.chat_id_ .. ":" .. msg.sender_user_id_) and redis:sismember(SAKURA.."bot:muted:" .. msg.chat_id_, msg.sender_user_id_) then
+redis:srem(SAKURA.."bot:muted:" .. msg.chat_id_, msg.sender_user_id_)
 end
 if is_gbanned(msg.sender_user_id_) then
 chat_kick(msg.chat_id_, msg.sender_user_id_)
 return
 end
-if redis:get(KEEPER.."bot:muteall:Time" .. msg.chat_id_) then
-local start_ = redis:get(KEEPER.."bot:muteall:start" .. msg.chat_id_)
+if redis:get(SAKURA.."bot:muteall:Time" .. msg.chat_id_) then
+local start_ = redis:get(SAKURA.."bot:muteall:start" .. msg.chat_id_)
 local start = start_:gsub(":", "")
-local stop_ = redis:get(KEEPER.."bot:muteall:stop" .. msg.chat_id_)
+local stop_ = redis:get(SAKURA.."bot:muteall:stop" .. msg.chat_id_)
 local stop = stop_:gsub(":", "")
 local SVTime = os.date("%R")
 local Time = SVTime:gsub(":", "")
-if tonumber(Time) >= tonumber(start) and not redis:get(KEEPER.."bot:muteall:Run" .. msg.chat_id_) then
+if tonumber(Time) >= tonumber(start) and not redis:get(SAKURA.."bot:muteall:Run" .. msg.chat_id_) then
 local g = os.time()
-redis:set(KEEPER.."bot:muteall:start_Unix" .. msg.chat_id_, g)
+redis:set(SAKURA.."bot:muteall:start_Unix" .. msg.chat_id_, g)
 local year_0 = os.date("%Y")
 local Month_0 = os.date("%m")
 local day_0 = os.date("%d")
@@ -2756,13 +2752,13 @@ local minute_ = stop_:match(":%d+")
 local minute_0 = minute_:gsub(":", "")
 local sec_0 = 0
 local unix = os.time({day=tonumber(day_0),month=tonumber(Month_0),year=tonumber(year_0),hour=tonumber(hour_0),min=tonumber(minute_0),sec=0})+ 12600
-redis:set(KEEPER.."bot:muteall:stop_Unix" .. msg.chat_id_, unix)
-redis:set(KEEPER.."bot:muteall:Run" .. msg.chat_id_, true)
+redis:set(SAKURA.."bot:muteall:stop_Unix" .. msg.chat_id_, unix)
+redis:set(SAKURA.."bot:muteall:Run" .. msg.chat_id_, true)
 end
 end
-if redis:get(KEEPER.."bot:muteall:Time" .. msg.chat_id_) and redis:get(KEEPER.."bot:muteall:Run" .. msg.chat_id_) then
-local SR = redis:get(KEEPER.."bot:muteall:start_Unix" .. msg.chat_id_) or 0
-local SP = redis:get(KEEPER.."bot:muteall:stop_Unix" .. msg.chat_id_) or 0
+if redis:get(SAKURA.."bot:muteall:Time" .. msg.chat_id_) and redis:get(SAKURA.."bot:muteall:Run" .. msg.chat_id_) then
+local SR = redis:get(SAKURA.."bot:muteall:start_Unix" .. msg.chat_id_) or 0
+local SP = redis:get(SAKURA.."bot:muteall:stop_Unix" .. msg.chat_id_) or 0
 local MsgTime = msg.date_
 if not is_vipmem(msg.sender_user_id_, msg.chat_id_) and tonumber(MsgTime) >= tonumber(SR) and tonumber(MsgTime) < tonumber(SP) then
 local id = msg.id_
@@ -2774,29 +2770,29 @@ delete_msg(chat, msgs)
 print_del_msg("Deleted Because [Auto] [Lock] [" .. SR .. "] [" .. SP .. "]")
 end
 if tonumber(MsgTime) >= tonumber(SP) then
-redis:del(KEEPER.."bot:muteall:Run" .. msg.chat_id_)
+redis:del(SAKURA.."bot:muteall:Run" .. msg.chat_id_)
 end
 end
 ---------------------pinnedmsg----------------------------------------------------------
-if msg.content_.ID == "MessagePinMessage" and not msg.sender_user_id_ == our_id and not is_owner(msg.sender_user_id_, msg.chat_id_) and redis:get(KEEPER.."pinnedmsg" .. msg.chat_id_) and redis:get(KEEPER.."bot:pin:mute" .. msg.chat_id_) then
+if msg.content_.ID == "MessagePinMessage" and not msg.sender_user_id_ == our_id and not is_owner(msg.sender_user_id_, msg.chat_id_) and redis:get(SAKURA.."pinnedmsg" .. msg.chat_id_) and redis:get(SAKURA.."bot:pin:mute" .. msg.chat_id_) then
 unpinmsg(msg.chat_id_)
-local pin_id = redis:get(KEEPER.."pinnedmsg" .. msg.chat_id_)
+local pin_id = redis:get(SAKURA.."pinnedmsg" .. msg.chat_id_)
 pinmsg(msg.chat_id_, pin_id, 0)
 end
-if not redis:get(KEEPER.."Resetdatapost" .. msg.chat_id_) then
-redis:del(KEEPER.."Gp:Post" .. msg.chat_id_)
-redis:setex(KEEPER.."Resetdatapost" .. msg.chat_id_, 12 * hour, true)
+if not redis:get(SAKURA.."Resetdatapost" .. msg.chat_id_) then
+redis:del(SAKURA.."Gp:Post" .. msg.chat_id_)
+redis:setex(SAKURA.."Resetdatapost" .. msg.chat_id_, 12 * hour, true)
 end
 ----------------------com viewget -----------------------------------------------------
-if redis:get(KEEPER.."bot:viewget" .. msg.sender_user_id_) then
+if redis:get(SAKURA.."bot:viewget" .. msg.sender_user_id_) then
 if not msg.forward_info_ then
 send(msg.chat_id_, msg.id_, 1, "✯↓ حدث خطا حاول مره اخرى", 1, "md")
-redis:del(KEEPER.."bot:viewget" .. msg.sender_user_id_)
+redis:del(SAKURA.."bot:viewget" .. msg.sender_user_id_)
 else
 send(msg.chat_id_, msg.id_, 1, "📛↓ عـــدد المشاهـــدات \n: " .. msg.views_ .. "", 1, "md")
-redis:del(KEEPER.."bot:viewget" .. msg.sender_user_id_)
+redis:del(SAKURA.."bot:viewget" .. msg.sender_user_id_)
 end end
-if redis:get(KEEPER.."bot:viewmsg") == "On" then
+if redis:get(SAKURA.."bot:viewmsg") == "On" then
 local id = msg.id_
 local msgs = {
 [0] = id
@@ -2806,20 +2802,20 @@ viewMessages(chat, msgs)
 end
 --------------save cam photo-------------------------------------------------------------------
 if msg.content_.photo_ then
-if redis:get(KEEPER..'bot:setphoto'..msg.chat_id_..':'..msg.sender_user_id_) then
+if redis:get(SAKURA..'bot:setphoto'..msg.chat_id_..':'..msg.sender_user_id_) then
 if msg.content_.photo_.sizes_[3] then
 photo_id = msg.content_.photo_.sizes_[3].photo_.persistent_id_
 else
 photo_id = msg.content_.photo_.sizes_[0].photo_.persistent_id_
 end
 send(msg.chat_id_, msg.id_, 1, '🌀┊ تم وضع صوره للمجموعه', 1, 'md')
-redis:del(KEEPER..'bot:setphoto'..msg.chat_id_..':'..msg.sender_user_id_)
+redis:del(SAKURA..'bot:setphoto'..msg.chat_id_..':'..msg.sender_user_id_)
 setphoto(msg.chat_id_, photo_id)
 end
 ------------------------------------------------------------------------------------------------
-if redis:get(KEEPER.."broadcast" .. msg.chat_id_ .. ":" .. msg.sender_user_id_) then
-local gps = redis:scard(KEEPER.."bot:groups") or 0
-local gpss = redis:smembers(KEEPER.."bot:groups") or 0
+if redis:get(SAKURA.."broadcast" .. msg.chat_id_ .. ":" .. msg.sender_user_id_) then
+local gps = redis:scard(SAKURA.."bot:groups") or 0
+local gpss = redis:smembers(SAKURA.."bot:groups") or 0
 local id = msg.id_
 local msgs = {
 [0] = id
@@ -2828,19 +2824,19 @@ for i = 1, #gpss do
 Forward(gpss[i], msg.chat_id_, msgs)
 end
 send(msg.chat_id_, msg.id_, 1, "◯↲  تم توجيه رسالتك الى\n` " .. gps .. "` مجموعــه🎈",  1, "md")
-redis:del(KEEPER.."broadcast" .. msg.chat_id_ .. ":" .. msg.sender_user_id_)
+redis:del(SAKURA.."broadcast" .. msg.chat_id_ .. ":" .. msg.sender_user_id_)
 end
 if not is_vipmem(msg.sender_user_id_, msg.chat_id_) then
-if redis:get(KEEPER.."anti-flood:" .. msg.chat_id_) then
-redis:setex(KEEPER..pm, TIME_CHECK, msgs + 1)
+if redis:get(SAKURA.."anti-flood:" .. msg.chat_id_) then
+redis:setex(SAKURA..pm, TIME_CHECK, msgs + 1)
 end
---«««««««««««««««««««««««« Developer By Karrar KeePer »»»»»»»»»»»»»»»»»»»»»»»»»»»--
+--«««««««««««««««««««««««« Developer By Karrar SAKURA »»»»»»»»»»»»»»»»»»»»»»»»»»»--
 if msg.content_.caption_ then
 if msg.content_.caption_:match("@") or msg.content_.caption_:match("#") then
 if string.len(msg.content_.caption_) > senspost.cappostwithtag then
 local post = msg.content_.caption_
-if redis:get(KEEPER.."bot:duplipost:mute" .. msg.chat_id_) then
-if redis:sismember(KEEPER.."Gp:Post" .. msg.chat_id_, post) then
+if redis:get(SAKURA.."bot:duplipost:mute" .. msg.chat_id_) then
+if redis:sismember(SAKURA.."Gp:Post" .. msg.chat_id_, post) then
 local id = msg.id_
 local msgs = {
 [0] = id
@@ -2849,10 +2845,10 @@ local chat = msg.chat_id_
 delete_msg(chat, msgs)
 print_del_msg("Deleted Because [Duplicate] [Post]")
 else
-redis:sadd(KEEPER.."Gp:Post" .. msg.chat_id_, post)
+redis:sadd(SAKURA.."Gp:Post" .. msg.chat_id_, post)
 end
 end
-if redis:get(KEEPER.."post:lock" .. msg.chat_id_) then
+if redis:get(SAKURA.."post:lock" .. msg.chat_id_) then
 local id = msg.id_
 local msgs = {
 [0] = id
@@ -2864,8 +2860,8 @@ end
 end
 elseif string.len(msg.content_.caption_) > senspost.cappost then
 local post = msg.content_.caption_
-if redis:get(KEEPER.."bot:duplipost:mute" .. msg.chat_id_) then
-if redis:sismember(KEEPER.."Gp:Post" .. msg.chat_id_, post) then
+if redis:get(SAKURA.."bot:duplipost:mute" .. msg.chat_id_) then
+if redis:sismember(SAKURA.."Gp:Post" .. msg.chat_id_, post) then
 local id = msg.id_
 local msgs = {
 [0] = id
@@ -2874,10 +2870,10 @@ local chat = msg.chat_id_
 delete_msg(chat, msgs)
 print_del_msg("Deleted Because [Duplicate] [Post]")
 else
-redis:sadd(KEEPER.."Gp:Post" .. msg.chat_id_, post)
+redis:sadd(SAKURA.."Gp:Post" .. msg.chat_id_, post)
 end
 end
-if redis:get(KEEPER.."post:lock" .. msg.chat_id_) then
+if redis:get(SAKURA.."post:lock" .. msg.chat_id_) then
 local id = msg.id_
 local msgs = {
 [0] = id
@@ -2888,7 +2884,7 @@ print_del_msg("Deleted Because [Lock] [Post]")
 end
 end
 end
-if msg.forward_info_ and redis:get(KEEPER.."bot:forward:mute" .. msg.chat_id_) and (msg.forward_info_.ID == "MessageForwardedFromUser" or msg.forward_info_.ID == "MessageForwardedPost") then
+if msg.forward_info_ and redis:get(SAKURA.."bot:forward:mute" .. msg.chat_id_) and (msg.forward_info_.ID == "MessageForwardedFromUser" or msg.forward_info_.ID == "MessageForwardedPost") then
 local id = msg.id_
 local msgs = {
 [0] = id
@@ -2898,7 +2894,7 @@ delete_msg(chat, msgs)
 print_del_msg("Deleted Because [Lock] [Fwd] [Photo]")
 end
 if msg.content_.ID == "MessagePhoto" then
-if redis:get(KEEPER.."bot:photo:mute" .. msg.chat_id_) then
+if redis:get(SAKURA.."bot:photo:mute" .. msg.chat_id_) then
 local id = msg.id_
 local msgs = {
 [0] = id
@@ -2910,7 +2906,7 @@ end
 end
 if msg.content_.caption_ then
 check_filter_words(msg, msg.content_.caption_)
-if redis:get(KEEPER.."bot:links:mute" .. msg.chat_id_) and (msg.content_.caption_:match("[Tt][Ee][Ll][Ee][Gg][Rr][Aa][Mm].[Mm][Ee]") or msg.content_.caption_:match("[Tt][Ll][Gg][Rr][Mm].[Mm][Ee]") or msg.content_.caption_:match("[Tt].[Mm][Ee]")) then
+if redis:get(SAKURA.."bot:links:mute" .. msg.chat_id_) and (msg.content_.caption_:match("[Tt][Ee][Ll][Ee][Gg][Rr][Aa][Mm].[Mm][Ee]") or msg.content_.caption_:match("[Tt][Ll][Gg][Rr][Mm].[Mm][Ee]") or msg.content_.caption_:match("[Tt].[Mm][Ee]")) then
 local id = msg.id_
 local msgs = {
 [0] = id
@@ -2918,12 +2914,12 @@ local msgs = {
 local chat = msg.chat_id_
 delete_msg(chat, msgs)
 print_del_msg("Deleted Because [Lock] [Link] [Photo]")
-if redis:get(KEEPER.."bot:strict" .. msg.chat_id_) then
+if redis:get(SAKURA.."bot:strict" .. msg.chat_id_) then
 chat_kick(msg.chat_id_, msg.sender_user_id_)
 end
 end
 if msg.content_.caption_:match("@") then
-if redis:get(KEEPER.."tags:lock" .. msg.chat_id_) then
+if redis:get(SAKURA.."tags:lock" .. msg.chat_id_) then
 local id = msg.id_
 local msgs = {
 [0] = id
@@ -2932,7 +2928,7 @@ local chat = msg.chat_id_
 delete_msg(chat, msgs)
 print_del_msg("Deleted Because [Lock] [Tag] [Photo]")
 end
-elseif msg.content_.entities_ and msg.content_.entities_[0] and msg.content_.entities_[0].ID == "MessageEntityMention" and redis:get(KEEPER.."tags:lock" .. msg.chat_id_) then
+elseif msg.content_.entities_ and msg.content_.entities_[0] and msg.content_.entities_[0].ID == "MessageEntityMention" and redis:get(SAKURA.."tags:lock" .. msg.chat_id_) then
 local id = msg.id_
 local msgs = {
 [0] = id
@@ -2942,7 +2938,7 @@ delete_msg(chat, msgs)
 print_del_msg("Deleted Because [Lock] [Tag] [Photo]")
 end
 if msg.content_.caption_:match("#") then
-if redis:get(KEEPER.."bot:hashtag:mute" .. msg.chat_id_) then
+if redis:get(SAKURA.."bot:hashtag:mute" .. msg.chat_id_) then
 local id = msg.id_
 local msgs = {
 [0] = id
@@ -2951,7 +2947,7 @@ local chat = msg.chat_id_
 delete_msg(chat, msgs)
 print_del_msg("Deleted Because [Lock] [Hashtag] [Photo]")
 end
-elseif msg.content_.entities_ and msg.content_.entities_[0] and msg.content_.entities_[0].ID == "MessageEntityHashtag" and redis:get(KEEPER.."bot:hashtag:mute" .. msg.chat_id_) then
+elseif msg.content_.entities_ and msg.content_.entities_[0] and msg.content_.entities_[0].ID == "MessageEntityHashtag" and redis:get(SAKURA.."bot:hashtag:mute" .. msg.chat_id_) then
 local id = msg.id_
 local msgs = {
 [0] = id
@@ -2960,9 +2956,9 @@ local chat = msg.chat_id_
 delete_msg(chat, msgs)
 print_del_msg("Deleted Because [Lock] [Hashtag] [Photo]")
 end
---«««««««««««««««««««««««« Developer By Karrar KeePer »»»»»»»»»»»»»»»»»»»»»»»»»»»--
+--«««««««««««««««««««««««« Developer By Karrar SAKURA »»»»»»»»»»»»»»»»»»»»»»»»»»»--
 if msg.content_.caption_:match("[Hh][Tt][Tt][Pp][Ss]:[//]") or msg.content_.caption_:match("[Hh][Tt][Tt][Pp]:[//]") or msg.content_.caption_:match("[Ww][Ww][Ww]") or msg.content_.caption_:match(".[Cc][Oo]") or msg.content_.caption_:match(".[Ii][Rr]") or msg.content_.caption_:match(".[Oo][Rr][Gg]") then
-if redis:get(KEEPER.."bot:webpage:mute" .. msg.chat_id_) then
+if redis:get(SAKURA.."bot:webpage:mute" .. msg.chat_id_) then
 local id = msg.id_
 local msgs = {
 [0] = id
@@ -2971,7 +2967,7 @@ local chat = msg.chat_id_
 delete_msg(chat, msgs)
 print_del_msg("Deleted Because [Lock] [Web] [Photo]")
 end
-elseif msg.content_.entities_ and msg.content_.entities_[0] and (msg.content_.entities_[0].ID == "MessageEntityTextUrl" or msg.content_.entities_[0].ID == "MessageEntityUrl") and redis:get(KEEPER.."bot:webpage:mute" .. msg.chat_id_) then
+elseif msg.content_.entities_ and msg.content_.entities_[0] and (msg.content_.entities_[0].ID == "MessageEntityTextUrl" or msg.content_.entities_[0].ID == "MessageEntityUrl") and redis:get(SAKURA.."bot:webpage:mute" .. msg.chat_id_) then
 local id = msg.id_
 local msgs = {
 [0] = id
@@ -2980,7 +2976,7 @@ local chat = msg.chat_id_
 delete_msg(chat, msgs)
 print_del_msg("Deleted Because [Lock] [Web] [Photo]")
 end
-if msg.content_.web_page_ and redis:get(KEEPER.."bot:webpage:mute" .. msg.chat_id_) then
+if msg.content_.web_page_ and redis:get(SAKURA.."bot:webpage:mute" .. msg.chat_id_) then
 local id = msg.id_
 local msgs = {
 [0] = id
@@ -2988,7 +2984,7 @@ local msgs = {
 local chat = msg.chat_id_
 delete_msg(chat, msgs)
 end
-if msg.content_.caption_:match("[\216-\219][\128-\191]") and redis:get(KEEPER.."bot:arabic:mute" .. msg.chat_id_) then
+if msg.content_.caption_:match("[\216-\219][\128-\191]") and redis:get(SAKURA.."bot:arabic:mute" .. msg.chat_id_) then
 local id = msg.id_
 local msgs = {
 [0] = id
@@ -2997,7 +2993,7 @@ local chat = msg.chat_id_
 delete_msg(chat, msgs)
 print_del_msg("Deleted Because [Lock] [arabic] [Photo]")
 end
-if (msg.content_.caption_:match("[A-Z]") or msg.content_.caption_:match("[a-z]")) and redis:get(KEEPER.."bot:english:mute" .. msg.chat_id_) then
+if (msg.content_.caption_:match("[A-Z]") or msg.content_.caption_:match("[a-z]")) and redis:get(SAKURA.."bot:english:mute" .. msg.chat_id_) then
 local id = msg.id_
 local msgs = {
 [0] = id
@@ -3009,9 +3005,9 @@ end
 end
 end
 elseif msg_type == "MSG:MarkDown" then
-if redis:get(KEEPER.."broadcast" .. msg.chat_id_ .. ":" .. msg.sender_user_id_) then
-local gps = redis:scard(KEEPER.."bot:groups") or 0
-local gpss = redis:smembers(KEEPER.."bot:groups") or 0
+if redis:get(SAKURA.."broadcast" .. msg.chat_id_ .. ":" .. msg.sender_user_id_) then
+local gps = redis:scard(SAKURA.."bot:groups") or 0
+local gpss = redis:smembers(SAKURA.."bot:groups") or 0
 local id = msg.id_
 local msgs = {
 [0] = id
@@ -3020,18 +3016,18 @@ for i = 1, #gpss do
 Forward(gpss[i], msg.chat_id_, msgs)
 end
 send(msg.chat_id_, msg.id_, 1, "◯↲ تم توجيه رسالتك الى\n` " .. gps .. "` مجموعــه🎈 ", 1, "md")
-redis:del(KEEPER.."broadcast" .. msg.chat_id_ .. ":" .. msg.sender_user_id_)
+redis:del(SAKURA.."broadcast" .. msg.chat_id_ .. ":" .. msg.sender_user_id_)
 end
 if not is_vipmem(msg.sender_user_id_, msg.chat_id_) then
-if redis:get(KEEPER.."anti-flood:" .. msg.chat_id_) then
-redis:setex(KEEPER..pm, TIME_CHECK, msgs + 1)
+if redis:get(SAKURA.."anti-flood:" .. msg.chat_id_) then
+redis:setex(SAKURA..pm, TIME_CHECK, msgs + 1)
 end
 if msg.content_.caption_ then
 if msg.content_.caption_:match("@") or msg.content_.caption_:match("#") then
 if string.len(msg.content_.caption_) > senspost.cappostwithtag then
 local post = msg.content_.caption_
-if redis:get(KEEPER.."bot:duplipost:mute" .. msg.chat_id_) then
-if redis:sismember(KEEPER.."Gp:Post" .. msg.chat_id_, post) then
+if redis:get(SAKURA.."bot:duplipost:mute" .. msg.chat_id_) then
+if redis:sismember(SAKURA.."Gp:Post" .. msg.chat_id_, post) then
 local id = msg.id_
 local msgs = {
 [0] = id
@@ -3040,10 +3036,10 @@ local chat = msg.chat_id_
 delete_msg(chat, msgs)
 print_del_msg("Deleted Because [Duplicate] [Post]")
 else
-redis:sadd(KEEPER.."Gp:Post" .. msg.chat_id_, post)
+redis:sadd(SAKURA.."Gp:Post" .. msg.chat_id_, post)
 end
 end
-if redis:get(KEEPER.."post:lock" .. msg.chat_id_) then
+if redis:get(SAKURA.."post:lock" .. msg.chat_id_) then
 local id = msg.id_
 local msgs = {
 [0] = id
@@ -3055,8 +3051,8 @@ end
 end
 elseif string.len(msg.content_.caption_) > senspost.cappost then
 local post = msg.content_.caption_
-if redis:get(KEEPER.."bot:duplipost:mute" .. msg.chat_id_) then
-if redis:sismember(KEEPER.."Gp:Post" .. msg.chat_id_, post) then
+if redis:get(SAKURA.."bot:duplipost:mute" .. msg.chat_id_) then
+if redis:sismember(SAKURA.."Gp:Post" .. msg.chat_id_, post) then
 local id = msg.id_
 local msgs = {
 [0] = id
@@ -3065,10 +3061,10 @@ local chat = msg.chat_id_
 delete_msg(chat, msgs)
 print_del_msg("Deleted Because [Duplicate] [Post]")
 else
-redis:sadd(KEEPER.."Gp:Post" .. msg.chat_id_, post)
+redis:sadd(SAKURA.."Gp:Post" .. msg.chat_id_, post)
 end
 end
-if redis:get(KEEPER.."post:lock" .. msg.chat_id_) then
+if redis:get(SAKURA.."post:lock" .. msg.chat_id_) then
 local id = msg.id_
 local msgs = {
 [0] = id
@@ -3079,7 +3075,7 @@ print_del_msg("Deleted Because [Lock] [Post]")
 end
 end
 end
-if msg.forward_info_ and redis:get(KEEPER.."bot:forward:mute" .. msg.chat_id_) and (msg.forward_info_.ID == "MessageForwardedFromUser" or msg.forward_info_.ID == "MessageForwardedPost") then
+if msg.forward_info_ and redis:get(SAKURA.."bot:forward:mute" .. msg.chat_id_) and (msg.forward_info_.ID == "MessageForwardedFromUser" or msg.forward_info_.ID == "MessageForwardedPost") then
 local id = msg.id_
 local msgs = {
 [0] = id
@@ -3088,7 +3084,7 @@ local chat = msg.chat_id_
 delete_msg(chat, msgs)
 print_del_msg("Deleted Because [Lock] [Fwd] [MarkDown]")
 end
-if redis:get(KEEPER.."markdown:lock" .. msg.chat_id_) and not is_vipmem(msg.sender_user_id_, msg.chat_id_) then
+if redis:get(SAKURA.."markdown:lock" .. msg.chat_id_) and not is_vipmem(msg.sender_user_id_, msg.chat_id_) then
 local id = msg.id_
 local msgs = {
 [0] = id
@@ -3100,16 +3096,16 @@ end
 end
 elseif msg_type == "MSG:Game" then
 if not is_vipmem(msg.sender_user_id_, msg.chat_id_) then
-if redis:get(KEEPER.."anti-flood:" .. msg.chat_id_) then
-redis:setex(KEEPER..pm, TIME_CHECK, msgs + 1)
+if redis:get(SAKURA.."anti-flood:" .. msg.chat_id_) then
+redis:setex(SAKURA..pm, TIME_CHECK, msgs + 1)
 end
---«««««««««««««««««««««««« Developer By Karrar KeePer »»»»»»»»»»»»»»»»»»»»»»»»»»»--
+--«««««««««««««««««««««««« Developer By Karrar SAKURA »»»»»»»»»»»»»»»»»»»»»»»»»»»--
 if msg.content_.caption_ then
 if msg.content_.caption_:match("@") or msg.content_.caption_:match("#") then
 if string.len(msg.content_.caption_) > senspost.cappostwithtag then
 local post = msg.content_.caption_
-if redis:get(KEEPER.."bot:duplipost:mute" .. msg.chat_id_) then
-if redis:sismember(KEEPER.."Gp:Post" .. msg.chat_id_, post) then
+if redis:get(SAKURA.."bot:duplipost:mute" .. msg.chat_id_) then
+if redis:sismember(SAKURA.."Gp:Post" .. msg.chat_id_, post) then
 local id = msg.id_
 local msgs = {
 [0] = id
@@ -3118,10 +3114,10 @@ local chat = msg.chat_id_
 delete_msg(chat, msgs)
 print_del_msg("Deleted Because [Duplicate] [Post]")
 else
-redis:sadd(KEEPER.."Gp:Post" .. msg.chat_id_, post)
+redis:sadd(SAKURA.."Gp:Post" .. msg.chat_id_, post)
 end
 end
-if redis:get(KEEPER.."post:lock" .. msg.chat_id_) then
+if redis:get(SAKURA.."post:lock" .. msg.chat_id_) then
 local id = msg.id_
 local msgs = {
 [0] = id
@@ -3133,8 +3129,8 @@ end
 end
 elseif string.len(msg.content_.caption_) > senspost.cappost then
 local post = msg.content_.caption_
-if redis:get(KEEPER.."bot:duplipost:mute" .. msg.chat_id_) then
-if redis:sismember(KEEPER.."Gp:Post" .. msg.chat_id_, post) then
+if redis:get(SAKURA.."bot:duplipost:mute" .. msg.chat_id_) then
+if redis:sismember(SAKURA.."Gp:Post" .. msg.chat_id_, post) then
 local id = msg.id_
 local msgs = {
 [0] = id
@@ -3143,10 +3139,10 @@ local chat = msg.chat_id_
 delete_msg(chat, msgs)
 print_del_msg("Deleted Because [Duplicate] [Post]")
 else
-redis:sadd(KEEPER.."Gp:Post" .. msg.chat_id_, post)
+redis:sadd(SAKURA.."Gp:Post" .. msg.chat_id_, post)
 end
 end
-if redis:get(KEEPER.."post:lock" .. msg.chat_id_) then
+if redis:get(SAKURA.."post:lock" .. msg.chat_id_) then
 local id = msg.id_
 local msgs = {
 [0] = id
@@ -3158,7 +3154,7 @@ end
 end
 end
 
-if msg.forward_info_ and redis:get(KEEPER.."bot:forward:mute" .. msg.chat_id_) and (msg.forward_info_.ID == "MessageForwardedFromUser" or msg.forward_info_.ID == "MessageForwardedPost") then
+if msg.forward_info_ and redis:get(SAKURA.."bot:forward:mute" .. msg.chat_id_) and (msg.forward_info_.ID == "MessageForwardedFromUser" or msg.forward_info_.ID == "MessageForwardedPost") then
 local id = msg.id_
 local msgs = {
 [0] = id
@@ -3167,7 +3163,7 @@ local chat = msg.chat_id_
 delete_msg(chat, msgs)
 print_del_msg("Deleted Because [Lock] [Fwd] [Game]")
 end
-if redis:get(KEEPER.."Game:lock" .. msg.chat_id_) and not is_vipmem(msg.sender_user_id_, msg.chat_id_) then
+if redis:get(SAKURA.."Game:lock" .. msg.chat_id_) and not is_vipmem(msg.sender_user_id_, msg.chat_id_) then
 local id = msg.id_
 local msgs = {
 [0] = id
@@ -3178,9 +3174,9 @@ print_del_msg("Deleted Because [Lock] [Game]")
 end
 end
 elseif msg_type == "MSG:Mention" then
-if redis:get(KEEPER.."broadcast" .. msg.chat_id_ .. ":" .. msg.sender_user_id_) then
-local gps = redis:scard(KEEPER.."bot:groups") or 0
-local gpss = redis:smembers(KEEPER.."bot:groups") or 0
+if redis:get(SAKURA.."broadcast" .. msg.chat_id_ .. ":" .. msg.sender_user_id_) then
+local gps = redis:scard(SAKURA.."bot:groups") or 0
+local gpss = redis:smembers(SAKURA.."bot:groups") or 0
 local id = msg.id_
 local msgs = {
 [0] = id
@@ -3189,18 +3185,18 @@ for i = 1, #gpss do
 Forward(gpss[i], msg.chat_id_, msgs)
 end
 send(msg.chat_id_, msg.id_, 1, "◯↲ تم توجيه رسالتك الى\n` " .. gps .. "` مجموعــه🎈 ", 1, "md")
-redis:del(KEEPER.."broadcast" .. msg.chat_id_ .. ":" .. msg.sender_user_id_)
+redis:del(SAKURA.."broadcast" .. msg.chat_id_ .. ":" .. msg.sender_user_id_)
 end
 if not is_vipmem(msg.sender_user_id_, msg.chat_id_) then
-if redis:get(KEEPER.."anti-flood:" .. msg.chat_id_) then
-redis:setex(KEEPER..pm, TIME_CHECK, msgs + 1)
+if redis:get(SAKURA.."anti-flood:" .. msg.chat_id_) then
+redis:setex(SAKURA..pm, TIME_CHECK, msgs + 1)
 end
 if msg.content_.caption_ then
 if msg.content_.caption_:match("@") or msg.content_.caption_:match("#") then
 if string.len(msg.content_.caption_) > senspost.cappostwithtag then
 local post = msg.content_.caption_
-if redis:get(KEEPER.."bot:duplipost:mute" .. msg.chat_id_) then
-if redis:sismember(KEEPER.."Gp:Post" .. msg.chat_id_, post) then
+if redis:get(SAKURA.."bot:duplipost:mute" .. msg.chat_id_) then
+if redis:sismember(SAKURA.."Gp:Post" .. msg.chat_id_, post) then
 local id = msg.id_
 local msgs = {
 [0] = id
@@ -3209,10 +3205,10 @@ local chat = msg.chat_id_
 delete_msg(chat, msgs)
 print_del_msg("Deleted Because [Duplicate] [Post]")
 else
-redis:sadd(KEEPER.."Gp:Post" .. msg.chat_id_, post)
+redis:sadd(SAKURA.."Gp:Post" .. msg.chat_id_, post)
 end
 end
-if redis:get(KEEPER.."post:lock" .. msg.chat_id_) then
+if redis:get(SAKURA.."post:lock" .. msg.chat_id_) then
 local id = msg.id_
 local msgs = {
 [0] = id
@@ -3224,8 +3220,8 @@ end
 end
 elseif string.len(msg.content_.caption_) > senspost.cappost then
 local post = msg.content_.caption_
-if redis:get(KEEPER.."bot:duplipost:mute" .. msg.chat_id_) then
-if redis:sismember(KEEPER.."Gp:Post" .. msg.chat_id_, post) then
+if redis:get(SAKURA.."bot:duplipost:mute" .. msg.chat_id_) then
+if redis:sismember(SAKURA.."Gp:Post" .. msg.chat_id_, post) then
 local id = msg.id_
 local msgs = {
 [0] = id
@@ -3234,10 +3230,10 @@ local chat = msg.chat_id_
 delete_msg(chat, msgs)
 print_del_msg("Deleted Because [Duplicate] [Post]")
 else
-redis:sadd(KEEPER.."Gp:Post" .. msg.chat_id_, post)
+redis:sadd(SAKURA.."Gp:Post" .. msg.chat_id_, post)
 end
 end
-if redis:get(KEEPER.."post:lock" .. msg.chat_id_) then
+if redis:get(SAKURA.."post:lock" .. msg.chat_id_) then
 local id = msg.id_
 local msgs = {
 [0] = id
@@ -3248,7 +3244,7 @@ print_del_msg("Deleted Because [Lock] [Post]")
 end
 end
 end
-if msg.forward_info_ and redis:get(KEEPER.."bot:forward:mute" .. msg.chat_id_) and (msg.forward_info_.ID == "MessageForwardedFromUser" or msg.forward_info_.ID == "MessageForwardedPost") then
+if msg.forward_info_ and redis:get(SAKURA.."bot:forward:mute" .. msg.chat_id_) and (msg.forward_info_.ID == "MessageForwardedFromUser" or msg.forward_info_.ID == "MessageForwardedPost") then
 local id = msg.id_
 local msgs = {
 [0] = id
@@ -3257,7 +3253,7 @@ local chat = msg.chat_id_
 delete_msg(chat, msgs)
 print_del_msg("Deleted Because [Lock] [Fwd] [Mention]")
 end
-if not is_vipmem(msg.sender_user_id_, msg.chat_id_) and redis:get(KEEPER.."tags:lock" .. msg.chat_id_) then
+if not is_vipmem(msg.sender_user_id_, msg.chat_id_) and redis:get(SAKURA.."tags:lock" .. msg.chat_id_) then
 local id = msg.id_
 local msgs = {
 [0] = id
@@ -3268,9 +3264,9 @@ print_del_msg("Deleted Because [Lock] [Mention]")
 end
 end
 elseif msg_type == "MSG:Document" then
-if redis:get(KEEPER.."broadcast" .. msg.chat_id_ .. ":" .. msg.sender_user_id_) then
-local gps = redis:scard(KEEPER.."bot:groups") or 0
-local gpss = redis:smembers(KEEPER.."bot:groups") or 0
+if redis:get(SAKURA.."broadcast" .. msg.chat_id_ .. ":" .. msg.sender_user_id_) then
+local gps = redis:scard(SAKURA.."bot:groups") or 0
+local gpss = redis:smembers(SAKURA.."bot:groups") or 0
 local id = msg.id_
 local msgs = {
 [0] = id
@@ -3279,18 +3275,18 @@ for i = 1, #gpss do
 Forward(gpss[i], msg.chat_id_, msgs)
 end
 send(msg.chat_id_, msg.id_, 1, "🌀┊ تم توجيه رسالتك الى\n` " .. gps .. "` مجموعــه🎈 ", 1, "md")
-redis:del(KEEPER.."broadcast" .. msg.chat_id_ .. ":" .. msg.sender_user_id_)
+redis:del(SAKURA.."broadcast" .. msg.chat_id_ .. ":" .. msg.sender_user_id_)
 end
 if not is_vipmem(msg.sender_user_id_, msg.chat_id_) then
-if redis:get(KEEPER.."anti-flood:" .. msg.chat_id_) then
-redis:setex(KEEPER..pm, TIME_CHECK, msgs + 1)
+if redis:get(SAKURA.."anti-flood:" .. msg.chat_id_) then
+redis:setex(SAKURA..pm, TIME_CHECK, msgs + 1)
 end
 if msg.content_.caption_ then
 if msg.content_.caption_:match("@") or msg.content_.caption_:match("#") then
 if string.len(msg.content_.caption_) > senspost.cappostwithtag then
 local post = msg.content_.caption_
-if redis:get(KEEPER.."bot:duplipost:mute" .. msg.chat_id_) then
-if redis:sismember(KEEPER.."Gp:Post" .. msg.chat_id_, post) then
+if redis:get(SAKURA.."bot:duplipost:mute" .. msg.chat_id_) then
+if redis:sismember(SAKURA.."Gp:Post" .. msg.chat_id_, post) then
 local id = msg.id_
 local msgs = {
 [0] = id
@@ -3299,10 +3295,10 @@ local chat = msg.chat_id_
 delete_msg(chat, msgs)
 print_del_msg("Deleted Because [Duplicate] [Post]")
 else
-redis:sadd(KEEPER.."Gp:Post" .. msg.chat_id_, post)
+redis:sadd(SAKURA.."Gp:Post" .. msg.chat_id_, post)
 end
 end
-if redis:get(KEEPER.."post:lock" .. msg.chat_id_) then
+if redis:get(SAKURA.."post:lock" .. msg.chat_id_) then
 local id = msg.id_
 local msgs = {
 [0] = id
@@ -3314,8 +3310,8 @@ end
 end
 elseif string.len(msg.content_.caption_) > senspost.cappost then
 local post = msg.content_.caption_
-if redis:get(KEEPER.."bot:duplipost:mute" .. msg.chat_id_) then
-if redis:sismember(KEEPER.."Gp:Post" .. msg.chat_id_, post) then
+if redis:get(SAKURA.."bot:duplipost:mute" .. msg.chat_id_) then
+if redis:sismember(SAKURA.."Gp:Post" .. msg.chat_id_, post) then
 local id = msg.id_
 local msgs = {
 [0] = id
@@ -3324,10 +3320,10 @@ local chat = msg.chat_id_
 delete_msg(chat, msgs)
 print_del_msg("Deleted Because [Duplicate] [Post]")
 else
-redis:sadd(KEEPER.."Gp:Post" .. msg.chat_id_, post)
+redis:sadd(SAKURA.."Gp:Post" .. msg.chat_id_, post)
 end
 end
-if redis:get(KEEPER.."post:lock" .. msg.chat_id_) then
+if redis:get(SAKURA.."post:lock" .. msg.chat_id_) then
 local id = msg.id_
 local msgs = {
 [0] = id
@@ -3338,7 +3334,7 @@ print_del_msg("Deleted Because [Lock] [Post]")
 end
 end
 end
-if msg.forward_info_ and redis:get(KEEPER.."bot:forward:mute" .. msg.chat_id_) and (msg.forward_info_.ID == "MessageForwardedFromUser" or msg.forward_info_.ID == "MessageForwardedPost") then
+if msg.forward_info_ and redis:get(SAKURA.."bot:forward:mute" .. msg.chat_id_) and (msg.forward_info_.ID == "MessageForwardedFromUser" or msg.forward_info_.ID == "MessageForwardedPost") then
 local id = msg.id_
 local msgs = {
 [0] = id
@@ -3347,7 +3343,7 @@ local chat = msg.chat_id_
 delete_msg(chat, msgs)
 print_del_msg("Deleted Because [Lock] [Fwd] [Document]")
 end
-if redis:get(KEEPER.."bot:document:mute" .. msg.chat_id_) then
+if redis:get(SAKURA.."bot:document:mute" .. msg.chat_id_) then
 local id = msg.id_
 local msgs = {
 [0] = id
@@ -3358,7 +3354,7 @@ print_del_msg("Deleted Because [Lock] [Document]")
 end
 if msg.content_.caption_ then
 check_filter_words(msg, msg.content_.caption_)
-if redis:get(KEEPER.."bot:links:mute" .. msg.chat_id_) and (msg.content_.caption_:match("[Tt][Ee][Ll][Ee][Gg][Rr][Aa][Mm].[Mm][Ee]") or msg.content_.caption_:match("[Tt][Ll][Gg][Rr][Mm].[Mm][Ee]") or msg.content_.caption_:match("[Tt].[Mm][Ee]")) then
+if redis:get(SAKURA.."bot:links:mute" .. msg.chat_id_) and (msg.content_.caption_:match("[Tt][Ee][Ll][Ee][Gg][Rr][Aa][Mm].[Mm][Ee]") or msg.content_.caption_:match("[Tt][Ll][Gg][Rr][Mm].[Mm][Ee]") or msg.content_.caption_:match("[Tt].[Mm][Ee]")) then
 local id = msg.id_
 local msgs = {
 [0] = id
@@ -3366,12 +3362,12 @@ local msgs = {
 local chat = msg.chat_id_
 delete_msg(chat, msgs)
 print_del_msg("Deleted Because [Lock] [Link] [Document]")
-if redis:get(KEEPER.."bot:strict" .. msg.chat_id_) then
+if redis:get(SAKURA.."bot:strict" .. msg.chat_id_) then
 chat_kick(msg.chat_id_, msg.sender_user_id_)
 end
 end
 if msg.content_.caption_:match("@") then
-if redis:get(KEEPER.."tags:lock" .. msg.chat_id_) then
+if redis:get(SAKURA.."tags:lock" .. msg.chat_id_) then
 local id = msg.id_
 local msgs = {
 [0] = id
@@ -3380,7 +3376,7 @@ local chat = msg.chat_id_
 delete_msg(chat, msgs)
 print_del_msg("Deleted Because [Lock] [Tag] [Document]")
 end
-elseif msg.content_.entities_ and msg.content_.entities_[0] and msg.content_.entities_[0].ID == "MessageEntityMention" and redis:get(KEEPER.."tags:lock" .. msg.chat_id_) then
+elseif msg.content_.entities_ and msg.content_.entities_[0] and msg.content_.entities_[0].ID == "MessageEntityMention" and redis:get(SAKURA.."tags:lock" .. msg.chat_id_) then
 local id = msg.id_
 local msgs = {
 [0] = id
@@ -3390,7 +3386,7 @@ delete_msg(chat, msgs)
 print_del_msg("Deleted Because [Lock] [Tag] [Document]")
 end
 if msg.content_.caption_:match("#") then
-if redis:get(KEEPER.."bot:hashtag:mute" .. msg.chat_id_) then
+if redis:get(SAKURA.."bot:hashtag:mute" .. msg.chat_id_) then
 local id = msg.id_
 local msgs = {
 [0] = id
@@ -3399,7 +3395,7 @@ local chat = msg.chat_id_
 delete_msg(chat, msgs)
 print_del_msg("Deleted Because [Lock] [Hashtag] [Document]")
 end
-elseif msg.content_.entities_ and msg.content_.entities_[0] and msg.content_.entities_[0].ID == "MessageEntityHashtag" and redis:get(KEEPER.."bot:hashtag:mute" .. msg.chat_id_) then
+elseif msg.content_.entities_ and msg.content_.entities_[0] and msg.content_.entities_[0].ID == "MessageEntityHashtag" and redis:get(SAKURA.."bot:hashtag:mute" .. msg.chat_id_) then
 local id = msg.id_
 local msgs = {
 [0] = id
@@ -3409,7 +3405,7 @@ delete_msg(chat, msgs)
 print_del_msg("Deleted Because [Lock] [Hashtag] [Document]")
 end
 if msg.content_.caption_:match("[Hh][Tt][Tt][Pp][Ss]:[//]") or msg.content_.caption_:match("[Hh][Tt][Tt][Pp]:[//]") or msg.content_.caption_:match("[Ww][Ww][Ww]") or msg.content_.caption_:match(".[Cc][Oo]") or msg.content_.caption_:match(".[Ii][Rr]") or msg.content_.caption_:match(".[Oo][Rr][Gg]") then
-if redis:get(KEEPER.."bot:webpage:mute" .. msg.chat_id_) then
+if redis:get(SAKURA.."bot:webpage:mute" .. msg.chat_id_) then
 local id = msg.id_
 local msgs = {
 [0] = id
@@ -3418,7 +3414,7 @@ local chat = msg.chat_id_
 delete_msg(chat, msgs)
 print_del_msg("Deleted Because [Lock] [Web] [Document]")
 end
-elseif msg.content_.entities_ and msg.content_.entities_[0] and (msg.content_.entities_[0].ID == "MessageEntityTextUrl" or msg.content_.entities_[0].ID == "MessageEntityUrl") and redis:get(KEEPER.."bot:webpage:mute" .. msg.chat_id_) then
+elseif msg.content_.entities_ and msg.content_.entities_[0] and (msg.content_.entities_[0].ID == "MessageEntityTextUrl" or msg.content_.entities_[0].ID == "MessageEntityUrl") and redis:get(SAKURA.."bot:webpage:mute" .. msg.chat_id_) then
 local id = msg.id_
 local msgs = {
 [0] = id
@@ -3427,7 +3423,7 @@ local chat = msg.chat_id_
 delete_msg(chat, msgs)
 print_del_msg("Deleted Because [Lock] [Web] [Document]")
 end
-if msg.content_.web_page_ and redis:get(KEEPER.."bot:webpage:mute" .. msg.chat_id_) then
+if msg.content_.web_page_ and redis:get(SAKURA.."bot:webpage:mute" .. msg.chat_id_) then
 local id = msg.id_
 local msgs = {
 [0] = id
@@ -3435,7 +3431,7 @@ local msgs = {
 local chat = msg.chat_id_
 delete_msg(chat, msgs)
 end
-if msg.content_.caption_:match("[\216-\219][\121-\191]") and redis:get(KEEPER.."bot:arabic:mute" .. msg.chat_id_) then
+if msg.content_.caption_:match("[\216-\219][\121-\191]") and redis:get(SAKURA.."bot:arabic:mute" .. msg.chat_id_) then
 local id = msg.id_
 local msgs = {
 [0] = id
@@ -3444,7 +3440,7 @@ local chat = msg.chat_id_
 delete_msg(chat, msgs)
 print_del_msg("Deleted Because [Lock] [arabic] [Document]")
 end
-if (msg.content_.caption_:match("[A-Z]") or msg.content_.caption_:match("[a-z]")) and redis:get(KEEPER.."bot:english:mute" .. msg.chat_id_) then
+if (msg.content_.caption_:match("[A-Z]") or msg.content_.caption_:match("[a-z]")) and redis:get(SAKURA.."bot:english:mute" .. msg.chat_id_) then
 local id = msg.id_
 local msgs = {
 [0] = id
@@ -3457,10 +3453,10 @@ end
 end
 elseif msg_type == "MSG:Inline" then
 if not is_vipmem(msg.sender_user_id_, msg.chat_id_) then
-if redis:get(KEEPER.."anti-flood:" .. msg.chat_id_) then
-redis:setex(KEEPER..pm, TIME_CHECK, msgs + 1)
+if redis:get(SAKURA.."anti-flood:" .. msg.chat_id_) then
+redis:setex(SAKURA..pm, TIME_CHECK, msgs + 1)
 end
-if msg.forward_info_ and redis:get(KEEPER.."bot:forward:mute" .. msg.chat_id_) and (msg.forward_info_.ID == "MessageForwardedFromUser" or msg.forward_info_.ID == "MessageForwardedPost") then
+if msg.forward_info_ and redis:get(SAKURA.."bot:forward:mute" .. msg.chat_id_) and (msg.forward_info_.ID == "MessageForwardedFromUser" or msg.forward_info_.ID == "MessageForwardedPost") then
 local id = msg.id_
 local msgs = {
 [0] = id
@@ -3469,7 +3465,7 @@ local chat = msg.chat_id_
 delete_msg(chat, msgs)
 print_del_msg("Deleted Because [Lock] [Fwd] [Inline]")
 end
-if redis:get(KEEPER.."bot:inline:mute" .. msg.chat_id_) then
+if redis:get(SAKURA.."bot:inline:mute" .. msg.chat_id_) then
 local id = msg.id_
 local msgs = {
 [0] = id
@@ -3486,12 +3482,12 @@ local sticker_id = result.content_.sticker_.sticker_.id_
 downloadFile(sticker_id, dl_cb)
 end
 end
-if redis:get(KEEPER.."clerk") == "On" or is_admin(msg.sender_user_id_) then
+if redis:get(SAKURA.."clerk") == "On" or is_admin(msg.sender_user_id_) then
 getMessage(msg.chat_id_, msg.id_, DownSticker)
 end
-if redis:get(KEEPER.."broadcast" .. msg.chat_id_ .. ":" .. msg.sender_user_id_) then
-local gps = redis:scard(KEEPER.."bot:groups") or 0
-local gpss = redis:smembers(KEEPER.."bot:groups") or 0
+if redis:get(SAKURA.."broadcast" .. msg.chat_id_ .. ":" .. msg.sender_user_id_) then
+local gps = redis:scard(SAKURA.."bot:groups") or 0
+local gpss = redis:smembers(SAKURA.."bot:groups") or 0
 local id = msg.id_
 local msgs = {
 [0] = id
@@ -3500,13 +3496,13 @@ for i = 1, #gpss do
 Forward(gpss[i], msg.chat_id_, msgs)
 end
 send(msg.chat_id_, msg.id_, 1, "🌀┊ تم توجيه رسالتك الى\n` " .. gps .. "` مجموعــه🎈 ",   1, "md")
-redis:del(KEEPER.."broadcast" .. msg.chat_id_ .. ":" .. msg.sender_user_id_)
+redis:del(SAKURA.."broadcast" .. msg.chat_id_ .. ":" .. msg.sender_user_id_)
 end
 if not is_vipmem(msg.sender_user_id_, msg.chat_id_) then
-if redis:get(KEEPER.."anti-flood:" .. msg.chat_id_) then
-redis:setex(KEEPER..pm, TIME_CHECK, msgs + 1)
+if redis:get(SAKURA.."anti-flood:" .. msg.chat_id_) then
+redis:setex(SAKURA..pm, TIME_CHECK, msgs + 1)
 end
-if msg.forward_info_ and redis:get(KEEPER.."bot:forward:mute" .. msg.chat_id_) and (msg.forward_info_.ID == "MessageForwardedFromUser" or msg.forward_info_.ID == "MessageForwardedPost") then
+if msg.forward_info_ and redis:get(SAKURA.."bot:forward:mute" .. msg.chat_id_) and (msg.forward_info_.ID == "MessageForwardedFromUser" or msg.forward_info_.ID == "MessageForwardedPost") then
 local id = msg.id_
 local msgs = {
 [0] = id
@@ -3515,7 +3511,7 @@ local chat = msg.chat_id_
 delete_msg(chat, msgs)
 print_del_msg("Deleted Because [Lock] [Fwd] [Sticker]")
 end
-if redis:get(KEEPER.."bot:sticker:mute" .. msg.chat_id_) then
+if redis:get(SAKURA.."bot:sticker:mute" .. msg.chat_id_) then
 local id = msg.id_
 local msgs = {
 [0] = id
@@ -3526,7 +3522,7 @@ print_del_msg("Deleted Because [Lock] [Sticker]")
 end
 end
 elseif msg_type == "MSG:NewUserByLink" then
-if redis:get(KEEPER.."bot:tgservice:mute" .. msg.chat_id_) then
+if redis:get(SAKURA.."bot:tgservice:mute" .. msg.chat_id_) then
 local id = msg.id_
 local msgs = {
 [0] = id
@@ -3535,11 +3531,11 @@ local chat = msg.chat_id_
 delete_msg(chat, msgs)
 print_del_msg("Deleted Because [Lock] [Tgservice] [JoinByLink]")
 end
-if not is_vipmem(msg.sender_user_id_, msg.chat_id_) and redis:get(KEEPER.."bot:member:lock" .. msg.chat_id_) then
+if not is_vipmem(msg.sender_user_id_, msg.chat_id_) and redis:get(SAKURA.."bot:member:lock" .. msg.chat_id_) then
 chat_kick(msg.chat_id_, msg.sender_user_id_)
 end
 elseif msg_type == "MSG:DeleteMember" then
-if redis:get(KEEPER.."bot:tgservice:mute" .. msg.chat_id_) then
+if redis:get(SAKURA.."bot:tgservice:mute" .. msg.chat_id_) then
 local id = msg.id_
 local msgs = {
 [0] = id
@@ -3549,7 +3545,7 @@ delete_msg(chat, msgs)
 print_del_msg("Deleted Because [Lock] [Tgservice] [DeleteMember]")
 end
 elseif msg_type == "MSG:NewUserAdd" then
-if redis:get(KEEPER.."bot:tgservice:mute" .. msg.chat_id_) then
+if redis:get(SAKURA.."bot:tgservice:mute" .. msg.chat_id_) then
 local id = msg.id_
 local msgs = {
 [0] = id
@@ -3561,32 +3557,32 @@ end
 if not is_momod(msg.sender_user_id_, msg.chat_id_) then
 local list = msg.content_.members_
 for i = 0, #list do
-if list[i].type_.ID == "UserTypeBot" and not is_momod(list[i].id_, msg.chat_id_) and redis:get(KEEPER.."bot:bots:mute" .. msg.chat_id_) then
+if list[i].type_.ID == "UserTypeBot" and not is_momod(list[i].id_, msg.chat_id_) and redis:get(SAKURA.."bot:bots:mute" .. msg.chat_id_) then
 chat_kick(msg.chat_id_, list[i].id_)
 end
-if list[i].type_.ID == "UserTypeBot" and not is_momod(list[i].id_, msg.chat_id_) and redis:get(KEEPER.."bot:botskick" .. msg.chat_id_) then
+if list[i].type_.ID == "UserTypeBot" and not is_momod(list[i].id_, msg.chat_id_) and redis:get(SAKURA.."bot:botskick" .. msg.chat_id_) then
 chat_kick(msg.chat_id_, list[i].id_)
 chat_kick(msg.chat_id_, msg.sender_user_id_)
-local user_info_ = redis:get(KEEPER..'user:Name' .. msg.sender_user_id_)
-local UserKeeper = user_info_
+local user_info_ = redis:get(SAKURA..'user:Name' .. msg.sender_user_id_)
+local UserSAKURA = user_info_
 if user_info_ then
-send(msg.chat_id_, msg.id_, 1, "👨‍✈️┊ العضو » (["..UserKeeper.."])\n🚫┊ الايدي » (*"..msg.sender_user_id_.."*)\n🗯┊ قام بأضافه بوت في المجموعه\n📌┊ تم طرد البوت مع العضو \n✓", 1, "md")
+send(msg.chat_id_, msg.id_, 1, "👨‍✈️┊ العضو » (["..UserSAKURA.."])\n🚫┊ الايدي » (*"..msg.sender_user_id_.."*)\n🗯┊ قام بأضافه بوت في المجموعه\n📌┊ تم طرد البوت مع العضو \n✓", 1, "md")
 end 
 end
-if list[i].type_.ID == "UserTypeBot" and not is_momod(list[i].id_, msg.chat_id_) and redis:get(KEEPER.."keed_bots"..msg.chat_id_) then
+if list[i].type_.ID == "UserTypeBot" and not is_momod(list[i].id_, msg.chat_id_) and redis:get(SAKURA.."keed_bots"..msg.chat_id_) then
 chat_kick(msg.chat_id_, list[i].id_)
-redis:sadd(KEEPER..'bot:keed:'..msg.chat_id_, msg.sender_user_id_)
-HTTPS.request("https://api.telegram.org/bot" .. KEEPER_TOKEN .. "/restrictChatMember?chat_id=" .. msg.chat_id_ .. "&user_id=" .. msg.sender_user_id_ .. "&can_send_messages=false&can_send_media_messages=false&can_send_other_messages=false&can_add_web_page_previews=false")
-redis:sadd(KEEPER..'bot:keed:'..msg.chat_id_, msg.sender_user_id_)
-local user_info_ = redis:get(KEEPER..'user:Name' .. msg.sender_user_id_)
-local UserKeeper = user_info_
+redis:sadd(SAKURA..'bot:keed:'..msg.chat_id_, msg.sender_user_id_)
+HTTPS.request("https://api.telegram.org/bot" .. SAKURA_TOKEN .. "/restrictChatMember?chat_id=" .. msg.chat_id_ .. "&user_id=" .. msg.sender_user_id_ .. "&can_send_messages=false&can_send_media_messages=false&can_send_other_messages=false&can_add_web_page_previews=false")
+redis:sadd(SAKURA..'bot:keed:'..msg.chat_id_, msg.sender_user_id_)
+local user_info_ = redis:get(SAKURA..'user:Name' .. msg.sender_user_id_)
+local UserSAKURA = user_info_
 if user_info_ then
-send(msg.chat_id_, msg.id_, 1, "👨‍✈️┊ العضو » (["..UserKeeper.."])\n🚫┊ الايدي » (*"..msg.sender_user_id_.."*)\n🗯┊ قام بأضافه بوت في المجموعه\n📌┊ تم طرد البوت وتقييد العضو \n✓", 1, "md")
+send(msg.chat_id_, msg.id_, 1, "👨‍✈️┊ العضو » (["..UserSAKURA.."])\n🚫┊ الايدي » (*"..msg.sender_user_id_.."*)\n🗯┊ قام بأضافه بوت في المجموعه\n📌┊ تم طرد البوت وتقييد العضو \n✓", 1, "md")
 end
 end
 end
 end
-if redis:get(KEEPER.."bot:member:lock" .. msg.chat_id_) and not is_vipmem(msg.content_.members_[0].id_, msg.chat_id_) and not is_vipmem(msg.sender_user_id_, msg.chat_id_) then
+if redis:get(SAKURA.."bot:member:lock" .. msg.chat_id_) and not is_vipmem(msg.content_.members_[0].id_, msg.chat_id_) and not is_vipmem(msg.sender_user_id_, msg.chat_id_) then
 chat_kick(msg.chat_id_, msg.content_.members_[0].id_)
 end
 
@@ -3594,9 +3590,9 @@ if is_banned(msg.content_.members_[0].id_, msg.chat_id_) then
 chat_kick(msg.chat_id_, msg.content_.members_[0].id_)
 end
 elseif msg_type == "MSG:Contact" then
-if redis:get(KEEPER.."broadcast" .. msg.chat_id_ .. ":" .. msg.sender_user_id_) then
-local gps = redis:scard(KEEPER.."bot:groups") or 0
-local gpss = redis:smembers(KEEPER.."bot:groups") or 0
+if redis:get(SAKURA.."broadcast" .. msg.chat_id_ .. ":" .. msg.sender_user_id_) then
+local gps = redis:scard(SAKURA.."bot:groups") or 0
+local gpss = redis:smembers(SAKURA.."bot:groups") or 0
 local id = msg.id_
 local msgs = {
 [0] = id
@@ -3605,13 +3601,13 @@ for i = 1, #gpss do
 Forward(gpss[i], msg.chat_id_, msgs)
 end
 send(msg.chat_id_, msg.id_, 1, "🌀┊ تم توجيه رسالتك الى\n` " .. gps .. "` مجموعــه🎈 ", 1, "md")
-redis:del(KEEPER.."broadcast" .. msg.chat_id_ .. ":" .. msg.sender_user_id_)
+redis:del(SAKURA.."broadcast" .. msg.chat_id_ .. ":" .. msg.sender_user_id_)
 end
 if not is_vipmem(msg.sender_user_id_, msg.chat_id_) then
-if redis:get(KEEPER.."anti-flood:" .. msg.chat_id_) then
-redis:setex(KEEPER..pm, TIME_CHECK, msgs + 1)
+if redis:get(SAKURA.."anti-flood:" .. msg.chat_id_) then
+redis:setex(SAKURA..pm, TIME_CHECK, msgs + 1)
 end
-if msg.forward_info_ and redis:get(KEEPER.."bot:forward:mute" .. msg.chat_id_) and (msg.forward_info_.ID == "MessageForwardedFromUser" or msg.forward_info_.ID == "MessageForwardedPost") then
+if msg.forward_info_ and redis:get(SAKURA.."bot:forward:mute" .. msg.chat_id_) and (msg.forward_info_.ID == "MessageForwardedFromUser" or msg.forward_info_.ID == "MessageForwardedPost") then
 local id = msg.id_
 local msgs = {
 [0] = id
@@ -3620,7 +3616,7 @@ local chat = msg.chat_id_
 delete_msg(chat, msgs)
 print_del_msg("Deleted Because [Lock] [Fwd] [Contact]")
 end
-if redis:get(KEEPER.."bot:contact:mute" .. msg.chat_id_) then
+if redis:get(SAKURA.."bot:contact:mute" .. msg.chat_id_) then
 local id = msg.id_
 local msgs = {
 [0] = id
@@ -3631,9 +3627,9 @@ print_del_msg("Deleted Because [Lock] [Contact]")
 end
 end
 elseif msg_type == "MSG:Audio" then
-if redis:get(KEEPER.."broadcast" .. msg.chat_id_ .. ":" .. msg.sender_user_id_) then
-local gps = redis:scard(KEEPER.."bot:groups") or 0
-local gpss = redis:smembers(KEEPER.."bot:groups") or 0
+if redis:get(SAKURA.."broadcast" .. msg.chat_id_ .. ":" .. msg.sender_user_id_) then
+local gps = redis:scard(SAKURA.."bot:groups") or 0
+local gpss = redis:smembers(SAKURA.."bot:groups") or 0
 local id = msg.id_
 local msgs = {
 [0] = id
@@ -3642,18 +3638,18 @@ for i = 1, #gpss do
 Forward(gpss[i], msg.chat_id_, msgs)
 end
 send(msg.chat_id_, msg.id_, 1, "🌀┊ تم توجيه رسالتك الى\n` " .. gps .. "` مجموعــه🎈 ", 1, "md")
-redis:del(KEEPER.."broadcast" .. msg.chat_id_ .. ":" .. msg.sender_user_id_)
+redis:del(SAKURA.."broadcast" .. msg.chat_id_ .. ":" .. msg.sender_user_id_)
 end
 if not is_vipmem(msg.sender_user_id_, msg.chat_id_) then
-if redis:get(KEEPER.."anti-flood:" .. msg.chat_id_) then
-redis:setex(KEEPER..pm, TIME_CHECK, msgs + 1)
+if redis:get(SAKURA.."anti-flood:" .. msg.chat_id_) then
+redis:setex(SAKURA..pm, TIME_CHECK, msgs + 1)
 end
 if msg.content_.caption_ then
 if msg.content_.caption_:match("@") or msg.content_.caption_:match("#") then
 if string.len(msg.content_.caption_) > senspost.cappostwithtag then
 local post = msg.content_.caption_
-if redis:get(KEEPER.."bot:duplipost:mute" .. msg.chat_id_) then
-if redis:sismember(KEEPER.."Gp:Post" .. msg.chat_id_, post) then
+if redis:get(SAKURA.."bot:duplipost:mute" .. msg.chat_id_) then
+if redis:sismember(SAKURA.."Gp:Post" .. msg.chat_id_, post) then
 local id = msg.id_
 local msgs = {
 [0] = id
@@ -3662,10 +3658,10 @@ local chat = msg.chat_id_
 delete_msg(chat, msgs)
 print_del_msg("Deleted Because [Duplicate] [Post]")
 else
-redis:sadd(KEEPER.."Gp:Post" .. msg.chat_id_, post)
+redis:sadd(SAKURA.."Gp:Post" .. msg.chat_id_, post)
 end
 end
-if redis:get(KEEPER.."post:lock" .. msg.chat_id_) then
+if redis:get(SAKURA.."post:lock" .. msg.chat_id_) then
 local id = msg.id_
 local msgs = {
 [0] = id
@@ -3677,8 +3673,8 @@ end
 end
 elseif string.len(msg.content_.caption_) > senspost.cappost then
 local post = msg.content_.caption_
-if redis:get(KEEPER.."bot:duplipost:mute" .. msg.chat_id_) then
-if redis:sismember(KEEPER.."Gp:Post" .. msg.chat_id_, post) then
+if redis:get(SAKURA.."bot:duplipost:mute" .. msg.chat_id_) then
+if redis:sismember(SAKURA.."Gp:Post" .. msg.chat_id_, post) then
 local id = msg.id_
 local msgs = {
 [0] = id
@@ -3687,10 +3683,10 @@ local chat = msg.chat_id_
 delete_msg(chat, msgs)
 print_del_msg("Deleted Because [Duplicate] [Post]")
 else
-redis:sadd(KEEPER.."Gp:Post" .. msg.chat_id_, post)
+redis:sadd(SAKURA.."Gp:Post" .. msg.chat_id_, post)
 end
 end
-if redis:get(KEEPER.."post:lock" .. msg.chat_id_) then
+if redis:get(SAKURA.."post:lock" .. msg.chat_id_) then
 local id = msg.id_
 local msgs = {
 [0] = id
@@ -3701,7 +3697,7 @@ print_del_msg("Deleted Because [Lock] [Post]")
 end
 end
 end
-if msg.forward_info_ and redis:get(KEEPER.."bot:forward:mute" .. msg.chat_id_) and (msg.forward_info_.ID == "MessageForwardedFromUser" or msg.forward_info_.ID == "MessageForwardedPost") then
+if msg.forward_info_ and redis:get(SAKURA.."bot:forward:mute" .. msg.chat_id_) and (msg.forward_info_.ID == "MessageForwardedFromUser" or msg.forward_info_.ID == "MessageForwardedPost") then
 local id = msg.id_
 local msgs = {
 [0] = id
@@ -3710,7 +3706,7 @@ local chat = msg.chat_id_
 delete_msg(chat, msgs)
 print_del_msg("Deleted Because [Lock] [Fwd] [Audio]")
 end
-if redis:get(KEEPER.."bot:music:mute" .. msg.chat_id_) then
+if redis:get(SAKURA.."bot:music:mute" .. msg.chat_id_) then
 local id = msg.id_
 local msgs = {
 [0] = id
@@ -3721,7 +3717,7 @@ print_del_msg("Deleted Because [Lock] [Audio]")
 end
 if msg.content_.caption_ then
 check_filter_words(msg, msg.content_.caption_)
-if redis:get(KEEPER.."bot:links:mute" .. msg.chat_id_) and (msg.content_.caption_:match("[Tt][Ee][Ll][Ee][Gg][Rr][Aa][Mm].[Mm][Ee]") or msg.content_.caption_:match("[Tt][Ll][Gg][Rr][Mm].[Mm][Ee]") or msg.content_.caption_:match("[Tt].[Mm][Ee]")) then
+if redis:get(SAKURA.."bot:links:mute" .. msg.chat_id_) and (msg.content_.caption_:match("[Tt][Ee][Ll][Ee][Gg][Rr][Aa][Mm].[Mm][Ee]") or msg.content_.caption_:match("[Tt][Ll][Gg][Rr][Mm].[Mm][Ee]") or msg.content_.caption_:match("[Tt].[Mm][Ee]")) then
 local id = msg.id_
 local msgs = {
 [0] = id
@@ -3731,7 +3727,7 @@ delete_msg(chat, msgs)
 print_del_msg("Deleted Because [Lock] [Link] [Audio]")
 end
 if msg.content_.caption_:match("@") then
-if redis:get(KEEPER.."tags:lock" .. msg.chat_id_) then
+if redis:get(SAKURA.."tags:lock" .. msg.chat_id_) then
 local id = msg.id_
 local msgs = {
 [0] = id
@@ -3740,7 +3736,7 @@ local chat = msg.chat_id_
 delete_msg(chat, msgs)
 print_del_msg("Deleted Because [Lock] [Tag] [Audio]")
 end
-elseif msg.content_.entities_ and msg.content_.entities_[0] and msg.content_.entities_[0].ID == "MessageEntityMention" and redis:get(KEEPER.."tags:lock" .. msg.chat_id_) then
+elseif msg.content_.entities_ and msg.content_.entities_[0] and msg.content_.entities_[0].ID == "MessageEntityMention" and redis:get(SAKURA.."tags:lock" .. msg.chat_id_) then
 local id = msg.id_
 local msgs = {
 [0] = id
@@ -3749,9 +3745,9 @@ local chat = msg.chat_id_
 delete_msg(chat, msgs)
 print_del_msg("Deleted Because [Lock] [Tag] [Audio]")
 end
---«««««««««««««««««««««««« Developer By Karrar KeePer »»»»»»»»»»»»»»»»»»»»»»»»»»»--
+--«««««««««««««««««««««««« Developer By Karrar SAKURA »»»»»»»»»»»»»»»»»»»»»»»»»»»--
 if msg.content_.caption_:match("#") then
-if redis:get(KEEPER.."bot:hashtag:mute" .. msg.chat_id_) then
+if redis:get(SAKURA.."bot:hashtag:mute" .. msg.chat_id_) then
 local id = msg.id_
 local msgs = {
 [0] = id
@@ -3760,7 +3756,7 @@ local chat = msg.chat_id_
 delete_msg(chat, msgs)
 print_del_msg("Deleted Because [Lock] [Hashtag] [Audio]")
 end
-elseif msg.content_.entities_ and msg.content_.entities_[0] and msg.content_.entities_[0].ID == "MessageEntityHashtag" and redis:get(KEEPER.."bot:hashtag:mute" .. msg.chat_id_) then
+elseif msg.content_.entities_ and msg.content_.entities_[0] and msg.content_.entities_[0].ID == "MessageEntityHashtag" and redis:get(SAKURA.."bot:hashtag:mute" .. msg.chat_id_) then
 local id = msg.id_
 local msgs = {
 [0] = id
@@ -3770,7 +3766,7 @@ delete_msg(chat, msgs)
 print_del_msg("Deleted Because [Lock] [Hashtag] [Audio]")
 end
 if msg.content_.caption_:match("[Hh][Tt][Tt][Pp][Ss]:[//]") or msg.content_.caption_:match("[Hh][Tt][Tt][Pp]:[//]") or msg.content_.caption_:match("[Ww][Ww][Ww]") or msg.content_.caption_:match(".[Cc][Oo]") or msg.content_.caption_:match(".[Ii][Rr]") or msg.content_.caption_:match(".[Oo][Rr][Gg]") then
-if redis:get(KEEPER.."bot:webpage:mute" .. msg.chat_id_) then
+if redis:get(SAKURA.."bot:webpage:mute" .. msg.chat_id_) then
 local id = msg.id_
 local msgs = {
 [0] = id
@@ -3779,7 +3775,7 @@ local chat = msg.chat_id_
 delete_msg(chat, msgs)
 print_del_msg("Deleted Because [Lock] [Web] [Audio]")
 end
-elseif msg.content_.entities_ and msg.content_.entities_[0] and (msg.content_.entities_[0].ID == "MessageEntityTextUrl" or msg.content_.entities_[0].ID == "MessageEntityUrl") and redis:get(KEEPER.."bot:webpage:mute" .. msg.chat_id_) then
+elseif msg.content_.entities_ and msg.content_.entities_[0] and (msg.content_.entities_[0].ID == "MessageEntityTextUrl" or msg.content_.entities_[0].ID == "MessageEntityUrl") and redis:get(SAKURA.."bot:webpage:mute" .. msg.chat_id_) then
 local id = msg.id_
 local msgs = {
 [0] = id
@@ -3788,7 +3784,7 @@ local chat = msg.chat_id_
 delete_msg(chat, msgs)
 print_del_msg("Deleted Because [Lock] [Web] [Audio]")
 end
-if msg.content_.web_page_ and redis:get(KEEPER.."bot:webpage:mute" .. msg.chat_id_) then
+if msg.content_.web_page_ and redis:get(SAKURA.."bot:webpage:mute" .. msg.chat_id_) then
 local id = msg.id_
 local msgs = {
 [0] = id
@@ -3796,7 +3792,7 @@ local msgs = {
 local chat = msg.chat_id_
 delete_msg(chat, msgs)
 end
-if msg.content_.caption_:match("[\216-\219][\121-\191]") and redis:get(KEEPER.."bot:arabic:mute" .. msg.chat_id_) then
+if msg.content_.caption_:match("[\216-\219][\121-\191]") and redis:get(SAKURA.."bot:arabic:mute" .. msg.chat_id_) then
 local id = msg.id_
 local msgs = {
 [0] = id
@@ -3805,7 +3801,7 @@ local chat = msg.chat_id_
 delete_msg(chat, msgs)
 print_del_msg("Deleted Because [Lock] [arabic] [Audio]")
 end
-if (msg.content_.caption_:match("[A-Z]") or msg.content_.caption_:match("[a-z]")) and redis:get(KEEPER.."bot:english:mute" .. msg.chat_id_) then
+if (msg.content_.caption_:match("[A-Z]") or msg.content_.caption_:match("[a-z]")) and redis:get(SAKURA.."bot:english:mute" .. msg.chat_id_) then
 local id = msg.id_
 local msgs = {
 [0] = id
@@ -3817,9 +3813,9 @@ end
 end
 end
 elseif msg_type == "MSG:Voice" then
-if redis:get(KEEPER.."broadcast" .. msg.chat_id_ .. ":" .. msg.sender_user_id_) then
-local gps = redis:scard(KEEPER.."bot:groups") or 0
-local gpss = redis:smembers(KEEPER.."bot:groups") or 0
+if redis:get(SAKURA.."broadcast" .. msg.chat_id_ .. ":" .. msg.sender_user_id_) then
+local gps = redis:scard(SAKURA.."bot:groups") or 0
+local gpss = redis:smembers(SAKURA.."bot:groups") or 0
 local id = msg.id_
 local msgs = {
 [0] = id
@@ -3828,18 +3824,18 @@ for i = 1, #gpss do
 Forward(gpss[i], msg.chat_id_, msgs)
 end
 send(msg.chat_id_, msg.id_, 1, "🌀┊ تم توجيه رسالتك الى\n` " .. gps .. "` مجموعــه🎈 ", 1, "md")
-redis:del(KEEPER.."broadcast" .. msg.chat_id_ .. ":" .. msg.sender_user_id_)
+redis:del(SAKURA.."broadcast" .. msg.chat_id_ .. ":" .. msg.sender_user_id_)
 end
 if not is_vipmem(msg.sender_user_id_, msg.chat_id_) then
-if redis:get(KEEPER.."anti-flood:" .. msg.chat_id_) then
-redis:setex(KEEPER..pm, TIME_CHECK, msgs + 1)
+if redis:get(SAKURA.."anti-flood:" .. msg.chat_id_) then
+redis:setex(SAKURA..pm, TIME_CHECK, msgs + 1)
 end
 if msg.content_.caption_ then
 if msg.content_.caption_:match("@") or msg.content_.caption_:match("#") then
 if string.len(msg.content_.caption_) > senspost.cappostwithtag then
 local post = msg.content_.caption_
-if redis:get(KEEPER.."bot:duplipost:mute" .. msg.chat_id_) then
-if redis:sismember(KEEPER.."Gp:Post" .. msg.chat_id_, post) then
+if redis:get(SAKURA.."bot:duplipost:mute" .. msg.chat_id_) then
+if redis:sismember(SAKURA.."Gp:Post" .. msg.chat_id_, post) then
 local id = msg.id_
 local msgs = {
 [0] = id
@@ -3848,10 +3844,10 @@ local chat = msg.chat_id_
 delete_msg(chat, msgs)
 print_del_msg("Deleted Because [Duplicate] [Post]")
 else
-redis:sadd(KEEPER.."Gp:Post" .. msg.chat_id_, post)
+redis:sadd(SAKURA.."Gp:Post" .. msg.chat_id_, post)
 end
 end
-if redis:get(KEEPER.."post:lock" .. msg.chat_id_) then
+if redis:get(SAKURA.."post:lock" .. msg.chat_id_) then
 local id = msg.id_
 local msgs = {
 [0] = id
@@ -3863,8 +3859,8 @@ end
 end
 elseif string.len(msg.content_.caption_) > senspost.cappost then
 local post = msg.content_.caption_
-if redis:get(KEEPER.."bot:duplipost:mute" .. msg.chat_id_) then
-if redis:sismember(KEEPER.."Gp:Post" .. msg.chat_id_, post) then
+if redis:get(SAKURA.."bot:duplipost:mute" .. msg.chat_id_) then
+if redis:sismember(SAKURA.."Gp:Post" .. msg.chat_id_, post) then
 local id = msg.id_
 local msgs = {
 [0] = id
@@ -3873,10 +3869,10 @@ local chat = msg.chat_id_
 delete_msg(chat, msgs)
 print_del_msg("Deleted Because [Duplicate] [Post]")
 else
-redis:sadd(KEEPER.."Gp:Post" .. msg.chat_id_, post)
+redis:sadd(SAKURA.."Gp:Post" .. msg.chat_id_, post)
 end
 end
-if redis:get(KEEPER.."post:lock" .. msg.chat_id_) then
+if redis:get(SAKURA.."post:lock" .. msg.chat_id_) then
 local id = msg.id_
 local msgs = {
 [0] = id
@@ -3887,7 +3883,7 @@ print_del_msg("Deleted Because [Lock] [Post]")
 end
 end
 end
-if msg.forward_info_ and redis:get(KEEPER.."bot:forward:mute" .. msg.chat_id_) and (msg.forward_info_.ID == "MessageForwardedFromUser" or msg.forward_info_.ID == "MessageForwardedPost") then
+if msg.forward_info_ and redis:get(SAKURA.."bot:forward:mute" .. msg.chat_id_) and (msg.forward_info_.ID == "MessageForwardedFromUser" or msg.forward_info_.ID == "MessageForwardedPost") then
 local id = msg.id_
 local msgs = {
 [0] = id
@@ -3896,7 +3892,7 @@ local chat = msg.chat_id_
 delete_msg(chat, msgs)
 print_del_msg("Deleted Because [Lock] [Fwd] [Voice]")
 end
-if redis:get(KEEPER.."bot:voice:mute" .. msg.chat_id_) then
+if redis:get(SAKURA.."bot:voice:mute" .. msg.chat_id_) then
 local id = msg.id_
 local msgs = {
 [0] = id
@@ -3907,7 +3903,7 @@ print_del_msg("Deleted Because [Lock] [Voice]")
 end
 if msg.content_.caption_ then
 check_filter_words(msg, msg.content_.caption_)
-if redis:get(KEEPER.."bot:links:mute" .. msg.chat_id_) and (msg.content_.caption_:match("[Tt][Ee][Ll][Ee][Gg][Rr][Aa][Mm].[Mm][Ee]") or msg.content_.caption_:match("[Tt][Ll][Gg][Rr][Mm].[Mm][Ee]") or msg.content_.caption_:match("[Tt].[Mm][Ee]")) then
+if redis:get(SAKURA.."bot:links:mute" .. msg.chat_id_) and (msg.content_.caption_:match("[Tt][Ee][Ll][Ee][Gg][Rr][Aa][Mm].[Mm][Ee]") or msg.content_.caption_:match("[Tt][Ll][Gg][Rr][Mm].[Mm][Ee]") or msg.content_.caption_:match("[Tt].[Mm][Ee]")) then
 local id = msg.id_
 local msgs = {
 [0] = id
@@ -3917,7 +3913,7 @@ delete_msg(chat, msgs)
 print_del_msg("Deleted Because [Lock] [Link] [Voice]")
 end
 if msg.content_.caption_:match("@") then
-if redis:get(KEEPER.."tags:lock" .. msg.chat_id_) then
+if redis:get(SAKURA.."tags:lock" .. msg.chat_id_) then
 local id = msg.id_
 local msgs = {
 [0] = id
@@ -3926,7 +3922,7 @@ local chat = msg.chat_id_
 delete_msg(chat, msgs)
 print_del_msg("Deleted Because [Lock] [Tag] [Voice]")
 end
-elseif msg.content_.entities_ and msg.content_.entities_[0] and msg.content_.entities_[0].ID == "MessageEntityMention" and redis:get(KEEPER.."tags:lock" .. msg.chat_id_) then
+elseif msg.content_.entities_ and msg.content_.entities_[0] and msg.content_.entities_[0].ID == "MessageEntityMention" and redis:get(SAKURA.."tags:lock" .. msg.chat_id_) then
 local id = msg.id_
 local msgs = {
 [0] = id
@@ -3936,7 +3932,7 @@ delete_msg(chat, msgs)
 print_del_msg("Deleted Because [Lock] [Tag] [Voice]")
 end
 if msg.content_.caption_:match("#") then
-if redis:get(KEEPER.."bot:hashtag:mute" .. msg.chat_id_) then
+if redis:get(SAKURA.."bot:hashtag:mute" .. msg.chat_id_) then
 local id = msg.id_
 local msgs = {
 [0] = id
@@ -3945,7 +3941,7 @@ local chat = msg.chat_id_
 delete_msg(chat, msgs)
 print_del_msg("Deleted Because [Lock] [Hashtag] [Voice]")
 end
-elseif msg.content_.entities_ and msg.content_.entities_[0] and msg.content_.entities_[0].ID == "MessageEntityHashtag" and redis:get(KEEPER.."bot:hashtag:mute" .. msg.chat_id_) then
+elseif msg.content_.entities_ and msg.content_.entities_[0] and msg.content_.entities_[0].ID == "MessageEntityHashtag" and redis:get(SAKURA.."bot:hashtag:mute" .. msg.chat_id_) then
 local id = msg.id_
 local msgs = {
 [0] = id
@@ -3955,7 +3951,7 @@ delete_msg(chat, msgs)
 print_del_msg("Deleted Because [Lock] [Hashtag] [Voice]")
 end
 if msg.content_.caption_:match("[Hh][Tt][Tt][Pp][Ss]:[//]") or msg.content_.caption_:match("[Hh][Tt][Tt][Pp]:[//]") or msg.content_.caption_:match("[Ww][Ww][Ww]") or msg.content_.caption_:match(".[Cc][Oo]") or msg.content_.caption_:match(".[Ii][Rr]") or msg.content_.caption_:match(".[Oo][Rr][Gg]") then
-if redis:get(KEEPER.."bot:webpage:mute" .. msg.chat_id_) then
+if redis:get(SAKURA.."bot:webpage:mute" .. msg.chat_id_) then
 local id = msg.id_
 local msgs = {
 [0] = id
@@ -3964,7 +3960,7 @@ local chat = msg.chat_id_
 delete_msg(chat, msgs)
 print_del_msg("Deleted Because [Lock] [Web] [Voice]")
 end
-elseif msg.content_.entities_ and msg.content_.entities_[0] and (msg.content_.entities_[0].ID == "MessageEntityTextUrl" or msg.content_.entities_[0].ID == "MessageEntityUrl") and redis:get(KEEPER.."bot:webpage:mute" .. msg.chat_id_) then
+elseif msg.content_.entities_ and msg.content_.entities_[0] and (msg.content_.entities_[0].ID == "MessageEntityTextUrl" or msg.content_.entities_[0].ID == "MessageEntityUrl") and redis:get(SAKURA.."bot:webpage:mute" .. msg.chat_id_) then
 local id = msg.id_
 local msgs = {
 [0] = id
@@ -3973,7 +3969,7 @@ local chat = msg.chat_id_
 delete_msg(chat, msgs)
 print_del_msg("Deleted Because [Lock] [Web] [Voice]")
 end
-if msg.content_.web_page_ and redis:get(KEEPER.."bot:webpage:mute" .. msg.chat_id_) then
+if msg.content_.web_page_ and redis:get(SAKURA.."bot:webpage:mute" .. msg.chat_id_) then
 local id = msg.id_
 local msgs = {
 [0] = id
@@ -3981,7 +3977,7 @@ local msgs = {
 local chat = msg.chat_id_
 delete_msg(chat, msgs)
 end
-if msg.content_.caption_:match("[\216-\219][\121-\191]") and redis:get(KEEPER.."bot:arabic:mute" .. msg.chat_id_) then
+if msg.content_.caption_:match("[\216-\219][\121-\191]") and redis:get(SAKURA.."bot:arabic:mute" .. msg.chat_id_) then
 local id = msg.id_
 local msgs = {
 [0] = id
@@ -3990,7 +3986,7 @@ local chat = msg.chat_id_
 delete_msg(chat, msgs)
 print_del_msg("Deleted Because [Lock] [arabic] [Voice]")
 end
-if (msg.content_.caption_:match("[A-Z]") or msg.content_.caption_:match("[a-z]")) and redis:get(KEEPER.."bot:english:mute" .. msg.chat_id_) then
+if (msg.content_.caption_:match("[A-Z]") or msg.content_.caption_:match("[a-z]")) and redis:get(SAKURA.."bot:english:mute" .. msg.chat_id_) then
 local id = msg.id_
 local msgs = {
 [0] = id
@@ -4002,9 +3998,9 @@ end
 end
 end
 elseif msg_type == "MSG:Location" then
-if redis:get(KEEPER.."broadcast" .. msg.chat_id_ .. ":" .. msg.sender_user_id_) then
-local gps = redis:scard(KEEPER.."bot:groups") or 0
-local gpss = redis:smembers(KEEPER.."bot:groups") or 0
+if redis:get(SAKURA.."broadcast" .. msg.chat_id_ .. ":" .. msg.sender_user_id_) then
+local gps = redis:scard(SAKURA.."bot:groups") or 0
+local gpss = redis:smembers(SAKURA.."bot:groups") or 0
 local id = msg.id_
 local msgs = {
 [0] = id
@@ -4013,18 +4009,18 @@ for i = 1, #gpss do
 Forward(gpss[i], msg.chat_id_, msgs)
 end
 send(msg.chat_id_, msg.id_, 1, "🌀┊ تم توجيه رسالتك الى\n` " .. gps .. "` مجموعــه🎈 ", 1, "md")
-redis:del(KEEPER.."broadcast" .. msg.chat_id_ .. ":" .. msg.sender_user_id_)
+redis:del(SAKURA.."broadcast" .. msg.chat_id_ .. ":" .. msg.sender_user_id_)
 end
 if not is_vipmem(msg.sender_user_id_, msg.chat_id_) then
-if redis:get(KEEPER.."anti-flood:" .. msg.chat_id_) then
-redis:setex(KEEPER..pm, TIME_CHECK, msgs + 1)
+if redis:get(SAKURA.."anti-flood:" .. msg.chat_id_) then
+redis:setex(SAKURA..pm, TIME_CHECK, msgs + 1)
 end
 if msg.content_.caption_ then
 if msg.content_.caption_:match("@") or msg.content_.caption_:match("#") then
 if string.len(msg.content_.caption_) > senspost.cappostwithtag then
 local post = msg.content_.caption_
-if redis:get(KEEPER.."bot:duplipost:mute" .. msg.chat_id_) then
-if redis:sismember(KEEPER.."Gp:Post" .. msg.chat_id_, post) then
+if redis:get(SAKURA.."bot:duplipost:mute" .. msg.chat_id_) then
+if redis:sismember(SAKURA.."Gp:Post" .. msg.chat_id_, post) then
 local id = msg.id_
 local msgs = {
 [0] = id
@@ -4033,10 +4029,10 @@ local chat = msg.chat_id_
 delete_msg(chat, msgs)
 print_del_msg("Deleted Because [Duplicate] [Post]")
 else
-redis:sadd(KEEPER.."Gp:Post" .. msg.chat_id_, post)
+redis:sadd(SAKURA.."Gp:Post" .. msg.chat_id_, post)
 end
 end
-if redis:get(KEEPER.."post:lock" .. msg.chat_id_) then
+if redis:get(SAKURA.."post:lock" .. msg.chat_id_) then
 local id = msg.id_
 local msgs = {
 [0] = id
@@ -4048,8 +4044,8 @@ end
 end
 elseif string.len(msg.content_.caption_) > senspost.cappost then
 local post = msg.content_.caption_
-if redis:get(KEEPER.."bot:duplipost:mute" .. msg.chat_id_) then
-if redis:sismember(KEEPER.."Gp:Post" .. msg.chat_id_, post) then
+if redis:get(SAKURA.."bot:duplipost:mute" .. msg.chat_id_) then
+if redis:sismember(SAKURA.."Gp:Post" .. msg.chat_id_, post) then
 local id = msg.id_
 local msgs = {
 [0] = id
@@ -4058,10 +4054,10 @@ local chat = msg.chat_id_
 delete_msg(chat, msgs)
 print_del_msg("Deleted Because [Duplicate] [Post]")
 else
-redis:sadd(KEEPER.."Gp:Post" .. msg.chat_id_, post)
+redis:sadd(SAKURA.."Gp:Post" .. msg.chat_id_, post)
 end
 end
-if redis:get(KEEPER.."post:lock" .. msg.chat_id_) then
+if redis:get(SAKURA.."post:lock" .. msg.chat_id_) then
 local id = msg.id_
 local msgs = {
 [0] = id
@@ -4072,7 +4068,7 @@ print_del_msg("Deleted Because [Lock] [Post]")
 end
 end
 end
-if msg.forward_info_ and redis:get(KEEPER.."bot:forward:mute" .. msg.chat_id_) and (msg.forward_info_.ID == "MessageForwardedFromUser" or msg.forward_info_.ID == "MessageForwardedPost") then
+if msg.forward_info_ and redis:get(SAKURA.."bot:forward:mute" .. msg.chat_id_) and (msg.forward_info_.ID == "MessageForwardedFromUser" or msg.forward_info_.ID == "MessageForwardedPost") then
 local id = msg.id_
 local msgs = {
 [0] = id
@@ -4081,7 +4077,7 @@ local chat = msg.chat_id_
 delete_msg(chat, msgs)
 print_del_msg("Deleted Because [Lock] [Fwd] [Location]")
 end
-if redis:get(KEEPER.."bot:location:mute" .. msg.chat_id_) then
+if redis:get(SAKURA.."bot:location:mute" .. msg.chat_id_) then
 local id = msg.id_
 local msgs = {
 [0] = id
@@ -4092,7 +4088,7 @@ print_del_msg("Deleted Because [Lock] [Location]")
 end
 if msg.content_.caption_ then
 check_filter_words(msg, msg.content_.caption_)
-if redis:get(KEEPER.."bot:links:mute" .. msg.chat_id_) and (msg.content_.caption_:match("[Tt][Ee][Ll][Ee][Gg][Rr][Aa][Mm].[Mm][Ee]") or msg.content_.caption_:match("[Tt][Ll][Gg][Rr][Mm].[Mm][Ee]") or msg.content_.caption_:match("[Tt].[Mm][Ee]")) then
+if redis:get(SAKURA.."bot:links:mute" .. msg.chat_id_) and (msg.content_.caption_:match("[Tt][Ee][Ll][Ee][Gg][Rr][Aa][Mm].[Mm][Ee]") or msg.content_.caption_:match("[Tt][Ll][Gg][Rr][Mm].[Mm][Ee]") or msg.content_.caption_:match("[Tt].[Mm][Ee]")) then
 local id = msg.id_
 local msgs = {
 [0] = id
@@ -4102,7 +4098,7 @@ delete_msg(chat, msgs)
 print_del_msg("Deleted Because [Lock] [Link] [Location]")
 end
 if msg.content_.caption_:match("@") then
-if redis:get(KEEPER.."tags:lock" .. msg.chat_id_) then
+if redis:get(SAKURA.."tags:lock" .. msg.chat_id_) then
 local id = msg.id_
 local msgs = {
 [0] = id
@@ -4111,7 +4107,7 @@ local chat = msg.chat_id_
 delete_msg(chat, msgs)
 print_del_msg("Deleted Because [Lock] [Tag] [Location]")
 end
-elseif msg.content_.entities_ and msg.content_.entities_[0] and msg.content_.entities_[0].ID == "MessageEntityMention" and redis:get(KEEPER.."tags:lock" .. msg.chat_id_) then
+elseif msg.content_.entities_ and msg.content_.entities_[0] and msg.content_.entities_[0].ID == "MessageEntityMention" and redis:get(SAKURA.."tags:lock" .. msg.chat_id_) then
 local id = msg.id_
 local msgs = {
 [0] = id
@@ -4121,7 +4117,7 @@ delete_msg(chat, msgs)
 print_del_msg("Deleted Because [Lock] [Tag] [Location]")
 end
 if msg.content_.caption_:match("#") then
-if redis:get(KEEPER.."bot:hashtag:mute" .. msg.chat_id_) then
+if redis:get(SAKURA.."bot:hashtag:mute" .. msg.chat_id_) then
 local id = msg.id_
 local msgs = {
 [0] = id
@@ -4130,7 +4126,7 @@ local chat = msg.chat_id_
 delete_msg(chat, msgs)
 print_del_msg("Deleted Because [Lock] [Hashtag] [Location]")
 end
-elseif msg.content_.entities_ and msg.content_.entities_[0] and msg.content_.entities_[0].ID == "MessageEntityHashtag" and redis:get(KEEPER.."bot:hashtag:mute" .. msg.chat_id_) then
+elseif msg.content_.entities_ and msg.content_.entities_[0] and msg.content_.entities_[0].ID == "MessageEntityHashtag" and redis:get(SAKURA.."bot:hashtag:mute" .. msg.chat_id_) then
 local id = msg.id_
 local msgs = {
 [0] = id
@@ -4140,7 +4136,7 @@ delete_msg(chat, msgs)
 print_del_msg("Deleted Because [Lock] [Hashtag] [Location]")
 end
 if msg.content_.caption_:match("[Hh][Tt][Tt][Pp][Ss]:[//]") or msg.content_.caption_:match("[Hh][Tt][Tt][Pp]:[//]") or msg.content_.caption_:match("[Ww][Ww][Ww]") or msg.content_.caption_:match(".[Cc][Oo]") or msg.content_.caption_:match(".[Ii][Rr]") or msg.content_.caption_:match(".[Oo][Rr][Gg]") then
-if redis:get(KEEPER.."bot:webpage:mute" .. msg.chat_id_) then
+if redis:get(SAKURA.."bot:webpage:mute" .. msg.chat_id_) then
 local id = msg.id_
 local msgs = {
 [0] = id
@@ -4149,7 +4145,7 @@ local chat = msg.chat_id_
 delete_msg(chat, msgs)
 print_del_msg("Deleted Because [Lock] [Web] [Location]")
 end
-elseif msg.content_.entities_ and msg.content_.entities_[0] and (msg.content_.entities_[0].ID == "MessageEntityTextUrl" or msg.content_.entities_[0].ID == "MessageEntityUrl") and redis:get(KEEPER.."bot:webpage:mute" .. msg.chat_id_) then
+elseif msg.content_.entities_ and msg.content_.entities_[0] and (msg.content_.entities_[0].ID == "MessageEntityTextUrl" or msg.content_.entities_[0].ID == "MessageEntityUrl") and redis:get(SAKURA.."bot:webpage:mute" .. msg.chat_id_) then
 local id = msg.id_
 local msgs = {
 [0] = id
@@ -4158,7 +4154,7 @@ local chat = msg.chat_id_
 delete_msg(chat, msgs)
 print_del_msg("Deleted Because [Lock] [Web] [Location]")
 end
-if msg.content_.web_page_ and redis:get(KEEPER.."bot:webpage:mute" .. msg.chat_id_) then
+if msg.content_.web_page_ and redis:get(SAKURA.."bot:webpage:mute" .. msg.chat_id_) then
 local id = msg.id_
 local msgs = {
 [0] = id
@@ -4166,7 +4162,7 @@ local msgs = {
 local chat = msg.chat_id_
 delete_msg(chat, msgs)
 end
-if msg.content_.caption_:match("[\216-\219][\121-\191]") and redis:get(KEEPER.."bot:arabic:mute" .. msg.chat_id_) then
+if msg.content_.caption_:match("[\216-\219][\121-\191]") and redis:get(SAKURA.."bot:arabic:mute" .. msg.chat_id_) then
 local id = msg.id_
 local msgs = {
 [0] = id
@@ -4175,7 +4171,7 @@ local chat = msg.chat_id_
 delete_msg(chat, msgs)
 print_del_msg("Deleted Because [Lock] [arabic] [Location]")
 end
-if (msg.content_.caption_:match("[A-Z]") or msg.content_.caption_:match("[a-z]")) and redis:get(KEEPER.."bot:english:mute" .. msg.chat_id_) then
+if (msg.content_.caption_:match("[A-Z]") or msg.content_.caption_:match("[a-z]")) and redis:get(SAKURA.."bot:english:mute" .. msg.chat_id_) then
 local id = msg.id_
 local msgs = {
 [0] = id
@@ -4187,9 +4183,9 @@ end
 end
 end
 elseif msg_type == "MSG:Video" then
-if redis:get(KEEPER.."broadcast" .. msg.chat_id_ .. ":" .. msg.sender_user_id_) then
-local gps = redis:scard(KEEPER.."bot:groups") or 0
-local gpss = redis:smembers(KEEPER.."bot:groups") or 0
+if redis:get(SAKURA.."broadcast" .. msg.chat_id_ .. ":" .. msg.sender_user_id_) then
+local gps = redis:scard(SAKURA.."bot:groups") or 0
+local gpss = redis:smembers(SAKURA.."bot:groups") or 0
 local id = msg.id_
 local msgs = {
 [0] = id
@@ -4198,18 +4194,18 @@ for i = 1, #gpss do
 Forward(gpss[i], msg.chat_id_, msgs)
 end
 send(msg.chat_id_, msg.id_, 1, "🌀┊ تم توجيه رسالتك الى\n` " .. gps .. "` مجموعــه🎈 ", 1, "md")
-redis:del(KEEPER.."broadcast" .. msg.chat_id_ .. ":" .. msg.sender_user_id_)
+redis:del(SAKURA.."broadcast" .. msg.chat_id_ .. ":" .. msg.sender_user_id_)
 end
 if not is_vipmem(msg.sender_user_id_, msg.chat_id_) then
-if redis:get(KEEPER.."anti-flood:" .. msg.chat_id_) then
-redis:setex(KEEPER..pm, TIME_CHECK, msgs + 1)
+if redis:get(SAKURA.."anti-flood:" .. msg.chat_id_) then
+redis:setex(SAKURA..pm, TIME_CHECK, msgs + 1)
 end
 if msg.content_.caption_ then
 if msg.content_.caption_:match("@") or msg.content_.caption_:match("#") then
 if string.len(msg.content_.caption_) > senspost.cappostwithtag then
 local post = msg.content_.caption_
-if redis:get(KEEPER.."bot:duplipost:mute" .. msg.chat_id_) then
-if redis:sismember(KEEPER.."Gp:Post" .. msg.chat_id_, post) then
+if redis:get(SAKURA.."bot:duplipost:mute" .. msg.chat_id_) then
+if redis:sismember(SAKURA.."Gp:Post" .. msg.chat_id_, post) then
 local id = msg.id_
 local msgs = {
 [0] = id
@@ -4218,10 +4214,10 @@ local chat = msg.chat_id_
 delete_msg(chat, msgs)
 print_del_msg("Deleted Because [Duplicate] [Post]")
 else
-redis:sadd(KEEPER.."Gp:Post" .. msg.chat_id_, post)
+redis:sadd(SAKURA.."Gp:Post" .. msg.chat_id_, post)
 end
 end
-if redis:get(KEEPER.."post:lock" .. msg.chat_id_) then
+if redis:get(SAKURA.."post:lock" .. msg.chat_id_) then
 local id = msg.id_
 local msgs = {
 [0] = id
@@ -4233,8 +4229,8 @@ end
 end
 elseif string.len(msg.content_.caption_) > senspost.cappost then
 local post = msg.content_.caption_
-if redis:get(KEEPER.."bot:duplipost:mute" .. msg.chat_id_) then
-if redis:sismember(KEEPER.."Gp:Post" .. msg.chat_id_, post) then
+if redis:get(SAKURA.."bot:duplipost:mute" .. msg.chat_id_) then
+if redis:sismember(SAKURA.."Gp:Post" .. msg.chat_id_, post) then
 local id = msg.id_
 local msgs = {
 [0] = id
@@ -4243,10 +4239,10 @@ local chat = msg.chat_id_
 delete_msg(chat, msgs)
 print_del_msg("Deleted Because [Duplicate] [Post]")
 else
-redis:sadd(KEEPER.."Gp:Post" .. msg.chat_id_, post)
+redis:sadd(SAKURA.."Gp:Post" .. msg.chat_id_, post)
 end
 end
-if redis:get(KEEPER.."post:lock" .. msg.chat_id_) then
+if redis:get(SAKURA.."post:lock" .. msg.chat_id_) then
 local id = msg.id_
 local msgs = {
 [0] = id
@@ -4257,7 +4253,7 @@ print_del_msg("Deleted Because [Lock] [Post]")
 end
 end
 end
-if msg.forward_info_ and redis:get(KEEPER.."bot:forward:mute" .. msg.chat_id_) and (msg.forward_info_.ID == "MessageForwardedFromUser" or msg.forward_info_.ID == "MessageForwardedPost") then
+if msg.forward_info_ and redis:get(SAKURA.."bot:forward:mute" .. msg.chat_id_) and (msg.forward_info_.ID == "MessageForwardedFromUser" or msg.forward_info_.ID == "MessageForwardedPost") then
 local id = msg.id_
 local msgs = {
 [0] = id
@@ -4266,7 +4262,7 @@ local chat = msg.chat_id_
 delete_msg(chat, msgs)
 print_del_msg("Deleted Because [Lock] [Fwd] [Video]")
 end
-if redis:get(KEEPER.."bot:video:mute" .. msg.chat_id_) then
+if redis:get(SAKURA.."bot:video:mute" .. msg.chat_id_) then
 local id = msg.id_
 local msgs = {
 [0] = id
@@ -4277,7 +4273,7 @@ print_del_msg("Deleted Because [Lock] [Video]")
 end
 if msg.content_.caption_ then
 check_filter_words(msg, msg.content_.caption_)
-if redis:get(KEEPER.."bot:links:mute" .. msg.chat_id_) and (msg.content_.caption_:match("[Tt][Ee][Ll][Ee][Gg][Rr][Aa][Mm].[Mm][Ee]") or msg.content_.caption_:match("[Tt][Ll][Gg][Rr][Mm].[Mm][Ee]") or msg.content_.caption_:match("[Tt].[Mm][Ee]")) then
+if redis:get(SAKURA.."bot:links:mute" .. msg.chat_id_) and (msg.content_.caption_:match("[Tt][Ee][Ll][Ee][Gg][Rr][Aa][Mm].[Mm][Ee]") or msg.content_.caption_:match("[Tt][Ll][Gg][Rr][Mm].[Mm][Ee]") or msg.content_.caption_:match("[Tt].[Mm][Ee]")) then
 local id = msg.id_
 local msgs = {
 [0] = id
@@ -4287,7 +4283,7 @@ delete_msg(chat, msgs)
 print_del_msg("Deleted Because [Lock] [Link] [Video]")
 end
 if msg.content_.caption_:match("@") then
-if redis:get(KEEPER.."tags:lock" .. msg.chat_id_) then
+if redis:get(SAKURA.."tags:lock" .. msg.chat_id_) then
 local id = msg.id_
 local msgs = {
 [0] = id
@@ -4296,7 +4292,7 @@ local chat = msg.chat_id_
 delete_msg(chat, msgs)
 print_del_msg("Deleted Because [Lock] [Tag] [Video]")
 end
-elseif msg.content_.entities_ and msg.content_.entities_[0] and msg.content_.entities_[0].ID == "MessageEntityMention" and redis:get(KEEPER.."tags:lock" .. msg.chat_id_) then
+elseif msg.content_.entities_ and msg.content_.entities_[0] and msg.content_.entities_[0].ID == "MessageEntityMention" and redis:get(SAKURA.."tags:lock" .. msg.chat_id_) then
 local id = msg.id_
 local msgs = {
 [0] = id
@@ -4306,7 +4302,7 @@ delete_msg(chat, msgs)
 print_del_msg("Deleted Because [Lock] [Tag] [Video]")
 end
 if msg.content_.caption_:match("#") then
-if redis:get(KEEPER.."bot:hashtag:mute" .. msg.chat_id_) then
+if redis:get(SAKURA.."bot:hashtag:mute" .. msg.chat_id_) then
 local id = msg.id_
 local msgs = {
 [0] = id
@@ -4315,7 +4311,7 @@ local chat = msg.chat_id_
 delete_msg(chat, msgs)
 print_del_msg("Deleted Because [Lock] [Hashtag] [Video]")
 end
-elseif msg.content_.entities_ and msg.content_.entities_[0] and msg.content_.entities_[0].ID == "MessageEntityHashtag" and redis:get(KEEPER.."bot:hashtag:mute" .. msg.chat_id_) then
+elseif msg.content_.entities_ and msg.content_.entities_[0] and msg.content_.entities_[0].ID == "MessageEntityHashtag" and redis:get(SAKURA.."bot:hashtag:mute" .. msg.chat_id_) then
 local id = msg.id_
 local msgs = {
 [0] = id
@@ -4325,7 +4321,7 @@ delete_msg(chat, msgs)
 print_del_msg("Deleted Because [Lock] [Hashtag] [Video]")
 end
 if msg.content_.caption_:match("[Hh][Tt][Tt][Pp][Ss]:[//]") or msg.content_.caption_:match("[Hh][Tt][Tt][Pp]:[//]") or msg.content_.caption_:match("[Ww][Ww][Ww]") or msg.content_.caption_:match(".[Cc][Oo]") or msg.content_.caption_:match(".[Ii][Rr]") or msg.content_.caption_:match(".[Oo][Rr][Gg]") then
-if redis:get(KEEPER.."bot:webpage:mute" .. msg.chat_id_) then
+if redis:get(SAKURA.."bot:webpage:mute" .. msg.chat_id_) then
 local id = msg.id_
 local msgs = {
 [0] = id
@@ -4334,7 +4330,7 @@ local chat = msg.chat_id_
 delete_msg(chat, msgs)
 print_del_msg("Deleted Because [Lock] [Web] [Video]")
 end
-elseif msg.content_.entities_ and msg.content_.entities_[0] and (msg.content_.entities_[0].ID == "MessageEntityTextUrl" or msg.content_.entities_[0].ID == "MessageEntityUrl") and redis:get(KEEPER.."bot:webpage:mute" .. msg.chat_id_) then
+elseif msg.content_.entities_ and msg.content_.entities_[0] and (msg.content_.entities_[0].ID == "MessageEntityTextUrl" or msg.content_.entities_[0].ID == "MessageEntityUrl") and redis:get(SAKURA.."bot:webpage:mute" .. msg.chat_id_) then
 local id = msg.id_
 local msgs = {
 [0] = id
@@ -4343,7 +4339,7 @@ local chat = msg.chat_id_
 delete_msg(chat, msgs)
 print_del_msg("Deleted Because [Lock] [Web] [Video]")
 end
-if msg.content_.web_page_ and redis:get(KEEPER.."bot:webpage:mute" .. msg.chat_id_) then
+if msg.content_.web_page_ and redis:get(SAKURA.."bot:webpage:mute" .. msg.chat_id_) then
 local id = msg.id_
 local msgs = {
 [0] = id
@@ -4351,7 +4347,7 @@ local msgs = {
 local chat = msg.chat_id_
 delete_msg(chat, msgs)
 end
-if msg.content_.caption_:match("[\216-\219][\121-\191]") and redis:get(KEEPER.."bot:arabic:mute" .. msg.chat_id_) then
+if msg.content_.caption_:match("[\216-\219][\121-\191]") and redis:get(SAKURA.."bot:arabic:mute" .. msg.chat_id_) then
 local id = msg.id_
 local msgs = {
 [0] = id
@@ -4360,7 +4356,7 @@ local chat = msg.chat_id_
 delete_msg(chat, msgs)
 print_del_msg("Deleted Because [Lock] [arabic] [Video] ")
 end
-if (msg.content_.caption_:match("[A-Z]") or msg.content_.caption_:match("[a-z]")) and redis:get(KEEPER.."bot:english:mute" .. msg.chat_id_) then
+if (msg.content_.caption_:match("[A-Z]") or msg.content_.caption_:match("[a-z]")) and redis:get(SAKURA.."bot:english:mute" .. msg.chat_id_) then
 local id = msg.id_
 local msgs = {
 [0] = id
@@ -4372,9 +4368,9 @@ end
 end
 end
 elseif msg_type == "MSG:SelfVideo" then
-if redis:get(KEEPER.."broadcast" .. msg.chat_id_ .. ":" .. msg.sender_user_id_) then
-local gps = redis:scard(KEEPER.."bot:groups") or 0
-local gpss = redis:smembers(KEEPER.."bot:groups") or 0
+if redis:get(SAKURA.."broadcast" .. msg.chat_id_ .. ":" .. msg.sender_user_id_) then
+local gps = redis:scard(SAKURA.."bot:groups") or 0
+local gpss = redis:smembers(SAKURA.."bot:groups") or 0
 local id = msg.id_
 local msgs = {
 [0] = id
@@ -4383,18 +4379,18 @@ for i = 1, #gpss do
 Forward(gpss[i], msg.chat_id_, msgs)
 end
 send(msg.chat_id_, msg.id_, 1, "🌀┊ تم توجيه رسالتك الى\n` " .. gps .. "` مجموعــه🎈 ", 1, "md")
-redis:del(KEEPER.."broadcast" .. msg.chat_id_ .. ":" .. msg.sender_user_id_)
+redis:del(SAKURA.."broadcast" .. msg.chat_id_ .. ":" .. msg.sender_user_id_)
 end
 if not is_vipmem(msg.sender_user_id_, msg.chat_id_) then
-if redis:get(KEEPER.."anti-flood:" .. msg.chat_id_) then
-redis:setex(KEEPER..pm, TIME_CHECK, msgs + 1)
+if redis:get(SAKURA.."anti-flood:" .. msg.chat_id_) then
+redis:setex(SAKURA..pm, TIME_CHECK, msgs + 1)
 end
 if msg.content_.caption_ then
 if msg.content_.caption_:match("@") or msg.content_.caption_:match("#") then
 if string.len(msg.content_.caption_) > senspost.cappostwithtag then
 local post = msg.content_.caption_
-if redis:get(KEEPER.."bot:duplipost:mute" .. msg.chat_id_) then
-if redis:sismember(KEEPER.."Gp:Post" .. msg.chat_id_, post) then
+if redis:get(SAKURA.."bot:duplipost:mute" .. msg.chat_id_) then
+if redis:sismember(SAKURA.."Gp:Post" .. msg.chat_id_, post) then
 local id = msg.id_
 local msgs = {
 [0] = id
@@ -4403,10 +4399,10 @@ local chat = msg.chat_id_
 delete_msg(chat, msgs)
 print_del_msg("Deleted Because [Duplicate] [Post]")
 else
-redis:sadd(KEEPER.."Gp:Post" .. msg.chat_id_, post)
+redis:sadd(SAKURA.."Gp:Post" .. msg.chat_id_, post)
 end
 end
-if redis:get(KEEPER.."post:lock" .. msg.chat_id_) then
+if redis:get(SAKURA.."post:lock" .. msg.chat_id_) then
 local id = msg.id_
 local msgs = {
 [0] = id
@@ -4418,8 +4414,8 @@ end
 end
 elseif string.len(msg.content_.caption_) > senspost.cappost then
 local post = msg.content_.caption_
-if redis:get(KEEPER.."bot:duplipost:mute" .. msg.chat_id_) then
-if redis:sismember(KEEPER.."Gp:Post" .. msg.chat_id_, post) then
+if redis:get(SAKURA.."bot:duplipost:mute" .. msg.chat_id_) then
+if redis:sismember(SAKURA.."Gp:Post" .. msg.chat_id_, post) then
 local id = msg.id_
 local msgs = {
 [0] = id
@@ -4428,10 +4424,10 @@ local chat = msg.chat_id_
 delete_msg(chat, msgs)
 print_del_msg("Deleted Because [Duplicate] [Post]")
 else
-redis:sadd(KEEPER.."Gp:Post" .. msg.chat_id_, post)
+redis:sadd(SAKURA.."Gp:Post" .. msg.chat_id_, post)
 end
 end
-if redis:get(KEEPER.."post:lock" .. msg.chat_id_) then
+if redis:get(SAKURA.."post:lock" .. msg.chat_id_) then
 local id = msg.id_
 local msgs = {
 [0] = id
@@ -4443,7 +4439,7 @@ end
 end
 end
 
-if msg.forward_info_ and redis:get(KEEPER.."bot:forward:mute" .. msg.chat_id_) and (msg.forward_info_.ID == "MessageForwardedFromUser" or msg.forward_info_.ID == "MessageForwardedPost") then
+if msg.forward_info_ and redis:get(SAKURA.."bot:forward:mute" .. msg.chat_id_) and (msg.forward_info_.ID == "MessageForwardedFromUser" or msg.forward_info_.ID == "MessageForwardedPost") then
 local id = msg.id_
 local msgs = {
 [0] = id
@@ -4452,7 +4448,7 @@ local chat = msg.chat_id_
 delete_msg(chat, msgs)
 print_del_msg("Deleted Because [Lock] [Fwd] [Self Video]")
 end
-if redis:get(KEEPER.."bot:selfvideo:mute" .. msg.chat_id_) then
+if redis:get(SAKURA.."bot:selfvideo:mute" .. msg.chat_id_) then
 local id = msg.id_
 local msgs = {
 [0] = id
@@ -4463,7 +4459,7 @@ print_del_msg("Deleted Because [Lock] [Self Video]")
 end
 if msg.content_.caption_ then
 check_filter_words(msg, msg.content_.caption_)
-if redis:get(KEEPER.."bot:links:mute" .. msg.chat_id_) and (msg.content_.caption_:match("[Tt][Ee][Ll][Ee][Gg][Rr][Aa][Mm].[Mm][Ee]") or msg.content_.caption_:match("[Tt][Ll][Gg][Rr][Mm].[Mm][Ee]") or msg.content_.caption_:match("[Tt].[Mm][Ee]")) then
+if redis:get(SAKURA.."bot:links:mute" .. msg.chat_id_) and (msg.content_.caption_:match("[Tt][Ee][Ll][Ee][Gg][Rr][Aa][Mm].[Mm][Ee]") or msg.content_.caption_:match("[Tt][Ll][Gg][Rr][Mm].[Mm][Ee]") or msg.content_.caption_:match("[Tt].[Mm][Ee]")) then
 local id = msg.id_
 local msgs = {
 [0] = id
@@ -4473,7 +4469,7 @@ delete_msg(chat, msgs)
 print_del_msg("Deleted Because [Lock] [Link] [Self Video]")
 end
 if msg.content_.caption_:match("@") then
-if redis:get(KEEPER.."tags:lock" .. msg.chat_id_) then
+if redis:get(SAKURA.."tags:lock" .. msg.chat_id_) then
 local id = msg.id_
 local msgs = {
 [0] = id
@@ -4482,7 +4478,7 @@ local chat = msg.chat_id_
 delete_msg(chat, msgs)
 print_del_msg("Deleted Because [Lock] [Tag] [Self Video]")
 end
-elseif msg.content_.entities_ and msg.content_.entities_[0] and msg.content_.entities_[0].ID == "MessageEntityMention" and redis:get(KEEPER.."tags:lock" .. msg.chat_id_) then
+elseif msg.content_.entities_ and msg.content_.entities_[0] and msg.content_.entities_[0].ID == "MessageEntityMention" and redis:get(SAKURA.."tags:lock" .. msg.chat_id_) then
 local id = msg.id_
 local msgs = {
 [0] = id
@@ -4492,7 +4488,7 @@ delete_msg(chat, msgs)
 print_del_msg("Deleted Because [Lock] [Tag] [Self Video]")
 end
 if msg.content_.caption_:match("#") then
-if redis:get(KEEPER.."bot:hashtag:mute" .. msg.chat_id_) then
+if redis:get(SAKURA.."bot:hashtag:mute" .. msg.chat_id_) then
 local id = msg.id_
 local msgs = {
 [0] = id
@@ -4501,7 +4497,7 @@ local chat = msg.chat_id_
 delete_msg(chat, msgs)
 print_del_msg("Deleted Because [Lock] [Hashtag] [Self Video]")
 end
-elseif msg.content_.entities_ and msg.content_.entities_[0] and msg.content_.entities_[0].ID == "MessageEntityHashtag" and redis:get(KEEPER.."bot:hashtag:mute" .. msg.chat_id_) then
+elseif msg.content_.entities_ and msg.content_.entities_[0] and msg.content_.entities_[0].ID == "MessageEntityHashtag" and redis:get(SAKURA.."bot:hashtag:mute" .. msg.chat_id_) then
 local id = msg.id_
 local msgs = {
 [0] = id
@@ -4511,7 +4507,7 @@ delete_msg(chat, msgs)
 print_del_msg("Deleted Because [Lock] [Hashtag] [Self Video]")
 end
 if msg.content_.caption_:match("[Hh][Tt][Tt][Pp][Ss]:[//]") or msg.content_.caption_:match("[Hh][Tt][Tt][Pp]:[//]") or msg.content_.caption_:match("[Ww][Ww][Ww]") or msg.content_.caption_:match(".[Cc][Oo]") or msg.content_.caption_:match(".[Ii][Rr]") or msg.content_.caption_:match(".[Oo][Rr][Gg]") then
-if redis:get(KEEPER.."bot:webpage:mute" .. msg.chat_id_) then
+if redis:get(SAKURA.."bot:webpage:mute" .. msg.chat_id_) then
 local id = msg.id_
 local msgs = {
 [0] = id
@@ -4520,7 +4516,7 @@ local chat = msg.chat_id_
 delete_msg(chat, msgs)
 print_del_msg("Deleted Because [Lock] [Web] [Self Video]")
 end
-elseif msg.content_.entities_ and msg.content_.entities_[0] and (msg.content_.entities_[0].ID == "MessageEntityTextUrl" or msg.content_.entities_[0].ID == "MessageEntityUrl") and redis:get(KEEPER.."bot:webpage:mute" .. msg.chat_id_) then
+elseif msg.content_.entities_ and msg.content_.entities_[0] and (msg.content_.entities_[0].ID == "MessageEntityTextUrl" or msg.content_.entities_[0].ID == "MessageEntityUrl") and redis:get(SAKURA.."bot:webpage:mute" .. msg.chat_id_) then
 local id = msg.id_
 local msgs = {
 [0] = id
@@ -4529,7 +4525,7 @@ local chat = msg.chat_id_
 delete_msg(chat, msgs)
 print_del_msg("Deleted Because [Lock] [Web] [Self Video]")
 end
-if msg.content_.web_page_ and redis:get(KEEPER.."bot:webpage:mute" .. msg.chat_id_) then
+if msg.content_.web_page_ and redis:get(SAKURA.."bot:webpage:mute" .. msg.chat_id_) then
 local id = msg.id_
 local msgs = {
 [0] = id
@@ -4537,7 +4533,7 @@ local msgs = {
 local chat = msg.chat_id_
 delete_msg(chat, msgs)
 end
-if msg.content_.caption_:match("[\216-\219][\121-\191]") and redis:get(KEEPER.."bot:arabic:mute" .. msg.chat_id_) then
+if msg.content_.caption_:match("[\216-\219][\121-\191]") and redis:get(SAKURA.."bot:arabic:mute" .. msg.chat_id_) then
 local id = msg.id_
 local msgs = {
 [0] = id
@@ -4546,7 +4542,7 @@ local chat = msg.chat_id_
 delete_msg(chat, msgs)
 print_del_msg("Deleted Because [Lock] [arabic] [Self Video] ")
 end
-if (msg.content_.caption_:match("[A-Z]") or msg.content_.caption_:match("[a-z]")) and redis:get(KEEPER.."bot:english:mute" .. msg.chat_id_) then
+if (msg.content_.caption_:match("[A-Z]") or msg.content_.caption_:match("[a-z]")) and redis:get(SAKURA.."bot:english:mute" .. msg.chat_id_) then
 local id = msg.id_
 local msgs = {
 [0] = id
@@ -4558,9 +4554,9 @@ end
 end
 end
 elseif msg_type == "MSG:Gif" then
-if redis:get(KEEPER.."broadcast" .. msg.chat_id_ .. ":" .. msg.sender_user_id_) then
-local gps = redis:scard(KEEPER.."bot:groups") or 0
-local gpss = redis:smembers(KEEPER.."bot:groups") or 0
+if redis:get(SAKURA.."broadcast" .. msg.chat_id_ .. ":" .. msg.sender_user_id_) then
+local gps = redis:scard(SAKURA.."bot:groups") or 0
+local gpss = redis:smembers(SAKURA.."bot:groups") or 0
 local id = msg.id_
 local msgs = {
 [0] = id
@@ -4569,18 +4565,18 @@ for i = 1, #gpss do
 Forward(gpss[i], msg.chat_id_, msgs)
 end
 send(msg.chat_id_, msg.id_, 1, "🌀┊ تم توجيه رسالتك الى\n` " .. gps .. "` مجموعــه🎈 ", 1, "md")
-redis:del(KEEPER.."broadcast" .. msg.chat_id_ .. ":" .. msg.sender_user_id_)
+redis:del(SAKURA.."broadcast" .. msg.chat_id_ .. ":" .. msg.sender_user_id_)
 end
 if not is_vipmem(msg.sender_user_id_, msg.chat_id_) then
-if redis:get(KEEPER.."anti-flood:" .. msg.chat_id_) then
-redis:setex(KEEPER..pm, TIME_CHECK, msgs + 1)
+if redis:get(SAKURA.."anti-flood:" .. msg.chat_id_) then
+redis:setex(SAKURA..pm, TIME_CHECK, msgs + 1)
 end
 if msg.content_.caption_ then
 if msg.content_.caption_:match("@") or msg.content_.caption_:match("#") then
 if string.len(msg.content_.caption_) > senspost.cappostwithtag then
 local post = msg.content_.caption_
-if redis:get(KEEPER.."bot:duplipost:mute" .. msg.chat_id_) then
-if redis:sismember(KEEPER.."Gp:Post" .. msg.chat_id_, post) then
+if redis:get(SAKURA.."bot:duplipost:mute" .. msg.chat_id_) then
+if redis:sismember(SAKURA.."Gp:Post" .. msg.chat_id_, post) then
 local id = msg.id_
 local msgs = {
 [0] = id
@@ -4589,10 +4585,10 @@ local chat = msg.chat_id_
 delete_msg(chat, msgs)
 print_del_msg("Deleted Because [Duplicate] [Post]")
 else
-redis:sadd(KEEPER.."Gp:Post" .. msg.chat_id_, post)
+redis:sadd(SAKURA.."Gp:Post" .. msg.chat_id_, post)
 end
 end
-if redis:get(KEEPER.."post:lock" .. msg.chat_id_) then
+if redis:get(SAKURA.."post:lock" .. msg.chat_id_) then
 local id = msg.id_
 local msgs = {
 [0] = id
@@ -4604,8 +4600,8 @@ end
 end
 elseif string.len(msg.content_.caption_) > senspost.cappost then
 local post = msg.content_.caption_
-if redis:get(KEEPER.."bot:duplipost:mute" .. msg.chat_id_) then
-if redis:sismember(KEEPER.."Gp:Post" .. msg.chat_id_, post) then
+if redis:get(SAKURA.."bot:duplipost:mute" .. msg.chat_id_) then
+if redis:sismember(SAKURA.."Gp:Post" .. msg.chat_id_, post) then
 local id = msg.id_
 local msgs = {
 [0] = id
@@ -4614,10 +4610,10 @@ local chat = msg.chat_id_
 delete_msg(chat, msgs)
 print_del_msg("Deleted Because [Duplicate] [Post]")
 else
-redis:sadd(KEEPER.."Gp:Post" .. msg.chat_id_, post)
+redis:sadd(SAKURA.."Gp:Post" .. msg.chat_id_, post)
 end
 end
-if redis:get(KEEPER.."post:lock" .. msg.chat_id_) then
+if redis:get(SAKURA.."post:lock" .. msg.chat_id_) then
 local id = msg.id_
 local msgs = {
 [0] = id
@@ -4628,7 +4624,7 @@ print_del_msg("Deleted Because [Lock] [Post]")
 end
 end
 end
-if msg.forward_info_ and redis:get(KEEPER.."bot:forward:mute" .. msg.chat_id_) and (msg.forward_info_.ID == "MessageForwardedFromUser" or msg.forward_info_.ID == "MessageForwardedPost") then
+if msg.forward_info_ and redis:get(SAKURA.."bot:forward:mute" .. msg.chat_id_) and (msg.forward_info_.ID == "MessageForwardedFromUser" or msg.forward_info_.ID == "MessageForwardedPost") then
 local id = msg.id_
 local msgs = {
 [0] = id
@@ -4637,7 +4633,7 @@ local chat = msg.chat_id_
 delete_msg(chat, msgs)
 print_del_msg("Deleted Because [Lock] [Fwd] [Gif]")
 end
-if redis:get(KEEPER.."bot:gifs:mute" .. msg.chat_id_) then
+if redis:get(SAKURA.."bot:gifs:mute" .. msg.chat_id_) then
 local id = msg.id_
 local msgs = {
 [0] = id
@@ -4648,7 +4644,7 @@ print_del_msg("Deleted Because [Lock] [Gif]")
 end
 if msg.content_.caption_ then
 check_filter_words(msg, msg.content_.caption_)
-if redis:get(KEEPER.."bot:links:mute" .. msg.chat_id_) and (msg.content_.caption_:match("[Hh][Tt][Tt][Pp][Ss]://") or msg.content_.caption_:match("[Hh][Tt][Tt][Pp]://")) then
+if redis:get(SAKURA.."bot:links:mute" .. msg.chat_id_) and (msg.content_.caption_:match("[Hh][Tt][Tt][Pp][Ss]://") or msg.content_.caption_:match("[Hh][Tt][Tt][Pp]://")) then
 local id = msg.id_
 local msgs = {
 [0] = id
@@ -4658,7 +4654,7 @@ delete_msg(chat, msgs)
 print_del_msg("Deleted Because [Lock] [Link] [Gif] ")
 end
 if msg.content_.caption_:match("@") then
-if redis:get(KEEPER.."tags:lock" .. msg.chat_id_) then
+if redis:get(SAKURA.."tags:lock" .. msg.chat_id_) then
 local id = msg.id_
 local msgs = {
 [0] = id
@@ -4667,7 +4663,7 @@ local chat = msg.chat_id_
 delete_msg(chat, msgs)
 print_del_msg("Deleted Because [Lock] [Tag] [Gif]")
 end
-elseif msg.content_.entities_ and msg.content_.entities_[0] and msg.content_.entities_[0].ID == "MessageEntityMention" and redis:get(KEEPER.."tags:lock" .. msg.chat_id_) then
+elseif msg.content_.entities_ and msg.content_.entities_[0] and msg.content_.entities_[0].ID == "MessageEntityMention" and redis:get(SAKURA.."tags:lock" .. msg.chat_id_) then
 local id = msg.id_
 local msgs = {
 [0] = id
@@ -4677,7 +4673,7 @@ delete_msg(chat, msgs)
 print_del_msg("Deleted Because [Lock] [Tag] [Gif]")
 end
 if msg.content_.caption_:match("#") then
-if redis:get(KEEPER.."bot:hashtag:mute" .. msg.chat_id_) then
+if redis:get(SAKURA.."bot:hashtag:mute" .. msg.chat_id_) then
 local id = msg.id_
 local msgs = {
 [0] = id
@@ -4686,7 +4682,7 @@ local chat = msg.chat_id_
 delete_msg(chat, msgs)
 print_del_msg("Deleted Because [Lock] [Hashtag] [Gif]")
 end
-elseif msg.content_.entities_ and msg.content_.entities_[0] and msg.content_.entities_[0].ID == "MessageEntityHashtag" and redis:get(KEEPER.."bot:hashtag:mute" .. msg.chat_id_) then
+elseif msg.content_.entities_ and msg.content_.entities_[0] and msg.content_.entities_[0].ID == "MessageEntityHashtag" and redis:get(SAKURA.."bot:hashtag:mute" .. msg.chat_id_) then
 local id = msg.id_
 local msgs = {
 [0] = id
@@ -4696,7 +4692,7 @@ delete_msg(chat, msgs)
 print_del_msg("Deleted Because [Lock] [Hashtag] [Gif]")
 end
 if msg.content_.caption_:match("[Hh][Tt][Tt][Pp][Ss]:[//]") or msg.content_.caption_:match("[Hh][Tt][Tt][Pp]:[//]") or msg.content_.caption_:match("[Ww][Ww][Ww]") or msg.content_.caption_:match(".[Cc][Oo]") or msg.content_.caption_:match(".[Ii][Rr]") or msg.content_.caption_:match(".[Oo][Rr][Gg]") then
-if redis:get(KEEPER.."bot:webpage:mute" .. msg.chat_id_) then
+if redis:get(SAKURA.."bot:webpage:mute" .. msg.chat_id_) then
 local id = msg.id_
 local msgs = {
 [0] = id
@@ -4705,7 +4701,7 @@ local chat = msg.chat_id_
 delete_msg(chat, msgs)
 print_del_msg("Deleted Because [Lock] [Web] [Gif]")
 end
-elseif msg.content_.entities_ and msg.content_.entities_[0] and (msg.content_.entities_[0].ID == "MessageEntityTextUrl" or msg.content_.entities_[0].ID == "MessageEntityUrl") and redis:get(KEEPER.."bot:webpage:mute" .. msg.chat_id_) then
+elseif msg.content_.entities_ and msg.content_.entities_[0] and (msg.content_.entities_[0].ID == "MessageEntityTextUrl" or msg.content_.entities_[0].ID == "MessageEntityUrl") and redis:get(SAKURA.."bot:webpage:mute" .. msg.chat_id_) then
 local id = msg.id_
 local msgs = {
 [0] = id
@@ -4714,7 +4710,7 @@ local chat = msg.chat_id_
 delete_msg(chat, msgs)
 print_del_msg("Deleted Because [Lock] [Web] [Gif]")
 end
-if msg.content_.web_page_ and redis:get(KEEPER.."bot:webpage:mute" .. msg.chat_id_) then
+if msg.content_.web_page_ and redis:get(SAKURA.."bot:webpage:mute" .. msg.chat_id_) then
 local id = msg.id_
 local msgs = {
 [0] = id
@@ -4722,7 +4718,7 @@ local msgs = {
 local chat = msg.chat_id_
 delete_msg(chat, msgs)
 end
-if msg.content_.caption_:match("[\216-\219][\121-\191]") and redis:get(KEEPER.."bot:arabic:mute" .. msg.chat_id_) then
+if msg.content_.caption_:match("[\216-\219][\121-\191]") and redis:get(SAKURA.."bot:arabic:mute" .. msg.chat_id_) then
 local id = msg.id_
 local msgs = {
 [0] = id
@@ -4731,7 +4727,7 @@ local chat = msg.chat_id_
 delete_msg(chat, msgs)
 print_del_msg("Deleted Because [Lock] [arabic] [Gif]")
 end
-if (msg.content_.caption_:match("[A-Z]") or msg.content_.caption_:match("[a-z]")) and redis:get(KEEPER.."bot:english:mute" .. msg.chat_id_) then
+if (msg.content_.caption_:match("[A-Z]") or msg.content_.caption_:match("[a-z]")) and redis:get(SAKURA.."bot:english:mute" .. msg.chat_id_) then
 local id = msg.id_
 local msgs = {
 [0] = id
@@ -4744,65 +4740,65 @@ end
 end
 else
 if msg_type == "MSG:Text" then
-redis:setex(KEEPER.."bot:editid" .. msg.id_, day, msg.content_.text_)
-if redis:get(KEEPER.."anti-flood:" .. msg.chat_id_) and not is_vipmem(msg.sender_user_id_, msg.chat_id_) then
-redis:setex(KEEPER..pm, TIME_CHECK, msgs + 1)
+redis:setex(SAKURA.."bot:editid" .. msg.id_, day, msg.content_.text_)
+if redis:get(SAKURA.."anti-flood:" .. msg.chat_id_) and not is_vipmem(msg.sender_user_id_, msg.chat_id_) then
+redis:setex(SAKURA..pm, TIME_CHECK, msgs + 1)
 end
 ---------------------rem cam filters---------------------------------------------------------------------
-if redis:get(KEEPER.."Filtering:" .. msg.sender_user_id_) then
-local chat = redis:get(KEEPER.."Filtering:" .. msg.sender_user_id_)
+if redis:get(SAKURA.."Filtering:" .. msg.sender_user_id_) then
+local chat = redis:get(SAKURA.."Filtering:" .. msg.sender_user_id_)
 local name = string.sub(msg.content_.text_, 1, 50)
 local hash = "bot:filters:" .. chat
 if msg.content_.text_:match("^الغاء$") then
 send(msg.chat_id_, msg.id_, 1, "🔰- تم الغاء الامر بنجاح 🎈 ", 1, "md")
-redis:del(KEEPER.."Filtering:" .. msg.sender_user_id_, 10, chat)
+redis:del(SAKURA.."Filtering:" .. msg.sender_user_id_, 10, chat)
 elseif msg.content_.text_:match("^/[Cc]ancel$") then
 send(msg.chat_id_, msg.id_, 1, "تم الغاء الامر 🏌️", 1, "md")
-redis:del(KEEPER.."Filtering:" .. msg.sender_user_id_, 10, chat)
+redis:del(SAKURA.."Filtering:" .. msg.sender_user_id_, 10, chat)
 elseif filter_ok(name) then
-redis:hset(KEEPER..hash, name, "newword")
+redis:hset(SAKURA..hash, name, "newword")
 send(msg.chat_id_, msg.id_, 1, "● ◄  الكلمه ( [ " .. name .. " ] ) تم منعها \n- للخروج من الامر ارسل\n  الغاء  🎈",  1, "md")
-redis:setex(KEEPER.."Filtering:" .. msg.sender_user_id_, 10, chat)
+redis:setex(SAKURA.."Filtering:" .. msg.sender_user_id_, 10, chat)
 else
 send(msg.chat_id_, msg.id_, 1, "● ◄  الكلمه  [ " .. name .. " ] لا استطيع منعها🎋", 1, "md")
-redis:setex(KEEPER.."Filtering:" .. msg.sender_user_id_, 10, chat)
+redis:setex(SAKURA.."Filtering:" .. msg.sender_user_id_, 10, chat)
 return
 end
 end
 ---------------save name bot-----------------------------
-if redis:get(KEEPER..'botts:namess'..msg.sender_user_id_) then
-redis:del(KEEPER..'botts:namess'..msg.sender_user_id_)
+if redis:get(SAKURA..'botts:namess'..msg.sender_user_id_) then
+redis:del(SAKURA..'botts:namess'..msg.sender_user_id_)
 local NAME_BOT = msg.content_.text_:match("(.*)")
-redis:set(KEEPER..'keepernams',NAME_BOT)
+redis:set(SAKURA..'SAKURAnams',NAME_BOT)
 send(msg.chat_id_, msg.id_, 1, "🌀┊ تم وضع اسم البوت 🍃",1, 'html')
 return false
 end
 ------------------------save cam link-----------------------------------
-if redis:get(KEEPER.."bot:group:link" .. msg.chat_id_ .. ":" .. msg.sender_user_id_) and (msg.content_.text_:match("(https://telegram.me/joinchat/%S+)") or msg.content_.text_:match("(https://t.me/joinchat/%S+)")) then
+if redis:get(SAKURA.."bot:group:link" .. msg.chat_id_ .. ":" .. msg.sender_user_id_) and (msg.content_.text_:match("(https://telegram.me/joinchat/%S+)") or msg.content_.text_:match("(https://t.me/joinchat/%S+)")) then
 local glink = msg.content_.text_:match("(https://telegram.me/joinchat/%S+)") or msg.content_.text_:match("(https://t.me/joinchat/%S+)")
 local hash = "bot:group:link" .. msg.chat_id_
-redis:set(KEEPER..hash, glink)
+redis:set(SAKURA..hash, glink)
 send(msg.chat_id_, msg.id_, 1, "🌀┊ تـــم  حفــــظ الرابط 🎈", 1, "md")
-redis:del(KEEPER.."bot:group:link" .. msg.chat_id_ .. ":" .. msg.sender_user_id_)
+redis:del(SAKURA.."bot:group:link" .. msg.chat_id_ .. ":" .. msg.sender_user_id_)
 end
 --------------------------------------------------------------------------
-if redis:get(KEEPER.."gettextsec" .. msg.sender_user_id_) then
+if redis:get(SAKURA.."gettextsec" .. msg.sender_user_id_) then
 local clerktext = msg.content_.text_
-redis:set(KEEPER.."textsec", clerktext)
+redis:set(SAKURA.."textsec", clerktext)
 send(msg.chat_id_, msg.id_, 1, "🌀┊  تم حفظ الكليشه 🎈", 1, "md")
-redis:del(KEEPER.."gettextsec" .. msg.sender_user_id_)
+redis:del(SAKURA.."gettextsec" .. msg.sender_user_id_)
 end
 ---------------------save com rules-----------------------------------------------------------------------------
-if redis:get(KEEPER.."rules" .. msg.chat_id_ .. ":" .. msg.sender_user_id_) then
+if redis:get(SAKURA.."rules" .. msg.chat_id_ .. ":" .. msg.sender_user_id_) then
 local rules = msg.content_.text_
-redis:set(KEEPER.."bot:rules" .. msg.chat_id_, rules)
+redis:set(SAKURA.."bot:rules" .. msg.chat_id_, rules)
 send(msg.chat_id_, msg.id_, 1, "🌀┊  تـــم حفــــظ القوانين 🎋",  1, "md")
-redis:del(KEEPER.."rules" .. msg.chat_id_ .. ":" .. msg.sender_user_id_)
+redis:del(SAKURA.."rules" .. msg.chat_id_ .. ":" .. msg.sender_user_id_)
 end
 -----------ch join------------------------------------------------------
-if redis:get(KEEPER..'Kpch'..msg.sender_user_id_) then
-redis:del(KEEPER..'Kpch'..msg.sender_user_id_)
-local url , res = https.request('https://api.telegram.org/bot'..KEEPER_TOKEN..'/getChatAdministrators?chat_id='..msg.content_.text_..'')
+if redis:get(SAKURA..'Kpch'..msg.sender_user_id_) then
+redis:del(SAKURA..'Kpch'..msg.sender_user_id_)
+local url , res = https.request('https://api.telegram.org/bot'..SAKURA_TOKEN..'/getChatAdministrators?chat_id='..msg.content_.text_..'')
 local data = KPJS:decode(url)
 if res == 400 then
 if data.description == "Bad Request: supergroup members are unavailable" then --التحقق من البوت ادمن حسب الرابط اعلاه 
@@ -4817,18 +4813,18 @@ send(msg.chat_id_, msg.id_, 1, "🌀┊ خطـأ هذا ليس معرف قناة
 return false
 end
 local CH_BOT = msg.content_.text_:match("(.*)")
-redis:set(KEEPER..'Kpch1',CH_BOT)
+redis:set(SAKURA..'Kpch1',CH_BOT)
 send(msg.chat_id_, msg.id_, 1, "🌀┊ تم وضــــع معرف القناة ❗️\n🔰┊ الان قم بتفعيل الاشتراك\n✓‏",1, 'html')
 return false
 end
 ---------------------rem cam broadcast--------------------------------------------------------------------
-if redis:get(KEEPER.."broadcast" .. msg.chat_id_ .. ":" .. msg.sender_user_id_) then
+if redis:get(SAKURA.."broadcast" .. msg.chat_id_ .. ":" .. msg.sender_user_id_) then
 if text:match("^الغاء$") then
 send(msg.chat_id_, msg.id_, 1, "🔰- تم الغاء الامر بنجاح🎈 ", 1, "md")
-redis:del(KEEPER.."broadcast" .. msg.chat_id_ .. ":" .. msg.sender_user_id_)
+redis:del(SAKURA.."broadcast" .. msg.chat_id_ .. ":" .. msg.sender_user_id_)
 else
-local gps = redis:scard(KEEPER.."bot:groups") or 0
-local gpss = redis:smembers(KEEPER.."bot:groups") or 0
+local gps = redis:scard(SAKURA.."bot:groups") or 0
+local gpss = redis:smembers(SAKURA.."bot:groups") or 0
 local id = msg.id_
 local msgs = {
 [0] = id
@@ -4837,17 +4833,17 @@ for i = 1, #gpss do
 Forward(gpss[i], msg.chat_id_, msgs)
 end
 send(msg.chat_id_, msg.id_, 1, "🌀┊ تم توجيه رسالتك الى\n` " .. gps .. "` مجموعــه🎈 ", 1, "md")
-redis:del(KEEPER.."broadcast" .. msg.chat_id_ .. ":" .. msg.sender_user_id_)
+redis:del(SAKURA.."broadcast" .. msg.chat_id_ .. ":" .. msg.sender_user_id_)
 end
 end
 --------------------rem  cam broadcast2--------------------------------------------------------------------------
-if redis:get(KEEPER.."broadcast2" .. msg.chat_id_ .. ":" .. msg.sender_user_id_) then
+if redis:get(SAKURA.."broadcast2" .. msg.chat_id_ .. ":" .. msg.sender_user_id_) then
 if text:match("^الغاء$") then
 send(msg.chat_id_, msg.id_, 1, "🔰- تم الغاء الامر بنجاح🎈 ", 1, "md")
-redis:del(KEEPER.."broadcast2" .. msg.chat_id_ .. ":" .. msg.sender_user_id_)
+redis:del(SAKURA.."broadcast2" .. msg.chat_id_ .. ":" .. msg.sender_user_id_)
 else
-local gps = redis:scard(KEEPER.."bot:groups") or 0
-local gpss = redis:smembers(KEEPER.."bot:groups") or 0
+local gps = redis:scard(SAKURA.."bot:groups") or 0
+local gpss = redis:smembers(SAKURA.."bot:groups") or 0
 local msgs = {
 [0] = id
 }
@@ -4855,17 +4851,17 @@ for i = 1, #gpss do
 send(gpss[i], 0, 1, text, 1, "md")
 end
 send(msg.chat_id_, msg.id_, 1, "🌀┊ تم نشر رسالتك  في\n` " .. gps .. "` مجموعــه🎈  ", 1, "md")
-redis:del(KEEPER.."broadcast2" .. msg.chat_id_ .. ":" .. msg.sender_user_id_)
+redis:del(SAKURA.."broadcast2" .. msg.chat_id_ .. ":" .. msg.sender_user_id_)
 end
 end
-if redis:get(KEEPER.."bot:joinbylink:" .. msg.sender_user_id_) and (msg.content_.text_:match("(https://telegram.me/joinchat/%S+)") or msg.content_.text_:match("(https://t.me/joinchat/%S+)")) then
+if redis:get(SAKURA.."bot:joinbylink:" .. msg.sender_user_id_) and (msg.content_.text_:match("(https://telegram.me/joinchat/%S+)") or msg.content_.text_:match("(https://t.me/joinchat/%S+)")) then
 else
 end
 --------------------set cam sudo  ------------------------------------------
-if redis:get(KEEPER.."bot:keeper_dev" .. msg.chat_id_ .. ":" .. msg.sender_user_id_) then
-redis:del(KEEPER.."bot:keeper_dev" .. msg.chat_id_ .. ":" .. msg.sender_user_id_)
-local keeper_dev = msg.content_.text_:match("(.*)")
-redis:set(KEEPER.."keeper_dev", keeper_dev)
+if redis:get(SAKURA.."bot:SAKURA_dev" .. msg.chat_id_ .. ":" .. msg.sender_user_id_) then
+redis:del(SAKURA.."bot:SAKURA_dev" .. msg.chat_id_ .. ":" .. msg.sender_user_id_)
+local SAKURA_dev = msg.content_.text_:match("(.*)")
+redis:set(SAKURA.."SAKURA_dev", SAKURA_dev)
 send(msg.chat_id_, msg.id_, 1, "🌀┊ تم وضــع كليشه المطور 🎗", 1, "md")
 end
 --------------------check_filter_words---------------------------------------------------------
@@ -4874,8 +4870,8 @@ check_filter_words(msg, text)
 if msg.content_.text_:match("@") or msg.content_.text_:match("#") then
 if string.len(msg.content_.text_) > senspost.textpostwithtag then
 local post = msg.content_.text_
-if redis:get(KEEPER.."bot:duplipost:mute" .. msg.chat_id_) then
-if redis:sismember(KEEPER.."Gp:Post" .. msg.chat_id_, post) then
+if redis:get(SAKURA.."bot:duplipost:mute" .. msg.chat_id_) then
+if redis:sismember(SAKURA.."Gp:Post" .. msg.chat_id_, post) then
 local id = msg.id_
 local msgs = {
 [0] = id
@@ -4884,10 +4880,10 @@ local chat = msg.chat_id_
 delete_msg(chat, msgs)
 print_del_msg("Deleted Because [Duplicate] [Post]")
 else
-redis:sadd(KEEPER.."Gp:Post" .. msg.chat_id_, post)
+redis:sadd(SAKURA.."Gp:Post" .. msg.chat_id_, post)
 end
 end
-if redis:get(KEEPER.."post:lock" .. msg.chat_id_) then
+if redis:get(SAKURA.."post:lock" .. msg.chat_id_) then
 local id = msg.id_
 local msgs = {
 [0] = id
@@ -4899,8 +4895,8 @@ end
 end
 elseif string.len(msg.content_.text_) > senspost.textpostwithtag then
 local post = msg.content_.text_
-if redis:get(KEEPER.."bot:duplipost:mute" .. msg.chat_id_) then
-if redis:sismember(KEEPER.."Gp:Post" .. msg.chat_id_, post) then
+if redis:get(SAKURA.."bot:duplipost:mute" .. msg.chat_id_) then
+if redis:sismember(SAKURA.."Gp:Post" .. msg.chat_id_, post) then
 local id = msg.id_
 local msgs = {
 [0] = id
@@ -4909,10 +4905,10 @@ local chat = msg.chat_id_
 delete_msg(chat, msgs)
 print_del_msg("Deleted Because [Duplicate] [Post]")
 else
-redis:sadd(KEEPER.."Gp:Post" .. msg.chat_id_, post)
+redis:sadd(SAKURA.."Gp:Post" .. msg.chat_id_, post)
 end
 end
-if redis:get(KEEPER.."post:lock" .. msg.chat_id_) then
+if redis:get(SAKURA.."post:lock" .. msg.chat_id_) then
 local id = msg.id_
 local msgs = {
 [0] = id
@@ -4922,7 +4918,7 @@ delete_msg(chat, msgs)
 print_del_msg("Deleted Because [Lock] [Post]")
 end
 end
-if msg.forward_info_ and redis:get(KEEPER.."bot:forward:mute" .. msg.chat_id_) and (msg.forward_info_.ID == "MessageForwardedFromUser" or msg.forward_info_.ID == "MessageForwardedPost") then
+if msg.forward_info_ and redis:get(SAKURA.."bot:forward:mute" .. msg.chat_id_) and (msg.forward_info_.ID == "MessageForwardedFromUser" or msg.forward_info_.ID == "MessageForwardedPost") then
 local id = msg.id_
 local msgs = {
 [0] = id
@@ -4931,7 +4927,7 @@ local chat = msg.chat_id_
 delete_msg(chat, msgs)
 print_del_msg("Deleted Because [Lock] [Fwd] [Text]")
 end
-if (text:match("[Tt][Ee][Ll][Ee][Gg][Rr][Aa][Mm].[Mm][Ee]") or text:match("[Tt][Ll][Gg][Rr][Mm].[Mm][Ee]") or text:match("[Tt].[Mm][Ee]")) and redis:get(KEEPER.."bot:links:mute" .. msg.chat_id_) then
+if (text:match("[Tt][Ee][Ll][Ee][Gg][Rr][Aa][Mm].[Mm][Ee]") or text:match("[Tt][Ll][Gg][Rr][Mm].[Mm][Ee]") or text:match("[Tt].[Mm][Ee]")) and redis:get(SAKURA.."bot:links:mute" .. msg.chat_id_) then
 local id = msg.id_
 local msgs = {
 [0] = id
@@ -4939,11 +4935,11 @@ local msgs = {
 local chat = msg.chat_id_
 delete_msg(chat, msgs)
 print_del_msg("Deleted Because [Lock] [Link] [Text]")
-if redis:get(KEEPER.."bot:strict" .. msg.chat_id_) then
+if redis:get(SAKURA.."bot:strict" .. msg.chat_id_) then
 chat_kick(msg.chat_id_, msg.sender_user_id_)
 end
 end
-if redis:get(KEEPER.."bot:text:mute" .. msg.chat_id_) then
+if redis:get(SAKURA.."bot:text:mute" .. msg.chat_id_) then
 local id = msg.id_
 local msgs = {
 [0] = id
@@ -4953,7 +4949,7 @@ delete_msg(chat, msgs)
 print_del_msg("Deleted Because [Lock] [Text]")
 end
 if msg.content_.text_:match("@") then
-if redis:get(KEEPER.."tags:lock" .. msg.chat_id_) then
+if redis:get(SAKURA.."tags:lock" .. msg.chat_id_) then
 local id = msg.id_
 local msgs = {
 [0] = id
@@ -4962,7 +4958,7 @@ local chat = msg.chat_id_
 delete_msg(chat, msgs)
 print_del_msg("Deleted Because [Lock] [Tag] [Text]")
 end
-elseif msg.content_.entities_ and msg.content_.entities_[0] and msg.content_.entities_[0].ID == "MessageEntityMention" and redis:get(KEEPER.."tags:lock" .. msg.chat_id_) then
+elseif msg.content_.entities_ and msg.content_.entities_[0] and msg.content_.entities_[0].ID == "MessageEntityMention" and redis:get(SAKURA.."tags:lock" .. msg.chat_id_) then
 local id = msg.id_
 local msgs = {
 [0] = id
@@ -4972,7 +4968,7 @@ delete_msg(chat, msgs)
 print_del_msg("Deleted Because [Lock] [Tag] [Text]")
 end
 if msg.content_.text_:match("#") then
-if redis:get(KEEPER.."bot:hashtag:mute" .. msg.chat_id_) then
+if redis:get(SAKURA.."bot:hashtag:mute" .. msg.chat_id_) then
 local id = msg.id_
 local msgs = {
 [0] = id
@@ -4981,7 +4977,7 @@ local chat = msg.chat_id_
 delete_msg(chat, msgs)
 print_del_msg("Deleted Because [Lock] [Hashtag] [Text]")
 end
-elseif msg.content_.entities_ and msg.content_.entities_[0] and msg.content_.entities_[0].ID == "MessageEntityHashtag" and redis:get(KEEPER.."bot:hashtag:mute" .. msg.chat_id_) then
+elseif msg.content_.entities_ and msg.content_.entities_[0] and msg.content_.entities_[0].ID == "MessageEntityHashtag" and redis:get(SAKURA.."bot:hashtag:mute" .. msg.chat_id_) then
 local id = msg.id_
 local msgs = {
 [0] = id
@@ -4990,9 +4986,9 @@ local chat = msg.chat_id_
 delete_msg(chat, msgs)
 print_del_msg("Deleted Because [Lock] [Hashtag] [Text]")
 end
---«««««««««««««««««««««««« Developer By Karrar KeePer »»»»»»»»»»»»»»»»»»»»»»»»»»»--
+--«««««««««««««««««««««««« Developer By Karrar SAKURA »»»»»»»»»»»»»»»»»»»»»»»»»»»--
 if msg.content_.text_:match("[Hh][Tt][Tt][Pp][Ss]:[//]") or msg.content_.text_:match("[Hh][Tt][Tt][Pp]:[//]") or msg.content_.text_:match("[Ww][Ww][Ww]") or msg.content_.text_:match(".[Cc][Oo]") or msg.content_.text_:match(".[Ii][Rr]") or msg.content_.text_:match(".[Oo][Rr][Gg]") then
-if redis:get(KEEPER.."bot:webpage:mute" .. msg.chat_id_) then
+if redis:get(SAKURA.."bot:webpage:mute" .. msg.chat_id_) then
 local id = msg.id_
 local msgs = {
 [0] = id
@@ -5001,7 +4997,7 @@ local chat = msg.chat_id_
 delete_msg(chat, msgs)
 print_del_msg("Deleted Because [Lock] [Web] [Text]")
 end
-elseif msg.content_.entities_ and msg.content_.entities_[0] and (msg.content_.entities_[0].ID == "MessageEntityTextUrl" or msg.content_.entities_[0].ID == "MessageEntityUrl") and redis:get(KEEPER.."bot:webpage:mute" .. msg.chat_id_) then
+elseif msg.content_.entities_ and msg.content_.entities_[0] and (msg.content_.entities_[0].ID == "MessageEntityTextUrl" or msg.content_.entities_[0].ID == "MessageEntityUrl") and redis:get(SAKURA.."bot:webpage:mute" .. msg.chat_id_) then
 local id = msg.id_
 local msgs = {
 [0] = id
@@ -5010,7 +5006,7 @@ local chat = msg.chat_id_
 delete_msg(chat, msgs)
 print_del_msg("Deleted Because [Lock] [Web] [Text]")
 end
-if msg.content_.web_page_ and redis:get(KEEPER.."bot:webpage:mute" .. msg.chat_id_) then
+if msg.content_.web_page_ and redis:get(SAKURA.."bot:webpage:mute" .. msg.chat_id_) then
 local id = msg.id_
 local msgs = {
 [0] = id
@@ -5018,7 +5014,7 @@ local msgs = {
 local chat = msg.chat_id_
 delete_msg(chat, msgs)
 end
-if msg.content_.text_:match("[\216-\219][\121-\191]") and redis:get(KEEPER.."bot:arabic:mute" .. msg.chat_id_) then
+if msg.content_.text_:match("[\216-\219][\121-\191]") and redis:get(SAKURA.."bot:arabic:mute" .. msg.chat_id_) then
 local id = msg.id_
 local msgs = {
 [0] = id
@@ -5036,17 +5032,17 @@ local msgs = {
 }
 local chat = msg.chat_id_
 local hash = "bot:sens:spam" .. msg.chat_id_
-if not redis:get(KEEPER..hash) then
+if not redis:get(SAKURA..hash) then
 sens = 400
 else
-sens = tonumber(redis:get(KEEPER..hash))
+sens = tonumber(redis:get(SAKURA..hash))
 end
-if redis:get(KEEPER.."bot:spam:mute" .. msg.chat_id_) and string.len(msg.content_.text_) > sens or ctrl_chars > sens or real_digits > sens then
+if redis:get(SAKURA.."bot:spam:mute" .. msg.chat_id_) and string.len(msg.content_.text_) > sens or ctrl_chars > sens or real_digits > sens then
 delete_msg(chat, msgs)
 print_del_msg("Deleted Because [Lock] [Spam] ")
 end
 end
-if (msg.content_.text_:match("[A-Z]") or msg.content_.text_:match("[a-z]")) and redis:get(KEEPER.."bot:english:mute" .. msg.chat_id_) then
+if (msg.content_.text_:match("[A-Z]") or msg.content_.text_:match("[a-z]")) and redis:get(SAKURA.."bot:english:mute" .. msg.chat_id_) then
 local id = msg.id_
 local msgs = {
 [0] = id
@@ -5060,7 +5056,7 @@ if msg.date_ < os.time() - 10 then
 print("\01[" .. color.white[1] .. ";" .. color.magenta[2] .. "m>>> OLD MSG Pattern <<<\01[00m")
 return false
 end
-if redis:get(KEEPER.."bot:cmds" .. msg.chat_id_) and not is_momod(msg.sender_user_id_, msg.chat_id_) then
+if redis:get(SAKURA.."bot:cmds" .. msg.chat_id_) and not is_momod(msg.sender_user_id_, msg.chat_id_) then
 print("\01[" .. color.white[1] .. ";" .. color.magenta[2] .. "m>>> Lock Cmd Is Active In This Group <<<\01[00m")
 return false
 end
@@ -5069,65 +5065,65 @@ if is_owner(msg.sender_user_id_, msg.chat_id_) and not Kp_JoinCh(msg) or is_mons
 return false
 end
 -------------------------------leave groups----------------------------------------------------------------------
-if is_sudo(msg) and idf:match("-100(%d+)") and (text:match('^'..(redis:get(KEEPER..'keepernams') or 'كيبر')..' غادر$')) then
+if is_sudo(msg) and idf:match("-100(%d+)") and (text:match('^'..(redis:get(SAKURA..'SAKURAnams') or 'ساكورا')..' غادر$')) then
 send(msg.chat_id_, msg.id_, 1, "✺↓ تم مغادره المجموعــه ♩†",  1, "md")
-redis:srem(KEEPER.."bot:groups", msg.chat_id_)
+redis:srem(SAKURA.."bot:groups", msg.chat_id_)
 chat_leave(msg.chat_id_, bot_id)
 end
 --------------------------------------------
 if text == 'تفعيل رفع الادمن' and is_owner(msg.sender_user_id_, msg.chat_id_) then
-send(msg.chat_id_, msg.id_, 1, "💬┊ بواسطه » "..tmkeeper(msg).."\n🎟┊ تم تفعيل خاصية رفع الادمن\n ✓ ", 1, 'md')
-redis:del(KEEPER.."lock_addd"..msg.chat_id_)
+send(msg.chat_id_, msg.id_, 1, "💬┊ بواسطه » "..tmSAKURA(msg).."\n🎟┊ تم تفعيل خاصية رفع الادمن\n ✓ ", 1, 'md')
+redis:del(SAKURA.."lock_addd"..msg.chat_id_)
 end
 if text == 'تعطيل رفع الادمن' and is_owner(msg.sender_user_id_, msg.chat_id_) then
-send(msg.chat_id_, msg.id_, 1, "💬┊ بواسطه » "..tmkeeper(msg).."\n🎟┊ تم تعطيل خاصية رفع الادمن\n ✓ ", 1, 'md')
-redis:set(KEEPER.."lock_addd"..msg.chat_id_, true)
+send(msg.chat_id_, msg.id_, 1, "💬┊ بواسطه » "..tmSAKURA(msg).."\n🎟┊ تم تعطيل خاصية رفع الادمن\n ✓ ", 1, 'md')
+redis:set(SAKURA.."lock_addd"..msg.chat_id_, true)
 end
 -------------------------------------------------
 if text == 'تفعيل رفع المميز' and is_owner(msg.sender_user_id_, msg.chat_id_) then
-send(msg.chat_id_, msg.id_, 1, "💬┊ بواسطه » "..tmkeeper(msg).."\n🎟┊ تم تفعيل خاصية رفع المميز\n ✓ ", 1, 'md')
-redis:del(KEEPER.."lock_adddvip"..msg.chat_id_)
+send(msg.chat_id_, msg.id_, 1, "💬┊ بواسطه » "..tmSAKURA(msg).."\n🎟┊ تم تفعيل خاصية رفع المميز\n ✓ ", 1, 'md')
+redis:del(SAKURA.."lock_adddvip"..msg.chat_id_)
 end
 if text == 'تعطيل رفع المميز' and is_owner(msg.sender_user_id_, msg.chat_id_) then
-send(msg.chat_id_, msg.id_, 1, "💬┊ بواسطه » "..tmkeeper(msg).."\n🎟┊ تم تعطيل خاصية رفع المميز\n ✓ ", 1, 'md')
-redis:set(KEEPER.."lock_adddvip"..msg.chat_id_, true)
+send(msg.chat_id_, msg.id_, 1, "💬┊ بواسطه » "..tmSAKURA(msg).."\n🎟┊ تم تعطيل خاصية رفع المميز\n ✓ ", 1, 'md')
+redis:set(SAKURA.."lock_adddvip"..msg.chat_id_, true)
 end
 --------------------------------------------------------------------
 if is_owner(msg.sender_user_id_, msg.chat_id_) and idf:match("-100(%d+)") and text:match("^رفع ادمن بالتفاعل (%d+)$")  then
 local uuuu = { string.match(text, "^(رفع ادمن بالتفاعل) (%d+)$")}
 send(msg.chat_id_, msg.id_, 1, "⚜️┊ تم حفظ العدد *"..uuuu[2].."*\n💬┊ سيتم رفع العضو ادمن\n🚫┊اذا اثبت تفاعله\n✓",1, 'md')
-redis:set(KEEPER.."KEEPER_O" .. msg.chat_id_, uuuu[2])
+redis:set(SAKURA.."SAKURA_O" .. msg.chat_id_, uuuu[2])
 end
-local msgs = tonumber(redis:get(KEEPER.."msgs:"..msg.sender_user_id_..":"..msg.chat_id_))
-local get_keeper = tonumber(redis:get(KEEPER.."KEEPER_O" .. msg.chat_id_)) 
-if msgs == get_keeper and not redis:get(KEEPER.."lock_addd"..msg.chat_id_) then
+local msgs = tonumber(redis:get(SAKURA.."msgs:"..msg.sender_user_id_..":"..msg.chat_id_))
+local get_SAKURA = tonumber(redis:get(SAKURA.."SAKURA_O" .. msg.chat_id_)) 
+if msgs == get_SAKURA and not redis:get(SAKURA.."lock_addd"..msg.chat_id_) then
 send(msg.chat_id_, msg.id_, 1, "💬┊ هذا العضو اثبت تفاعله\n🎟┊تم رفعه ادمن في المجموعه\n✓",  1, "md")
-redis:sadd(KEEPER..'bot:momod:'..msg.chat_id_, msg.sender_user_id_)
+redis:sadd(SAKURA..'bot:momod:'..msg.chat_id_, msg.sender_user_id_)
 end
 --------------------------------------------------------------------
 if is_owner(msg.sender_user_id_, msg.chat_id_) and idf:match("-100(%d+)") and text:match("^رفع مميز بالتفاعل (%d+)$")  then
 local uuuu = { string.match(text, "^(رفع مميز بالتفاعل) (%d+)$")}
 send(msg.chat_id_, msg.id_, 1, "⚜️┊ تم حفظ العدد *"..uuuu[2].."*\n💬┊ سيتم رفع العضو مميز\n🚫┊اذا اثبت تفاعله\n✓",1, 'md')
-redis:set(KEEPER.."KEEPER_OO" .. msg.chat_id_, uuuu[2])
+redis:set(SAKURA.."SAKURA_OO" .. msg.chat_id_, uuuu[2])
 end
-local msgs = tonumber(redis:get(KEEPER.."msgs:"..msg.sender_user_id_..":"..msg.chat_id_))
-local get_keeper = tonumber(redis:get(KEEPER.."KEEPER_OO" .. msg.chat_id_)) 
-if msgs == get_keeper and not redis:get(KEEPER.."lock_adddvip"..msg.chat_id_) then
+local msgs = tonumber(redis:get(SAKURA.."msgs:"..msg.sender_user_id_..":"..msg.chat_id_))
+local get_SAKURA = tonumber(redis:get(SAKURA.."SAKURA_OO" .. msg.chat_id_)) 
+if msgs == get_SAKURA and not redis:get(SAKURA.."lock_adddvip"..msg.chat_id_) then
 send(msg.chat_id_, msg.id_, 1, "📌┊ هذا العضو اثبت تفاعله\n🌀┊تم رفعه عضو مميز في المجموعه\n✓",  1, "md")
-redis:sadd(KEEPER..'bot:vipmem:'..msg.chat_id_, msg.sender_user_id_)
+redis:sadd(SAKURA..'bot:vipmem:'..msg.chat_id_, msg.sender_user_id_)
 end
 ------------------------------ADD vipmems BY Reply------------------------------------------------------------------
 if text:match('^رفع مميز عام$') and is_KP(msg) and msg.reply_to_message_id_ ~= 0  then
 function promote_by_reply(extra, result, success)
-local user_info_ = redis:get(KEEPER..'user:Name' .. result.sender_user_id_)
-local UserKeeper = user_info_
+local user_info_ = redis:get(SAKURA..'user:Name' .. result.sender_user_id_)
+local UserSAKURA = user_info_
 if user_info_ then
 local hash = 'bot:vipmems:'
-if redis:sismember(KEEPER..hash, result.sender_user_id_) then
-send(msg.chat_id_, msg.id_, 1,'👨‍✈️┊ العضو » (['..UserKeeper..'])\n⚠️┊ مرفوع مميز عام سابقا\n✓‏', 1, 'md')
+if redis:sismember(SAKURA..hash, result.sender_user_id_) then
+send(msg.chat_id_, msg.id_, 1,'👨‍✈️┊ العضو » (['..UserSAKURA..'])\n⚠️┊ مرفوع مميز عام سابقا\n✓‏', 1, 'md')
 else
-redis:sadd(KEEPER..hash, result.sender_user_id_)
-send(msg.chat_id_, msg.id_, 1,'👨‍✈️┊ العضو » (['..UserKeeper..'])\n⚠️┊ تم رفعه مميز عام\n✓', 1, 'md')
+redis:sadd(SAKURA..hash, result.sender_user_id_)
+send(msg.chat_id_, msg.id_, 1,'👨‍✈️┊ العضو » (['..UserSAKURA..'])\n⚠️┊ تم رفعه مميز عام\n✓', 1, 'md')
 end end end
 getMessage(msg.chat_id_, msg.reply_to_message_id_,promote_by_reply)
 end
@@ -5137,10 +5133,10 @@ local ap = {string.match(text, '^(رفع مميز عام) @(%S+)$')}
 function promote_by_username(extra, result, success)
 local hash = 'bot:vipmems:'
 if result.id_ then
-if redis:sismember(KEEPER..hash, result.id_) then
+if redis:sismember(SAKURA..hash, result.id_) then
 send(msg.chat_id_, msg.id_, 1,'👨‍✈️┊ العضو » ([@'..ap[2]..'])\n⚠️┊ مرفوع مميز عام سابقا\n✓‏', 1, 'md')
 else
-redis:sadd(KEEPER..hash, result.id_)
+redis:sadd(SAKURA..hash, result.id_)
 send(msg.chat_id_, msg.id_, 1,'👨‍✈️┊ العضو » ([@'..ap[2]..'])\n⚠️┊ تم رفعه مميز عام\n✓‏', 1, 'md')
 end end end
 resolve_username(ap[2],promote_by_username)
@@ -5148,28 +5144,28 @@ end
 ---------------------------ADD vipmems BY ID--------------------------------------------------------------------
 if text:match('^رفع مميز عام (%d+)$') and is_KP(msg) then
 local ap = {string.match(text, '^(رفع مميز عام) (%d+)$')}
-local user_info_ = redis:get(KEEPER..'user:Name' .. ap[2])
-local UserKeeper = user_info_
+local user_info_ = redis:get(SAKURA..'user:Name' .. ap[2])
+local UserSAKURA = user_info_
 if user_info_ then
 local hash = 'bot:vipmems:'
-if redis:sismember(KEEPER..hash, ap[2]) then
-send(msg.chat_id_, msg.id_, 1,'👨‍✈️┊ العضو » (['..UserKeeper..'])\n⚠️┊ مرفوع مميز عام سابقا\n✓‏', 1, 'md')
+if redis:sismember(SAKURA..hash, ap[2]) then
+send(msg.chat_id_, msg.id_, 1,'👨‍✈️┊ العضو » (['..UserSAKURA..'])\n⚠️┊ مرفوع مميز عام سابقا\n✓‏', 1, 'md')
 else
-redis:sadd(KEEPER..hash, ap[2])
-send(msg.chat_id_, msg.id_, 1,'👨‍✈️┊ العضو » (['..UserKeeper..'])\n⚠️┊ تم رفعه مميز عام\n✓‏', 1, 'md')
+redis:sadd(SAKURA..hash, ap[2])
+send(msg.chat_id_, msg.id_, 1,'👨‍✈️┊ العضو » (['..UserSAKURA..'])\n⚠️┊ تم رفعه مميز عام\n✓‏', 1, 'md')
 end end end
 ----------------------DEL vipmems BY REPLY-------------------------------------------------------------------------
 if text:match('^تنزيل مميز عام$') and is_KP(msg) and msg.reply_to_message_id_ ~= 0 then
 function demote_by_reply(extra, result, success)
-local user_info_ = redis:get(KEEPER..'user:Name' .. result.sender_user_id_)
-local UserKeeper = user_info_
+local user_info_ = redis:get(SAKURA..'user:Name' .. result.sender_user_id_)
+local UserSAKURA = user_info_
 if user_info_ then
 local hash = 'bot:vipmems:'
-if not redis:sismember(KEEPER..hash, result.sender_user_id_) then
-send(msg.chat_id_, msg.id_, 1,'👨‍✈️┊ العضو » (['..UserKeeper..'])\n⚠️┊ تم تنزيله مميز عتم سابقا\n‏', 1, 'md')
+if not redis:sismember(SAKURA..hash, result.sender_user_id_) then
+send(msg.chat_id_, msg.id_, 1,'👨‍✈️┊ العضو » (['..UserSAKURA..'])\n⚠️┊ تم تنزيله مميز عتم سابقا\n‏', 1, 'md')
 else
-redis:srem(KEEPER..hash, result.sender_user_id_)
-send(msg.chat_id_, msg.id_, 1,'👨‍✈️┊ العضو » (['..UserKeeper..'])\n⚠️┊ تم حذفه من مميزين العام \n✓‏', 1, 'md')
+redis:srem(SAKURA..hash, result.sender_user_id_)
+send(msg.chat_id_, msg.id_, 1,'👨‍✈️┊ العضو » (['..UserSAKURA..'])\n⚠️┊ تم حذفه من مميزين العام \n✓‏', 1, 'md')
 end end
 end
 getMessage(msg.chat_id_, msg.reply_to_message_id_,demote_by_reply)
@@ -5180,10 +5176,10 @@ local ap = {string.match(text, '^(تنزيل مميز عام) @(%S+)$')}
 function demote_by_username(extra, result, success)
 local hash = 'bot:vipmems:'
 if result.id_ then
-if not redis:sismember(KEEPER..hash, result.id_) then
+if not redis:sismember(SAKURA..hash, result.id_) then
 send(msg.chat_id_, msg.id_, 1,'👨‍✈️┊ العضو » ([@'..ap[2]..'])\n⚠️┊ تم تنزيله مميز عام سابقا\n‏', 1, 'md')
 else
-redis:srem(KEEPER..hash, result.id_)
+redis:srem(SAKURA..hash, result.id_)
 send(msg.chat_id_, msg.id_, 1,'👨‍✈️┊ العضو » ([@'..ap[2]..'])\n⚠️┊ تم تنزيله من مميزين العام \n✓‏', 1, 'md')
 end end end
 resolve_username(ap[2],demote_by_username)
@@ -5191,29 +5187,29 @@ end
 --------------------------DEL vipmems BY ID---------------------------------------------------------------------
 if text:match('^تنزيل مميز عام (%d+)$') and is_KP(msg) then
 local ap = {string.match(text, '^(تنزيل مميز عام) (%d+)$')}
-local user_info_ = redis:get(KEEPER..'user:Name' .. ap[2])
-local UserKeeper = user_info_
+local user_info_ = redis:get(SAKURA..'user:Name' .. ap[2])
+local UserSAKURA = user_info_
 if user_info_ then
 local hash = 'bot:vipmems:'
-if not redis:sismember(KEEPER..hash, ap[2]) then
-send(msg.chat_id_, msg.id_, 1,'👨‍✈️┊ العضو » (['..UserKeeper..'])\n⚠️┊ تم تنزيله مميز عتم سابقا\n‏', 1, 'md')
+if not redis:sismember(SAKURA..hash, ap[2]) then
+send(msg.chat_id_, msg.id_, 1,'👨‍✈️┊ العضو » (['..UserSAKURA..'])\n⚠️┊ تم تنزيله مميز عتم سابقا\n‏', 1, 'md')
 else
-redis:srem(KEEPER..hash, ap[2])
-send(msg.chat_id_, msg.id_, 1,'👨‍✈️┊ العضو » (['..UserKeeper..'])\n⚠️┊ تم حذفه من مميزين العام \n✓‏', 1, 'md')
+redis:srem(SAKURA..hash, ap[2])
+send(msg.chat_id_, msg.id_, 1,'👨‍✈️┊ العضو » (['..UserSAKURA..'])\n⚠️┊ تم حذفه من مميزين العام \n✓‏', 1, 'md')
 end end
 end
 -----------------------------promote_by_reply-------------------------------------------------------
 if text:match('^رفع ادمن$') and is_owner(msg.sender_user_id_, msg.chat_id_) and msg.reply_to_message_id_ ~= 0  then
 function promote_by_reply(extra, result, success)
-local user_info_ = redis:get(KEEPER..'user:Name' .. result.sender_user_id_)
-local UserKeeper = user_info_
+local user_info_ = redis:get(SAKURA..'user:Name' .. result.sender_user_id_)
+local UserSAKURA = user_info_
 if user_info_ then
 local hash = 'bot:momod:'..msg.chat_id_
-if redis:sismember(KEEPER..hash, result.sender_user_id_) then
-send(msg.chat_id_, msg.id_, 1,'👨‍✈️┊ العضو » (['..UserKeeper..'])\n⚠️┊ تم رفعه ادمن سابقا \n✓‏', 1, 'md')
+if redis:sismember(SAKURA..hash, result.sender_user_id_) then
+send(msg.chat_id_, msg.id_, 1,'👨‍✈️┊ العضو » (['..UserSAKURA..'])\n⚠️┊ تم رفعه ادمن سابقا \n✓‏', 1, 'md')
 else
-send(msg.chat_id_, msg.id_, 1,'👨‍✈️┊ العضو » (['..UserKeeper..'])\n⚠️┊ تم رفعه ادمن \n✓‏', 1, 'md')
-redis:sadd(KEEPER..hash, result.sender_user_id_)
+send(msg.chat_id_, msg.id_, 1,'👨‍✈️┊ العضو » (['..UserSAKURA..'])\n⚠️┊ تم رفعه ادمن \n✓‏', 1, 'md')
+redis:sadd(SAKURA..hash, result.sender_user_id_)
 end
 end end
 getMessage(msg.chat_id_, msg.reply_to_message_id_,promote_by_reply)
@@ -5224,11 +5220,11 @@ local ap = {string.match(text, '^(رفع ادمن) @(%S+)$')}
 local hash = 'bot:momod:'..msg.chat_id_
 function promote_by_username(extra, result, success)
 if result.id_ then
-if redis:sismember(KEEPER..hash, result.id_) then
+if redis:sismember(SAKURA..hash, result.id_) then
 send(msg.chat_id_, msg.id_, 1,'👨‍✈️┊ العضو » ([@'..ap[2]..'])\n⚠️┊ تم رفعه ادمن سابقا \n✓‏', 1, 'md')
 else
 send(msg.chat_id_, msg.id_, 1,'👨‍✈️┊ العضو » ([@'..ap[2]..'])\n⚠️┊ تم رفعه ادمن \n✓‏', 1, 'md')
-redis:sadd(KEEPER..hash, result.id_)
+redis:sadd(SAKURA..hash, result.id_)
 end
 end 
 end
@@ -5237,30 +5233,30 @@ end
 ------------------------------promote_by_ID-----------------------------------------------------------------
 if text:match('^رفع ادمن (%d+)$') and is_owner(msg.sender_user_id_, msg.chat_id_) then
 local ap = {string.match(text, '^(رفع ادمن) (%d+)$')}
-local user_info_ = redis:get(KEEPER..'user:Name' .. ap[2])
-local UserKeeper = user_info_
+local user_info_ = redis:get(SAKURA..'user:Name' .. ap[2])
+local UserSAKURA = user_info_
 if user_info_ then
 local hash = 'bot:momod:'..msg.chat_id_
-if redis:sismember(KEEPER..hash, ap[2]) then
-send(msg.chat_id_, msg.id_, 1,'👨‍✈️┊ العضو » (['..UserKeeper..'])\n⚠️┊ تم رفعه ادمن سابقا \n✓‏', 1, 'md')
+if redis:sismember(SAKURA..hash, ap[2]) then
+send(msg.chat_id_, msg.id_, 1,'👨‍✈️┊ العضو » (['..UserSAKURA..'])\n⚠️┊ تم رفعه ادمن سابقا \n✓‏', 1, 'md')
 else
-send(msg.chat_id_, msg.id_, 1,'👨‍✈️┊ العضو » (['..UserKeeper..'])\n⚠️┊ تم رفعه ادمن \n✓‏', 1, 'md')
-redis:sadd(KEEPER..hash, ap[2])
+send(msg.chat_id_, msg.id_, 1,'👨‍✈️┊ العضو » (['..UserSAKURA..'])\n⚠️┊ تم رفعه ادمن \n✓‏', 1, 'md')
+redis:sadd(SAKURA..hash, ap[2])
 end
 end 
 end
 -------------------------------demote_by_reply----------------------------------------------------------------------
 if text:match('^تنزيل ادمن$') and is_owner(msg.sender_user_id_, msg.chat_id_) and msg.reply_to_message_id_ ~= 0 then
 function demote_by_reply(extra, result, success)
-local user_info_ = redis:get(KEEPER..'user:Name' .. result.sender_user_id_)
-local UserKeeper = user_info_
+local user_info_ = redis:get(SAKURA..'user:Name' .. result.sender_user_id_)
+local UserSAKURA = user_info_
 if user_info_ then
 local hash = 'bot:momod:'..msg.chat_id_
-if not redis:sismember(KEEPER..hash, result.sender_user_id_) then
-send(msg.chat_id_, msg.id_, 1,'👨‍✈️┊ العضو » (['..UserKeeper..'])\n⚠️┊ تم تنزيله ادمن سابقا \n✓‏', 1, 'md')
+if not redis:sismember(SAKURA..hash, result.sender_user_id_) then
+send(msg.chat_id_, msg.id_, 1,'👨‍✈️┊ العضو » (['..UserSAKURA..'])\n⚠️┊ تم تنزيله ادمن سابقا \n✓‏', 1, 'md')
 else
-send(msg.chat_id_, msg.id_, 1,'👨‍✈️┊ العضو » (['..UserKeeper..'])\n⚠️┊ تم تنزيله ادمن \n✓‏', 1, 'md')
-redis:srem(KEEPER..hash, result.sender_user_id_)
+send(msg.chat_id_, msg.id_, 1,'👨‍✈️┊ العضو » (['..UserSAKURA..'])\n⚠️┊ تم تنزيله ادمن \n✓‏', 1, 'md')
+redis:srem(SAKURA..hash, result.sender_user_id_)
 end
 end
 end
@@ -5272,11 +5268,11 @@ local hash = 'bot:momod:'..msg.chat_id_
 local ap = {string.match(text, '^(تنزيل ادمن) @(%S+)$')}
 function demote_by_username(extra, result, success)
 if result.id_ then
-if not redis:sismember(KEEPER..hash, result.id_) then
+if not redis:sismember(SAKURA..hash, result.id_) then
 send(msg.chat_id_, msg.id_, 1,'👨‍✈️┊ العضو » ([@'..ap[2]..'])\n⚠️┊ تم تنزيله ادمن سابقا \n✓‏', 1, 'md')
 else
 send(msg.chat_id_, msg.id_, 1,'👨‍✈️┊ العضو » ([@'..ap[2]..'])\n⚠️┊ تم تنزيله ادمن \n✓‏', 1, 'md')
-redis:srem(KEEPER..hash, result.id_)
+redis:srem(SAKURA..hash, result.id_)
 end
 end
 end
@@ -5285,30 +5281,30 @@ end
 -----------------------------demote_by_ID------------------------------------------------------------------
 if text:match('^تنزيل ادمن (%d+)$') and is_owner(msg.sender_user_id_, msg.chat_id_) then
 local ap = {string.match(text, '^(تنزيل ادمن) (%d+)$')}
-local user_info_ = redis:get(KEEPER..'user:Name' .. ap[2])
-local UserKeeper = user_info_
+local user_info_ = redis:get(SAKURA..'user:Name' .. ap[2])
+local UserSAKURA = user_info_
 if user_info_ then
 local hash = 'bot:momod:'..msg.chat_id_
-if not redis:sismember(KEEPER..hash, result.sender_user_id_) then
-send(msg.chat_id_, msg.id_, 1,'👨‍✈️┊ العضو » (['..UserKeeper..'])\n⚠️┊ تم تنزيله ادمن سابقا \n✓‏', 1, 'md')
+if not redis:sismember(SAKURA..hash, result.sender_user_id_) then
+send(msg.chat_id_, msg.id_, 1,'👨‍✈️┊ العضو » (['..UserSAKURA..'])\n⚠️┊ تم تنزيله ادمن سابقا \n✓‏', 1, 'md')
 else
-send(msg.chat_id_, msg.id_, 1,'👨‍✈️┊ العضو » (['..UserKeeper..'])\n⚠️┊ تم تنزيله ادمن \n✓‏', 1, 'md')
-redis:srem(KEEPER..hash, ap[2])
+send(msg.chat_id_, msg.id_, 1,'👨‍✈️┊ العضو » (['..UserSAKURA..'])\n⚠️┊ تم تنزيله ادمن \n✓‏', 1, 'md')
+redis:srem(SAKURA..hash, ap[2])
 end
 end
 end
 ------------------------set vip BY REBLY-------------------------------------------------------------------------
 if text:match('^رفع مميز$') and is_momod(msg.sender_user_id_, msg.chat_id_) and msg.reply_to_message_id_ ~= 0  then
 function promote_by_reply(extra, result, success)
-local user_info_ = redis:get(KEEPER..'user:Name' .. result.sender_user_id_)
-local UserKeeper = user_info_
+local user_info_ = redis:get(SAKURA..'user:Name' .. result.sender_user_id_)
+local UserSAKURA = user_info_
 if user_info_ then
 local hash = 'bot:vipmem:'..msg.chat_id_
-if redis:sismember(KEEPER..hash, result.sender_user_id_) then
-send(msg.chat_id_, msg.id_, 1,'👨‍✈️┊ العضو » (['..UserKeeper..'])\n⚠️┊ مرفوع مميز سابقا\n✓', 1, 'md')
+if redis:sismember(SAKURA..hash, result.sender_user_id_) then
+send(msg.chat_id_, msg.id_, 1,'👨‍✈️┊ العضو » (['..UserSAKURA..'])\n⚠️┊ مرفوع مميز سابقا\n✓', 1, 'md')
 else
-redis:sadd(KEEPER..hash, result.sender_user_id_)
-send(msg.chat_id_, msg.id_, 1,'👨‍✈️┊ العضو » (['..UserKeeper..'])\n⚠️┊ تم رفعه عضو مميز\n✓‏', 1, 'md')
+redis:sadd(SAKURA..hash, result.sender_user_id_)
+send(msg.chat_id_, msg.id_, 1,'👨‍✈️┊ العضو » (['..UserSAKURA..'])\n⚠️┊ تم رفعه عضو مميز\n✓‏', 1, 'md')
 end end end
 getMessage(msg.chat_id_, msg.reply_to_message_id_,promote_by_reply)
 end
@@ -5317,10 +5313,10 @@ if text:match('^رفع مميز @(%S+)$') and is_momod(msg.sender_user_id_, msg.
 local ap = {string.match(text, '^(رفع مميز) @(%S+)$')}
 function promote_by_username(extra, result, success)
 if result.id_ then
-if redis:sismember(KEEPER..'bot:vipmem:'..msg.chat_id_, result.id_) then
+if redis:sismember(SAKURA..'bot:vipmem:'..msg.chat_id_, result.id_) then
 texts = '👨‍✈️┊ العضو » ([@'..ap[2]..'])\n⚠️┊ مرفوع مميز سابقا\n✓'
 else
-redis:sadd(KEEPER..'bot:vipmem:'..msg.chat_id_, result.id_)
+redis:sadd(SAKURA..'bot:vipmem:'..msg.chat_id_, result.id_)
 texts = '👨‍✈️┊ العضو » ([@'..ap[2]..'])\n⚠️┊ تم رفعه عضو مميز\n✓'
 end
 send(msg.chat_id_, msg.id_, 1, texts, 1, 'md')
@@ -5331,29 +5327,29 @@ end
 ------------------------------SET VIP BY ID-----------------------------------------------------------------
 if text:match('^رفع مميز (%d+)$') and is_momod(msg.sender_user_id_, msg.chat_id_) then
 local ap = {string.match(text, '^(رفع مميز) (%d+)$')}
-local user_info_ = redis:get(KEEPER..'user:Name' .. ap[2])
-local UserKeeper = user_info_
+local user_info_ = redis:get(SAKURA..'user:Name' .. ap[2])
+local UserSAKURA = user_info_
 if user_info_ then
-if redis:sismember(KEEPER..'bot:vipmem:'..msg.chat_id_, ap[2]) then
-texts = '👨‍✈️┊ العضو » (['..UserKeeper..'])\n⚠️┊ مرفوع مميز سابقا\n✓'
+if redis:sismember(SAKURA..'bot:vipmem:'..msg.chat_id_, ap[2]) then
+texts = '👨‍✈️┊ العضو » (['..UserSAKURA..'])\n⚠️┊ مرفوع مميز سابقا\n✓'
 else
-redis:sadd(KEEPER..'bot:vipmem:'..msg.chat_id_, ap[2])
-texts = '👨‍✈️┊ العضو » (['..UserKeeper..'])\n⚠️┊ تم رفعه عضو مميز\n✓'
+redis:sadd(SAKURA..'bot:vipmem:'..msg.chat_id_, ap[2])
+texts = '👨‍✈️┊ العضو » (['..UserSAKURA..'])\n⚠️┊ تم رفعه عضو مميز\n✓'
 end end
 send(msg.chat_id_, msg.id_, 1, texts, 1, 'md')
 end
 -----------------------------delvipmem_by_reply------------------------------------------------------------------
 if text:match('^تنزيل مميز$') and is_momod(msg.sender_user_id_, msg.chat_id_) and msg.reply_to_message_id_ ~= 0 then
 function delvipmem_by_reply(extra, result, success)
-local user_info_ = redis:get(KEEPER..'user:Name' .. result.sender_user_id_)
-local UserKeeper = user_info_
+local user_info_ = redis:get(SAKURA..'user:Name' .. result.sender_user_id_)
+local UserSAKURA = user_info_
 if user_info_ then
 local hash = 'bot:vipmem:'..msg.chat_id_
-if not redis:sismember(KEEPER..hash, result.sender_user_id_) then
-send(msg.chat_id_, msg.id_, 1,'👨‍✈️┊ العضو » (['..UserKeeper..'])\n⚠️┊ تم تنزيله مميز سابقا \n✓‏', 1, 'md')
+if not redis:sismember(SAKURA..hash, result.sender_user_id_) then
+send(msg.chat_id_, msg.id_, 1,'👨‍✈️┊ العضو » (['..UserSAKURA..'])\n⚠️┊ تم تنزيله مميز سابقا \n✓‏', 1, 'md')
 else
-redis:srem(KEEPER..hash, result.sender_user_id_)
-send(msg.chat_id_, msg.id_, 1,'👨‍✈️┊ العضو » (['..UserKeeper..'])\n⚠️┊ تم تنزيله من المميزين \n✓‏', 1, 'md')
+redis:srem(SAKURA..hash, result.sender_user_id_)
+send(msg.chat_id_, msg.id_, 1,'👨‍✈️┊ العضو » (['..UserSAKURA..'])\n⚠️┊ تم تنزيله من المميزين \n✓‏', 1, 'md')
 end
 end 
 end
@@ -5365,10 +5361,10 @@ local hash = 'bot:vipmem:'..msg.chat_id_
 local ap = {string.match(text, '^(تنزيل مميز) @(%S+)$')}
 function delvipmem_by_username(extra, result, success)
 if result.id_ then
-if not redis:sismember(KEEPER..hash,  result.id_) then
+if not redis:sismember(SAKURA..hash,  result.id_) then
 send(msg.chat_id_, msg.id_, 1,'👨‍✈️┊ العضو » ([@'..ap[2]..'])\n⚠️┊ تم تنزيله مميز سابقا \n✓‏', 1, 'md')
 else
-redis:srem(KEEPER..hash,  result.id_)
+redis:srem(SAKURA..hash,  result.id_)
 send(msg.chat_id_, msg.id_, 1,'👨‍✈️┊ العضو » ([@'..ap[2]..'])\n⚠️┊ تم تنزيله من المميزين \n✓‏', 1, 'md')
 end
 end 
@@ -5378,15 +5374,15 @@ end
 -------------------------delvipmem_by_id----------------------------------------------------------------------
 if text:match('^تنزيل مميز (%d+)$') and is_momod(msg.sender_user_id_, msg.chat_id_) then
 local hash = 'bot:vipmem:'..msg.chat_id_
-local user_info_ = redis:get(KEEPER..'user:Name' .. ap[2])
-local UserKeeper = user_info_
+local user_info_ = redis:get(SAKURA..'user:Name' .. ap[2])
+local UserSAKURA = user_info_
 if user_info_ then
 local hash = 'bot:vipmem:'..msg.chat_id_
-if not redis:sismember(KEEPER..hash, ap[2]) then
-send(msg.chat_id_, msg.id_, 1,'👨‍✈️┊ العضو » (['..UserKeeper..'])\n⚠️┊ تم تنزيله مميز سابقا \n✓‏', 1, 'md')
+if not redis:sismember(SAKURA..hash, ap[2]) then
+send(msg.chat_id_, msg.id_, 1,'👨‍✈️┊ العضو » (['..UserSAKURA..'])\n⚠️┊ تم تنزيله مميز سابقا \n✓‏', 1, 'md')
 else
-redis:srem(KEEPER..hash, ap[2])
-send(msg.chat_id_, msg.id_, 1,'👨‍✈️┊ العضو » (['..UserKeeper..'])\n⚠️┊ تم تنزيله من المميزين \n✓‏', 1, 'md')
+redis:srem(SAKURA..hash, ap[2])
+send(msg.chat_id_, msg.id_, 1,'👨‍✈️┊ العضو » (['..UserSAKURA..'])\n⚠️┊ تم تنزيله من المميزين \n✓‏', 1, 'md')
 end
 end 
 end
@@ -5397,14 +5393,14 @@ local hash = 'bot:banned:'..msg.chat_id_
 if is_momod(result.sender_user_id_, result.chat_id_) then
 send(msg.chat_id_, msg.id_, 1, '🌀┊ عذراً لا استطيع (حظر،طرد،كتم)المدراء والادمنيه ❗️', 1, 'md')
 else
-local user_info_ = redis:get(KEEPER..'user:Name' .. result.sender_user_id_)
-local UserKeeper = user_info_
+local user_info_ = redis:get(SAKURA..'user:Name' .. result.sender_user_id_)
+local UserSAKURA = user_info_
 if user_info_ then
-if redis:sismember(KEEPER..hash, result.sender_user_id_) then
-send(msg.chat_id_, msg.id_, 1, '👨‍✈️┊ العضو » (['..UserKeeper..'])\n⚠️┊ محضور سابقــــــــــا\n✓‏', 1, 'md')
+if redis:sismember(SAKURA..hash, result.sender_user_id_) then
+send(msg.chat_id_, msg.id_, 1, '👨‍✈️┊ العضو » (['..UserSAKURA..'])\n⚠️┊ محضور سابقــــــــــا\n✓‏', 1, 'md')
 else
-redis:sadd(KEEPER..hash, result.sender_user_id_)
-send(msg.chat_id_, msg.id_, 1, '👨‍✈️┊ العضو » (['..UserKeeper..'])\n⚠️┊ تم حظره بنجاح \n✓‏', 1, 'md')
+redis:sadd(SAKURA..hash, result.sender_user_id_)
+send(msg.chat_id_, msg.id_, 1, '👨‍✈️┊ العضو » (['..UserSAKURA..'])\n⚠️┊ تم حظره بنجاح \n✓‏', 1, 'md')
 chat_kick(result.chat_id_, result.sender_user_id_)
 end
 end
@@ -5421,10 +5417,10 @@ if result.id_ then
 if is_momod(result.id_, msg.chat_id_) then
 send(msg.chat_id_, msg.id_, 1, '🌀┊ عذراً لا استطيع (حظر،طرد،كتم)المدراء والادمنيه ❗️', 1, 'md')
 else
-if redis:sismember(KEEPER..hash, result.id_) then
+if redis:sismember(SAKURA..hash, result.id_) then
 send(msg.chat_id_, msg.id_, 1, '👨‍✈️┊ العضو » ([@'..ap[2]..'])\n⚠️┊ محضور سابقــــــــــا\n✓‏', 1, 'md')
 else
-redis:sadd(KEEPER..hash, result.id_)
+redis:sadd(SAKURA..hash, result.id_)
 send(msg.chat_id_, msg.id_, 1, '👨‍✈️┊ العضو » ([@'..ap[2]..'])\n⚠️┊ تم حظره بنجاح \n✓‏', 1, 'md')
 chat_kick(msg.chat_id_, result.id_)
 end
@@ -5440,14 +5436,14 @@ local hash = 'bot:banned:'..msg.chat_id_
 if is_momod(ap[2], msg.chat_id_) then
 send(msg.chat_id_, msg.id_, 1, '🌀┊ عذراً لا استطيع (حظر،طرد،كتم)المدراء والادمنيه ❗️', 1, 'md')
 else
-local user_info_ = redis:get(KEEPER..'user:Name' .. ap[2])
-local UserKeeper = user_info_
+local user_info_ = redis:get(SAKURA..'user:Name' .. ap[2])
+local UserSAKURA = user_info_
 if user_info_ then
-if redis:sismember(KEEPER..hash, ap[2]) then
-send(msg.chat_id_, msg.id_, 1, '👨‍✈️┊ العضو » (['..UserKeeper..'])\n⚠️┊ محضور سابقــــــــــا\n✓‏', 1, 'md')
+if redis:sismember(SAKURA..hash, ap[2]) then
+send(msg.chat_id_, msg.id_, 1, '👨‍✈️┊ العضو » (['..UserSAKURA..'])\n⚠️┊ محضور سابقــــــــــا\n✓‏', 1, 'md')
 else
-redis:sadd(KEEPER..hash, ap[2])
-send(msg.chat_id_, msg.id_, 1, '👨‍✈️┊ العضو » (['..UserKeeper..'])\n⚠️┊ تم حظره بنجاح \n✓‏', 1, 'md')
+redis:sadd(SAKURA..hash, ap[2])
+send(msg.chat_id_, msg.id_, 1, '👨‍✈️┊ العضو » (['..UserSAKURA..'])\n⚠️┊ تم حظره بنجاح \n✓‏', 1, 'md')
 chat_kick(msg.chat_id_, ap[2])
 end
 end
@@ -5460,14 +5456,14 @@ local hash = 'bot:gban:'
 if is_momod(result.sender_user_id_, result.chat_id_) then
 send(msg.chat_id_, msg.id_, 1, '🌀┊ عذراً لا استطيع (حظر،طرد،كتم)المدراء والادمنيه ❗️', 1, 'md')
 else
-local user_info_ = redis:get(KEEPER..'user:Name' .. result.sender_user_id_)
-local UserKeeper = user_info_
+local user_info_ = redis:get(SAKURA..'user:Name' .. result.sender_user_id_)
+local UserSAKURA = user_info_
 if user_info_ then
-if redis:sismember(KEEPER..hash, result.sender_user_id_) then
-send(msg.chat_id_, msg.id_, 1, '👨‍✈️┊ العضو » (['..UserKeeper..'])\n⚠️┊ محضور عام سابقـــــا\n✓‏', 1, 'md')
+if redis:sismember(SAKURA..hash, result.sender_user_id_) then
+send(msg.chat_id_, msg.id_, 1, '👨‍✈️┊ العضو » (['..UserSAKURA..'])\n⚠️┊ محضور عام سابقـــــا\n✓‏', 1, 'md')
 else
-redis:sadd(KEEPER..hash, result.sender_user_id_)
-send(msg.chat_id_, msg.id_, 1, '👨‍✈️┊ العضو » (['..UserKeeper..'])\n⚠️┊ تم حظره عام بنجاح \n✓‏', 1, 'md')
+redis:sadd(SAKURA..hash, result.sender_user_id_)
+send(msg.chat_id_, msg.id_, 1, '👨‍✈️┊ العضو » (['..UserSAKURA..'])\n⚠️┊ تم حظره عام بنجاح \n✓‏', 1, 'md')
 chat_kick(result.chat_id_, result.sender_user_id_)
 end
 end
@@ -5484,10 +5480,10 @@ if result.id_ then
 if is_momod(result.id_, msg.chat_id_) then
 send(msg.chat_id_, msg.id_, 1, '🌀┊ عذراً لا استطيع (حظر،طرد،كتم)المدراء والادمنيه ❗️', 1, 'md')
 else
-if redis:sismember(KEEPER..hash, result.id_) then
+if redis:sismember(SAKURA..hash, result.id_) then
 send(msg.chat_id_, msg.id_, 1, '👨‍✈️┊ العضو » ([@'..ap[2]..'])\n⚠️┊ محضور عام سابقـــــا\n✓‏', 1, 'md')
 else
-redis:sadd(KEEPER..hash, result.id_)
+redis:sadd(SAKURA..hash, result.id_)
 send(msg.chat_id_, msg.id_, 1, '👨‍✈️┊ العضو » ([@'..ap[2]..'])\n⚠️┊ تم حظره عام بنجاح \n✓‏', 1, 'md')
 chat_kick(msg.chat_id_, result.id_)
 end
@@ -5503,14 +5499,14 @@ local hash = 'bot:gban:'
 if is_momod(ap[2], msg.chat_id_) then
 send(msg.chat_id_, msg.id_, 1, '🌀┊ عذراً لا استطيع (حظر،طرد،كتم)المدراء والادمنيه ❗️', 1, 'md')
 else
-local user_info_ = redis:get(KEEPER..'user:Name' .. ap[2])
-local UserKeeper = user_info_
+local user_info_ = redis:get(SAKURA..'user:Name' .. ap[2])
+local UserSAKURA = user_info_
 if user_info_ then
-if redis:sismember(KEEPER..hash, ap[2]) then
-send(msg.chat_id_, msg.id_, 1, '👨‍✈️┊ العضو » (['..UserKeeper..'])\n⚠️┊ محضور عام سابقـــــا\n✓‏', 1, 'md')
+if redis:sismember(SAKURA..hash, ap[2]) then
+send(msg.chat_id_, msg.id_, 1, '👨‍✈️┊ العضو » (['..UserSAKURA..'])\n⚠️┊ محضور عام سابقـــــا\n✓‏', 1, 'md')
 else
-redis:sadd(KEEPER..hash, ap[2])
-send(msg.chat_id_, msg.id_, 1, '👨‍✈️┊ العضو » (['..UserKeeper..'])\n⚠️┊ تم حظره عام بنجاح \n✓‏', 1, 'md')
+redis:sadd(SAKURA..hash, ap[2])
+send(msg.chat_id_, msg.id_, 1, '👨‍✈️┊ العضو » (['..UserSAKURA..'])\n⚠️┊ تم حظره عام بنجاح \n✓‏', 1, 'md')
 chat_kick(msg.chat_id_, ap[2])
 end
 end
@@ -5520,14 +5516,14 @@ end
 if text:match('^الغاء العام$') and is_KP(msg) and msg.reply_to_message_id_ then
 function ban_by_reply(extra, result, success)
 local hash = 'bot:gban:'
-local user_info_ = redis:get(KEEPER..'user:Name' .. result.sender_user_id_)
-local UserKeeper = user_info_
+local user_info_ = redis:get(SAKURA..'user:Name' .. result.sender_user_id_)
+local UserSAKURA = user_info_
 if user_info_ then
-if not redis:sismember(KEEPER..hash, result.sender_user_id_) then
-send(msg.chat_id_, msg.id_, 1, '👨‍✈️┊ العضو » (['..UserKeeper..'])\n⚠️┊ غير محضور عام \n✓‏', 1, 'md')
+if not redis:sismember(SAKURA..hash, result.sender_user_id_) then
+send(msg.chat_id_, msg.id_, 1, '👨‍✈️┊ العضو » (['..UserSAKURA..'])\n⚠️┊ غير محضور عام \n✓‏', 1, 'md')
 else
-redis:srem(KEEPER..hash, result.sender_user_id_)
-send(msg.chat_id_, msg.id_, 1, '👨‍✈️┊ العضو » (['..UserKeeper..'])\n⚠️┊ تم الغاء حظره عام  \n✓‏', 1, 'md')
+redis:srem(SAKURA..hash, result.sender_user_id_)
+send(msg.chat_id_, msg.id_, 1, '👨‍✈️┊ العضو » (['..UserSAKURA..'])\n⚠️┊ تم الغاء حظره عام  \n✓‏', 1, 'md')
 end
 end
 end
@@ -5539,10 +5535,10 @@ local ap = {string.match(text, '^(الغاء العام) @(%S+)$')}
 function ban_by_username(extra, result, success)
 local hash = 'bot:gban:'
 if result.id_ then
-if not redis:sismember(KEEPER..hash, result.id_) then
+if not redis:sismember(SAKURA..hash, result.id_) then
 send(msg.chat_id_, msg.id_, 1, '👨‍✈️┊ العضو » ([@'..ap[2]..'])\n⚠️┊ غير محضور عام \n✓‏', 1, 'md')
 else
-redis:srem(KEEPER..hash, result.id_)
+redis:srem(SAKURA..hash, result.id_)
 send(msg.chat_id_, msg.id_, 1, '👨‍✈️┊ العضو » ([@'..ap[2]..'])\n⚠️┊ تم الغاء حظره عام  \n✓‏', 1, 'md')
 end
 end
@@ -5553,14 +5549,14 @@ end
 if text:match('^الغاء العام (%d+)$') and is_KP(msg) then
 local ap = {string.match(text, '^(الغاء العام) (%d+)$')}
 local hash = 'bot:gban:'
-local user_info_ = redis:get(KEEPER..'user:Name' .. ap[2])
-local UserKeeper = user_info_
+local user_info_ = redis:get(SAKURA..'user:Name' .. ap[2])
+local UserSAKURA = user_info_
 if user_info_ then
-if not redis:sismember(KEEPER..hash, ap[2]) then
-send(msg.chat_id_, msg.id_, 1, '👨‍✈️┊ العضو » (['..UserKeeper..'])\n⚠️┊ غير محضور عام\n✓‏', 1, 'md')
+if not redis:sismember(SAKURA..hash, ap[2]) then
+send(msg.chat_id_, msg.id_, 1, '👨‍✈️┊ العضو » (['..UserSAKURA..'])\n⚠️┊ غير محضور عام\n✓‏', 1, 'md')
 else
-redis:srem(KEEPER..hash, ap[2])
-send(msg.chat_id_, msg.id_, 1, '👨‍✈️┊ العضو » (['..UserKeeper..'])\n⚠️┊ تم الغاء حظره عام\n✓‏', 1, 'md')
+redis:srem(SAKURA..hash, ap[2])
+send(msg.chat_id_, msg.id_, 1, '👨‍✈️┊ العضو » (['..UserSAKURA..'])\n⚠️┊ تم الغاء حظره عام\n✓‏', 1, 'md')
 end
 end
 end
@@ -5568,14 +5564,14 @@ end
 if text:match('^الغاء حظر$') and is_momod(msg.sender_user_id_, msg.chat_id_) and msg.reply_to_message_id_ then
 function ban_by_reply(extra, result, success)
 local hash = 'bot:banned:'..msg.chat_id_
-local user_info_ = redis:get(KEEPER..'user:Name' .. result.sender_user_id_)
-local UserKeeper = user_info_
+local user_info_ = redis:get(SAKURA..'user:Name' .. result.sender_user_id_)
+local UserSAKURA = user_info_
 if user_info_ then
-if not redis:sismember(KEEPER..hash, result.sender_user_id_) then
-send(msg.chat_id_, msg.id_, 1, '👨‍✈️┊ العضو » (['..UserKeeper..'])\n⚠️┊ غير محظور اساســـــا \n✓‏', 1, 'md')
+if not redis:sismember(SAKURA..hash, result.sender_user_id_) then
+send(msg.chat_id_, msg.id_, 1, '👨‍✈️┊ العضو » (['..UserSAKURA..'])\n⚠️┊ غير محظور اساســـــا \n✓‏', 1, 'md')
 else
-redis:srem(KEEPER..hash, result.sender_user_id_)
-send(msg.chat_id_, msg.id_, 1, '👨‍✈️┊ العضو » (['..UserKeeper..'])\n⚠️┊ تم الغاء حظره   \n✓‏', 1, 'md')
+redis:srem(SAKURA..hash, result.sender_user_id_)
+send(msg.chat_id_, msg.id_, 1, '👨‍✈️┊ العضو » (['..UserSAKURA..'])\n⚠️┊ تم الغاء حظره   \n✓‏', 1, 'md')
 end
 end
 end
@@ -5587,10 +5583,10 @@ local ap = {string.match(text, '^(الغاء حظر) @(%S+)$')}
 function ban_by_username(extra, result, success)
 local hash = 'bot:banned:'..msg.chat_id_
 if result.id_ then
-if not redis:sismember(KEEPER..hash, result.id_) then
+if not redis:sismember(SAKURA..hash, result.id_) then
 send(msg.chat_id_, msg.id_, 1, '👨‍✈️┊ العضو » ([@'..ap[2]..'])\n⚠️┊ غير محظور اساســـــا \n✓‏', 1, 'md')
 else
-redis:srem(KEEPER..hash, result.id_)
+redis:srem(SAKURA..hash, result.id_)
 send(msg.chat_id_, msg.id_, 1, '👨‍✈️┊ العضو » ([@'..ap[2]..'])\n⚠️┊ تم الغاء حظره   \n✓‏', 1, 'md')
 end
 end
@@ -5601,14 +5597,14 @@ end
 if text:match('^الغاء حظر (%d+)$') and is_momod(msg.sender_user_id_, msg.chat_id_) then
 local ap = {string.match(text, '^(الغاء حظر) (%d+)$')}
 local hash = 'bot:banned:'..msg.chat_id_
-local user_info_ = redis:get(KEEPER..'user:Name' .. ap[2])
-local UserKeeper = user_info_
+local user_info_ = redis:get(SAKURA..'user:Name' .. ap[2])
+local UserSAKURA = user_info_
 if user_info_ then
-if not redis:sismember(KEEPER..hash, ap[2]) then
-send(msg.chat_id_, msg.id_, 1, '👨‍✈️┊ العضو » (['..UserKeeper..'])\n⚠️┊ غير محظور اساســـــا\n✓‏', 1, 'md')
+if not redis:sismember(SAKURA..hash, ap[2]) then
+send(msg.chat_id_, msg.id_, 1, '👨‍✈️┊ العضو » (['..UserSAKURA..'])\n⚠️┊ غير محظور اساســـــا\n✓‏', 1, 'md')
 else
-redis:srem(KEEPER..hash, ap[2])
-send(msg.chat_id_, msg.id_, 1, '👨‍✈️┊ العضو » (['..UserKeeper..'])\n⚠️┊ تم الغاء حظره \n✓‏', 1, 'md')
+redis:srem(SAKURA..hash, ap[2])
+send(msg.chat_id_, msg.id_, 1, '👨‍✈️┊ العضو » (['..UserSAKURA..'])\n⚠️┊ تم الغاء حظره \n✓‏', 1, 'md')
 end
 end
 end
@@ -5619,14 +5615,14 @@ local hash = 'bot:muted:'..msg.chat_id_
 if is_momod(result.sender_user_id_, result.chat_id_) then
 send(msg.chat_id_, msg.id_, 1, '🌀┊ عذراً لا استطيع (حظر،طرد،كتم)المدراء والادمنيه ❗️', 1, 'md')
 else
-local user_info_ = redis:get(KEEPER..'user:Name' .. result.sender_user_id_)
-local UserKeeper = user_info_
+local user_info_ = redis:get(SAKURA..'user:Name' .. result.sender_user_id_)
+local UserSAKURA = user_info_
 if user_info_ then
-if redis:sismember(KEEPER..hash, result.sender_user_id_) then
-send(msg.chat_id_, msg.id_, 1, '👨‍✈️┊ العضو » (['..UserKeeper..'])\n⚠️┊ مكتوم سابقــــــــــا\n✓‏', 1, 'md')
+if redis:sismember(SAKURA..hash, result.sender_user_id_) then
+send(msg.chat_id_, msg.id_, 1, '👨‍✈️┊ العضو » (['..UserSAKURA..'])\n⚠️┊ مكتوم سابقــــــــــا\n✓‏', 1, 'md')
 else
-redis:sadd(KEEPER..hash, result.sender_user_id_)
-send(msg.chat_id_, msg.id_, 1, '👨‍✈️┊ العضو » (['..UserKeeper..'])\n⚠️┊ تم كتمــــه بنجاح \n✓‏', 1, 'md')
+redis:sadd(SAKURA..hash, result.sender_user_id_)
+send(msg.chat_id_, msg.id_, 1, '👨‍✈️┊ العضو » (['..UserSAKURA..'])\n⚠️┊ تم كتمــــه بنجاح \n✓‏', 1, 'md')
 end
 end
 end
@@ -5642,10 +5638,10 @@ if result.id_ then
 if is_momod(result.id_, msg.chat_id_) then
 send(msg.chat_id_, msg.id_, 1, '🌀┊ عذراً لا استطيع (حظر،طرد،كتم)المدراء والادمنيه ❗️', 1, 'md')
 else
-if redis:sismember(KEEPER..hash, result.id_) then
+if redis:sismember(SAKURA..hash, result.id_) then
 send(msg.chat_id_, msg.id_, 1, '👨‍✈️┊ العضو » ([@'..ap[2]..'])\n⚠️┊ مكتوم سابقــــــــــا\n✓‏', 1, 'md')
 else
-redis:sadd(KEEPER..hash, result.id_)
+redis:sadd(SAKURA..hash, result.id_)
 send(msg.chat_id_, msg.id_, 1, '👨‍✈️┊ العضو » ([@'..ap[2]..'])\n⚠️┊ تم كتمــــه بنجاح \n✓‏', 1, 'md')
 end
 end
@@ -5660,14 +5656,14 @@ local hash = 'bot:muted:'..msg.chat_id_
 if is_momod(ap[2], msg.chat_id_) then
 send(msg.chat_id_, msg.id_, 1, '🌀┊ عذراً لا استطيع (حظر،طرد،كتم)المدراء والادمنيه ❗️', 1, 'md')
 else
-local user_info_ = redis:get(KEEPER..'user:Name' .. ap[2])
-local UserKeeper = user_info_
+local user_info_ = redis:get(SAKURA..'user:Name' .. ap[2])
+local UserSAKURA = user_info_
 if user_info_ then
-if redis:sismember(KEEPER..hash, ap[2]) then
-send(msg.chat_id_, msg.id_, 1, '👨‍✈️┊ العضو » (['..UserKeeper..'])\n⚠️┊ مكتوم سابقــــــــــا\n✓‏', 1, 'md')
+if redis:sismember(SAKURA..hash, ap[2]) then
+send(msg.chat_id_, msg.id_, 1, '👨‍✈️┊ العضو » (['..UserSAKURA..'])\n⚠️┊ مكتوم سابقــــــــــا\n✓‏', 1, 'md')
 else
-redis:sadd(KEEPER..hash, ap[2])
-send(msg.chat_id_, msg.id_, 1, '👨‍✈️┊ العضو » (['..UserKeeper..'])\n⚠️┊ تم كتمــــه بنجاح \n✓‏', 1, 'md')
+redis:sadd(SAKURA..hash, ap[2])
+send(msg.chat_id_, msg.id_, 1, '👨‍✈️┊ العضو » (['..UserSAKURA..'])\n⚠️┊ تم كتمــــه بنجاح \n✓‏', 1, 'md')
 end
 end
 end
@@ -5679,15 +5675,15 @@ local hash = 'bot:keed:'..msg.chat_id_
 if is_momod(result.sender_user_id_, result.chat_id_) then
 send(msg.chat_id_, msg.id_, 1, '🌀┊ عذراً لا استطيع (تقييد)المدراء والادمنيه ❗️', 1, 'md')
 else
-local user_info_ = redis:get(KEEPER..'user:Name' .. result.sender_user_id_)
-local UserKeeper = user_info_
+local user_info_ = redis:get(SAKURA..'user:Name' .. result.sender_user_id_)
+local UserSAKURA = user_info_
 if user_info_ then
-if redis:sismember(KEEPER..hash, result.sender_user_id_) then
-send(msg.chat_id_, msg.id_, 1, '👨‍✈️┊ العضو » (['..UserKeeper..'])\n⚠️┊ مقيــد سابقــــــــــا\n✓‏', 1, 'md')
+if redis:sismember(SAKURA..hash, result.sender_user_id_) then
+send(msg.chat_id_, msg.id_, 1, '👨‍✈️┊ العضو » (['..UserSAKURA..'])\n⚠️┊ مقيــد سابقــــــــــا\n✓‏', 1, 'md')
 else
-HTTPS.request('https://api.telegram.org/bot'..KEEPER_TOKEN..'/restrictChatMember?chat_id=' ..msg.chat_id_.. '&user_id=' ..result.sender_user_id_..'')
-redis:sadd(KEEPER..hash, result.sender_user_id_)
-send(msg.chat_id_, msg.id_, 1, '👨‍✈️┊ العضو » (['..UserKeeper..'])\n⚠️┊ تم تقييده بنجاح \n✓‏', 1, 'md')
+HTTPS.request('https://api.telegram.org/bot'..SAKURA_TOKEN..'/restrictChatMember?chat_id=' ..msg.chat_id_.. '&user_id=' ..result.sender_user_id_..'')
+redis:sadd(SAKURA..hash, result.sender_user_id_)
+send(msg.chat_id_, msg.id_, 1, '👨‍✈️┊ العضو » (['..UserSAKURA..'])\n⚠️┊ تم تقييده بنجاح \n✓‏', 1, 'md')
 end
 end
 end
@@ -5703,11 +5699,11 @@ if result.id_ then
 if is_momod(result.id_, msg.chat_id_) then
 send(msg.chat_id_, msg.id_, 1, '🌀┊ عذراً لا استطيع (تقييد)المدراء والادمنيه ❗️', 1, 'md')
 else
-if redis:sismember(KEEPER..hash, result.id_) then
+if redis:sismember(SAKURA..hash, result.id_) then
 send(msg.chat_id_, msg.id_, 1, '👨‍✈️┊ العضو » ([@'..ap[2]..'])\n⚠️┊ مقيــد سابقــــــــــا\n✓‏', 1, 'md')
 else
-HTTPS.request('https://api.telegram.org/bot'..KEEPER_TOKEN..'/restrictChatMember?chat_id=' ..msg.chat_id_.. '&user_id=' ..result.id_..'')
-redis:sadd(KEEPER..hash, result.id_)
+HTTPS.request('https://api.telegram.org/bot'..SAKURA_TOKEN..'/restrictChatMember?chat_id=' ..msg.chat_id_.. '&user_id=' ..result.id_..'')
+redis:sadd(SAKURA..hash, result.id_)
 send(msg.chat_id_, msg.id_, 1, '👨‍✈️┊ العضو » ([@'..ap[2]..'])\n⚠️┊ تم تقييده بنجاح \n✓‏', 1, 'md')
 end
 end
@@ -5722,15 +5718,15 @@ local hash = 'bot:keed:'..msg.chat_id_
 if is_momod(ap[2], msg.chat_id_) then
 send(msg.chat_id_, msg.id_, 1, '🌀┊ عذراً لا استطيع (تقييد)المدراء والادمنيه ❗️', 1, 'md')
 else
-local user_info_ = redis:get(KEEPER..'user:Name' .. ap[2])
-local UserKeeper = user_info_
+local user_info_ = redis:get(SAKURA..'user:Name' .. ap[2])
+local UserSAKURA = user_info_
 if user_info_ then
-if redis:sismember(KEEPER..hash, ap[2]) then
-send(msg.chat_id_, msg.id_, 1, '👨‍✈️┊ العضو » (['..UserKeeper..'])\n⚠️┊ مقيــد سابقــــــــــا\n✓‏', 1, 'md')
+if redis:sismember(SAKURA..hash, ap[2]) then
+send(msg.chat_id_, msg.id_, 1, '👨‍✈️┊ العضو » (['..UserSAKURA..'])\n⚠️┊ مقيــد سابقــــــــــا\n✓‏', 1, 'md')
 else
-HTTPS.request('https://api.telegram.org/bot'..KEEPER_TOKEN..'/restrictChatMember?chat_id=' ..msg.chat_id_.. '&user_id=' ..ap[2]..'')
-redis:sadd(KEEPER..hash, ap[2])
-send(msg.chat_id_, msg.id_, 1, '👨‍✈️┊ العضو » (['..UserKeeper..'])\n⚠️┊ تم تقييده بنجاح \n✓‏', 1, 'md')
+HTTPS.request('https://api.telegram.org/bot'..SAKURA_TOKEN..'/restrictChatMember?chat_id=' ..msg.chat_id_.. '&user_id=' ..ap[2]..'')
+redis:sadd(SAKURA..hash, ap[2])
+send(msg.chat_id_, msg.id_, 1, '👨‍✈️┊ العضو » (['..UserSAKURA..'])\n⚠️┊ تم تقييده بنجاح \n✓‏', 1, 'md')
 end
 end
 end
@@ -5739,15 +5735,15 @@ end
 if text:match('^فك التقييد$') and is_momod(msg.sender_user_id_, msg.chat_id_) and msg.reply_to_message_id_ then
 function ban_by_reply(extra, result, success)
 local hash = 'bot:keed:'..msg.chat_id_
-local user_info_ = redis:get(KEEPER..'user:Name' .. result.sender_user_id_)
-local UserKeeper = user_info_
+local user_info_ = redis:get(SAKURA..'user:Name' .. result.sender_user_id_)
+local UserSAKURA = user_info_
 if user_info_ then
-if redis:sismember(KEEPER..hash, result.sender_user_id_) then
-send(msg.chat_id_, msg.id_, 1, '👨‍✈️┊ العضو » (['..UserKeeper..'])\n⚠️┊ غير مقيــد سابقــــــــــا\n✓‏', 1, 'md')
+if redis:sismember(SAKURA..hash, result.sender_user_id_) then
+send(msg.chat_id_, msg.id_, 1, '👨‍✈️┊ العضو » (['..UserSAKURA..'])\n⚠️┊ غير مقيــد سابقــــــــــا\n✓‏', 1, 'md')
 else
-HTTPS.request('https://api.telegram.org/bot'..KEEPER_TOKEN..'/restrictChatMember?chat_id=' ..msg.chat_id_.. '&user_id=' ..result.sender_user_id_..'&can_send_messages=True&can_send_media_messages=True&can_send_other_messages=True&can_add_web_page_previews=True')
-redis:srem(KEEPER..hash, result.sender_user_id_)
-send(msg.chat_id_, msg.id_, 1, '👨‍✈️┊ العضو » (['..UserKeeper..'])\n⚠️┊ تم الغاء تقييده بنجاح \n✓‏', 1, 'md')
+HTTPS.request('https://api.telegram.org/bot'..SAKURA_TOKEN..'/restrictChatMember?chat_id=' ..msg.chat_id_.. '&user_id=' ..result.sender_user_id_..'&can_send_messages=True&can_send_media_messages=True&can_send_other_messages=True&can_add_web_page_previews=True')
+redis:srem(SAKURA..hash, result.sender_user_id_)
+send(msg.chat_id_, msg.id_, 1, '👨‍✈️┊ العضو » (['..UserSAKURA..'])\n⚠️┊ تم الغاء تقييده بنجاح \n✓‏', 1, 'md')
 end
 end
 end
@@ -5759,11 +5755,11 @@ local ap = {string.match(text, '^(فك التقييد) @(%S+)$')}
 function ban_by_username(extra, result, success)
 local hash = 'bot:keed:'..msg.chat_id_
 if result.id_ then
-if redis:sismember(KEEPER..hash, result.id_) then
+if redis:sismember(SAKURA..hash, result.id_) then
 send(msg.chat_id_, msg.id_, 1, '👨‍✈️┊ العضو » ([@'..ap[2]..'])\n⚠️┊ غير مقيــد سابقــــــــــا\n✓‏', 1, 'md')
 else
-HTTPS.request('https://api.telegram.org/bot'..KEEPER_TOKEN..'/restrictChatMember?chat_id=' ..msg.chat_id_.. '&user_id=' ..result.id_..'&can_send_messages=True&can_send_media_messages=True&can_send_other_messages=True&can_add_web_page_previews=True')
-redis:srem(KEEPER..hash, result.id_)
+HTTPS.request('https://api.telegram.org/bot'..SAKURA_TOKEN..'/restrictChatMember?chat_id=' ..msg.chat_id_.. '&user_id=' ..result.id_..'&can_send_messages=True&can_send_media_messages=True&can_send_other_messages=True&can_add_web_page_previews=True')
+redis:srem(SAKURA..hash, result.id_)
 send(msg.chat_id_, msg.id_, 1, '👨‍✈️┊ العضو » ([@'..ap[2]..'])\n⚠️┊ تم الغاء تقييده بنجاح \n✓‏', 1, 'md')
 end
 end
@@ -5774,15 +5770,15 @@ end
 if text:match('^فك التقييد (%d+)$') and is_momod(msg.sender_user_id_, msg.chat_id_) then
 local ap = {string.match(text, '^(فك التقييد) (%d+)$')}
 local hash = 'bot:keed:'..msg.chat_id_
-local user_info_ = redis:get(KEEPER..'user:Name' .. ap[2])
-local UserKeeper = user_info_
+local user_info_ = redis:get(SAKURA..'user:Name' .. ap[2])
+local UserSAKURA = user_info_
 if user_info_ then
-if redis:sismember(KEEPER..hash, ap[2]) then
-send(msg.chat_id_, msg.id_, 1, '👨‍✈️┊ العضو » (['..UserKeeper..'])\n⚠️┊ غير مقيــد سابقــــــــــا\n✓‏', 1, 'md')
+if redis:sismember(SAKURA..hash, ap[2]) then
+send(msg.chat_id_, msg.id_, 1, '👨‍✈️┊ العضو » (['..UserSAKURA..'])\n⚠️┊ غير مقيــد سابقــــــــــا\n✓‏', 1, 'md')
 else
-HTTPS.request('https://api.telegram.org/bot'..KEEPER_TOKEN..'/restrictChatMember?chat_id=' ..msg.chat_id_.. '&user_id=' ..ap[2]..'&can_send_messages=True&can_send_media_messages=True&can_send_other_messages=True&can_add_web_page_previews=True')
-redis:srem(KEEPER..hash, ap[2])
-send(msg.chat_id_, msg.id_, 1, '👨‍✈️┊ العضو » (['..UserKeeper..'])\n⚠️┊ تم الغاء تقييده بنجاح \n✓‏', 1, 'md')
+HTTPS.request('https://api.telegram.org/bot'..SAKURA_TOKEN..'/restrictChatMember?chat_id=' ..msg.chat_id_.. '&user_id=' ..ap[2]..'&can_send_messages=True&can_send_media_messages=True&can_send_other_messages=True&can_add_web_page_previews=True')
+redis:srem(SAKURA..hash, ap[2])
+send(msg.chat_id_, msg.id_, 1, '👨‍✈️┊ العضو » (['..UserSAKURA..'])\n⚠️┊ تم الغاء تقييده بنجاح \n✓‏', 1, 'md')
 end
 end
 end
@@ -5790,14 +5786,14 @@ end
 if text:match('^الغاء كتم$') and is_momod(msg.sender_user_id_, msg.chat_id_) and msg.reply_to_message_id_ then
 function ban_by_reply(extra, result, success)
 local hash = 'bot:muted:'..msg.chat_id_
-local user_info_ = redis:get(KEEPER..'user:Name' .. result.sender_user_id_)
-local UserKeeper = user_info_
+local user_info_ = redis:get(SAKURA..'user:Name' .. result.sender_user_id_)
+local UserSAKURA = user_info_
 if user_info_ then
-if not redis:sismember(KEEPER..hash, result.sender_user_id_) then
-send(msg.chat_id_, msg.id_, 1, '👨‍✈️┊ العضو » (['..UserKeeper..'])\n⚠️┊ غير مكتوم اساســـــا \n✓‏', 1, 'md')
+if not redis:sismember(SAKURA..hash, result.sender_user_id_) then
+send(msg.chat_id_, msg.id_, 1, '👨‍✈️┊ العضو » (['..UserSAKURA..'])\n⚠️┊ غير مكتوم اساســـــا \n✓‏', 1, 'md')
 else
-redis:srem(KEEPER..hash, result.sender_user_id_)
-send(msg.chat_id_, msg.id_, 1, '👨‍✈️┊ العضو » (['..UserKeeper..'])\n⚠️┊ تم الغاء كتمـــــــه   \n✓‏', 1, 'md')
+redis:srem(SAKURA..hash, result.sender_user_id_)
+send(msg.chat_id_, msg.id_, 1, '👨‍✈️┊ العضو » (['..UserSAKURA..'])\n⚠️┊ تم الغاء كتمـــــــه   \n✓‏', 1, 'md')
 end
 end
 end
@@ -5809,10 +5805,10 @@ local ap = {string.match(text, '^(الغاء كتم) @(%S+)$')}
 function ban_by_username(extra, result, success)
 local hash = 'bot:muted:'..msg.chat_id_
 if result.id_ then
-if not redis:sismember(KEEPER..hash, result.id_) then
+if not redis:sismember(SAKURA..hash, result.id_) then
 send(msg.chat_id_, msg.id_, 1, '👨‍✈️┊ العضو » ([@'..ap[2]..'])\n⚠️┊ غير مكتوم اساســـــا \n✓‏', 1, 'md')
 else
-redis:srem(KEEPER..hash, result.id_)
+redis:srem(SAKURA..hash, result.id_)
 send(msg.chat_id_, msg.id_, 1, '👨‍✈️┊ العضو » ([@'..ap[2]..'])\n⚠️┊ تم الغاء كتمـــــــه   \n✓‏', 1, 'md')
 end
 end
@@ -5823,29 +5819,29 @@ end
 if text:match('^الغاء كتم (%d+)$') and is_momod(msg.sender_user_id_, msg.chat_id_) then
 local ap = {string.match(text, '^(الغاء كتم) (%d+)$')}
 local hash = 'bot:muted:'..msg.chat_id_
-local user_info_ = redis:get(KEEPER..'user:Name' .. ap[2])
-local UserKeeper = user_info_
+local user_info_ = redis:get(SAKURA..'user:Name' .. ap[2])
+local UserSAKURA = user_info_
 if user_info_ then
-if not redis:sismember(KEEPER..hash, ap[2]) then
-send(msg.chat_id_, msg.id_, 1, '👨‍✈️┊ العضو » (['..UserKeeper..'])\n⚠️┊ غير مكتوم اساســـــا\n✓‏', 1, 'md')
+if not redis:sismember(SAKURA..hash, ap[2]) then
+send(msg.chat_id_, msg.id_, 1, '👨‍✈️┊ العضو » (['..UserSAKURA..'])\n⚠️┊ غير مكتوم اساســـــا\n✓‏', 1, 'md')
 else
-redis:srem(KEEPER..hash, ap[2])
-send(msg.chat_id_, msg.id_, 1, '👨‍✈️┊ العضو » (['..UserKeeper..'])\n⚠️┊ تم الغاء كتمـــــــه \n✓‏', 1, 'md')
+redis:srem(SAKURA..hash, ap[2])
+send(msg.chat_id_, msg.id_, 1, '👨‍✈️┊ العضو » (['..UserSAKURA..'])\n⚠️┊ تم الغاء كتمـــــــه \n✓‏', 1, 'md')
 end
 end
 end
 ---------------------------setowner_by_reply----------------------------------------------------------------
 if text:match('^رفع مدير$') and is_monshi(msg.sender_user_id_, msg.chat_id_) and msg.reply_to_message_id_ then
 function setowner_by_reply(extra, result, success)
-local user_info_ = redis:get(KEEPER..'user:Name' .. result.sender_user_id_)
-local UserKeeper = user_info_
+local user_info_ = redis:get(SAKURA..'user:Name' .. result.sender_user_id_)
+local UserSAKURA = user_info_
 if user_info_ then
 local hash = 'bot:owners:'..msg.chat_id_
-if redis:sismember(KEEPER..hash, result.sender_user_id_) then
-send(msg.chat_id_, msg.id_, 1, '👨‍✈️┊ العضو » (['..UserKeeper..'])\n⚠️┊ تم رفعه مدير سابقا\n✓‏', 1, 'md')
+if redis:sismember(SAKURA..hash, result.sender_user_id_) then
+send(msg.chat_id_, msg.id_, 1, '👨‍✈️┊ العضو » (['..UserSAKURA..'])\n⚠️┊ تم رفعه مدير سابقا\n✓‏', 1, 'md')
 else
-redis:sadd(KEEPER..hash, result.sender_user_id_)
-send(msg.chat_id_, msg.id_, 1, '👨‍✈️┊ العضو » (['..UserKeeper..'])\n⚠️┊ تم رفعه مدير \n✓‏', 1, 'md')
+redis:sadd(SAKURA..hash, result.sender_user_id_)
+send(msg.chat_id_, msg.id_, 1, '👨‍✈️┊ العضو » (['..UserSAKURA..'])\n⚠️┊ تم رفعه مدير \n✓‏', 1, 'md')
 end
 end
 end
@@ -5857,10 +5853,10 @@ local ap = {string.match(text, '^(رفع مدير) @(%S+)$')}
 function setowner_by_username(extra, result, success)
 local hash = 'bot:owners:'..msg.chat_id_
 if result.id_ then
-if redis:sismember(KEEPER..hash, result.id_) then
+if redis:sismember(SAKURA..hash, result.id_) then
 send(msg.chat_id_, msg.id_, 1, '👨‍✈️┊ العضو » ([@'..ap[2]..'])\n⚠️┊ تم رفعه مدير سابقا\n✓‏', 1, 'md')
 else
-redis:sadd(KEEPER..hash, result.id_)
+redis:sadd(SAKURA..hash, result.id_)
 send(msg.chat_id_, msg.id_, 1, '👨‍✈️┊ العضو » ([@'..ap[2]..'])\n⚠️┊ تم رفعه مدير \n✓‏', 1, 'md')
 end
 end
@@ -5870,30 +5866,30 @@ end
 -------------------------setowner_by_ID----------------------------------------------------------------------
 if text:match('^رفع مدير (%d+)$') and is_monshi(msg.sender_user_id_, msg.chat_id_) then
 local ap = {string.match(text, '^(رفع مدير) (%d+)$')}
-local user_info_ = redis:get(KEEPER..'user:Name' .. ap[2])
-local UserKeeper = user_info_
+local user_info_ = redis:get(SAKURA..'user:Name' .. ap[2])
+local UserSAKURA = user_info_
 if user_info_ then
 local hash = 'bot:owners:'..msg.chat_id_
-if redis:sismember(KEEPER..hash, ap[2]) then
-send(msg.chat_id_, msg.id_, 1, '👨‍✈️┊ العضو » (['..UserKeeper..'])\n⚠️┊ تم رفعه مدير سابقا\n✓‏', 1, 'md')
+if redis:sismember(SAKURA..hash, ap[2]) then
+send(msg.chat_id_, msg.id_, 1, '👨‍✈️┊ العضو » (['..UserSAKURA..'])\n⚠️┊ تم رفعه مدير سابقا\n✓‏', 1, 'md')
 else
-redis:sadd(KEEPER..hash, ap[2])
-send(msg.chat_id_, msg.id_, 1, '👨‍✈️┊ العضو » (['..UserKeeper..'])\n⚠️┊ تم رفعه مدير \n✓‏', 1, 'md')
+redis:sadd(SAKURA..hash, ap[2])
+send(msg.chat_id_, msg.id_, 1, '👨‍✈️┊ العضو » (['..UserSAKURA..'])\n⚠️┊ تم رفعه مدير \n✓‏', 1, 'md')
 end
 end
 end
 ------------------------deowner_by_reply-----------------------------------------------------------------------
 if text:match('^تنزيل مدير$') and is_monshi(msg.sender_user_id_, msg.chat_id_) and msg.reply_to_message_id_ then
 function deowner_by_reply(extra, result, success)
-local user_info_ = redis:get(KEEPER..'user:Name' .. result.sender_user_id_)
-local UserKeeper = user_info_
+local user_info_ = redis:get(SAKURA..'user:Name' .. result.sender_user_id_)
+local UserSAKURA = user_info_
 if user_info_ then
 local hash = 'bot:owners:'..msg.chat_id_
-if not redis:sismember(KEEPER..hash, result.sender_user_id_) then
-send(msg.chat_id_, msg.id_, 1, '👨‍✈️┊ العضو » (['..UserKeeper..'])\n⚠️┊ تم تنزيله مدير سابقا\n✓‏', 1, 'md')
+if not redis:sismember(SAKURA..hash, result.sender_user_id_) then
+send(msg.chat_id_, msg.id_, 1, '👨‍✈️┊ العضو » (['..UserSAKURA..'])\n⚠️┊ تم تنزيله مدير سابقا\n✓‏', 1, 'md')
 else
-redis:srem(KEEPER..hash, result.sender_user_id_)
-send(msg.chat_id_, msg.id_, 1, '👨‍✈️┊ العضو » (['..UserKeeper..'])\n⚠️┊ تم تنزيله من الاداره \n✓‏', 1, 'md')
+redis:srem(SAKURA..hash, result.sender_user_id_)
+send(msg.chat_id_, msg.id_, 1, '👨‍✈️┊ العضو » (['..UserSAKURA..'])\n⚠️┊ تم تنزيله من الاداره \n✓‏', 1, 'md')
 end
 end
 end
@@ -5905,10 +5901,10 @@ local hash = 'bot:owners:'..msg.chat_id_
 local ap = {string.match(text, '^(تنزيل مدير) @(%S+)$')}
 function remowner_by_username(extra, result, success)
 if result.id_ then
-if not redis:sismember(KEEPER..hash, result.id_) then
+if not redis:sismember(SAKURA..hash, result.id_) then
 send(msg.chat_id_, msg.id_, 1, '👨‍✈️┊ العضو » ([@'..ap[2]..'])\n⚠️┊ تم تنزيله مدير سابقا\n✓‏', 1, 'md')
 else
-redis:srem(KEEPER..hash, result.id_)
+redis:srem(SAKURA..hash, result.id_)
 send(msg.chat_id_, msg.id_, 1, '👨‍✈️┊ العضو » ([@'..ap[2]..'])\n⚠️┊ تم تنزيله من الاداره \n✓‏', 1, 'md')
 end
 end
@@ -5919,14 +5915,14 @@ end
 if text:match('^تنزيل مدير (%d+)$') and is_monshi(msg.sender_user_id_, msg.chat_id_) then
 local hash = 'bot:owners:'..msg.chat_id_
 local ap = {string.match(text, '^(تنزيل مدير) (%d+)$')}
-local user_info_ = redis:get(KEEPER..'user:Name' .. ap[2])
-local UserKeeper = user_info_
+local user_info_ = redis:get(SAKURA..'user:Name' .. ap[2])
+local UserSAKURA = user_info_
 if user_info_ then
-if not redis:sismember(KEEPER..hash, ap[2]) then
-send(msg.chat_id_, msg.id_, 1, '👨‍✈️┊ العضو » (['..UserKeeper..'])\n⚠️┊ تم تنزيله مدير سابقا\n✓‏', 1, 'md')
+if not redis:sismember(SAKURA..hash, ap[2]) then
+send(msg.chat_id_, msg.id_, 1, '👨‍✈️┊ العضو » (['..UserSAKURA..'])\n⚠️┊ تم تنزيله مدير سابقا\n✓‏', 1, 'md')
 else
-redis:srem(KEEPER..hash, ap[2])
-send(msg.chat_id_, msg.id_, 1, '👨‍✈️┊ العضو » (['..UserKeeper..'])\n⚠️┊ تم تنزيله من الاداره \n✓‏', 1, 'md')
+redis:srem(SAKURA..hash, ap[2])
+send(msg.chat_id_, msg.id_, 1, '👨‍✈️┊ العضو » (['..UserSAKURA..'])\n⚠️┊ تم تنزيله من الاداره \n✓‏', 1, 'md')
 end
 end
 end
@@ -5934,14 +5930,14 @@ end
 if text:match('^رفع منشى$') and is_sudo(msg) and msg.reply_to_message_id_ then
 function setmonshi_by_reply(extra, result, success)
 local hash = 'bot:monshis:'..msg.chat_id_
-local user_info_ = redis:get(KEEPER..'user:Name' .. result.sender_user_id_)
-local UserKeeper = user_info_
+local user_info_ = redis:get(SAKURA..'user:Name' .. result.sender_user_id_)
+local UserSAKURA = user_info_
 if user_info_ then
-if redis:sismember(KEEPER..hash, result.sender_user_id_) then
-send(msg.chat_id_, msg.id_, 1, '👨‍✈️┊ العضو » (['..UserKeeper..'])\n⚠️┊ تم رفعه منشىء سابقا \n✓‏', 1, 'md')
+if redis:sismember(SAKURA..hash, result.sender_user_id_) then
+send(msg.chat_id_, msg.id_, 1, '👨‍✈️┊ العضو » (['..UserSAKURA..'])\n⚠️┊ تم رفعه منشىء سابقا \n✓‏', 1, 'md')
 else
-redis:sadd(KEEPER..hash, result.sender_user_id_)
-send(msg.chat_id_, msg.id_, 1, '👨‍✈️┊ العضو » (['..UserKeeper..'])\n⚠️┊ تم رفعه منشى المجموعه \n✓‏', 1, 'md')
+redis:sadd(SAKURA..hash, result.sender_user_id_)
+send(msg.chat_id_, msg.id_, 1, '👨‍✈️┊ العضو » (['..UserSAKURA..'])\n⚠️┊ تم رفعه منشى المجموعه \n✓‏', 1, 'md')
 end
 end
 end
@@ -5953,10 +5949,10 @@ local ap = {string.match(text, '^(رفع منشى) @(%S+)$')}
 function setmonshi_by_username(extra, result, success)
 if result.id_ then
 local hash = 'bot:monshis:'..msg.chat_id_
-if redis:sismember(KEEPER..hash, result.id_) then
+if redis:sismember(SAKURA..hash, result.id_) then
 send(msg.chat_id_, msg.id_, 1, '👨‍✈️┊ العضو » ([@'..ap[2]..'])\n⚠️┊ تم رفعه منشىء سابقا \n✓‏', 1, 'md')
 else
-redis:sadd(KEEPER..hash, result.id_)
+redis:sadd(SAKURA..hash, result.id_)
 send(msg.chat_id_, msg.id_, 1, '👨‍✈️┊ العضو » ([@'..ap[2]..'])\n⚠️┊ تم رفعه منشى المجموعه \n✓‏', 1, 'md')
 end
 end
@@ -5966,30 +5962,30 @@ end
 ---------------------setmonshi_by_ID--------------------------------------------------------------------------
 if text:match('^رفع منشى (%d+)$') and is_sudo(msg) then
 local ap = {string.match(text, '^(رفع منشى) (%d+)$')}
-local user_info_ = redis:get(KEEPER..'user:Name' .. ap[2])
-local UserKeeper = user_info_
+local user_info_ = redis:get(SAKURA..'user:Name' .. ap[2])
+local UserSAKURA = user_info_
 if user_info_ then
 local hash = 'bot:monshis:'..msg.chat_id_
-if redis:sismember(KEEPER..hash, ap[2]) then
-send(msg.chat_id_, msg.id_, 1, '👨‍✈️┊ العضو » (['..UserKeeper..'])\n⚠️┊ تم رفعه منشىء سابقا \n✓‏', 1, 'md')
+if redis:sismember(SAKURA..hash, ap[2]) then
+send(msg.chat_id_, msg.id_, 1, '👨‍✈️┊ العضو » (['..UserSAKURA..'])\n⚠️┊ تم رفعه منشىء سابقا \n✓‏', 1, 'md')
 else
-redis:sadd(KEEPER..hash, ap[2])
-send(msg.chat_id_, msg.id_, 1, '👨‍✈️┊ العضو » (['..UserKeeper..'])\n⚠️┊ تم رفعه منشى المجموعه \n✓‏', 1, 'md')
+redis:sadd(SAKURA..hash, ap[2])
+send(msg.chat_id_, msg.id_, 1, '👨‍✈️┊ العضو » (['..UserSAKURA..'])\n⚠️┊ تم رفعه منشى المجموعه \n✓‏', 1, 'md')
 end
 end
 end
 -------------demonshi_by_reply----------------------------------------------------------------------------------
 if text:match('^تنزيل منشى$') and is_sudo(msg) and msg.reply_to_message_id_ then
 function demonshi_by_reply(extra, result, success)
-local user_info_ = redis:get(KEEPER..'user:Name' .. result.sender_user_id_)
-local UserKeeper = user_info_
+local user_info_ = redis:get(SAKURA..'user:Name' .. result.sender_user_id_)
+local UserSAKURA = user_info_
 if user_info_ then
 local hash = 'bot:monshis:'..msg.chat_id_
-if not redis:sismember(KEEPER..hash, result.sender_user_id_) then
-send(msg.chat_id_, msg.id_, 1, '👨‍✈️┊ العضو » (['..UserKeeper..'])\n⚠️┊ تم تنزيله منشىء سابقا\n✓‏', 1, 'md')
+if not redis:sismember(SAKURA..hash, result.sender_user_id_) then
+send(msg.chat_id_, msg.id_, 1, '👨‍✈️┊ العضو » (['..UserSAKURA..'])\n⚠️┊ تم تنزيله منشىء سابقا\n✓‏', 1, 'md')
 else
-redis:srem(KEEPER..hash, result.sender_user_id_)
-send(msg.chat_id_, msg.id_, 1, '👨‍✈️┊ العضو » (['..UserKeeper..'])\n⚠️┊ تم تنزيله من المنشئين \n✓‏', 1, 'md')
+redis:srem(SAKURA..hash, result.sender_user_id_)
+send(msg.chat_id_, msg.id_, 1, '👨‍✈️┊ العضو » (['..UserSAKURA..'])\n⚠️┊ تم تنزيله من المنشئين \n✓‏', 1, 'md')
 end
 end
 end
@@ -6001,10 +5997,10 @@ local hash = 'bot:monshis:'..msg.chat_id_
 local ap = {string.match(text, '^(تنزيل منشى) @(%S+)$')}
 function demonshi_by_username(extra, result, success)
 if result.id_ then
-if not redis:sismember(KEEPER..hash, result.id_) then
+if not redis:sismember(SAKURA..hash, result.id_) then
 send(msg.chat_id_, msg.id_, 1, '👨‍✈️┊ العضو » ([@'..ap[2]..'])\n⚠️┊ تم تنزيله منشىء سابقا\n✓‏', 1, 'md')
 else
-redis:srem(KEEPER..hash, result.id_)
+redis:srem(SAKURA..hash, result.id_)
 send(msg.chat_id_, msg.id_, 1, '👨‍✈️┊ العضو » ([@'..ap[2]..'])\n⚠️┊ تم تنزيله من المنشئين \n✓‏', 1, 'md')
 end
 end
@@ -6014,15 +6010,15 @@ end
 -----------------demonshi_by_ID------------------------------------------------------------------------------
 if text:match('^تنزيل منشى (%d+)$') and is_sudo(msg) then
 local ap = {string.match(text, '^(تنزيل منشى) (%d+)$')}
-local user_info_ = redis:get(KEEPER..'user:Name' .. ap[2])
-local UserKeeper = user_info_
+local user_info_ = redis:get(SAKURA..'user:Name' .. ap[2])
+local UserSAKURA = user_info_
 if user_info_ then
 local hash = 'bot:monshis:'..msg.chat_id_
-if not redis:sismember(KEEPER..hash, ap[2]) then
-send(msg.chat_id_, msg.id_, 1, '👨‍✈️┊ العضو » (['..UserKeeper..'])\n⚠️┊ تم تنزيله منشىء سابقا\n✓‏', 1, 'md')
+if not redis:sismember(SAKURA..hash, ap[2]) then
+send(msg.chat_id_, msg.id_, 1, '👨‍✈️┊ العضو » (['..UserSAKURA..'])\n⚠️┊ تم تنزيله منشىء سابقا\n✓‏', 1, 'md')
 else
-redis:srem(KEEPER..hash, ap[2])
-send(msg.chat_id_, msg.id_, 1, '👨‍✈️┊ العضو » (['..UserKeeper..'])\n⚠️┊ تم تنزيله من المنشئين \n✓‏', 1, 'md')
+redis:srem(SAKURA..hash, ap[2])
+send(msg.chat_id_, msg.id_, 1, '👨‍✈️┊ العضو » (['..UserSAKURA..'])\n⚠️┊ تم تنزيله من المنشئين \n✓‏', 1, 'md')
 end
 end
 end
@@ -6030,14 +6026,14 @@ end
 if text:match('^اضف ادمن$') and is_sudo(msg) and msg.reply_to_message_id_ then
 function addadmin_by_reply(extra, result, success)
 local hash = 'bot:admins:'
-local user_info_ = redis:get(KEEPER..'user:Name' .. result.sender_user_id_)
-local UserKeeper = user_info_
+local user_info_ = redis:get(SAKURA..'user:Name' .. result.sender_user_id_)
+local UserSAKURA = user_info_
 if user_info_ then
-if redis:sismember(KEEPER..hash, result.sender_user_id_) then
-send(msg.chat_id_, msg.id_, 1, '👨‍✈️┊ العضو » (['..UserKeeper..'])\n⚠️┊ تم اضافه ادمن في البوت \n✓‏', 1, 'md')
+if redis:sismember(SAKURA..hash, result.sender_user_id_) then
+send(msg.chat_id_, msg.id_, 1, '👨‍✈️┊ العضو » (['..UserSAKURA..'])\n⚠️┊ تم اضافه ادمن في البوت \n✓‏', 1, 'md')
 else
-redis:sadd(KEEPER..hash, result.sender_user_id_)
-send(msg.chat_id_, msg.id_, 1, '👨‍✈️┊ العضو » (['..UserKeeper..'])\n⚠️┊ تم اضافه ادمن في البوت \n✓‏', 1, 'md')
+redis:sadd(SAKURA..hash, result.sender_user_id_)
+send(msg.chat_id_, msg.id_, 1, '👨‍✈️┊ العضو » (['..UserSAKURA..'])\n⚠️┊ تم اضافه ادمن في البوت \n✓‏', 1, 'md')
 end
 end
 end
@@ -6048,7 +6044,7 @@ if text:match('^اضف ادمن @(%S+)$') and is_sudo(msg) then
 local ap = {string.match(text, '^(اضف ادمن) @(%S+)$')}
 function addadmin_by_username(extra, result, success)
 if result.id_ then
-redis:sadd(KEEPER..'bot:admins:', result.id_)
+redis:sadd(SAKURA..'bot:admins:', result.id_)
 texts = '👨‍✈️┊ العضو » ([@'..ap[2]..'])\n⚠️┊ تم اضافه ادمن في البوت \n✓‏'
 else
 texts = '🌀┊ لا يوجد عضو بهذا المعرف 🍃'
@@ -6061,14 +6057,14 @@ end
 if text:match('^اضف ادمن (%d+)$') and is_sudo(msg) then
 local ap = {string.match(text, '^(اضف ادمن) (%d+)$')}
 local hash = 'bot:admins:'
-local user_info_ = redis:get(KEEPER..'user:Name' .. ap[2])
-local UserKeeper = user_info_
+local user_info_ = redis:get(SAKURA..'user:Name' .. ap[2])
+local UserSAKURA = user_info_
 if user_info_ then
-if redis:sismember(KEEPER..hash, ap[2]) then
-send(msg.chat_id_, msg.id_, 1, '👨‍✈️┊ العضو » (['..UserKeeper..'])\n⚠️┊ تم اضافه ادمن في البوت \n✓‏', 1, 'md')
+if redis:sismember(SAKURA..hash, ap[2]) then
+send(msg.chat_id_, msg.id_, 1, '👨‍✈️┊ العضو » (['..UserSAKURA..'])\n⚠️┊ تم اضافه ادمن في البوت \n✓‏', 1, 'md')
 else
-redis:sadd(KEEPER..hash, ap[2])
-send(msg.chat_id_, msg.id_, 1, '👨‍✈️┊ العضو » (['..UserKeeper..'])\n⚠️┊ تم اضافه ادمن في البوت \n✓‏', 1, 'md')
+redis:sadd(SAKURA..hash, ap[2])
+send(msg.chat_id_, msg.id_, 1, '👨‍✈️┊ العضو » (['..UserSAKURA..'])\n⚠️┊ تم اضافه ادمن في البوت \n✓‏', 1, 'md')
 end
 end
 end
@@ -6076,14 +6072,14 @@ end
 if text:match('^حذف ادمن$') and is_sudo(msg) and msg.reply_to_message_id_ then
 function deadmin_by_reply(extra, result, success)
 local hash = 'bot:admins:'
-local user_info_ = redis:get(KEEPER..'user:Name' .. result.sender_user_id_)
-local UserKeeper = user_info_
+local user_info_ = redis:get(SAKURA..'user:Name' .. result.sender_user_id_)
+local UserSAKURA = user_info_
 if user_info_ then
-if not redis:sismember(KEEPER..hash, result.sender_user_id_) then
-send(msg.chat_id_, msg.id_, 1, '👨‍✈️┊ العضو » (['..UserKeeper..'])\n⚠️┊ تم حذفه من ادمنيه البوت \n✓‏', 1, 'md')
+if not redis:sismember(SAKURA..hash, result.sender_user_id_) then
+send(msg.chat_id_, msg.id_, 1, '👨‍✈️┊ العضو » (['..UserSAKURA..'])\n⚠️┊ تم حذفه من ادمنيه البوت \n✓‏', 1, 'md')
 else
-redis:srem(KEEPER..hash, result.sender_user_id_)
-send(msg.chat_id_, msg.id_, 1, '👨‍✈️┊ العضو » (['..UserKeeper..'])\n⚠️┊ تم حذفه من ادمنيه البوت \n✓‏', 1, 'md')
+redis:srem(SAKURA..hash, result.sender_user_id_)
+send(msg.chat_id_, msg.id_, 1, '👨‍✈️┊ العضو » (['..UserSAKURA..'])\n⚠️┊ تم حذفه من ادمنيه البوت \n✓‏', 1, 'md')
 end
 end
 end
@@ -6095,7 +6091,7 @@ local hash = 'bot:admins:'
 local ap = {string.match(text, '^(حذف ادمن) @(%S+)$')}
 function remadmin_by_username(extra, result, success)
 if result.id_ then
-redis:srem(KEEPER..hash, result.id_)
+redis:srem(SAKURA..hash, result.id_)
 texts = '👨‍✈️┊ العضو » ([@'..ap[2]..'])\n⚠️┊ تم حذفه من ادمنيه البوت \n✓‏'
 else
 texts = '🌀┊ لا يوجد عضو بهذا المعرف 🍃'
@@ -6108,14 +6104,14 @@ end
 if text:match('^حذف ادمن (%d+)$') and is_sudo(msg) then
 local ap = {string.match(text, '^(حذف ادمن) (%d+)$')}
 local hash = 'bot:admins:'
-local user_info_ = redis:get(KEEPER..'user:Name' .. ap[2])
-local UserKeeper = user_info_
+local user_info_ = redis:get(SAKURA..'user:Name' .. ap[2])
+local UserSAKURA = user_info_
 if user_info_ then
-if not redis:sismember(KEEPER..hash, ap[2]) then
-send(msg.chat_id_, msg.id_, 1, '👨‍✈️┊ العضو » (['..UserKeeper..'])\n⚠️┊ تم حذفه من ادمنيه البوت \n✓‏', 1, 'md')
+if not redis:sismember(SAKURA..hash, ap[2]) then
+send(msg.chat_id_, msg.id_, 1, '👨‍✈️┊ العضو » (['..UserSAKURA..'])\n⚠️┊ تم حذفه من ادمنيه البوت \n✓‏', 1, 'md')
 else
-redis:srem(KEEPER..hash, ap[2])
-send(msg.chat_id_, msg.id_, 1, '👨‍✈️┊ العضو » (['..UserKeeper..'])\n⚠️┊ تم حذفه من ادمنيه البوت \n✓‏', 1, 'md')
+redis:srem(SAKURA..hash, ap[2])
+send(msg.chat_id_, msg.id_, 1, '👨‍✈️┊ العضو » (['..UserSAKURA..'])\n⚠️┊ تم حذفه من ادمنيه البوت \n✓‏', 1, 'md')
 end
 end
 end
@@ -6133,21 +6129,21 @@ getMessage(msg.chat_id_,msg.reply_to_message_id_,kick_reply)
 end
 --------------DEL MSG BOT --------------------------------------------------------------------------------------
 if text:match('^مسح رسائل البوت$') and is_sudo(msg) then
-redis:del(KEEPER..'bot:allmsgs')
+redis:del(SAKURA..'bot:allmsgs')
 send(msg.chat_id_, msg.id_, 1, '🌀┊ تم حذف رسائل البوت في المجموعه', 1, 'md')
 end
--------------ADD KEEPER_SUDO----------------------------------------------------------------------------------
+-------------ADD SAKURA_SUDO----------------------------------------------------------------------------------
 if is_KP(msg) and text:match('^رفع مطور$') and msg.reply_to_message_id_ then
 function promoteSudo_by_reply(extra, result, success)
 local hash = 'Bot:KpSudos'
-local user_info_ = redis:get(KEEPER..'user:Name' ..result.sender_user_id_)
-local UserKeeper = user_info_
+local user_info_ = redis:get(SAKURA..'user:Name' ..result.sender_user_id_)
+local UserSAKURA = user_info_
 if user_info_ then
-if redis:sismember(KEEPER..hash, result.sender_user_id_) then
-send(msg.chat_id_, msg.id_, 1, '👨‍✈️┊ العضو » (['..UserKeeper..'])\n⚠️┊ تم رفعه مطور سابقا\n✓‏', 1, 'md')
+if redis:sismember(SAKURA..hash, result.sender_user_id_) then
+send(msg.chat_id_, msg.id_, 1, '👨‍✈️┊ العضو » (['..UserSAKURA..'])\n⚠️┊ تم رفعه مطور سابقا\n✓‏', 1, 'md')
 else
-redis:sadd(KEEPER..hash, result.sender_user_id_)
-send(msg.chat_id_, msg.id_, 1, '👨‍✈️┊ العضو » (['..UserKeeper..'])\n⚠️┊ تم رفعه مطور في البوت \n✓‏', 1, 'md')
+redis:sadd(SAKURA..hash, result.sender_user_id_)
+send(msg.chat_id_, msg.id_, 1, '👨‍✈️┊ العضو » (['..UserSAKURA..'])\n⚠️┊ تم رفعه مطور في البوت \n✓‏', 1, 'md')
 table.insert(_config.Sudo_Users, tonumber(result.sender_user_id_))
 save_on_config()
 load_config()
@@ -6156,16 +6152,16 @@ end
 end
 getMessage(msg.chat_id_, msg.reply_to_message_id_, promoteSudo_by_reply)
 end
--------------ADD KEEPER_SUDO----------------------------------------------------------------------------------
+-------------ADD SAKURA_SUDO----------------------------------------------------------------------------------
 if text:match('^رفع مطور @(%S+)$') and is_KP(msg) then
 local ap = {string.match(text, '^(رفع مطور) @(%S+)$')}
 function promoteSudo_by_username(extra, result, success)
 local hash = 'Bot:KpSudos'
 if result.id_ then
-if redis:sismember(KEEPER..hash, result.id_) then
+if redis:sismember(SAKURA..hash, result.id_) then
 send(msg.chat_id_, msg.id_, 1, '👨‍✈️┊ العضو » ([@'..ap[2]..'])\n⚠️┊ تم رفعه مطور سابقا\n✓‏', 1, 'md')
 else
-redis:sadd(KEEPER..hash, result.id_)
+redis:sadd(SAKURA..hash, result.id_)
 send(msg.chat_id_, msg.id_, 1, '👨‍✈️┊ العضو » ([@'..ap[2]..'])\n⚠️┊ تم رفعه مطور في البوت \n✓‏', 1, 'md')
 table.insert(_config.Sudo_Users, tonumber(result.id_))
 save_on_config()
@@ -6175,36 +6171,36 @@ end
 end
 resolve_username(ap[2],promoteSudo_by_username)
 end
--------------ADD KEEPER_SUDO----------------------------------------------------------------------------------
+-------------ADD SAKURA_SUDO----------------------------------------------------------------------------------
 if text:match('^رفع مطور (%d+)$') and is_KP(msg) then
 local ap = {string.match(text, '^(رفع مطور) (%d+)$')}
 local hash = 'Bot:KpSudos'
-local user_info_ = redis:get(KEEPER..'user:Name' ..ap[2])
-local UserKeeper = user_info_
+local user_info_ = redis:get(SAKURA..'user:Name' ..ap[2])
+local UserSAKURA = user_info_
 if user_info_ then
-if redis:sismember(KEEPER..hash, ap[2]) then
-send(msg.chat_id_, msg.id_, 1, '👨‍✈️┊ العضو » (['..UserKeeper..'])\n⚠️┊ تم رفعه مطور سابقا\n✓‏', 1, 'md')
+if redis:sismember(SAKURA..hash, ap[2]) then
+send(msg.chat_id_, msg.id_, 1, '👨‍✈️┊ العضو » (['..UserSAKURA..'])\n⚠️┊ تم رفعه مطور سابقا\n✓‏', 1, 'md')
 else
-redis:sadd(KEEPER..hash, ap[2])
-send(msg.chat_id_, msg.id_, 1, '👨‍✈️┊ العضو » (['..UserKeeper..'])\n⚠️┊ تم رفعه مطور في البوت \n✓‏', 1, 'md')
+redis:sadd(SAKURA..hash, ap[2])
+send(msg.chat_id_, msg.id_, 1, '👨‍✈️┊ العضو » (['..UserSAKURA..'])\n⚠️┊ تم رفعه مطور في البوت \n✓‏', 1, 'md')
 table.insert(_config.Sudo_Users, tonumber(ap[2]))
 save_on_config()
 load_config()
 end
 end
 end
---------------REM KEEPER_SUDO---------------------------------------------------------------------------------
+--------------REM SAKURA_SUDO---------------------------------------------------------------------------------
 if is_KP(msg) and text:match('^تنزيل مطور$') and msg.reply_to_message_id_ then
 function demoteSudo_by_reply(extra, result, success)
 local hash = 'Bot:KpSudos'
-local user_info_ = redis:get(KEEPER..'user:Name' ..result.sender_user_id_)
-local UserKeeper = user_info_
+local user_info_ = redis:get(SAKURA..'user:Name' ..result.sender_user_id_)
+local UserSAKURA = user_info_
 if user_info_ then
-if not redis:sismember(KEEPER..hash, result.sender_user_id_) then
-send(msg.chat_id_, msg.id_, 1, '👨‍✈️┊ العضو » (['..UserKeeper..'])\n⚠️┊ تم تنزيله مطور سابقا\n✓‏', 1, 'md')
+if not redis:sismember(SAKURA..hash, result.sender_user_id_) then
+send(msg.chat_id_, msg.id_, 1, '👨‍✈️┊ العضو » (['..UserSAKURA..'])\n⚠️┊ تم تنزيله مطور سابقا\n✓‏', 1, 'md')
 else
-redis:srem(KEEPER..hash, result.sender_user_id_)
-send(msg.chat_id_, msg.id_, 1, '👨‍✈️┊ العضو » (['..UserKeeper..'])\n⚠️┊ تم تنزيله من المطورين \n✓‏', 1, 'md')
+redis:srem(SAKURA..hash, result.sender_user_id_)
+send(msg.chat_id_, msg.id_, 1, '👨‍✈️┊ العضو » (['..UserSAKURA..'])\n⚠️┊ تم تنزيله من المطورين \n✓‏', 1, 'md')
 table.remove(_config.Sudo_Users, getindex(_config.Sudo_Users, tonumber(result.sender_user_id_)))
 save_on_config()
 load_config()
@@ -6213,16 +6209,16 @@ end
 end
 getMessage(msg.chat_id_, msg.reply_to_message_id_, demoteSudo_by_reply)
 end
---------------REM KEEPER_SUDO---------------------------------------------------------------------------------
+--------------REM SAKURA_SUDO---------------------------------------------------------------------------------
 if text:match('^تنزيل مطور @(%S+)$') and is_KP(msg) then
 local ap = {string.match(text, '^(تنزيل مطور) @(%S+)$')}
 function demoteSudo_by_username(extra, result, success)
 local hash = 'Bot:KpSudos'
 if result.id_ then
-if not redis:sismember(KEEPER..hash, result.id_) then
+if not redis:sismember(SAKURA..hash, result.id_) then
 send(msg.chat_id_, msg.id_, 1, '👨‍✈️┊ العضو » ([@'..ap[2]..'])\n⚠️┊ تم تنزيله مطور سابقا\n✓‏', 1, 'md')
 else
-redis:srem(KEEPER..hash, result.id_)
+redis:srem(SAKURA..hash, result.id_)
 send(msg.chat_id_, msg.id_, 1, '👨‍✈️┊ العضو » ([@'..ap[2]..'])\n⚠️┊ تم تنزيله من المطورين \n✓‏', 1, 'md')
 table.remove(_config.Sudo_Users, getindex(_config.Sudo_Users, tonumber(result.id_)))
 save_on_config()
@@ -6232,19 +6228,19 @@ end
 end
 resolve_username(ap[2],demoteSudo_by_username)
 end
---------------REM KEEPER_SUDO---------------------------------------------------------------------------------
+--------------REM SAKURA_SUDO---------------------------------------------------------------------------------
 if text:match('^تنزيل مطور (%d+)$') and is_KP(msg) then
 local ap = {string.match(text, '^(تنزيل مطور) (%d+)$')}
 local hash = 'Bot:KpSudos'
 local karrar = tonumber(ap[2])
-local user_info_ = redis:get(KEEPER..'user:Name' ..ap[2])
-local UserKeeper = user_info_
+local user_info_ = redis:get(SAKURA..'user:Name' ..ap[2])
+local UserSAKURA = user_info_
 if user_info_ then
-if not redis:sismember(KEEPER..hash, ap[2]) then
-send(msg.chat_id_, msg.id_, 1, '👨‍✈️┊ العضو » (['..UserKeeper..'])\n⚠️┊ تم تنزيله مطور سابقا\n✓‏', 1, 'md')
+if not redis:sismember(SAKURA..hash, ap[2]) then
+send(msg.chat_id_, msg.id_, 1, '👨‍✈️┊ العضو » (['..UserSAKURA..'])\n⚠️┊ تم تنزيله مطور سابقا\n✓‏', 1, 'md')
 else
-redis:srem(KEEPER..hash, ap[2])
-send(msg.chat_id_, msg.id_, 1, '👨‍✈️┊ العضو » (['..UserKeeper..'])\n⚠️┊ تم تنزيله من المطورين \n✓‏', 1, 'md')
+redis:srem(SAKURA..hash, ap[2])
+send(msg.chat_id_, msg.id_, 1, '👨‍✈️┊ العضو » (['..UserSAKURA..'])\n⚠️┊ تم تنزيله من المطورين \n✓‏', 1, 'md')
 table.remove(_config.Sudo_Users, getindex(_config.Sudo_Users, karrar))
 save_on_config()
 load_config()
@@ -6254,19 +6250,19 @@ end
 -------------------------------------------------------------
 if text:match('^حذف كل الرتب$') and is_monshi(msg.sender_user_id_, msg.chat_id_) and msg.reply_to_message_id_ then
 function delallrtb(extra, result, success)
-local user_info_ = redis:get(KEEPER..'user:Name' ..result.sender_user_id_)
-local UserKeeper = user_info_
+local user_info_ = redis:get(SAKURA..'user:Name' ..result.sender_user_id_)
+local UserSAKURA = user_info_
 if user_info_ then
-local k1 = not redis:sismember(KEEPER..'bot:owners:'..msg.chat_id_, result.sender_user_id_)
-local k2 = not redis:sismember(KEEPER..'bot:momod:'..msg.chat_id_, result.sender_user_id_)
-local k3 = not redis:sismember(KEEPER..'bot:vipmem:'..msg.chat_id_, result.sender_user_id_)
+local k1 = not redis:sismember(SAKURA..'bot:owners:'..msg.chat_id_, result.sender_user_id_)
+local k2 = not redis:sismember(SAKURA..'bot:momod:'..msg.chat_id_, result.sender_user_id_)
+local k3 = not redis:sismember(SAKURA..'bot:vipmem:'..msg.chat_id_, result.sender_user_id_)
 if k1 and k2 and k3 then
-send(msg.chat_id_, msg.id_, 1, '👨‍✈️┊ العضو » (['..UserKeeper..'])\n⚠️┊ لا توجد لديه رتبه\n✓‏', 1, 'md')
+send(msg.chat_id_, msg.id_, 1, '👨‍✈️┊ العضو » (['..UserSAKURA..'])\n⚠️┊ لا توجد لديه رتبه\n✓‏', 1, 'md')
 else
-redis:srem(KEEPER..'bot:owners:'..msg.chat_id_, result.sender_user_id_)
-redis:srem(KEEPER..'bot:momod:'..msg.chat_id_, result.sender_user_id_)
-redis:srem(KEEPER..'bot:vipmem:'..msg.chat_id_, result.sender_user_id_)
-send(msg.chat_id_, msg.id_, 1, '👨‍✈️┊ العضو » (['..UserKeeper..'])\n⚠️┊ تم حذف كل الرتب عنه \n✓‏', 1, 'md')
+redis:srem(SAKURA..'bot:owners:'..msg.chat_id_, result.sender_user_id_)
+redis:srem(SAKURA..'bot:momod:'..msg.chat_id_, result.sender_user_id_)
+redis:srem(SAKURA..'bot:vipmem:'..msg.chat_id_, result.sender_user_id_)
+send(msg.chat_id_, msg.id_, 1, '👨‍✈️┊ العضو » (['..UserSAKURA..'])\n⚠️┊ تم حذف كل الرتب عنه \n✓‏', 1, 'md')
 end
 end
 end
@@ -6277,15 +6273,15 @@ if text:match('^حذف كل الرتب @(%S+)$') and is_monshi(msg.sender_user_i
 local ap = {string.match(text, '^(حذف كل الرتب) @(%S+)$')}
 function delallrtb(extra, result, success)
 if result.id_ then
-local k1 = not redis:sismember(KEEPER..'bot:owners:'..msg.chat_id_, result.id_)
-local k2 = not redis:sismember(KEEPER..'bot:momod:'..msg.chat_id_, result.id_)
-local k3 = not redis:sismember(KEEPER..'bot:vipmem:'..msg.chat_id_, result.id_)
+local k1 = not redis:sismember(SAKURA..'bot:owners:'..msg.chat_id_, result.id_)
+local k2 = not redis:sismember(SAKURA..'bot:momod:'..msg.chat_id_, result.id_)
+local k3 = not redis:sismember(SAKURA..'bot:vipmem:'..msg.chat_id_, result.id_)
 if k1 and k2 and k3 then
 send(msg.chat_id_, msg.id_, 1, '👨‍✈️┊ العضو » ([@'..ap[2]..'])\n⚠️┊ لا توجد لديه رتبه\n✓‏', 1, 'md')
 else
-redis:srem(KEEPER..'bot:owners:'..msg.chat_id_, result.id_)
-redis:srem(KEEPER..'bot:momod:'..msg.chat_id_, result.id_)
-redis:srem(KEEPER..'bot:vipmem:'..msg.chat_id_, result.id_)
+redis:srem(SAKURA..'bot:owners:'..msg.chat_id_, result.id_)
+redis:srem(SAKURA..'bot:momod:'..msg.chat_id_, result.id_)
+redis:srem(SAKURA..'bot:vipmem:'..msg.chat_id_, result.id_)
 send(msg.chat_id_, msg.id_, 1, '👨‍✈️┊ العضو » ([@'..ap[2]..'])\n⚠️┊ تم حذف كل الرتب عنه \n✓‏', 1, 'md')
 end
 end
@@ -6295,39 +6291,39 @@ end
 --------------------------------------------------------------------
 if text:match('^حذف كل الرتب (%d+)$') and is_monshi(msg.sender_user_id_, msg.chat_id_) then
 local ap = {string.match(text, '^(حذف كل الرتب) (%d+)$')}
-local user_info_ = redis:get(KEEPER..'user:Name' ..ap[2])
-local UserKeeper = user_info_
+local user_info_ = redis:get(SAKURA..'user:Name' ..ap[2])
+local UserSAKURA = user_info_
 if user_info_ then
-local k1 = not redis:sismember(KEEPER..'bot:owners:'..msg.chat_id_, ap[2])
-local k2 = not redis:sismember(KEEPER..'bot:momod:'..msg.chat_id_, ap[2])
-local k3 = not redis:sismember(KEEPER..'bot:vipmem:'..msg.chat_id_, ap[2])
+local k1 = not redis:sismember(SAKURA..'bot:owners:'..msg.chat_id_, ap[2])
+local k2 = not redis:sismember(SAKURA..'bot:momod:'..msg.chat_id_, ap[2])
+local k3 = not redis:sismember(SAKURA..'bot:vipmem:'..msg.chat_id_, ap[2])
 if k1 and k2 and k3 then
-send(msg.chat_id_, msg.id_, 1, '👨‍✈️┊ العضو » (['..UserKeeper..'])\n⚠️┊ لا توجد لديه رتبه\n✓‏', 1, 'md')
+send(msg.chat_id_, msg.id_, 1, '👨‍✈️┊ العضو » (['..UserSAKURA..'])\n⚠️┊ لا توجد لديه رتبه\n✓‏', 1, 'md')
 else
-redis:srem(KEEPER..'bot:owners:'..msg.chat_id_, ap[2])
-redis:srem(KEEPER..'bot:momod:'..msg.chat_id_, ap[2])
-redis:srem(KEEPER..'bot:vipmem:'..msg.chat_id_, ap[2])
-send(msg.chat_id_, msg.id_, 1, '👨‍✈️┊ العضو » (['..UserKeeper..'])\n⚠️┊ تم حذف كل الرتب عنه \n✓‏', 1, 'md')
+redis:srem(SAKURA..'bot:owners:'..msg.chat_id_, ap[2])
+redis:srem(SAKURA..'bot:momod:'..msg.chat_id_, ap[2])
+redis:srem(SAKURA..'bot:vipmem:'..msg.chat_id_, ap[2])
+send(msg.chat_id_, msg.id_, 1, '👨‍✈️┊ العضو » (['..UserSAKURA..'])\n⚠️┊ تم حذف كل الرتب عنه \n✓‏', 1, 'md')
 end
 end
 end
 ------------------------------------------------------------------
 if text:match('^رفع قيود$') and is_monshi(msg.sender_user_id_, msg.chat_id_) and msg.reply_to_message_id_ then
 function delallrtb(extra, result, success)
-local user_info_ = redis:get(KEEPER..'user:Name' ..result.sender_user_id_)
-local UserKeeper = user_info_
+local user_info_ = redis:get(SAKURA..'user:Name' ..result.sender_user_id_)
+local UserSAKURA = user_info_
 if user_info_ then
-local k1 = not redis:sismember(KEEPER..'bot:keed:'..msg.chat_id_, result.sender_user_id_)
-local k2 = not redis:sismember(KEEPER..'bot:muted:'..msg.chat_id_, result.sender_user_id_)
-local k3 = not redis:sismember(KEEPER..'bot:banned:'..msg.chat_id_, result.sender_user_id_)
+local k1 = not redis:sismember(SAKURA..'bot:keed:'..msg.chat_id_, result.sender_user_id_)
+local k2 = not redis:sismember(SAKURA..'bot:muted:'..msg.chat_id_, result.sender_user_id_)
+local k3 = not redis:sismember(SAKURA..'bot:banned:'..msg.chat_id_, result.sender_user_id_)
 if k1 and k2 and k3 then
-send(msg.chat_id_, msg.id_, 1, '👨‍✈️┊ العضو » (['..UserKeeper..'])\n⚠️┊ لا توجد لديه قيـــــــود\n✓‏', 1, 'md')
+send(msg.chat_id_, msg.id_, 1, '👨‍✈️┊ العضو » (['..UserSAKURA..'])\n⚠️┊ لا توجد لديه قيـــــــود\n✓‏', 1, 'md')
 else
-HTTPS.request('https://api.telegram.org/bot'..KEEPER_TOKEN..'/restrictChatMember?chat_id=' ..msg.chat_id_.. '&user_id=' ..result.sender_user_id_..'&can_send_messages=True&can_send_media_messages=True&can_send_other_messages=True&can_add_web_page_previews=True')
-redis:srem(KEEPER..'bot:keed:'..msg.chat_id_, result.sender_user_id_)
-redis:srem(KEEPER..'bot:muted:'..msg.chat_id_, result.sender_user_id_)
-redis:srem(KEEPER..'bot:banned:'..msg.chat_id_, result.sender_user_id_)
-send(msg.chat_id_, msg.id_, 1, '👨‍✈️┊ العضو » (['..UserKeeper..'])\n⚠️┊ تم رفع القيود عنه \n✓‏', 1, 'md')
+HTTPS.request('https://api.telegram.org/bot'..SAKURA_TOKEN..'/restrictChatMember?chat_id=' ..msg.chat_id_.. '&user_id=' ..result.sender_user_id_..'&can_send_messages=True&can_send_media_messages=True&can_send_other_messages=True&can_add_web_page_previews=True')
+redis:srem(SAKURA..'bot:keed:'..msg.chat_id_, result.sender_user_id_)
+redis:srem(SAKURA..'bot:muted:'..msg.chat_id_, result.sender_user_id_)
+redis:srem(SAKURA..'bot:banned:'..msg.chat_id_, result.sender_user_id_)
+send(msg.chat_id_, msg.id_, 1, '👨‍✈️┊ العضو » (['..UserSAKURA..'])\n⚠️┊ تم رفع القيود عنه \n✓‏', 1, 'md')
 end
 end
 end
@@ -6338,16 +6334,16 @@ if text:match('^رفع قيود @(%S+)$') and is_monshi(msg.sender_user_id_, msg
 local ap = {string.match(text, '^(رفع قيود) @(%S+)$')}
 function delallrtb(extra, result, success)
 if result.id_ then
-local k1 = not redis:sismember(KEEPER..'bot:keed:'..msg.chat_id_, result.id_)
-local k2 = not redis:sismember(KEEPER..'bot:muted:'..msg.chat_id_, result.id_)
-local k3 = not redis:sismember(KEEPER..'bot:banned:'..msg.chat_id_, result.id_)
+local k1 = not redis:sismember(SAKURA..'bot:keed:'..msg.chat_id_, result.id_)
+local k2 = not redis:sismember(SAKURA..'bot:muted:'..msg.chat_id_, result.id_)
+local k3 = not redis:sismember(SAKURA..'bot:banned:'..msg.chat_id_, result.id_)
 if k1 and k2 and k3 then
 send(msg.chat_id_, msg.id_, 1, '👨‍✈️┊ العضو » ([@'..ap[2]..'])\n⚠️┊ لا توجد لديه قيـــــــود\n✓‏', 1, 'md')
 else
-HTTPS.request('https://api.telegram.org/bot'..KEEPER_TOKEN..'/restrictChatMember?chat_id=' ..msg.chat_id_.. '&user_id=' ..result.id_..'&can_send_messages=True&can_send_media_messages=True&can_send_other_messages=True&can_add_web_page_previews=True')
-redis:srem(KEEPER..'bot:keed:'..msg.chat_id_, result.id_)
-redis:srem(KEEPER..'bot:muted:'..msg.chat_id_, result.id_)
-redis:srem(KEEPER..'bot:banned:'..msg.chat_id_, result.id_)
+HTTPS.request('https://api.telegram.org/bot'..SAKURA_TOKEN..'/restrictChatMember?chat_id=' ..msg.chat_id_.. '&user_id=' ..result.id_..'&can_send_messages=True&can_send_media_messages=True&can_send_other_messages=True&can_add_web_page_previews=True')
+redis:srem(SAKURA..'bot:keed:'..msg.chat_id_, result.id_)
+redis:srem(SAKURA..'bot:muted:'..msg.chat_id_, result.id_)
+redis:srem(SAKURA..'bot:banned:'..msg.chat_id_, result.id_)
 send(msg.chat_id_, msg.id_, 1, '👨‍✈️┊ العضو » ([@'..ap[2]..'])\n⚠️┊ تم رفع القيود عنه \n✓‏', 1, 'md')
 end
 end
@@ -6357,26 +6353,26 @@ end
 --------------------------------------------------------------------
 if text:match('^رفع قيود (%d+)$') and is_monshi(msg.sender_user_id_, msg.chat_id_) then
 local ap = {string.match(text, '^(رفع قيود) (%d+)$')}
-local user_info_ = redis:get(KEEPER..'user:Name' ..ap[2])
-local UserKeeper = user_info_
+local user_info_ = redis:get(SAKURA..'user:Name' ..ap[2])
+local UserSAKURA = user_info_
 if user_info_ then
-local k1 = not redis:sismember(KEEPER..'bot:keed:'..msg.chat_id_, ap[2])
-local k2 = not redis:sismember(KEEPER..'bot:muted:'..msg.chat_id_, ap[2])
-local k3 = not redis:sismember(KEEPER..'bot:banned:'..msg.chat_id_, ap[2])
+local k1 = not redis:sismember(SAKURA..'bot:keed:'..msg.chat_id_, ap[2])
+local k2 = not redis:sismember(SAKURA..'bot:muted:'..msg.chat_id_, ap[2])
+local k3 = not redis:sismember(SAKURA..'bot:banned:'..msg.chat_id_, ap[2])
 if k1 and k2 and k3 then
-send(msg.chat_id_, msg.id_, 1, '👨‍✈️┊ العضو » (['..UserKeeper..'])\n⚠️┊ لا توجد لديه قيـــــــود\n✓‏', 1, 'md')
+send(msg.chat_id_, msg.id_, 1, '👨‍✈️┊ العضو » (['..UserSAKURA..'])\n⚠️┊ لا توجد لديه قيـــــــود\n✓‏', 1, 'md')
 else
-HTTPS.request('https://api.telegram.org/bot'..KEEPER_TOKEN..'/restrictChatMember?chat_id=' ..msg.chat_id_.. '&user_id=' ..ap[2]..'&can_send_messages=True&can_send_media_messages=True&can_send_other_messages=True&can_add_web_page_previews=True')
-redis:srem(KEEPER..'bot:keed:'..msg.chat_id_, ap[2])
-redis:srem(KEEPER..'bot:muted:'..msg.chat_id_, ap[2])
-redis:srem(KEEPER..'bot:banned:'..msg.chat_id_, ap[2])
-send(msg.chat_id_, msg.id_, 1, '👨‍✈️┊ العضو » (['..UserKeeper..'])\n⚠️┊ تم رفع القيود عنه \n✓‏', 1, 'md')
+HTTPS.request('https://api.telegram.org/bot'..SAKURA_TOKEN..'/restrictChatMember?chat_id=' ..msg.chat_id_.. '&user_id=' ..ap[2]..'&can_send_messages=True&can_send_media_messages=True&can_send_other_messages=True&can_add_web_page_previews=True')
+redis:srem(SAKURA..'bot:keed:'..msg.chat_id_, ap[2])
+redis:srem(SAKURA..'bot:muted:'..msg.chat_id_, ap[2])
+redis:srem(SAKURA..'bot:banned:'..msg.chat_id_, ap[2])
+send(msg.chat_id_, msg.id_, 1, '👨‍✈️┊ العضو » (['..UserSAKURA..'])\n⚠️┊ تم رفع القيود عنه \n✓‏', 1, 'md')
 end
 end
 end
 ----------------id gP-----------------------------------------
 if text:match("^ايدي المجموعه$") and idf:match("-100(%d+)") then
-if not redis:get(KEEPER..'lock:add'..msg.chat_id_) then
+if not redis:get(SAKURA..'lock:add'..msg.chat_id_) then
 send(msg.chat_id_, msg.id_, 1, "🚫┊ ايدي المجموعه : \n (`" .. msg.chat_id_ .. "`)", 1, "html")
 end end
 -------------username-----------------------------------------------
@@ -6393,7 +6389,7 @@ getUser(msg.sender_user_id_, get_username)
 end
 --------------del msgs-----------------------------------------------------
 if is_momod(msg.sender_user_id_, msg.chat_id_) and idf:match("-100(%d+)") and (text:match("^مسح$") or text:match("^حذف$") and msg.reply_to_message_id_ ~= 0) then
-if not redis:get(KEEPER..'lock:add'..msg.chat_id_) then
+if not redis:get(SAKURA..'lock:add'..msg.chat_id_) then
 local id = msg.id_
 local msgs = {
 [0] = id
@@ -6406,291 +6402,291 @@ end end
 
 ------------------------------------------------------------------------
 if text == 'اللعبه' and is_momod(msg.sender_user_id_, msg.chat_id_) then
-if redis:get(KEEPER.."lock_GEM"..msg.chat_id_) then
+if redis:get(SAKURA.."lock_GEM"..msg.chat_id_) then
 send(msg.chat_id_, msg.id_, 1, "💬┊ اللعبه معطله\n ‏ ", 1, "md")
 return false end
-local user_info_ = redis:get(KEEPER.."user:Name" .. msg.sender_user_id_)
-local UserKeeper = user_info_
+local user_info_ = redis:get(SAKURA.."user:Name" .. msg.sender_user_id_)
+local UserSAKURA = user_info_
 if user_info_ then
-redis:set(KEEPER..'kk1'..msg.sender_user_id_..''..msg.chat_id_..'','kk')
-send(msg.chat_id_, 0, 1, '👨‍✈️» اهلا ['..UserKeeper..'] \n™️» في لعبه السرعه\n⚠️» ارسل ( بدء اللعبه ) للعب\n✓',1, 'md')
+redis:set(SAKURA..'kk1'..msg.sender_user_id_..''..msg.chat_id_..'','kk')
+send(msg.chat_id_, 0, 1, '👨‍✈️» اهلا ['..UserSAKURA..'] \n™️» في لعبه السرعه\n⚠️» ارسل ( بدء اللعبه ) للعب\n✓',1, 'md')
 return false end end
-if text == 'بدء اللعبه'  and is_momod(msg.sender_user_id_, msg.chat_id_) and redis:get(KEEPER..'kk1'..msg.sender_user_id_..''..msg.chat_id_..'') then
+if text == 'بدء اللعبه'  and is_momod(msg.sender_user_id_, msg.chat_id_) and redis:get(SAKURA..'kk1'..msg.sender_user_id_..''..msg.chat_id_..'') then
 local keep1 = {'س م ى و','ى-س-م-و'}
 send(msg.chat_id_, 0, 1, '• رتب الكلمه  التاليه \n*('..keep1[math.random(#keep1)]..')*',1, 'md')
-redis:set(KEEPER..'kk11'..msg.chat_id_..'','kkk')
+redis:set(SAKURA..'kk11'..msg.chat_id_..'','kkk')
 return false end
 if text then
-local keeper1 = redis:get(KEEPER..'kk11'..msg.chat_id_..'')
-if keeper1 == 'kkk' then
+local SAKURA1 = redis:get(SAKURA..'kk11'..msg.chat_id_..'')
+if SAKURA1 == 'kkk' then
 if text == 'موسى' then
-redis:incr(KEEPER..'incr_msg'..msg.sender_user_id_..''..msg.chat_id_..'')
+redis:incr(SAKURA..'incr_msg'..msg.sender_user_id_..''..msg.chat_id_..'')
 send(msg.chat_id_, msg.id_, 1, '• اجابتك صحيحه 👏🏻 ',1, 'md')
-redis:del(KEEPER..'kk11'..msg.chat_id_..'')
+redis:del(SAKURA..'kk11'..msg.chat_id_..'')
 sleep(1.5)
 local ooo = {'ا-ل-ي-ي-ب','ي ي ا ل ب'}
 send(msg.chat_id_, 0, 1, '• رتب الكلمه  التاليه \n*('..ooo[math.random(#ooo)]..')*',1, 'md')
-redis:set(KEEPER..'kk111'..msg.chat_id_..'','kkkk')
+redis:set(SAKURA..'kk111'..msg.chat_id_..'','kkkk')
  return false end end end
 if text then
-local keeper1 = redis:get(KEEPER..'kk111'..msg.chat_id_..'')
-if keeper1 == 'kkkk' then
+local SAKURA1 = redis:get(SAKURA..'kk111'..msg.chat_id_..'')
+if SAKURA1 == 'kkkk' then
 if text == 'ليبيا' then
-redis:incr(KEEPER..'incr_msg'..msg.sender_user_id_..''..msg.chat_id_..'')
+redis:incr(SAKURA..'incr_msg'..msg.sender_user_id_..''..msg.chat_id_..'')
 send(msg.chat_id_, msg.id_, 1, '• اجابتك صحيحه 👏🏻 ',1, 'md')
-redis:del(KEEPER..'kk111'..msg.chat_id_..'')
+redis:del(SAKURA..'kk111'..msg.chat_id_..'')
 sleep(1.5) 
 local keep = {'ر ط ا ي ه','ا-ي-ط-ر-ه'}
 send(msg.chat_id_, 0, 1, '• رتب الكلمه  التاليه \n*('..keep[math.random(#keep)]..')*',1, 'md')
-redis:set(KEEPER..'kk1111'..msg.chat_id_..'','mm')
+redis:set(SAKURA..'kk1111'..msg.chat_id_..'','mm')
  return false end end end
 if text then
-local keeper1 = redis:get(KEEPER..'kk1111'..msg.chat_id_..'')
-if keeper1 == 'mm' then
+local SAKURA1 = redis:get(SAKURA..'kk1111'..msg.chat_id_..'')
+if SAKURA1 == 'mm' then
 if text == 'طياره' then
-redis:incr(KEEPER..'incr_msg'..msg.sender_user_id_..''..msg.chat_id_..'')
+redis:incr(SAKURA..'incr_msg'..msg.sender_user_id_..''..msg.chat_id_..'')
 send(msg.chat_id_, msg.id_, 1, '• اجابتك صحيحه 👏🏻 ',1, 'md')
-redis:del(KEEPER..'kk1111'..msg.chat_id_..'')
+redis:del(SAKURA..'kk1111'..msg.chat_id_..'')
 sleep(1.5)
 local keep77 = {'😛😛😛😝😛😛😛','😜😝😜😜😜😜😜'}
 send(msg.chat_id_, 0, 1, '•ارسل الاسمايل المختلف \n*('..keep77[math.random(#keep77)]..')*',1, 'md')
-redis:set(KEEPER..'w1'..msg.chat_id_..'','q1')
+redis:set(SAKURA..'w1'..msg.chat_id_..'','q1')
  return false end end end
 if text then
-local keeper1 = redis:get(KEEPER..'w1'..msg.chat_id_..'')
-if keeper1 == 'q1' then
+local SAKURA1 = redis:get(SAKURA..'w1'..msg.chat_id_..'')
+if SAKURA1 == 'q1' then
 if text == '😝' then
-redis:incr(KEEPER..'incr_msg'..msg.sender_user_id_..''..msg.chat_id_..'')
+redis:incr(SAKURA..'incr_msg'..msg.sender_user_id_..''..msg.chat_id_..'')
 send(msg.chat_id_, msg.id_, 1, '• اجابتك صحيحه 👏🏻 ',1, 'md')
-redis:del(KEEPER..'w1'..msg.chat_id_..'')
+redis:del(SAKURA..'w1'..msg.chat_id_..'')
 sleep(1.5)
 local keep2 = {'ش-ر-ط-ي','ش,ط,ر,ي'}
 send(msg.chat_id_, 0, 1, '• رتب الكلمه  التاليه \n*('..keep2[math.random(#keep2)]..')*',1, 'md')
-redis:set(KEEPER..'w2'..msg.chat_id_..'','q2')
+redis:set(SAKURA..'w2'..msg.chat_id_..'','q2')
  return false end end end
 if text then
-local keeper1 = redis:get(KEEPER..'w2'..msg.chat_id_..'')
-if keeper1 == 'q2' then
+local SAKURA1 = redis:get(SAKURA..'w2'..msg.chat_id_..'')
+if SAKURA1 == 'q2' then
 if text == 'شرطي' then
-redis:incr(KEEPER..'incr_msg'..msg.sender_user_id_..''..msg.chat_id_..'')
+redis:incr(SAKURA..'incr_msg'..msg.sender_user_id_..''..msg.chat_id_..'')
 send(msg.chat_id_, msg.id_, 1, '• اجابتك صحيحه 👏🏻 ',1, 'md')
-redis:del(KEEPER..'w2'..msg.chat_id_..'')
+redis:del(SAKURA..'w2'..msg.chat_id_..'')
 sleep(1.5)
 local keep3 = {'😃😃😄😃😃😃'}
 send(msg.chat_id_, 0, 1, '•ارسل الاسمايل المختلف \n*('..keep3[math.random(#keep3)]..')*',1, 'md')
-redis:set(KEEPER..'w9'..msg.chat_id_..'','q9')
+redis:set(SAKURA..'w9'..msg.chat_id_..'','q9')
  return false end end end
 if text then
-local keeper1 = redis:get(KEEPER..'w9'..msg.chat_id_..'')
-if keeper1 == 'q9' then
+local SAKURA1 = redis:get(SAKURA..'w9'..msg.chat_id_..'')
+if SAKURA1 == 'q9' then
 if text == '😄' then
-redis:incr(KEEPER..'incr_msg'..msg.sender_user_id_..''..msg.chat_id_..'')
+redis:incr(SAKURA..'incr_msg'..msg.sender_user_id_..''..msg.chat_id_..'')
 send(msg.chat_id_, msg.id_, 1, '• اجابتك صحيحه 👏🏻 ',1, 'md')
-redis:del(KEEPER..'w9'..msg.chat_id_..'')
+redis:del(SAKURA..'w9'..msg.chat_id_..'')
 sleep(1.5)
 local keep4 = {'ر ك و ا ي','ر ا ي ك و'}
 send(msg.chat_id_, 0, 1, '• رتب الكلمه  التاليه \n*('..keep4[math.random(#keep4)]..')*',1, 'md')
-redis:set(KEEPER..'w4'..msg.chat_id_..'','q4')
+redis:set(SAKURA..'w4'..msg.chat_id_..'','q4')
  return false end end end
 if text then
-local keeper1 = redis:get(KEEPER..'w4'..msg.chat_id_..'')
-if keeper1 == 'q4' then
+local SAKURA1 = redis:get(SAKURA..'w4'..msg.chat_id_..'')
+if SAKURA1 == 'q4' then
 if text == 'كوريا' then
-redis:incr(KEEPER..'incr_msg'..msg.sender_user_id_..''..msg.chat_id_..'')
+redis:incr(SAKURA..'incr_msg'..msg.sender_user_id_..''..msg.chat_id_..'')
 send(msg.chat_id_, msg.id_, 1, '• اجابتك صحيحه 👏🏻 ',1, 'md')
-redis:del(KEEPER..'w4'..msg.chat_id_..'')
+redis:del(SAKURA..'w4'..msg.chat_id_..'')
 sleep(1.5)
 local keep5 = {'ك - م - ا - ل','ل ك ا م'}
 send(msg.chat_id_, 0, 1, '• رتب الكلمه  التاليه \n*('..keep5[math.random(#keep5)]..')*',1, 'md')
-redis:set(KEEPER..'w5'..msg.chat_id_..'','q5')
+redis:set(SAKURA..'w5'..msg.chat_id_..'','q5')
 return false end end end
 if text then
-local keeper1 = redis:get(KEEPER..'w5'..msg.chat_id_..'')
-if keeper1 == 'q5' then
+local SAKURA1 = redis:get(SAKURA..'w5'..msg.chat_id_..'')
+if SAKURA1 == 'q5' then
 if text == 'ملاك' then
-redis:incr(KEEPER..'incr_msg'..msg.sender_user_id_..''..msg.chat_id_..'')
+redis:incr(SAKURA..'incr_msg'..msg.sender_user_id_..''..msg.chat_id_..'')
 send(msg.chat_id_, msg.id_, 1, '• اجابتك صحيحه 👏🏻 ',1, 'md')
-redis:del(KEEPER..'w5'..msg.chat_id_..'')
+redis:del(SAKURA..'w5'..msg.chat_id_..'')
 sleep(1.5)
 send(msg.chat_id_, 0, 1, '• رتب الكلمه  التاليه \n(ك , ش , ب , ا)',1, 'md')
-redis:set(KEEPER..'w6'..msg.chat_id_..'','q6')
+redis:set(SAKURA..'w6'..msg.chat_id_..'','q6')
  return false end end end
 if text then
-local keeper1 = redis:get(KEEPER..'w6'..msg.chat_id_..'')
-if keeper1 == 'q6' then
+local SAKURA1 = redis:get(SAKURA..'w6'..msg.chat_id_..'')
+if SAKURA1 == 'q6' then
 if text == 'شباك' then
-redis:incr(KEEPER..'incr_msg'..msg.sender_user_id_..''..msg.chat_id_..'')
+redis:incr(SAKURA..'incr_msg'..msg.sender_user_id_..''..msg.chat_id_..'')
 send(msg.chat_id_, msg.id_, 1, '• اجابتك صحيحه 👏🏻 ',1, 'md')
-redis:del(KEEPER..'w6'..msg.chat_id_..'')
+redis:del(SAKURA..'w6'..msg.chat_id_..'')
 sleep(1.5)
 local keep6 = {'ل-ج-م-ي','ل ي م ج'}
 send(msg.chat_id_, 0, 1, '• رتب الكلمه  التاليه \n*('..keep6[math.random(#keep6)]..')*',1, 'md')
-redis:set(KEEPER..'w7'..msg.chat_id_..'','q7')
+redis:set(SAKURA..'w7'..msg.chat_id_..'','q7')
 return false end end end
 if text then
-local keeper1 = redis:get(KEEPER..'w7'..msg.chat_id_..'')
-if keeper1 == 'q7' then
+local SAKURA1 = redis:get(SAKURA..'w7'..msg.chat_id_..'')
+if SAKURA1 == 'q7' then
 if text == 'جميل' then
-redis:incr(KEEPER..'incr_msg'..msg.sender_user_id_..''..msg.chat_id_..'')
+redis:incr(SAKURA..'incr_msg'..msg.sender_user_id_..''..msg.chat_id_..'')
 send(msg.chat_id_, msg.id_, 1, '• اجابتك صحيحه 👏🏻 ',1, 'md')
-redis:del(KEEPER..'w7'..msg.chat_id_..'')
+redis:del(SAKURA..'w7'..msg.chat_id_..'')
 sleep(1.5)
 local keep7 = {'و ك ه ه','ه ك ه و'}
 send(msg.chat_id_, 0, 1, '• رتب الكلمه  التاليه \n*('..keep7[math.random(#keep7)]..')*',1, 'md')
-redis:set(KEEPER..'w8'..msg.chat_id_..'','q8')
+redis:set(SAKURA..'w8'..msg.chat_id_..'','q8')
 return false end end end
 if text then
-local keeper1 = redis:get(KEEPER..'w8'..msg.chat_id_..'')
-if keeper1 == 'q8' then
+local SAKURA1 = redis:get(SAKURA..'w8'..msg.chat_id_..'')
+if SAKURA1 == 'q8' then
 if text == 'كهوه' then
-redis:incr(KEEPER..'incr_msg'..msg.sender_user_id_..''..msg.chat_id_..'')
+redis:incr(SAKURA..'incr_msg'..msg.sender_user_id_..''..msg.chat_id_..'')
 send(msg.chat_id_, msg.id_, 1, '• اجابتك صحيحه 👏🏻 ',1, 'md')
-redis:del(KEEPER..'w8'..msg.chat_id_..'')
+redis:del(SAKURA..'w8'..msg.chat_id_..'')
 sleep(1.5)
 send(msg.chat_id_, 0, 1, '• رتب الكلمه  التاليه \n( ن ،ص، و، ك، د)',1, 'md')
-redis:set(KEEPER..'w9o'..msg.chat_id_..'','q9o')
+redis:set(SAKURA..'w9o'..msg.chat_id_..'','q9o')
  return false end end end
 if text then
-local keeper1 = redis:get(KEEPER..'w9o'..msg.chat_id_..'')
-if keeper1 == 'q9o' then
+local SAKURA1 = redis:get(SAKURA..'w9o'..msg.chat_id_..'')
+if SAKURA1 == 'q9o' then
 if text == 'صندوك' then
-redis:incr(KEEPER..'incr_msg'..msg.sender_user_id_..''..msg.chat_id_..'')
+redis:incr(SAKURA..'incr_msg'..msg.sender_user_id_..''..msg.chat_id_..'')
 send(msg.chat_id_, msg.id_, 1, '• اجابتك صحيحه 👏🏻 ',1, 'md')
-redis:del(KEEPER..'w9o'..msg.chat_id_..'')
+redis:del(SAKURA..'w9o'..msg.chat_id_..'')
 sleep(1.5)
 local keep8 = {'ض ر م ي','م ض ر ي'}
 send(msg.chat_id_, 0, 1, '• رتب الكلمه  التاليه \n*('..keep8[math.random(#keep8)]..')*',1, 'md')
-redis:set(KEEPER..'w00'..msg.chat_id_..'','q00')
+redis:set(SAKURA..'w00'..msg.chat_id_..'','q00')
  return false end end end
 if text then
-local keeper1 = redis:get(KEEPER..'w00'..msg.chat_id_..'')
-if keeper1 == 'q00' then
+local SAKURA1 = redis:get(SAKURA..'w00'..msg.chat_id_..'')
+if SAKURA1 == 'q00' then
 if text == 'مريض' then
-redis:incr(KEEPER..'incr_msg'..msg.sender_user_id_..''..msg.chat_id_..'')
+redis:incr(SAKURA..'incr_msg'..msg.sender_user_id_..''..msg.chat_id_..'')
 send(msg.chat_id_, msg.id_, 1, '• اجابتك صحيحه 👏🏻 ',1, 'md')
-redis:del(KEEPER..'w00'..msg.chat_id_..'')
+redis:del(SAKURA..'w00'..msg.chat_id_..'')
 sleep(1.5)
 local keep9 = {'ي- ط -ر -ق -ن -ب -ا',' ب ي ق ا ط ر ا ن','ب,ي,ا,,ق,ر,ن,ط'}
 send(msg.chat_id_, 0, 1, '• رتب الكلمه  التاليه \n*('..keep9[math.random(#keep9)]..')*',1, 'md')
-redis:set(KEEPER..'a15'..msg.chat_id_..'','s15')
+redis:set(SAKURA..'a15'..msg.chat_id_..'','s15')
  return false end end end
 if text then
-local keeper1 = redis:get(KEEPER..'a15'..msg.chat_id_..'')
-if keeper1 == 's15' then
+local SAKURA1 = redis:get(SAKURA..'a15'..msg.chat_id_..'')
+if SAKURA1 == 's15' then
 if text == 'قرنابيط' then
-redis:incr(KEEPER..'incr_msg'..msg.sender_user_id_..''..msg.chat_id_..'')
+redis:incr(SAKURA..'incr_msg'..msg.sender_user_id_..''..msg.chat_id_..'')
 send(msg.chat_id_, msg.id_, 1, '• اجابتك صحيحه 👏🏻 ',1, 'md')
-redis:del(KEEPER..'a15'..msg.chat_id_..'')
+redis:del(SAKURA..'a15'..msg.chat_id_..'')
 sleep(1.5)
 local keep00 = {'😔😔😔😔😔😔😔☺️😔😔😔😔😔'}
 send(msg.chat_id_, 0, 1, '•ارسل الاسمايل المختلف \n*('..keep00[math.random(#keep00)]..')*',1, 'md')
-redis:set(KEEPER..'a26'..msg.chat_id_..'','s26')
+redis:set(SAKURA..'a26'..msg.chat_id_..'','s26')
 return false end end end
 if text then
-local keeper1 = redis:get(KEEPER..'a26'..msg.chat_id_..'')
-if keeper1 == 's26' then
+local SAKURA1 = redis:get(SAKURA..'a26'..msg.chat_id_..'')
+if SAKURA1 == 's26' then
 if text == '☺️' then
-redis:incr(KEEPER..'incr_msg'..msg.sender_user_id_..''..msg.chat_id_..'')
+redis:incr(SAKURA..'incr_msg'..msg.sender_user_id_..''..msg.chat_id_..'')
 send(msg.chat_id_, msg.id_, 1, '• اجابتك صحيحه 👏🏻 ',1, 'md')
-redis:del(KEEPER..'a26'..msg.chat_id_..'')
+redis:del(SAKURA..'a26'..msg.chat_id_..'')
 sleep(1.5)
 local keepp = {'ط - م - ي','ي ,م ,ط'}
 send(msg.chat_id_, 0, 1, '• رتب الكلمه  التاليه \n*('..keepp[math.random(#keepp)]..')*',1, 'md')
-redis:set(KEEPER..'a99'..msg.chat_id_..'','s99')
+redis:set(SAKURA..'a99'..msg.chat_id_..'','s99')
  return false end end end
 if text then
-local keeper1 = redis:get(KEEPER..'a99'..msg.chat_id_..'')
-if keeper1 == 's99' then
+local SAKURA1 = redis:get(SAKURA..'a99'..msg.chat_id_..'')
+if SAKURA1 == 's99' then
 if text == 'مطي' then
-redis:incr(KEEPER..'incr_msg'..msg.sender_user_id_..''..msg.chat_id_..'')
+redis:incr(SAKURA..'incr_msg'..msg.sender_user_id_..''..msg.chat_id_..'')
 send(msg.chat_id_, msg.id_, 1, '• اجابتك صحيحه 👏🏻 ',1, 'md')
-redis:del(KEEPER..'a99'..msg.chat_id_..'')
+redis:del(SAKURA..'a99'..msg.chat_id_..'')
 return false end end end
 -----------------------------------------------------------------------------
 if text == 'نقاطي' then
-send(msg.chat_id_, msg.id_, 1, '💬┊ عدد نقاطك » *('..tonumber(redis:get(KEEPER..'incr_msg'..msg.sender_user_id_..''..msg.chat_id_..'') or 0 )..')*',1, 'md')
+send(msg.chat_id_, msg.id_, 1, '💬┊ عدد نقاطك » *('..tonumber(redis:get(SAKURA..'incr_msg'..msg.sender_user_id_..''..msg.chat_id_..'') or 0 )..')*',1, 'md')
 return false end
 if text == 'بيع نقاطي' then
-local user_info_ = redis:get(KEEPER..'user:Name' .. msg.sender_user_id_)
-local UserKeeper = user_info_
+local user_info_ = redis:get(SAKURA..'user:Name' .. msg.sender_user_id_)
+local UserSAKURA = user_info_
 if user_info_ then
-local numkep = tonumber(redis:get(KEEPER..'incr_msg'..msg.sender_user_id_..''..msg.chat_id_..'') or 0 )
+local numkep = tonumber(redis:get(SAKURA..'incr_msg'..msg.sender_user_id_..''..msg.chat_id_..'') or 0 )
 if numkep == 0 then
 send(msg.chat_id_, msg.id_, 1, '• انت لا تمتلك نقاط',1, 'md')
 else
 local keep = [[
-• اهلا ~ []]..UserKeeper..[[]
+• اهلا ~ []]..UserSAKURA..[[]
 ®️┊نقاطك *(]]..numkep..[[)* اذا اردت تحويلهم
 💬┊لعضو مميز ارسل رقـــــم ( *1* ) 
  ✓
 ]]
-redis:set(KEEPER..'karrar1'..msg.sender_user_id_..''..msg.chat_id_..'','karrar2')
+redis:set(SAKURA..'karrar1'..msg.sender_user_id_..''..msg.chat_id_..'','karrar2')
 send(msg.chat_id_, msg.id_, 1, keep,1, 'md')
 return false end end end
 if text then
-local keeper1 = redis:get(KEEPER..'karrar1'..msg.sender_user_id_..''..msg.chat_id_..'')
-if keeper1 == 'karrar2' then
+local SAKURA1 = redis:get(SAKURA..'karrar1'..msg.sender_user_id_..''..msg.chat_id_..'')
+if SAKURA1 == 'karrar2' then
 if text == '1' then
-if redis:sismember(KEEPER..'bot:vipmem:'..msg.chat_id_, msg.sender_user_id_) then
+if redis:sismember(SAKURA..'bot:vipmem:'..msg.chat_id_, msg.sender_user_id_) then
 send(msg.chat_id_, msg.id_, 1,'⚠️┊ عذرا انت مرفوع مميز سابقا\n✓', 1, 'md')
-redis:del(KEEPER..'karrar1'..msg.sender_user_id_..''..msg.chat_id_..'')
+redis:del(SAKURA..'karrar1'..msg.sender_user_id_..''..msg.chat_id_..'')
 else
-local numkep = tonumber(redis:get(KEEPER..'incr_msg'..msg.sender_user_id_..''..msg.chat_id_..'') or 0 )
-if numkep < tonumber(redis:get(KEEPER.."KEEPER_OO0" .. msg.chat_id_) or 100 )  then
-send(msg.chat_id_, msg.id_, 1, '®️┊عذرا نقاطك اقل من '..tonumber(redis:get(KEEPER.."KEEPER_OO0" .. msg.chat_id_) or 100 )..'\n💬┊لا تستطيع تحويلهم لعضو مميز\n✓',1, 'md')
-redis:del(KEEPER..'karrar1'..msg.sender_user_id_..''..msg.chat_id_..'')
+local numkep = tonumber(redis:get(SAKURA..'incr_msg'..msg.sender_user_id_..''..msg.chat_id_..'') or 0 )
+if numkep < tonumber(redis:get(SAKURA.."SAKURA_OO0" .. msg.chat_id_) or 100 )  then
+send(msg.chat_id_, msg.id_, 1, '®️┊عذرا نقاطك اقل من '..tonumber(redis:get(SAKURA.."SAKURA_OO0" .. msg.chat_id_) or 100 )..'\n💬┊لا تستطيع تحويلهم لعضو مميز\n✓',1, 'md')
+redis:del(SAKURA..'karrar1'..msg.sender_user_id_..''..msg.chat_id_..'')
 return false end
-if numkep > tonumber(redis:get(KEEPER.."KEEPER_OO0" .. msg.chat_id_) or 100 )  then
+if numkep > tonumber(redis:get(SAKURA.."SAKURA_OO0" .. msg.chat_id_) or 100 )  then
 send(msg.chat_id_, msg.id_, 1, '🎰┊مبروك عزيزي\n🎧┊تم رفعك عضو مميز\n ✓',1, 'md')
-redis:sadd(KEEPER..'bot:vipmem:'..msg.chat_id_, msg.sender_user_id_)
-redis:del(KEEPER..'incr_msg'..msg.sender_user_id_..''..msg.chat_id_..'')
-redis:del(KEEPER..'karrar1'..msg.sender_user_id_..''..msg.chat_id_..'')
+redis:sadd(SAKURA..'bot:vipmem:'..msg.chat_id_, msg.sender_user_id_)
+redis:del(SAKURA..'incr_msg'..msg.sender_user_id_..''..msg.chat_id_..'')
+redis:del(SAKURA..'karrar1'..msg.sender_user_id_..''..msg.chat_id_..'')
 return false end end end end end
 ------------------------------------------------------------------------------------
 if is_momod(msg.sender_user_id_, msg.chat_id_) and idf:match("-100(%d+)") and text:match("^ضع شرط البيع (%d+)$")  then
-local keeper = { string.match(text, "^(ضع شرط البيع) (%d+)$")}
-send(msg.chat_id_, msg.id_, 1, "®️┊تم وضع عدد نقاط البيع\n🎵┊الان يمكن للعضو بيع نقاط اللعبه\n🌋┊اذا كان عدد نقاطه اكبر من~ *"..keeper[2].."*\n✓",1, 'md')
-redis:set(KEEPER.."KEEPER_OO0" .. msg.chat_id_, keeper[2])
+local SAKURA = { string.match(text, "^(ضع شرط البيع) (%d+)$")}
+send(msg.chat_id_, msg.id_, 1, "®️┊تم وضع عدد نقاط البيع\n🎵┊الان يمكن للعضو بيع نقاط اللعبه\n🌋┊اذا كان عدد نقاطه اكبر من~ *"..SAKURA[2].."*\n✓",1, 'md')
+redis:set(SAKURA.."SAKURA_OO0" .. msg.chat_id_, SAKURA[2])
 return false end
 -------------------------------------------------------------------------------------
 if text == 'تفعيل اللعبه' and is_momod(msg.sender_user_id_, msg.chat_id_) then
-send(msg.chat_id_, msg.id_, 1, "💬┊ بواسطه » "..tmkeeper(msg).."\n🎟┊ تم تفعيل اللعبه\n ✓ ", 1, 'md')
-redis:del(KEEPER.."lock_GEM"..msg.chat_id_)
+send(msg.chat_id_, msg.id_, 1, "💬┊ بواسطه » "..tmSAKURA(msg).."\n🎟┊ تم تفعيل اللعبه\n ✓ ", 1, 'md')
+redis:del(SAKURA.."lock_GEM"..msg.chat_id_)
 end
 if text == 'تعطيل اللعبه' and is_momod(msg.sender_user_id_, msg.chat_id_) then
-send(msg.chat_id_, msg.id_, 1, "💬┊ بواسطه » "..tmkeeper(msg).."\n🎟┊ تم تعطيل استخدام اللعبه\n ✓ ", 1, 'md')
-redis:set(KEEPER.."lock_GEM"..msg.chat_id_, true)
+send(msg.chat_id_, msg.id_, 1, "💬┊ بواسطه » "..tmSAKURA(msg).."\n🎟┊ تم تعطيل استخدام اللعبه\n ✓ ", 1, 'md')
+redis:set(SAKURA.."lock_GEM"..msg.chat_id_, true)
 end 
 ------------------------------------------------------------------------------
 if text == 'تفعيل الملصقات' and is_momod(msg.sender_user_id_, msg.chat_id_) then
-send(msg.chat_id_, msg.id_, 1, "💬┊ بواسطه » "..tmkeeper(msg).."\n🎟┊ تم تفعيل ردود الملصقات\n ✓ ", 1, 'md')
-redis:del(KEEPER.."lock_STCK"..msg.chat_id_)
+send(msg.chat_id_, msg.id_, 1, "💬┊ بواسطه » "..tmSAKURA(msg).."\n🎟┊ تم تفعيل ردود الملصقات\n ✓ ", 1, 'md')
+redis:del(SAKURA.."lock_STCK"..msg.chat_id_)
 end
 if text == 'تعطيل الملصقات' and is_momod(msg.sender_user_id_, msg.chat_id_) then
-send(msg.chat_id_, msg.id_, 1, "💬┊ بواسطه » "..tmkeeper(msg).."\n🎟┊ تم تعطيل ردود الملصقات\n ✓ ", 1, 'md')
-redis:set(KEEPER.."lock_STCK"..msg.chat_id_, true)
+send(msg.chat_id_, msg.id_, 1, "💬┊ بواسطه » "..tmSAKURA(msg).."\n🎟┊ تم تعطيل ردود الملصقات\n ✓ ", 1, 'md')
+redis:set(SAKURA.."lock_STCK"..msg.chat_id_, true)
 end 
 -------------------welcome on---------------------------------------------------------
 if text:match("^تفعيل الترحيب$") and is_momod(msg.sender_user_id_, msg.chat_id_) then
-redis:set(KEEPER..'status:welcome:'..msg.chat_id_,'enable')
-send(msg.chat_id_, msg.id_, 1, "💬┊ بواسطه » "..tmkeeper(msg).."\n🎟┊ تم تفعيل الترحيب\n ✓ ", 1, 'md')
+redis:set(SAKURA..'status:welcome:'..msg.chat_id_,'enable')
+send(msg.chat_id_, msg.id_, 1, "💬┊ بواسطه » "..tmSAKURA(msg).."\n🎟┊ تم تفعيل الترحيب\n ✓ ", 1, 'md')
 return false 
 end
 -------------------of welcome-------------------------------------------------------------
 if text:match("^تعطيل الترحيب$") and is_momod(msg.sender_user_id_, msg.chat_id_) then
-redis:set(KEEPER..'status:welcome:'..msg.chat_id_,'disable')
-send(msg.chat_id_, msg.id_, 1, "💬┊ بواسطه » "..tmkeeper(msg).."\n🎟┊ تم تعطيل الترحيب\n ✓ ", 1, 'md')
+redis:set(SAKURA..'status:welcome:'..msg.chat_id_,'disable')
+send(msg.chat_id_, msg.id_, 1, "💬┊ بواسطه » "..tmSAKURA(msg).."\n🎟┊ تم تعطيل الترحيب\n ✓ ", 1, 'md')
 return false 
 end
 ---------------------set kick me-----------------------------------
 if text == 'تفعيل اطردني' and is_owner(msg.sender_user_id_, msg.chat_id_) then
-send(msg.chat_id_, msg.id_, 1, "💬┊ بواسطه » "..tmkeeper(msg).."\n🎟┊ تم تفعيل امر اطردني\n ✓ ", 1, 'md')
-redis:set(KEEPER.."lock_kickme"..msg.chat_id_, true)
+send(msg.chat_id_, msg.id_, 1, "💬┊ بواسطه » "..tmSAKURA(msg).."\n🎟┊ تم تفعيل امر اطردني\n ✓ ", 1, 'md')
+redis:set(SAKURA.."lock_kickme"..msg.chat_id_, true)
 return false 
 end
 if text == 'تعطيل اطردني' and is_owner(msg.sender_user_id_, msg.chat_id_) then
-send(msg.chat_id_, msg.id_, 1, "💬┊ بواسطه » "..tmkeeper(msg).."\n🎟┊ تم تعطيل امر اطردني\n ✓ ", 1, 'md')
-redis:del(KEEPER.."lock_kickme"..msg.chat_id_)
+send(msg.chat_id_, msg.id_, 1, "💬┊ بواسطه » "..tmSAKURA(msg).."\n🎟┊ تم تعطيل امر اطردني\n ✓ ", 1, 'md')
+redis:del(SAKURA.."lock_kickme"..msg.chat_id_)
 return false 
 end
 -------------------add ch --------------------------
@@ -6698,7 +6694,7 @@ if text == "تعين قناة الاشتراك" or text == "تغيير قناة 
 if not is_KP(msg) then
 send(msg.chat_id_, msg.id_, 1, '💲┊ للمطور الاساسي فقــــــــط', 1, 'md')
 else
-redis:setex(KEEPER..'Kpch'..msg.sender_user_id_,300,true)
+redis:setex(SAKURA..'Kpch'..msg.sender_user_id_,300,true)
 send(msg.chat_id_, msg.id_, 1, "🌀┊ ارسل لـي معرف قناتك 🍃\n",1, 'html')
 end end
 
@@ -6707,99 +6703,99 @@ if text == 'تفعيل الاشتراك الاجباري' then
 if not is_KP(msg) then
 send(msg.chat_id_, msg.id_, 1, '💲┊ للمطور الاساسي فقــــــــط', 1, 'md')
 else
-if not redis:get(KEEPER..'Kpch1') then
+if not redis:get(SAKURA..'Kpch1') then
 send(msg.chat_id_, msg.id_, 1, '™️┊ لم يتم وضع القناة\n📌┊ لتعين  القناة ارسل .....\n⚠️┊ `تعين قناة الاشتراك `\n➖', 1, 'md')
 return false 
 end
-if redis:get(KEEPER..'Kpch1') then
-send(msg.chat_id_, msg.id_, 1, "💬┊ بواسطه » "..tmkeeper(msg).."\n🎟┊ تم تفعيل الاشتراك الاجباري\n ✓ ", 1, 'md')
-redis:set(KEEPER.."Kpjoin1", true)
+if redis:get(SAKURA..'Kpch1') then
+send(msg.chat_id_, msg.id_, 1, "💬┊ بواسطه » "..tmSAKURA(msg).."\n🎟┊ تم تفعيل الاشتراك الاجباري\n ✓ ", 1, 'md')
+redis:set(SAKURA.."Kpjoin1", true)
 return false end end end
 if text == 'تعطيل الاشتراك الاجباري' then
 if not is_KP(msg) then
 send(msg.chat_id_, msg.id_, 1, '💲┊ للمطور الاساسي فقــــــــط', 1, 'md')
 else
-send(msg.chat_id_, msg.id_, 1, "💬┊ بواسطه » "..tmkeeper(msg).."\n🎟┊ تم تعطيل الاشتراك الاجباري\n ✓ ", 1, 'md')
-redis:del(KEEPER.."Kpjoin1")
+send(msg.chat_id_, msg.id_, 1, "💬┊ بواسطه » "..tmSAKURA(msg).."\n🎟┊ تم تعطيل الاشتراك الاجباري\n ✓ ", 1, 'md')
+redis:del(SAKURA.."Kpjoin1")
 return false 
 end end
 ------------------ADD REPLY IN GP------------------------------------------
 if text == 'تفعيل الردود' and is_owner(msg.sender_user_id_, msg.chat_id_) then
-send(msg.chat_id_, msg.id_, 1, "💬┊ بواسطه » "..tmkeeper(msg).."\n🎟┊ تم تفعيل الردود\n ✓ ", 1, 'md')
-redis:del(KEEPER.."lock_reeeep"..msg.chat_id_)
+send(msg.chat_id_, msg.id_, 1, "💬┊ بواسطه » "..tmSAKURA(msg).."\n🎟┊ تم تفعيل الردود\n ✓ ", 1, 'md')
+redis:del(SAKURA.."lock_reeeep"..msg.chat_id_)
 end
 if text == 'تعطيل الردود' and is_owner(msg.sender_user_id_, msg.chat_id_) then
-send(msg.chat_id_, msg.id_, 1, "💬┊ بواسطه » "..tmkeeper(msg).."\n🎟┊ تم تعطيل الردود\n ✓ ", 1, 'md')
-redis:set(KEEPER.."lock_reeeep"..msg.chat_id_, true)
+send(msg.chat_id_, msg.id_, 1, "💬┊ بواسطه » "..tmSAKURA(msg).."\n🎟┊ تم تعطيل الردود\n ✓ ", 1, 'md')
+redis:set(SAKURA.."lock_reeeep"..msg.chat_id_, true)
 end
 ---------------ADD PIN----------------------------------------------------
 if text == 'تفعيل التثبيت' and is_owner(msg.sender_user_id_, msg.chat_id_) then
-send(msg.chat_id_, msg.id_, 1, "💬┊ بواسطه » "..tmkeeper(msg).."\n🎟┊ تم تفعيل التثبيت\n ✓ ", 1, 'md')
-redis:set(KEEPER.."lock_pinn"..msg.chat_id_, true)
+send(msg.chat_id_, msg.id_, 1, "💬┊ بواسطه » "..tmSAKURA(msg).."\n🎟┊ تم تفعيل التثبيت\n ✓ ", 1, 'md')
+redis:set(SAKURA.."lock_pinn"..msg.chat_id_, true)
 return false
 end
 if text == 'تعطيل التثبيت' and is_owner(msg.sender_user_id_, msg.chat_id_) then
-send(msg.chat_id_, msg.id_, 1, "💬┊ بواسطه » "..tmkeeper(msg).."\n🎟┊ تم تعطيل التثبيت\n ✓ ", 1, 'md')
-redis:del(KEEPER.."lock_pinn"..msg.chat_id_)
+send(msg.chat_id_, msg.id_, 1, "💬┊ بواسطه » "..tmSAKURA(msg).."\n🎟┊ تم تعطيل التثبيت\n ✓ ", 1, 'md')
+redis:del(SAKURA.."lock_pinn"..msg.chat_id_)
 return false
 end
 --------------REM DEL MSG--------------------------------------------
 if text == 'تعطيل مسح الرسائل' or text == 'تعطيل تنضيف الرسائل' and is_owner(msg.sender_user_id_, msg.chat_id_) then
-send(msg.chat_id_, msg.id_, 1, "💬┊ بواسطه » "..tmkeeper(msg).."\n🎟┊ تم تعطيل مسح الرسائل\n ✓ ", 1, 'md')
-redis:del(KEEPER.."dellmssg"..msg.chat_id_)
+send(msg.chat_id_, msg.id_, 1, "💬┊ بواسطه » "..tmSAKURA(msg).."\n🎟┊ تم تعطيل مسح الرسائل\n ✓ ", 1, 'md')
+redis:del(SAKURA.."dellmssg"..msg.chat_id_)
 end
 ----------------ADD DEL MSG------------------------------------------------------------
 if text == 'تفعيل مسح الرسائل' or text == 'تفعيل تنضيف الرسائل' and is_owner(msg.sender_user_id_, msg.chat_id_) then
-send(msg.chat_id_, msg.id_, 1, "💬┊ بواسطه » "..tmkeeper(msg).."\n🎟┊ تم تفعيل مسح الرسائل\n ✓ ", 1, 'md')
-redis:set(KEEPER.."dellmssg"..msg.chat_id_, true)
+send(msg.chat_id_, msg.id_, 1, "💬┊ بواسطه » "..tmSAKURA(msg).."\n🎟┊ تم تفعيل مسح الرسائل\n ✓ ", 1, 'md')
+redis:set(SAKURA.."dellmssg"..msg.chat_id_, true)
 end
 ----------add - rem bot free----------------------------------
 if text == 'تفعيل البوت خدمي' then
 if not is_KP(msg) then
 send(msg.chat_id_, msg.id_, 1, '💲┊ للمطور الاساسي فقــــــــط', 1, 'md')
 else
-send(msg.chat_id_, msg.id_, 1, "💬┊ بواسطه » "..tmkeeper(msg).."\n🎟┊ تم تفعيل البوت خدمي\n ✓ ", 1, 'md')
-redis:set(KEEPER.."bot:free", true)
+send(msg.chat_id_, msg.id_, 1, "💬┊ بواسطه » "..tmSAKURA(msg).."\n🎟┊ تم تفعيل البوت خدمي\n ✓ ", 1, 'md')
+redis:set(SAKURA.."bot:free", true)
 end end
 if text == 'تعطيل البوت خدمي' then
 if not is_KP(msg) then
 send(msg.chat_id_, msg.id_, 1, '💲┊ للمطور الاساسي فقــــــــط', 1, 'md')
 else
-send(msg.chat_id_, msg.id_, 1, "💬┊ بواسطه » "..tmkeeper(msg).."\n🎟┊ تم تعطيل البوت خدمي\n ✓ ", 1, 'md')
-redis:del(KEEPER.."bot:free")
+send(msg.chat_id_, msg.id_, 1, "💬┊ بواسطه » "..tmSAKURA(msg).."\n🎟┊ تم تعطيل البوت خدمي\n ✓ ", 1, 'md')
+redis:del(SAKURA.."bot:free")
 end end
 ----------start--------------------------------------------------------------
 if text == '/start' then
-local OwnerKP_ = redis:get(KEEPER.."Bot:KpOwnerBot")
-local user_info_ = redis:get(KEEPER.."user:Name" .. OwnerKP_)
-local UserKeeper = user_info_
+local OwnerKP_ = redis:get(SAKURA.."Bot:KpOwnerBot")
+local user_info_ = redis:get(SAKURA.."user:Name" .. OwnerKP_)
+local UserSAKURA = user_info_
 if user_info_ then
-local start = redis:get(KEEPER.."startbot")
+local start = redis:get(SAKURA.."startbot")
 if start then
 keep = [[
 []]..start..[[]
 ]]
 send(msg.chat_id_, msg.id_, 1, keep, 1, 'md')
 else
-keeper = [[
+SAKURA = [[
 
-💠┊مرحبا انا بوت اسمي *(]]..(redis:get(KEEPER..'keepernams') or 'كيبر')..[[)🗼*
+💠┊مرحبا انا بوت اسمي *(]]..(redis:get(SAKURA..'SAKURAnams') or 'ساكورا')..[[)🗼*
 💢┊اقوم بحماية مجموعتــك  مُـْـْـْـن '
 📜┊الروابط، والتكرار، السبام وغيرها '
 🔰┊قم بأضافة  البوت الى المجموعه ،
 🌀┊ثم ارسل (تفعيل) او راسل المطور،
 ✔️┊لكي يتم تفعيله فْـي المجموعـِْـْه'
-🔱┊*مطور البوت* » ( []] .. UserKeeper .. [[] )‏
+🔱┊*مطور البوت* » ( []] .. UserSAKURA .. [[] )‏
 ‏
 ‏]]
-send(msg.chat_id_, msg.id_, 1, keeper, 1, 'md')
+send(msg.chat_id_, msg.id_, 1, SAKURA, 1, 'md')
 end end end
 -----------------------get start------------------------------------------------------------------------
 if text == 'جلب كليشه ستارت' or text == 'جلب start'  or text == 'جلب ستارت' then
 if not is_KP(msg) then
 send(msg.chat_id_, msg.id_, 1, '💲┊ للمطور الاساسي فقــــــــط', 1, 'md')
 else
-local start = redis:get(KEEPER.."startbot")
+local start = redis:get(SAKURA.."startbot")
 if start then
 send(msg.chat_id_, msg.id_, 1, '*« هاي الكليشه عزيزي »👇🏿*\n\n['..start..']', 1, 'md')
 else
@@ -6810,7 +6806,7 @@ if text == 'جلب قناة الاشتراك' or text == 'قناة الاشتر�
 if not is_KP(msg) then
 send(msg.chat_id_, msg.id_, 1, '💲┊ للمطور الاساسي فقــــــــط', 1, 'md')
 else
-local Kpch2 = redis:get(KEEPER.."Kpch1")
+local Kpch2 = redis:get(SAKURA.."Kpch1")
 if Kpch2 then
 send(msg.chat_id_, msg.id_, 1, '🔱┊ *قناة الاشتراك* : ['..Kpch2..']', 1, 'md')
 else
@@ -6819,10 +6815,10 @@ end end end
 --------------------list momod------------------------------------------------------------------
 if is_momod(msg.sender_user_id_, msg.chat_id_) and idf:match("-100(%d+)") and (text:match("^الادمنيه$"))  then
 local hash = "bot:momod:" .. msg.chat_id_
-local list = redis:smembers(KEEPER..hash)
+local list = redis:smembers(SAKURA..hash)
 text = "🌀┊ قائمة الادمنيه 📊: \n*≖≖≖≖≖≖≖≖≖≖≖≖*\n"
 for k, v in pairs(list) do
-local user_info = redis:get(KEEPER.."user:Name" .. v)
+local user_info = redis:get(SAKURA.."user:Name" .. v)
 if user_info then
 local username = user_info
 text = text .. k .. "» [" .. username .. "]\n"
@@ -6837,10 +6833,10 @@ end
 -------------------list vipmem -----------------------------------------------------------------------------------------------------
 if is_momod(msg.sender_user_id_, msg.chat_id_) and idf:match("-100(%d+)") and (text:match("^الاعضاء المميزين$"))  then
 local hash = "bot:vipmem:" .. msg.chat_id_
-local list = redis:smembers(KEEPER..hash)
+local list = redis:smembers(SAKURA..hash)
 text = "🌀┊  قائمه الاعضاء المميزين :\n*≖≖≖≖≖≖≖≖≖≖≖≖*\n"
 for k, v in pairs(list) do
-local user_info = redis:get(KEEPER.."user:Name" .. v)
+local user_info = redis:get(SAKURA.."user:Name" .. v)
 if user_info then
 local username = user_info
 text = text .. k .. "» [" .. username .. "]\n"
@@ -6855,10 +6851,10 @@ end
 -----------------list keed---------------------------------------------------------------------------
 if is_momod(msg.sender_user_id_, msg.chat_id_) and idf:match("-100(%d+)") and (text:match("^المقيدين$"))  then
 local hash = "bot:keed:" .. msg.chat_id_
-local list = redis:smembers(KEEPER..hash)
+local list = redis:smembers(SAKURA..hash)
 text = "🌀┊  قائمه الاعضاء المقيدين :\n*≖≖≖≖≖≖≖≖≖≖≖≖*\n"
 for k, v in pairs(list) do
-local user_info = redis:get(KEEPER.."user:Name" .. v)
+local user_info = redis:get(SAKURA.."user:Name" .. v)
 if user_info then
 local username = user_info
 text = text .. k .. "» [" .. username .. "]\n"
@@ -6876,10 +6872,10 @@ if not is_sudo(msg) then
 send(msg.chat_id_, msg.id_, 1, '💲┊ للمطوريـــــــن فقــــــــط', 1, 'md')
 else
 local hash = "bot:vipmems:"
-local list = redis:smembers(KEEPER..hash)
+local list = redis:smembers(SAKURA..hash)
 text = "🌀┊  قائمه مميزين العام :\n*≖≖≖≖≖≖≖≖≖≖≖≖*\n"
 for k, v in pairs(list) do
-local user_info = redis:get(KEEPER.."user:Name" .. v)
+local user_info = redis:get(SAKURA.."user:Name" .. v)
 if user_info then
 local username = user_info
 text = text .. k .. "» [" .. username .. "]\n"
@@ -6894,10 +6890,10 @@ end end
 -------------------list mutes-----------------------------------------------------------------
 if is_momod(msg.sender_user_id_, msg.chat_id_) and idf:match("-100(%d+)") and (text:match("^المكتومين$"))  then
 local hash = "bot:muted:" .. msg.chat_id_
-local list = redis:smembers(KEEPER..hash)
+local list = redis:smembers(SAKURA..hash)
 text = "🌀┊  قائمه المكتومين : \n*≖≖≖≖≖≖≖≖≖≖≖≖*\n"
 for k, v in pairs(list) do
-local user_info = redis:get(KEEPER.."user:Name" .. v)
+local user_info = redis:get(SAKURA.."user:Name" .. v)
 if user_info then
 local username = user_info
 text = text .. k .. "» [" .. username .. "]\n"
@@ -6912,10 +6908,10 @@ end
 -----------------list owners-------------------------------------------------------------
 if is_momod(msg.sender_user_id_, msg.chat_id_) and idf:match("-100(%d+)") and (text:match("^المدراء$"))  then
 local hash = "bot:owners:" .. msg.chat_id_
-local list = redis:smembers(KEEPER..hash)
+local list = redis:smembers(SAKURA..hash)
 text = "🌀┊ قائمة المدراء : \n*≖≖≖≖≖≖≖≖≖≖≖≖*\n"
 for k, v in pairs(list) do
-local user_info = redis:get(KEEPER.."user:Name" .. v)
+local user_info = redis:get(SAKURA.."user:Name" .. v)
 if user_info then
 local username = user_info
 text = text .. k .. "» [" .. username .. "]\n"
@@ -6930,10 +6926,10 @@ end
 --------------------list BAN-----------------------------------------------------------------
 if is_momod(msg.sender_user_id_, msg.chat_id_) and idf:match("-100(%d+)") and (text:match("^المحظورين$"))  then
 local hash = "bot:banned:" .. msg.chat_id_
-local list = redis:smembers(KEEPER..hash)
+local list = redis:smembers(SAKURA..hash)
 text = "🌀┊  قائمه المحظورين : \n*≖≖≖≖≖≖≖≖≖≖≖≖*\n"
 for k, v in pairs(list) do
-local user_info = redis:get(KEEPER.."user:Name" .. v)
+local user_info = redis:get(SAKURA.."user:Name" .. v)
 if user_info then
 local username = user_info
 text = text .. k .. "» [" .. username .. "]\n"
@@ -6951,10 +6947,10 @@ if not is_sudo(msg) then
 send(msg.chat_id_, msg.id_, 1, '💲┊ للمطوريـــــــن فقــــــــط', 1, 'md')
 else
 local hash = "bot:gban:"
-local list = redis:smembers(KEEPER..hash)
+local list = redis:smembers(SAKURA..hash)
 text = "🌀┊  المحضورين عام : \n*≖≖≖≖≖≖≖≖≖≖≖≖*\n"
 for k, v in pairs(list) do
-local user_info = redis:get(KEEPER.."user:Name" .. v)
+local user_info = redis:get(SAKURA.."user:Name" .. v)
 if user_info then
 local username = user_info
 text = text .. k .. "» [" .. username .. "]\n"
@@ -6969,10 +6965,10 @@ end end
 ---------------list MONSHIS---------------------------------------------------------------
 if is_momod(msg.sender_user_id_, msg.chat_id_) and idf:match("-100(%d+)") and (text:match("^المنشئين$"))  then
 local hash = "bot:monshis:" .. msg.chat_id_
-local list = redis:smembers(KEEPER..hash)
+local list = redis:smembers(SAKURA..hash)
 text = "🌀┊ قائمة المشئين : \n*≖≖≖≖≖≖≖≖≖≖≖≖*\n"
 for k, v in pairs(list) do
-local user_info = redis:get(KEEPER.."user:Name" .. v)
+local user_info = redis:get(SAKURA.."user:Name" .. v)
 if user_info then
 local username = user_info
 text = text .. k .. "» [" .. username .. "]\n"
@@ -6990,15 +6986,15 @@ if not is_sudo(msg) then
 send(msg.chat_id_, msg.id_, 1, '💲┊ للمطوريـــــــن فقــــــــط', 1, 'md')
 else
 local hash = "Bot:Admins"
-local list = redis:smembers(KEEPER..hash)
+local list = redis:smembers(SAKURA..hash)
 text = "🌀┊  ادمنيه البوت :\n*≖≖≖≖≖≖≖≖≖≖≖≖*\n"
 for k, v in pairs(list) do
-if redis:get(KEEPER.."SudoNumberGp" .. v) then
-gps = tonumber(redis:get(KEEPER.."SudoNumberGp" .. v))
+if redis:get(SAKURA.."SudoNumberGp" .. v) then
+gps = tonumber(redis:get(SAKURA.."SudoNumberGp" .. v))
 else
 gps = 0
 end
-local user_info = redis:get(KEEPER.."user:Name" .. v)
+local user_info = redis:get(SAKURA.."user:Name" .. v)
 if user_info then
 local username = user_info
 text = text .. k .. "» [" .. username .. "] »(" .. gps .. ")\n"
@@ -7010,21 +7006,21 @@ text = "〖لا يوجد ادمنيه في البوت📍 〗 "
 end
 send(msg.chat_id_, msg.id_, 1, text, "md")
 end end
-------------list KEEPER_SUDO-----------------------------------------------------------------
+------------list SAKURA_SUDO-----------------------------------------------------------------
 if text:match("^المطورين$") then
 if not is_sudo(msg) then
 send(msg.chat_id_, msg.id_, 1, '💲┊ للمطوريـــــــن فقــــــــط', 1, 'md')
 else
 local hash = "Bot:KpSudos"
-local list = redis:smembers(KEEPER..hash)
+local list = redis:smembers(SAKURA..hash)
 text = "🌀┊  مطورين البوت :\n*≖≖≖≖≖≖≖≖≖≖≖≖*\n"
 for k, v in pairs(list) do
-if redis:get(KEEPER.."SudoNumberGp" .. v) then
-gps = tonumber(redis:get(KEEPER.."SudoNumberGp" .. v))
+if redis:get(SAKURA.."SudoNumberGp" .. v) then
+gps = tonumber(redis:get(SAKURA.."SudoNumberGp" .. v))
 else
 gps = 0
 end
-local user_info = redis:get(KEEPER.."user:Name" .. v)
+local user_info = redis:get(SAKURA.."user:Name" .. v)
 if user_info then
 local username = user_info
 text = text .. k .. "» [" .. username .. "] »(" .. gps .. ")\n"
@@ -7041,12 +7037,12 @@ if text:match("^الشحن (%d+)$") and is_admin(msg.sender_user_id_, msg.chat_i
 local a = {string.match(text, "^(الشحن) (%d+)$")}
 send(msg.chat_id_, msg.id_, 1, '🚫┊ تم شحن المجموعه *( '..a[2]..')* يوم', 1, 'md')
 local time = a[2] * day
-redis:setex(KEEPER.."bot:charge:"..msg.chat_id_,time,true)
-redis:set(KEEPER.."bot:enable:"..msg.chat_id_,true)
+redis:setex(SAKURA.."bot:charge:"..msg.chat_id_,time,true)
+redis:set(SAKURA.."bot:enable:"..msg.chat_id_,true)
 end
 ------------------charge-----------------------------------------------------------------------------
 if text:match("^فحص الشحن") and is_momod(msg.sender_user_id_, msg.chat_id_) then
-local ex = redis:ttl(KEEPER.."bot:charge:"..msg.chat_id_)
+local ex = redis:ttl(SAKURA.."bot:charge:"..msg.chat_id_)
 if ex == -1 then
 send(msg.chat_id_, msg.id_, 1, '🚫┊ المده غير محدوده', 1, 'md')
 else
@@ -7057,7 +7053,7 @@ end
 ----------------charge-------------------------------------------------------------------------------
 if text:match("^فحص الشحن (%d+)") and is_admin(msg.sender_user_id_, msg.chat_id_) then
 local txt = {string.match(text, "^(فحص الشحن) (%d+)$")}
-local ex = redis:ttl(KEEPER.."bot:charge:"..txt[2])
+local ex = redis:ttl(SAKURA.."bot:charge:"..txt[2])
 if ex == -1 then
 send(msg.chat_id_, msg.id_, 1, '🚫┊ المجموعه بلا حدود', 1, 'md')
 else
@@ -7070,22 +7066,22 @@ if idf:match("-100(%d+)") and text:match("^تفعيل$") and not is_sudo(msg)  t
 local add1ing = function(extra, result)
 function ddd( arg,data )
 local txt = { string.match(text, "^(تفعيل)$")}
-if not redis:get(KEEPER.."bot:free") and not is_sudo(msg) then
+if not redis:get(SAKURA.."bot:free") and not is_sudo(msg) then
 send(msg.chat_id_, msg.id_, 1, '🚫┊* للمطوريـــن فقـــط* ❗️', 1, 'md')
 return false end
 local function promote_admin(extra, result, success)
 local admins = result.members_
 for i=0 , #admins do
-redis:sadd(KEEPER..'bot:momod:'..msg.chat_id_,admins[i].user_id_)
+redis:sadd(SAKURA..'bot:momod:'..msg.chat_id_,admins[i].user_id_)
 if result.members_[i].status_.ID == "ChatMemberStatusCreator" then
 owner_id = admins[i].user_id_
-redis:sadd(KEEPER.."bot:owners:"..msg.chat_id_,owner_id)
+redis:sadd(SAKURA.."bot:owners:"..msg.chat_id_,owner_id)
 end
 end
 end
 getChannelMembers(msg.chat_id_, 0, 'Administrators', 200, promote_admin)
-redis:set(KEEPER.."test:group"..msg.chat_id_,'krar')
-if redis:get(KEEPER.."bot:enable:" .. msg.chat_id_) then
+redis:set(SAKURA.."test:group"..msg.chat_id_,'krar')
+if redis:get(SAKURA.."bot:enable:" .. msg.chat_id_) then
 send(msg.chat_id_, msg.id_, 1, '🚫┊ المجموعه  مفعله سابقـــــا ❗️\n‏\n', 1, 'md')
 else
 send(msg.chat_id_, msg.id_, 1, '🚫┊ تم تفعيل المجموعه\n🔱┊ وتم رفع الادمنيه والمدير ❗️\n‏\n', 1, 'md')
@@ -7098,33 +7094,33 @@ result.first_name_ = kkkkk
 break
 end end end
 local username = "@" .. result.username_ or "---"
-local list = redis:smembers(KEEPER.."bot:owners:" .. msg.chat_id_)
+local list = redis:smembers(SAKURA.."bot:owners:" .. msg.chat_id_)
 if list[1] or list[2] or list[3] or list[4] then
-user_info = redis:get(KEEPER.."user:Name" .. (list[1] or list[2] or list[3] or list[4]))
+user_info = redis:get(SAKURA.."user:Name" .. (list[1] or list[2] or list[3] or list[4]))
 end
 if user_info then
 owner = user_info
 else
 owner = "لا يوجد "
 end
-if not redis:get(KEEPER.."bot:group:link"..msg.chat_id_) then
-local getlink = 'https://api.telegram.org/bot'..KEEPER_TOKEN..'/exportChatInviteLink?chat_id='..msg.chat_id_
+if not redis:get(SAKURA.."bot:group:link"..msg.chat_id_) then
+local getlink = 'https://api.telegram.org/bot'..SAKURA_TOKEN..'/exportChatInviteLink?chat_id='..msg.chat_id_
 local req = https.request(getlink)
 local link = KPJS:decode(req)
 if link.ok == true then 
-redis:set(KEEPER.."bot:group:link"..msg.chat_id_,link.result)
+redis:set(SAKURA.."bot:group:link"..msg.chat_id_,link.result)
 end
 end
-local lik_1 = redis:get(KEEPER.."bot:group:link"..msg.chat_id_)
+local lik_1 = redis:get(SAKURA.."bot:group:link"..msg.chat_id_)
 if lik_1 then
 link = lik_1 
 else
 link = link.result
 end
-send(Kp_Owner,0, 1,"- *تم اضافه مجموعه* »\nﮧ┉┉┉┉┉┉┉┉┉\n‏🔱┊ المدير ≈ [" .. owner .. "]\n🔰┊ ["..title_name(msg.chat_id_).."]("..(link or "t.me/keeper_ch")..")\n🚫┊ *ايدي المجموعه* »\n📉┊ﮧ "..msg.chat_id_.."\n*«معلومات عن المطور»*\nﮧ┉┉┉┉┉┉┉┉┉\n🌀┊ ايديه ≈ (" .. msg.sender_user_id_ .. ")\n🚫┊ اسمه ≈ " ..result.first_name_.. "\n️⚠️┊ معرفه ≈ [" .. username .. "]\n✓", 1, "md")
-redis:set(KEEPER.."bot:enable:" .. msg.chat_id_, true)
-redis:setex(KEEPER.."bot:charge:" .. msg.chat_id_, 9999 * day, true)
-redis:sadd(KEEPER.."sudo:data:" .. msg.sender_user_id_, msg.chat_id_)
+send(Kp_Owner,0, 1,"- *تم اضافه مجموعه* »\nﮧ┉┉┉┉┉┉┉┉┉\n‏🔱┊ المدير ≈ [" .. owner .. "]\n🔰┊ ["..title_name(msg.chat_id_).."]("..(link or "t.me/@SAKURATEM")..")\n🚫┊ *ايدي المجموعه* »\n📉┊ﮧ "..msg.chat_id_.."\n*«معلومات عن المطور»*\nﮧ┉┉┉┉┉┉┉┉┉\n🌀┊ ايديه ≈ (" .. msg.sender_user_id_ .. ")\n🚫┊ اسمه ≈ " ..result.first_name_.. "\n️⚠️┊ معرفه ≈ [" .. username .. "]\n✓", 1, "md")
+redis:set(SAKURA.."bot:enable:" .. msg.chat_id_, true)
+redis:setex(SAKURA.."bot:charge:" .. msg.chat_id_, 9999 * day, true)
+redis:sadd(SAKURA.."sudo:data:" .. msg.sender_user_id_, msg.chat_id_)
 end
 tdcli_function ({
 ID = "GetChannelFull",
@@ -7138,44 +7134,44 @@ if is_sudo(msg) then
 if text:match('^شحن 30 (-%d+)') and is_admin(msg.sender_user_id_, msg.chat_id_) then
 local txt = {string.match(text, "^(شحن 30) (-%d+)$")}
 local timeplan1 = 2592000
-redis:setex(KEEPER.."bot:charge:"..txt[2],timeplan1,true)
+redis:setex(SAKURA.."bot:charge:"..txt[2],timeplan1,true)
 send(msg.chat_id_, msg.id_, 1, '🚫┊ المجموعه `'..txt[2]..'`\nتم شحنها 30 يوم', 1, 'md')
-redis:set(KEEPER.."bot:enable:"..txt[2],true)
+redis:set(SAKURA.."bot:enable:"..txt[2],true)
 end
 ------------------charge-----------------------------------------------------------------------------
 if text:match('^شحن 90 (-%d+)') and is_admin(msg.sender_user_id_, msg.chat_id_) then
 local txt = {string.match(text, "^(شحن 90) (-%d+)$")}
 local timeplan2 = 7776000
-redis:setex(KEEPER.."bot:charge:"..txt[2],timeplan2,true)
+redis:setex(SAKURA.."bot:charge:"..txt[2],timeplan2,true)
 send(msg.chat_id_, msg.id_, 1, '🚫┊ المجموعه `'..txt[2]..'`\nتم شحنها 90 يوم', 1, 'md')
-redis:set(KEEPER.."bot:enable:"..txt[2],true)
+redis:set(SAKURA.."bot:enable:"..txt[2],true)
 end
 ------------------------charge-----------------------------------------------------------------------
 if text:match('^شحن مفتوح (-%d+)') and is_admin(msg.sender_user_id_, msg.chat_id_) then
 local txt = {string.match(text, "^(شحن مفتوح) (-%d+)$")}
-redis:set(KEEPER.."bot:charge:"..txt[2],true)
+redis:set(SAKURA.."bot:charge:"..txt[2],true)
 send(msg.chat_id_, msg.id_, 1, '🚫┊المجموعه `'..txt[2]..'`\n تم شحنها بلا حدود', 1, 'md')
-redis:set(KEEPER.."bot:enable:"..txt[2],true)
+redis:set(SAKURA.."bot:enable:"..txt[2],true)
 end
 --------------------ADD GP---------------------------------------------------------------------------
 if idf:match("-100(%d+)") and text:match("^تفعيل$") and is_sudo(msg) then
 local adding = function(extra, result)
 function add_gp( arg,data )
 local txt = { string.match(text, "^(تفعيل)$")}
-redis:del(KEEPER..'lock:add'..msg.chat_id_)
+redis:del(SAKURA..'lock:add'..msg.chat_id_)
 local function promote_admin(extra, result, success)
 local admins = result.members_
 for i=0 , #admins do
-redis:sadd(KEEPER..'bot:momod:'..msg.chat_id_,admins[i].user_id_)
+redis:sadd(SAKURA..'bot:momod:'..msg.chat_id_,admins[i].user_id_)
 if result.members_[i].status_.ID == "ChatMemberStatusCreator" then
 owner_id = admins[i].user_id_
-redis:sadd(KEEPER.."bot:owners:"..msg.chat_id_,owner_id)
+redis:sadd(SAKURA.."bot:owners:"..msg.chat_id_,owner_id)
 end
 end
 end
 getChannelMembers(msg.chat_id_, 0, 'Administrators', 200, promote_admin)
-redis:set(KEEPER.."test:group"..msg.chat_id_,'krar')
-if redis:get(KEEPER.."bot:enable:" .. msg.chat_id_) then
+redis:set(SAKURA.."test:group"..msg.chat_id_,'krar')
+if redis:get(SAKURA.."bot:enable:" .. msg.chat_id_) then
 send(msg.chat_id_, msg.id_, 1, '🚫┊ المجموعه  مفعله سابقـــــا ❗️\n‏\n', 1, 'md')
 else
 send(msg.chat_id_, msg.id_, 1, '🚫┊ تم تفعيل المجموعه\n🔱┊ وتم رفع الادمنيه والمدير ❗️\n‏\n', 1, 'md')
@@ -7188,33 +7184,33 @@ result.first_name_ = kkkkk
 break
 end end end
 local username = "@" .. result.username_ or "---"
-local list = redis:smembers(KEEPER.."bot:owners:" .. msg.chat_id_)
+local list = redis:smembers(SAKURA.."bot:owners:" .. msg.chat_id_)
 if list[1] or list[2] or list[3] or list[4] then
-user_info = redis:get(KEEPER.."user:Name" .. (list[1] or list[2] or list[3] or list[4]))
+user_info = redis:get(SAKURA.."user:Name" .. (list[1] or list[2] or list[3] or list[4]))
 end
 if user_info then
 owner = user_info
 else
 owner = "لا يوجد "
 end
-if not redis:get(KEEPER.."bot:group:link"..msg.chat_id_) then
-local getlink = 'https://api.telegram.org/bot'..KEEPER_TOKEN..'/exportChatInviteLink?chat_id='..msg.chat_id_
+if not redis:get(SAKURA.."bot:group:link"..msg.chat_id_) then
+local getlink = 'https://api.telegram.org/bot'..SAKURA_TOKEN..'/exportChatInviteLink?chat_id='..msg.chat_id_
 local req = https.request(getlink)
 local link = KPJS:decode(req)
 if link.ok == true then 
-redis:set(KEEPER.."bot:group:link"..msg.chat_id_,link.result)
+redis:set(SAKURA.."bot:group:link"..msg.chat_id_,link.result)
 end
 end
-local lik_1 = redis:get(KEEPER.."bot:group:link"..msg.chat_id_)
+local lik_1 = redis:get(SAKURA.."bot:group:link"..msg.chat_id_)
 if lik_1 then
 link = lik_1 
 else
 link = link.result
 end
-send(Kp_Owner,0, 1,"- *تم اضافه مجموعه* »\nﮧ┉┉┉┉┉┉┉┉┉\n‏🔱┊ المدير ≈ [" .. owner .. "]\n🔰┊ ["..title_name(msg.chat_id_).."]("..(link or "t.me/keeper_ch")..")\n🚫┊ *ايدي المجموعه* »\n📉┊ﮧ "..msg.chat_id_.."\n*«معلومات عن المطور»*\nﮧ┉┉┉┉┉┉┉┉┉\n🌀┊ ايديه ≈ (" .. msg.sender_user_id_ .. ")\n🚫┊ اسمه ≈ " ..result.first_name_.. "\n️⚠️┊ معرفه ≈ [" .. username .. "]\n✓", 1, "md")
-redis:set(KEEPER.."bot:enable:" .. msg.chat_id_, true)
-redis:setex(KEEPER.."bot:charge:" .. msg.chat_id_, 9999 * day, true)
-redis:sadd(KEEPER.."sudo:data:" .. msg.sender_user_id_, msg.chat_id_)
+send(Kp_Owner,0, 1,"- *تم اضافه مجموعه* »\nﮧ┉┉┉┉┉┉┉┉┉\n‏🔱┊ المدير ≈ [" .. owner .. "]\n🔰┊ ["..title_name(msg.chat_id_).."]("..(link or "t.me/@SAKURATEM")..")\n🚫┊ *ايدي المجموعه* »\n📉┊ﮧ "..msg.chat_id_.."\n*«معلومات عن المطور»*\nﮧ┉┉┉┉┉┉┉┉┉\n🌀┊ ايديه ≈ (" .. msg.sender_user_id_ .. ")\n🚫┊ اسمه ≈ " ..result.first_name_.. "\n️⚠️┊ معرفه ≈ [" .. username .. "]\n✓", 1, "md")
+redis:set(SAKURA.."bot:enable:" .. msg.chat_id_, true)
+redis:setex(SAKURA.."bot:charge:" .. msg.chat_id_, 9999 * day, true)
+redis:sadd(SAKURA.."sudo:data:" .. msg.sender_user_id_, msg.chat_id_)
 end
 tdcli_function ({
 ID = "GetChannelFull",
@@ -7229,31 +7225,31 @@ local txt = { string.match(text, "^(تعطيل)$") }
 if not is_sudo(msg) then
 send(msg.chat_id_, msg.id_, 1, '💲┊ للمطوريـــــــن فقــــــــط', 1, 'md')
 else
-redis:set(KEEPER..'lock:add'..msg.chat_id_,true)
-if not redis:get(KEEPER.."bot:enable:" .. msg.chat_id_) then
+redis:set(SAKURA..'lock:add'..msg.chat_id_,true)
+if not redis:get(SAKURA.."bot:enable:" .. msg.chat_id_) then
 send(msg.chat_id_, msg.id_, 1, '🎟┊ المجموعـــه معطلــه اساســـا\n', 1, 'md')
 else
 send(msg.chat_id_, msg.id_, 1, '🎟┊ تم تعطيـل المجموعــــــه\n', 1, 'md')
 end
-redis:del(KEEPER.."bot:enable:" .. msg.chat_id_)
-redis:srem(KEEPER.."bot:groups", msg.chat_id_)
-redis:del(KEEPER.."test:group"..msg.chat_id_)
-redis:srem(KEEPER.."sudo:data:" .. msg.sender_user_id_, msg.chat_id_)
+redis:del(SAKURA.."bot:enable:" .. msg.chat_id_)
+redis:srem(SAKURA.."bot:groups", msg.chat_id_)
+redis:del(SAKURA.."test:group"..msg.chat_id_)
+redis:srem(SAKURA.."sudo:data:" .. msg.sender_user_id_, msg.chat_id_)
 local send_to_bot_owner = function(extra, result)
 local v = tonumber(Kp_Owner)
 local fname = result.first_name_ or ""
 local lname = result.last_name_ or ""
 local username = "@" .. result.username_ or "لا يوجد"
-local list = redis:smembers(KEEPER.."bot:owners:" .. msg.chat_id_)
+local list = redis:smembers(SAKURA.."bot:owners:" .. msg.chat_id_)
 if list[1] or list[2] or list[3] or list[4] then
-user_info = redis:get(KEEPER.."user:Name" .. (list[1] or list[2] or list[3] or list[4]))
+user_info = redis:get(SAKURA.."user:Name" .. (list[1] or list[2] or list[3] or list[4]))
 end
 if user_info then
 owner = user_info
 else
 owner = "لا يوجد "
 end
-send(v,0, 1,"- *تم تعطيل مجموعه* »\nﮧ┉┉┉┉┉┉┉┉┉\n‏🔱┊ المدير ≈ " .. owner .. "\n🔰┊ الرابط ≈ [اضغـط هنـا](" .. (redis:get(KEEPER.."bot:group:link"..msg.chat_id_) or "https://t.me/keeper_ch") .. ")\n🔅┊* اسم المجموعه* »\n👨🏼┊ﮧ "..title_name(msg.chat_id_).."\n🚫┊ *ايدي المجموعه* »\n📉┊ﮧ "..msg.chat_id_.."\n*«معلومات عن المطور»*\nﮧ┉┉┉┉┉┉┉┉┉\n🌀┊ ايديه ≈ (" .. msg.sender_user_id_ .. ")\n🚫┊ اسمه ≈ " .. fname .. " " .. lname .. "\n️⚠️┊ معرفه ≈ [" .. username .. "]\n‏", 1, "md")
+send(v,0, 1,"- *تم تعطيل مجموعه* »\nﮧ┉┉┉┉┉┉┉┉┉\n‏🔱┊ المدير ≈ " .. owner .. "\n🔰┊ الرابط ≈ [اضغـط هنـا](" .. (redis:get(SAKURA.."bot:group:link"..msg.chat_id_) or "https://t.me/@SAKURATEM") .. ")\n🔅┊* اسم المجموعه* »\n👨🏼┊ﮧ "..title_name(msg.chat_id_).."\n🚫┊ *ايدي المجموعه* »\n📉┊ﮧ "..msg.chat_id_.."\n*«معلومات عن المطور»*\nﮧ┉┉┉┉┉┉┉┉┉\n🌀┊ ايديه ≈ (" .. msg.sender_user_id_ .. ")\n🚫┊ اسمه ≈ " .. fname .. " " .. lname .. "\n️⚠️┊ معرفه ≈ [" .. username .. "]\n‏", 1, "md")
 end
 getUser(msg.sender_user_id_, send_to_bot_owner)
 end end
@@ -7263,7 +7259,7 @@ local txt = {string.match(text, "^(تفعيل) (%d+) (-%d+)$")}
 local sudo = txt[2]
 local gp = txt[3]
 send(msg.chat_id_, msg.id_, 1, "🌀┊ تم تفعيل المجموعه \n(*"..txt[2].."*) يوم 🍃", 1, 'html')
-redis:sadd(KEEPER..'sudo:data:'..sudo, gp)
+redis:sadd(SAKURA..'sudo:data:'..sudo, gp)
 end
 -------------------REEM----------------------------------------------------------------------------
 if text:match('^تعطيل (%d+) (-%d+)') and is_sudo(msg) then
@@ -7271,7 +7267,7 @@ local txt = {string.match(text, "^(تعطيل) (%d+) (-%d+)$")}
 local hash = 'sudo:data:'..txt[2]
 local gp = txt[3]
 send(msg.chat_id_, msg.id_, 1, "🌀┊ سيتم تعطيل المجموعه بعد \n(*"..txt[2].."*) يوم 🍃", 1, 'html')
-redis:srem(KEEPER..hash, gp)
+redis:srem(SAKURA..hash, gp)
 end
 end
 ---------------------REM GP BY ID-------------------------------------------------------------------------
@@ -7279,16 +7275,16 @@ if is_sudo(msg) and idf:match("-100(%d+)") and text:match("^تعطيل (-%d+)$")
 do
 local gp = { string.match(text, "^(تعطيل) (-%d+)$") }
 local send_to_bot_owner = function(extra, result)
-redis:del(KEEPER.."bot:enable:" .. gp[2])
-redis:del(KEEPER.."bot:charge:" .. gp[2])
+redis:del(SAKURA.."bot:enable:" .. gp[2])
+redis:del(SAKURA.."bot:charge:" .. gp[2])
 local v = tonumber(Kp_Owner)
 local fname = result.first_name_ or ""
 local lname = result.last_name_ or ""
 local username = "@" .. result.username_ or ""
 send(msg.chat_id_, msg.id_, 1, "�⇣ المجموعه " .. gp[2] .. "\nتم تعطيلها 🎐", 1, "md")
 send(v, 0, 1, "🌀┊ تم ازالة المجموعه✞\n💲┊ الاسم : " .. fname .. "\n💲┊ المعرف : [" .. username .. "]\n🎗┊ ايدي المجموعه : " .. gp[2] .. "", 1, "md")
-redis:srem(KEEPER.."sudo:data:" .. msg.sender_user_id_, gp[2])
-redis:srem(KEEPER.."bot:groups", gp[2])
+redis:srem(SAKURA.."sudo:data:" .. msg.sender_user_id_, gp[2])
+redis:srem(SAKURA.."bot:groups", gp[2])
 end
 getUser(msg.sender_user_id_, send_to_bot_owner)
 end
@@ -7306,9 +7302,9 @@ if text:match("^ايدي @(%S+)$") then
 do
 local ap = {string.match(text, "^(ايدي) @(%S+)$") }
 local id_by_username = function(extra, result)
-local num_keep = (tonumber(redis:get(KEEPER.."incr_msg"..result.id_..""..msg.chat_id_.."") or 0 ))
-local msgs = (tonumber(redis:get(KEEPER.."msgs:"..result.id_..":"..msg.chat_id_) or  0))
-local Kpcontact = (tonumber(redis:get(KEEPER.."kpaddcon"..msg.chat_id_..":"..result.id_) or 0))
+local num_keep = (tonumber(redis:get(SAKURA.."incr_msg"..result.id_..""..msg.chat_id_.."") or 0 ))
+local msgs = (tonumber(redis:get(SAKURA.."msgs:"..result.id_..":"..msg.chat_id_) or  0))
+local Kpcontact = (tonumber(redis:get(SAKURA.."kpaddcon"..msg.chat_id_..":"..result.id_) or 0))
 if result.id_ then
 if tonumber(result.id_) == tonumber(Kp_Owner) then
 t = "مطور اساسي 🎖"
@@ -7378,7 +7374,7 @@ else end
 -------------------filters--------------------------------------------------------------------------------------
 if is_momod(msg.sender_user_id_, msg.chat_id_) and idf:match("-100(%d+)") and (text:match("^قائمه المنع"))  then
 local hash = "bot:filters:" .. msg.chat_id_
-local names = redis:hkeys(KEEPER..hash)
+local names = redis:hkeys(SAKURA..hash)
 texti = "🌀┊ الكلمات الممنوعه : \n"
 local b = 1
 for i = 1, #names do
@@ -7410,10 +7406,10 @@ getUser(msg.sender_user_id_, get_me)
 end
 -------------------------------------------------
 if  text:match("^ايديي$") or  text:match("^[Ii]d$") then
-local user_info_ = redis:get(KEEPER.."user:Name" .. msg.sender_user_id_)
-local UserKeeper = user_info_
+local user_info_ = redis:get(SAKURA.."user:Name" .. msg.sender_user_id_)
+local UserSAKURA = user_info_
 if user_info_ then
-send(msg.chat_id_, msg.id_, 1, "•اهلا ~ ["..UserKeeper.."]\n🎧» ايديك  (`"..msg.sender_user_id_.."`)\n✓", 1, "md")
+send(msg.chat_id_, msg.id_, 1, "•اهلا ~ ["..UserSAKURA.."]\n🎧» ايديك  (`"..msg.sender_user_id_.."`)\n✓", 1, "md")
 return false end end
 -------------------RETBA-------------------------
 if idf:match("-100(%d+)") and text:match("^رتبتي$") and msg.reply_to_message_id_ == 0   then
@@ -7460,10 +7456,10 @@ end
 if idf:match("-100(%d+)") then
 text = text:gsub("ايدي","ايدي")
 if text:match("^ايدي$") and msg.reply_to_message_id_ == 0  then
-if not redis:get(KEEPER..'lock:add'..msg.chat_id_) then
-local num_keep = tonumber(redis:get(KEEPER..'incr_msg'..msg.sender_user_id_..''..msg.chat_id_..'') or 0 )
-local msgs = tonumber(redis:get(KEEPER.."msgs:"..msg.sender_user_id_..":"..msg.chat_id_))
-local Kpcontact = (tonumber(redis:get(KEEPER.."kpaddcon"..msg.chat_id_..":"..msg.sender_user_id_) or 0))
+if not redis:get(SAKURA..'lock:add'..msg.chat_id_) then
+local num_keep = tonumber(redis:get(SAKURA..'incr_msg'..msg.sender_user_id_..''..msg.chat_id_..'') or 0 )
+local msgs = tonumber(redis:get(SAKURA.."msgs:"..msg.sender_user_id_..":"..msg.chat_id_))
+local Kpcontact = (tonumber(redis:get(SAKURA.."kpaddcon"..msg.chat_id_..":"..msg.sender_user_id_) or 0))
 local getnameEN = function(extra, result)
 if is_KpiD(result.id_) then
 tar = "مطور اساسي 🎖"
@@ -7495,17 +7491,17 @@ local getprofa = function(extra, result)
 local kepper_info = "🎟┊ ايديك  » " .. msg.sender_user_id_ .. "\n©️┊ معرفك »  " .. username .. "\n👤┊ جهاتك  »   "..Kpcontact.."\n🌄┊ صورك  »   "..result.total_count_.."\n🔆┊ نقاطك  »   "..num_keep.."\n🌐┊ تفاعلك »  " .. KP_TM_NM(msgs) .. "\n✉️┊ رسائلك » " .. msgs .. "\n📌┊ موقعك » " .. tar .. "\n‏┄┄┄┄┄┄┄┄┄┄┄┄"
 local kepper_info2 = "🎟┊ ايديك  » `" .. msg.sender_user_id_ .. "`\n©️┊ معرفك »  [" .. username .. "]\n👤┊ جهاتك  »   "..Kpcontact.."\n🌄┊ صورك  »   "..result.total_count_.."\n🔆┊ نقاطك  »   "..num_keep.."\n🌐┊ تفاعلك »  " .. KP_TM_NM(msgs) .. "\n✉️┊ رسائلك » " .. msgs .. "\n📌┊ موقعك » " .. tar .. "\n‏┄┄┄┄┄┄┄┄┄┄┄┄"
 
-if redis:get(KEEPER.."getidstatus" .. msg.chat_id_) == "Photo" then
+if redis:get(SAKURA.."getidstatus" .. msg.chat_id_) == "Photo" then
 if result.photos_[0] then
 sendPhoto(msg.chat_id_, msg.id_, 0, 1, nil, result.photos_[0].sizes_[1].photo_.persistent_id_, kepper_info)
 else
 send(msg.chat_id_, msg.id_, 1, "انت لا تمتلك صوره لحسابك🎈‏\n"..kepper_info2.."", 1, "md")
 end
 end
-if redis:get(KEEPER.."getidstatus" .. msg.chat_id_) == "Simple" then
+if redis:get(SAKURA.."getidstatus" .. msg.chat_id_) == "Simple" then
 send(msg.chat_id_, msg.id_, 1, kepper_info2, 1, "md")
 end
-if not redis:get(KEEPER.."getidstatus" .. msg.chat_id_) then
+if not redis:get(SAKURA.."getidstatus" .. msg.chat_id_) then
 send(msg.chat_id_, msg.id_, 1, kepper_info2, 1, "md")
  end 
  end
@@ -7518,44 +7514,44 @@ limit_ = 1
 end end 
 -------------------KP_TM_NM----------------------------------------
 if text:match("^تفاعلي$") or text:match("^شنو تفاعلي$")  then
-local msgs = tonumber(redis:get(KEEPER.."msgs:"..msg.sender_user_id_..":"..msg.chat_id_))
-if not redis:get(KEEPER..'lock:add'..msg.chat_id_) then
+local msgs = tonumber(redis:get(SAKURA.."msgs:"..msg.sender_user_id_..":"..msg.chat_id_))
+if not redis:get(SAKURA..'lock:add'..msg.chat_id_) then
 send(msg.chat_id_, msg.id_, 1, "🚫┊ تفاعلك : ( *"..KP_TM_NM(msgs).."* ) 🍁", 1, 'md')
 end
 end
 --------------------Kp concat add----------------------------------------
 if text == 'جهاتي' then
-send(msg.chat_id_, msg.id_, 1, '🔰┊ عدد جهاتك ≈ * '..(tonumber(redis:get(KEEPER..'kpaddcon'..msg.chat_id_..':'..msg.sender_user_id_) or 0))..' *',1,'md')
+send(msg.chat_id_, msg.id_, 1, '🔰┊ عدد جهاتك ≈ * '..(tonumber(redis:get(SAKURA..'kpaddcon'..msg.chat_id_..':'..msg.sender_user_id_) or 0))..' *',1,'md')
 end
 --------------------ID BY REPLY------------------------------------------
 if text:match("^ايدي$") and msg.reply_to_message_id_ ~= 0 then
 function iD_reP(extra, result, success)
-local num_keep = (tonumber(redis:get(KEEPER.."incr_msg"..result.sender_user_id_..""..msg.chat_id_.."") or 0 ))
-local msgs = (tonumber(redis:get(KEEPER.."msgs:"..result.sender_user_id_..":"..msg.chat_id_) or 0 ))
-local Kpcontact = (tonumber(redis:get(KEEPER.."kpaddcon"..msg.chat_id_..":"..result.sender_user_id_) or 0))
+local num_keep = (tonumber(redis:get(SAKURA.."incr_msg"..result.sender_user_id_..""..msg.chat_id_.."") or 0 ))
+local msgs = (tonumber(redis:get(SAKURA.."msgs:"..result.sender_user_id_..":"..msg.chat_id_) or 0 ))
+local Kpcontact = (tonumber(redis:get(SAKURA.."kpaddcon"..msg.chat_id_..":"..result.sender_user_id_) or 0))
 if result.id_ then
 if tonumber(result.sender_user_id_) == tonumber(Kp_Owner) then
-keeper3 = "مطور الاساسـي 🌿"
+SAKURA3 = "مطور الاساسـي 🌿"
 elseif is_sudoid(result.sender_user_id_) then
-keeper3 = "المطور 🐾"
+SAKURA3 = "المطور 🐾"
 elseif is_admin(result.sender_user_id_) then
-keeper3 = "ادمن في البوت"
+SAKURA3 = "ادمن في البوت"
 elseif is_vipmems(result.sender_user_id_) then
-keeper3 = "مميز عام 🌿"
+SAKURA3 = "مميز عام 🌿"
 elseif is_monshi(result.sender_user_id_, msg.chat_id_) then
-keeper3 = "منشىء الكروب 🐾"
+SAKURA3 = "منشىء الكروب 🐾"
 elseif is_owner(result.sender_user_id_, msg.chat_id_) then
-keeper3 = "المدير 🌿"
+SAKURA3 = "المدير 🌿"
 elseif is_momod(result.sender_user_id_, msg.chat_id_) then
-keeper3 = "ادمن المجموعه🐾"
+SAKURA3 = "ادمن المجموعه🐾"
 elseif is_vipmem(result.sender_user_id_, msg.chat_id_) then
-keeper3 = "عضو مميز 🌿"
+SAKURA3 = "عضو مميز 🌿"
 else
-keeper3 = "عـضـو 🐾"
+SAKURA3 = "عـضـو 🐾"
 end
 end
-local keeper_info = "🎟┊ ايديه  » `" .. result.sender_user_id_ .. "`\n👤┊ جهاته  »   "..Kpcontact.."\n🔆┊ نقاطه  »   "..num_keep.."\n🌐┊ تفاعله »  " .. KP_TM_NM(msgs) .. "\n✉️┊ رسائله » " .. msgs .. "\n📌┊ موقعه » " .. keeper3 .. "\n‏┄┄┄┄┄┄┄┄┄┄┄┄"
-send(msg.chat_id_, result.id_, 1, keeper_info, 1, "md")
+local SAKURA_info = "🎟┊ ايديه  » `" .. result.sender_user_id_ .. "`\n👤┊ جهاته  »   "..Kpcontact.."\n🔆┊ نقاطه  »   "..num_keep.."\n🌐┊ تفاعله »  " .. KP_TM_NM(msgs) .. "\n✉️┊ رسائله » " .. msgs .. "\n📌┊ موقعه » " .. SAKURA3 .. "\n‏┄┄┄┄┄┄┄┄┄┄┄┄"
+send(msg.chat_id_, result.id_, 1, SAKURA_info, 1, "md")
 end
 getMessage(msg.chat_id_, msg.reply_to_message_id_,iD_reP)
 end
@@ -7564,42 +7560,42 @@ if text == "وضع اسم البوت" then
 if not is_KP(msg) then
 send(msg.chat_id_, msg.id_, 1, '💲┊ للمطور الاساسي فقــــــــط', 1, 'md')
 else
-redis:setex(KEEPER..'botts:namess'..msg.sender_user_id_,698,true)
+redis:setex(SAKURA..'botts:namess'..msg.sender_user_id_,698,true)
 send(msg.chat_id_, msg.id_, 1, "🌀┊ ارسل الاسم الان عزيزي 😇",1, 'html')
 end end
 ----------------------------Showprofilestatus----------------------------
 if is_sudo(msg) and idf:match("-100(%d+)") and text:match("^تفعيل (.*)$")  then
 local status = {string.match(text, "^(تفعيل) (.*)$")}
 if status[2] == "active" or status[2] == "جلب الصور" then
-if redis:get(KEEPER.."getpro:" .. msg.chat_id_) == "Active" then
-send(msg.chat_id_, msg.id_, 1, "💬┊ بواسطه » "..tmkeeper(msg).."\n🎟┊ تم تفعيل جلب الصور\n ✓ ", 1, 'md')
+if redis:get(SAKURA.."getpro:" .. msg.chat_id_) == "Active" then
+send(msg.chat_id_, msg.id_, 1, "💬┊ بواسطه » "..tmSAKURA(msg).."\n🎟┊ تم تفعيل جلب الصور\n ✓ ", 1, 'md')
 else
-send(msg.chat_id_, msg.id_, 1, "💬┊ بواسطه » "..tmkeeper(msg).."\n🎟┊ تم تفعيل جلب الصور\n ✓ ", 1, 'md')
-redis:set(KEEPER.."getpro:" .. msg.chat_id_, "Active")
+send(msg.chat_id_, msg.id_, 1, "💬┊ بواسطه » "..tmSAKURA(msg).."\n🎟┊ تم تفعيل جلب الصور\n ✓ ", 1, 'md')
+redis:set(SAKURA.."getpro:" .. msg.chat_id_, "Active")
 end end end
 if is_sudo(msg) and idf:match("-100(%d+)") and text:match("^تعطيل (.*)$")  then
 local status = {string.match(text, "^(تعطيل) (.*)$")}
 if status[2] == "جلب الصور" then
-if redis:get(KEEPER.."getpro:" .. msg.chat_id_) == "Deactive" then
-send(msg.chat_id_, msg.id_, 1, "💬┊ بواسطه » "..tmkeeper(msg).."\n🎟┊ تم تعطيل جلب الصور\n ✓ ", 1, 'md')
+if redis:get(SAKURA.."getpro:" .. msg.chat_id_) == "Deactive" then
+send(msg.chat_id_, msg.id_, 1, "💬┊ بواسطه » "..tmSAKURA(msg).."\n🎟┊ تم تعطيل جلب الصور\n ✓ ", 1, 'md')
 else
-send(msg.chat_id_, msg.id_, 1, "💬┊ بواسطه » "..tmkeeper(msg).."\n🎟┊ تم تعطيل جلب الصور\n ✓ ", 1, 'md')
-redis:set(KEEPER.."getpro:" .. msg.chat_id_, "Deactive")
+send(msg.chat_id_, msg.id_, 1, "💬┊ بواسطه » "..tmSAKURA(msg).."\n🎟┊ تم تعطيل جلب الصور\n ✓ ", 1, 'md')
+redis:set(SAKURA.."getpro:" .. msg.chat_id_, "Deactive")
 end end end
 ---------------------------------------------------------------------
 if text:match("^مسح الصوره") and is_momod(msg.sender_user_id_, msg.chat_id_)  then
-https.request('https://api.telegram.org/bot'..KEEPER_TOKEN..'/deleteChatPhoto?chat_id='..msg.chat_id_)
-send(msg.chat_id_, msg.id_, 1, "💬┊ بواسطه » "..tmkeeper(msg).."\n🎟┊ تم مسح صوره المجموعه\n ✓ ", 1, 'md')
+https.request('https://api.telegram.org/bot'..SAKURA_TOKEN..'/deleteChatPhoto?chat_id='..msg.chat_id_)
+send(msg.chat_id_, msg.id_, 1, "💬┊ بواسطه » "..tmSAKURA(msg).."\n🎟┊ تم مسح صوره المجموعه\n ✓ ", 1, 'md')
 end
 if text:match("^ضع وصف (.*)$") and is_momod(msg.sender_user_id_, msg.chat_id_)  then
 local text = {string.match(text, "^(ضع وصف) (.*)$")}
 changeChannelAbout(msg.chat_id_,text[2])
-send(msg.chat_id_, msg.id_, 1, "💬┊ بواسطه » "..tmkeeper(msg).."\n🎟┊ تم وضع وصف للمجموعه\n ✓ ", 1, 'md')
+send(msg.chat_id_, msg.id_, 1, "💬┊ بواسطه » "..tmSAKURA(msg).."\n🎟┊ تم وضع وصف للمجموعه\n ✓ ", 1, 'md')
 end 
 ---------------------Getpro------------------------------------------------------------------------------
 if text:match("^صوره (%d+)$") then
 local pronumb = {string.match(text, "^(صوره) (%d+)$")}
-if not is_momod(msg.sender_user_id_, msg.chat_id_) and redis:get(KEEPER.."getpro:" .. msg.chat_id_) == "Deactive" then
+if not is_momod(msg.sender_user_id_, msg.chat_id_) and redis:get(SAKURA.."getpro:" .. msg.chat_id_) == "Deactive" then
 send(msg.chat_id_, msg.id_, 1, "📛┊ اهلا عزيزي....\n📬┊ جلب الصور معطل\n‏", 1, "md")
 return false
 end
@@ -7624,26 +7620,26 @@ local floodt = {string.match(text, "^(ضع تكرار) (%d+)$")}
 if tonumber(floodt[2]) < 1 then
 send(msg.chat_id_, msg.id_, 1, '🌀┊ ضع عدد م [1] الى [200] ', 1, 'md')
 else
-redis:set(KEEPER..'flood:time:'..msg.chat_id_,floodt[2])
+redis:set(SAKURA..'flood:time:'..msg.chat_id_,floodt[2])
 send(msg.chat_id_, msg.id_, 1, '🌀┊ تــم وضـع  التكرار : '..floodt[2]..'', 1, 'md')
 end end
 ----------------------floodstatus----------------------------------------------------------------------------------
 if is_momod(msg.sender_user_id_, msg.chat_id_) and idf:match("-100(%d+)") and text:match("^ضع تكرار (.*)$")  then
 local status = { string.match(text, "^(ضع تكرار) (.*)$") }
 if status[2] == "بالطرد" then
-if redis:get(KEEPER.."floodstatus" .. msg.chat_id_) == "Kicked" then
-send(msg.chat_id_, msg.id_, 1, "💬┊ بواسطه » "..tmkeeper(msg).."\n🎟┊ تم وضع التكرار بالطرد\n ✓ ", 1, 'md')
+if redis:get(SAKURA.."floodstatus" .. msg.chat_id_) == "Kicked" then
+send(msg.chat_id_, msg.id_, 1, "💬┊ بواسطه » "..tmSAKURA(msg).."\n🎟┊ تم وضع التكرار بالطرد\n ✓ ", 1, 'md')
 else
-send(msg.chat_id_, msg.id_, 1, "💬┊ بواسطه » "..tmkeeper(msg).."\n🎟┊ تم وضع التكرار بالطرد\n ✓ ", 1, 'md')
-redis:set(KEEPER.."floodstatus" .. msg.chat_id_, "Kicked")
+send(msg.chat_id_, msg.id_, 1, "💬┊ بواسطه » "..tmSAKURA(msg).."\n🎟┊ تم وضع التكرار بالطرد\n ✓ ", 1, 'md')
+redis:set(SAKURA.."floodstatus" .. msg.chat_id_, "Kicked")
 end
 end
 if status[2] == "بالمسح" then
-if redis:get(KEEPER.."floodstatus" .. msg.chat_id_) == "DelMsg" then
-send(msg.chat_id_, msg.id_, 1, "💬┊ بواسطه » "..tmkeeper(msg).."\n🎟┊ تم وضع التكرار بالمسح\n ✓ ", 1, 'md')
+if redis:get(SAKURA.."floodstatus" .. msg.chat_id_) == "DelMsg" then
+send(msg.chat_id_, msg.id_, 1, "💬┊ بواسطه » "..tmSAKURA(msg).."\n🎟┊ تم وضع التكرار بالمسح\n ✓ ", 1, 'md')
 else
-send(msg.chat_id_, msg.id_, 1, "💬┊ بواسطه » "..tmkeeper(msg).."\n🎟┊ تم وضع التكرار بالمسح\n ✓ ", 1, 'md')
-redis:set(KEEPER.."floodstatus" .. msg.chat_id_, "DelMsg")
+send(msg.chat_id_, msg.id_, 1, "💬┊ بواسطه » "..tmSAKURA(msg).."\n🎟┊ تم وضع التكرار بالمسح\n ✓ ", 1, 'md')
+redis:set(SAKURA.."floodstatus" .. msg.chat_id_, "DelMsg")
 end
 end
 end
@@ -7654,63 +7650,63 @@ if 2 > tonumber(warnmax[2]) or tonumber(warnmax[2]) > 30 then
 send(msg.chat_id_, msg.id_, 1, "🌀┊ يمكنك وضع تحذير من (2-30) 🔱", 1, "md")
 else
 send(msg.chat_id_, msg.id_, 1, "🌀┊ تم وضع التحذير : " .. warnmax[2] .. " ⚜️ ", 1, "md")
-redis:set(KEEPER.."warn:max:" .. msg.chat_id_, warnmax[2])
+redis:set(SAKURA.."warn:max:" .. msg.chat_id_, warnmax[2])
 end
 end
 ---------------------warnstatus----------------------------------------------------------
 if is_momod(msg.sender_user_id_, msg.chat_id_) and idf:match("-100(%d+)") and text:match("^ضع تحذير (.*)$")  then
 local status = { string.match(text, "^(ضع تحذير) (.*)$") }
 if status[2] == "بالكتم" then
-if redis:get(KEEPER.."warnstatus" .. msg.chat_id_) == "Muteuser" then
-send(msg.chat_id_, msg.id_, 1, "💬┊ بواسطه » "..tmkeeper(msg).."\n🎟┊ تم وضع التحذير بالكتم\n ✓ ", 1, 'md')
+if redis:get(SAKURA.."warnstatus" .. msg.chat_id_) == "Muteuser" then
+send(msg.chat_id_, msg.id_, 1, "💬┊ بواسطه » "..tmSAKURA(msg).."\n🎟┊ تم وضع التحذير بالكتم\n ✓ ", 1, 'md')
 else
-send(msg.chat_id_, msg.id_, 1, "💬┊ بواسطه » "..tmkeeper(msg).."\n🎟┊ تم وضع التحذير بالكتم\n ✓ ", 1, 'md')
-redis:set(KEEPER.."warnstatus" .. msg.chat_id_, "Muteuser")
+send(msg.chat_id_, msg.id_, 1, "💬┊ بواسطه » "..tmSAKURA(msg).."\n🎟┊ تم وضع التحذير بالكتم\n ✓ ", 1, 'md')
+redis:set(SAKURA.."warnstatus" .. msg.chat_id_, "Muteuser")
 end   end
 if status[2] == "بالطرد" then
-if redis:get(KEEPER.."warnstatus" .. msg.chat_id_) == "Remove" then
-send(msg.chat_id_, msg.id_, 1, "💬┊ بواسطه » "..tmkeeper(msg).."\n🎟┊ تم وضع التحذير بالطرد\n ✓ ", 1, 'md')
+if redis:get(SAKURA.."warnstatus" .. msg.chat_id_) == "Remove" then
+send(msg.chat_id_, msg.id_, 1, "💬┊ بواسطه » "..tmSAKURA(msg).."\n🎟┊ تم وضع التحذير بالطرد\n ✓ ", 1, 'md')
 else
-send(msg.chat_id_, msg.id_, 1, "💬┊ بواسطه » "..tmkeeper(msg).."\n🎟┊ تم وضع التحذير بالطرد\n ✓ ", 1, 'md')
-redis:set(KEEPER.."warnstatus" .. msg.chat_id_, "Remove")
+send(msg.chat_id_, msg.id_, 1, "💬┊ بواسطه » "..tmSAKURA(msg).."\n🎟┊ تم وضع التحذير بالطرد\n ✓ ", 1, 'md')
+redis:set(SAKURA.."warnstatus" .. msg.chat_id_, "Remove")
 end end end
 -----------------------getidstatus-----------------------------------------------------------------
 if is_momod(msg.sender_user_id_, msg.chat_id_) and idf:match("-100(%d+)") and text:match("^تفعيل (.*)$")  then
 local status = { string.match(text, "^(تفعيل) (.*)$")}
 if status[2] == "الايدي" then
-if redis:get(KEEPER.."getidstatus" .. msg.chat_id_) == "Photo" then
-send(msg.chat_id_, msg.id_, 1, "💬┊ بواسطه » "..tmkeeper(msg).."\n🎟┊ تم تفعيل الايدي بالصوره\n ✓ ", 1, 'md')
+if redis:get(SAKURA.."getidstatus" .. msg.chat_id_) == "Photo" then
+send(msg.chat_id_, msg.id_, 1, "💬┊ بواسطه » "..tmSAKURA(msg).."\n🎟┊ تم تفعيل الايدي بالصوره\n ✓ ", 1, 'md')
 else
-send(msg.chat_id_, msg.id_, 1, "💬┊ بواسطه » "..tmkeeper(msg).."\n🎟┊ تم تفعيل الايدي بالصوره\n ✓ ", 1, 'md')
-redis:set(KEEPER.."getidstatus" .. msg.chat_id_, "Photo")
+send(msg.chat_id_, msg.id_, 1, "💬┊ بواسطه » "..tmSAKURA(msg).."\n🎟┊ تم تفعيل الايدي بالصوره\n ✓ ", 1, 'md')
+redis:set(SAKURA.."getidstatus" .. msg.chat_id_, "Photo")
 end end  end
 if is_momod(msg.sender_user_id_, msg.chat_id_) and idf:match("-100(%d+)") and text:match("^تعطيل (.*)$")  then
 local status = {string.match(text, "^(تعطيل) (.*)$")}
 if status[2] == "الايدي" then
-if redis:get(KEEPER.."getidstatus" .. msg.chat_id_) == "Simple" then
-send(msg.chat_id_, msg.id_, 1, "💬┊ بواسطه » "..tmkeeper(msg).."\n🎟┊ تم تعطيل الايدي بالصوره\n ✓ ", 1, 'md')
+if redis:get(SAKURA.."getidstatus" .. msg.chat_id_) == "Simple" then
+send(msg.chat_id_, msg.id_, 1, "💬┊ بواسطه » "..tmSAKURA(msg).."\n🎟┊ تم تعطيل الايدي بالصوره\n ✓ ", 1, 'md')
 else
-send(msg.chat_id_, msg.id_, 1, "💬┊ بواسطه » "..tmkeeper(msg).."\n🎟┊ تم تعطيل الايدي بالصوره\n ✓ ", 1, 'md')
-redis:set(KEEPER.."getidstatus" .. msg.chat_id_, "Simple")
+send(msg.chat_id_, msg.id_, 1, "💬┊ بواسطه » "..tmSAKURA(msg).."\n🎟┊ تم تعطيل الايدي بالصوره\n ✓ ", 1, 'md')
+redis:set(SAKURA.."getidstatus" .. msg.chat_id_, "Simple")
 end end end
 -------------------autoleave-----------------------------------------------------------------------
 if is_sudo(msg) and text:match("^تفعيل (.*)$") then
 local status = {string.match(text, "^(تفعيل) (.*)$")}
 if status[2] == "الخروج التلقائي" then
-if redis:get(KEEPER.."autoleave") == "On" then
-send(msg.chat_id_, msg.id_, 1, "💬┊ بواسطه » "..tmkeeper(msg).."\n🎟┊ تم تفعيل الخروج التلقائي\n ✓ ", 1, 'md')
+if redis:get(SAKURA.."autoleave") == "On" then
+send(msg.chat_id_, msg.id_, 1, "💬┊ بواسطه » "..tmSAKURA(msg).."\n🎟┊ تم تفعيل الخروج التلقائي\n ✓ ", 1, 'md')
 else
-send(msg.chat_id_, msg.id_, 1, "💬┊ بواسطه » "..tmkeeper(msg).."\n🎟┊ تم تفعيل الخروج التلقائي\n ✓ ", 1, 'md')
-redis:set(KEEPER.."autoleave", "On")
+send(msg.chat_id_, msg.id_, 1, "💬┊ بواسطه » "..tmSAKURA(msg).."\n🎟┊ تم تفعيل الخروج التلقائي\n ✓ ", 1, 'md')
+redis:set(SAKURA.."autoleave", "On")
 end end end
 if is_sudo(msg) and text:match("^تعطيل (.*)$") then
 local status = { string.match(text, "^(تعطيل) (.*)$")}
 if status[2] == "الخروج التلقائي" then
-if redis:get(KEEPER.."autoleave") == "Off" then
-send(msg.chat_id_, msg.id_, 1, "💬┊ بواسطه » "..tmkeeper(msg).."\n🎟┊ تم تعطيل الخروج التلقائي\n ✓ ", 1, 'md')
+if redis:get(SAKURA.."autoleave") == "Off" then
+send(msg.chat_id_, msg.id_, 1, "💬┊ بواسطه » "..tmSAKURA(msg).."\n🎟┊ تم تعطيل الخروج التلقائي\n ✓ ", 1, 'md')
 else
-send(msg.chat_id_, msg.id_, 1, "💬┊ بواسطه » "..tmkeeper(msg).."\n🎟┊ تم تعطيل الخروج التلقائي\n ✓ ", 1, 'md')
-redis:set(KEEPER.."autoleave", "Off")
+send(msg.chat_id_, msg.id_, 1, "💬┊ بواسطه » "..tmSAKURA(msg).."\n🎟┊ تم تعطيل الخروج التلقائي\n ✓ ", 1, 'md')
+redis:set(SAKURA.."autoleave", "Off")
 end   end  end
 -----------------------------------------------------------
 if text == 'تنظيف الكروبات' or text == 'تنظيف المجموعات' then
@@ -7720,21 +7716,21 @@ else
 send(msg.chat_id_, msg.id_, 1, '🌀┊ تم تنظيف المجموعات الغير \nمفعله في البوت بنجاح ✔', 'md')
 redis:del("bot:groups")
 end end
-------------------SET KEEPER_SUDO-----------------------------------------
+------------------SET SAKURA_SUDO-----------------------------------------
 
 if text:match("^ضع كليشه المطور$") then
 if not is_KP(msg) then
 send(msg.chat_id_, msg.id_, 1, '💲┊ للمطور الاساسي فقــــــــط', 1, 'md')
 else
 send(msg.chat_id_, msg.id_, 1, "🌀┊ ارســل لــي كليــشه المطــور الان 🎗", 1, "md")
-redis:setex(KEEPER.."bot:keeper_dev" .. msg.chat_id_ .. ":" .. msg.sender_user_id_, 370, true)
+redis:setex(SAKURA.."bot:SAKURA_dev" .. msg.chat_id_ .. ":" .. msg.sender_user_id_, 370, true)
 end end
 
 if text:match("^المطور$") then
 local get_me = function(extra, result)
-local OwnerKP_ = redis:get(KEEPER.."Bot:KpOwnerBot")
-local user_info_ = redis:get(KEEPER.."user:Name" .. OwnerKP_)
-local UserKeeper = user_info_
+local OwnerKP_ = redis:get(SAKURA.."Bot:KpOwnerBot")
+local user_info_ = redis:get(SAKURA.."user:Name" .. OwnerKP_)
+local UserSAKURA = user_info_
 if user_info_ then
 if result.first_name_ then
 if #result.first_name_ < 35 then
@@ -7743,9 +7739,9 @@ for kkkkk in string.gmatch(result.first_name_, "[^%s]+") do
 result.first_name_ = kkkkk
 break
 end end end
-local keeper_dev = redis:get(KEEPER.."keeper_dev")
-if keeper_dev then
-send(msg.chat_id_, msg.id_, 1, "["..keeper_dev.."]", 1, "md")
+local SAKURA_dev = redis:get(SAKURA.."SAKURA_dev")
+if SAKURA_dev then
+send(msg.chat_id_, msg.id_, 1, "["..SAKURA_dev.."]", 1, "md")
 else
 local karrar = [[
 
@@ -7756,7 +7752,7 @@ local karrar = [[
 🗯┊ ثم ارسل كلمه *(تفعيل)*
 🎟┊ سيتم رفع الادمنيه والمنشىء 
 
-⚜️» مطور البوت » []]..UserKeeper..[[]
+⚜️» مطور البوت » []]..UserSAKURA..[[]
 〰
 ]]
 send(msg.chat_id_, msg.id_, 1, karrar, 1, "md") 
@@ -7770,21 +7766,21 @@ if text == 'حذف كليشه المطور' then
 if not is_KP(msg) then
 send(msg.chat_id_, msg.id_, 1, '💲┊ للمطور الاساسي فقــــــــط', 1, 'md')
 else
-redis:del(KEEPER.."keeper_dev")
-send(msg.chat_id_, msg.id_, 1, "💬┊ بواسطه » "..tmkeeper(msg).."\n🎟┊ تم حذف كليشه المطور\n ✓ ", 1, 'md')
+redis:del(SAKURA.."SAKURA_dev")
+send(msg.chat_id_, msg.id_, 1, "💬┊ بواسطه » "..tmSAKURA(msg).."\n🎟┊ تم حذف كليشه المطور\n ✓ ", 1, 'md')
 end
 end
 -------------------------SET LINK---------------------------------------------------------------
 if is_momod(msg.sender_user_id_, msg.chat_id_) and idf:match("-100(%d+)") and (text:match("^ضع رابط$"))  then
 send(msg.chat_id_, msg.id_, 1, "🌀┊ ارســــل لي الرابط الان 🎐", 1, "md")
-redis:setex(KEEPER.."bot:group:link" .. msg.chat_id_ .. ":" .. msg.sender_user_id_, 1200, true)
+redis:setex(SAKURA.."bot:group:link" .. msg.chat_id_ .. ":" .. msg.sender_user_id_, 1200, true)
 end
 if is_momod(msg.sender_user_id_, msg.chat_id_) and idf:match("-100(%d+)") and (text:match("^حذف الرابط$"))  then
-send(msg.chat_id_, msg.id_, 1, "💬┊ بواسطه » "..tmkeeper(msg).."\n🎟┊ تم حذف الرابط بنجاح\n ✓ ", 1, 'md')
-redis:del(KEEPER.."bot:group:link" .. msg.chat_id_)
+send(msg.chat_id_, msg.id_, 1, "💬┊ بواسطه » "..tmSAKURA(msg).."\n🎟┊ تم حذف الرابط بنجاح\n ✓ ", 1, 'md')
+redis:del(SAKURA.."bot:group:link" .. msg.chat_id_)
 end
 if text:match("^الرابط$") then
-local link = redis:get(KEEPER.."bot:group:link" .. msg.chat_id_)
+local link = redis:get(SAKURA.."bot:group:link" .. msg.chat_id_)
 if link then
 send(msg.chat_id_, msg.id_, 1, "📬¦ رابـــط المجموعــه :\n" .. link .. "", 1, "md")
 else
@@ -7818,7 +7814,7 @@ local filterss = { string.match(text, "^(منع) (.*)$") }
 local name = string.sub(filterss[2], 1, 50)
 local hash = "bot:filters:" .. msg.chat_id_
 if filter_ok(name) then
-redis:hset(KEEPER..hash, name, "newword")
+redis:hset(SAKURA..hash, name, "newword")
 send(msg.chat_id_, msg.id_, 1, "🌀┊  الكلمه〖  " .. name .. "  〗\n👥┊ تم  منعها📍 ", 1, "md")
 else
 send(msg.chat_id_, msg.id_, 1, "🌀┊  الكلمه [ " .. name .. " ] \n لا استطيع منعها❌", 1, "md")
@@ -7827,7 +7823,7 @@ end
 ---------------------filters------------------------------------------------------
 if is_momod(msg.sender_user_id_, msg.chat_id_) and idf:match("-100(%d+)") and text:match("^منع$")  then
 send(msg.chat_id_, msg.id_, 1, "🌀┊  ارسل لي الكلمات التي \nتريد منعها بشكل فردي🎈 \n لٱلغاء الامر ارسل الغاء 🎐", 1, "md")
-redis:setex(KEEPER.."Filtering:" .. msg.sender_user_id_, 80, msg.chat_id_)
+redis:setex(SAKURA.."Filtering:" .. msg.sender_user_id_, 80, msg.chat_id_)
 end
 ----------------------------------------------------------------------------------
 if is_momod(msg.sender_user_id_, msg.chat_id_) and idf:match("-100(%d+)") and text:match("^الغاء منع (.*)$")  then
@@ -7835,14 +7831,14 @@ local rwss = { string.match(text, "^(الغاء منع) (.*)$")}
 local name = string.sub(rwss[2], 1, 50)
 local cti = msg.chat_id_
 local hash = "bot:filters:" .. msg.chat_id_
-if not redis:hget(KEEPER..hash, name) then
+if not redis:hget(SAKURA..hash, name) then
 send(msg.chat_id_, msg.id_, 1, "🌀┊  الكلمه〖  " .. name .. "  〗\n👥┊  تم الغاء منعها📍", 1, "md")
-redis:hdel(KEEPER..hash, name)
+redis:hdel(SAKURA..hash, name)
 end end
 -------------------USERS----------------------------------------------------
 if text == 'المشتركين' or text == 'عدد المشتركين' and is_KP(msg) then
-local users = redis:scard(KEEPER.."bot:userss")
-local botnamess = redis:get(KEEPER.."keepernams") or "كيبر"
+local users = redis:scard(SAKURA.."bot:userss")
+local botnamess = redis:get(SAKURA.."SAKURAnams") or "ساكورا"
 send(msg.chat_id_, msg.id_, 1, "*- عدد المشتركين في الخاص»* 👇🏾\n👨🏼┊ اسم البوت » *" .. botnamess .. "*\n🚫┊ عدد المشتركين » *("..users..")* مشترك\n‏", 1,"md")
 end
 ----------------------------------------------------------------------------
@@ -7851,13 +7847,13 @@ if not is_KP(msg) then
 send(msg.chat_id_, msg.id_, 1, '💲┊ للمطور الاساسي فقــــــــط', 1, 'md')
 else
 local get_me = function(extra, result)
-local num = (redis:scard(KEEPER.."bot:groups"))
-local list = redis:smembers(KEEPER.."bot:groups")
+local num = (redis:scard(SAKURA.."bot:groups"))
+local list = redis:smembers(SAKURA.."bot:groups")
 local text = "~ All_Groups_Bots \n\n"
 for k,v in pairs(list) do
-local GroupsOwner = redis:scard(KEEPER.."bot:owners:"..v) or 0
-local GroupsMod = redis:scard(KEEPER.."bot:momod:"..v) or 0
-local Groupslink = redis:get(KEEPER.."bot:group:link" ..v)
+local GroupsOwner = redis:scard(SAKURA.."bot:owners:"..v) or 0
+local GroupsMod = redis:scard(SAKURA.."bot:momod:"..v) or 0
+local Groupslink = redis:get(SAKURA.."bot:group:link" ..v)
 if result.first_name_ then
 if #result.first_name_ < 35 then
 else
@@ -7870,7 +7866,7 @@ end
 local file = io.open('Groups_Bot.txt', 'w')
 file:write(text)
 file:close()
-local token_files = 'https://api.telegram.org/bot' .. KEEPER_TOKEN .. '/sendDocument'
+local token_files = 'https://api.telegram.org/bot' .. SAKURA_TOKEN .. '/sendDocument'
 local token_filess = 'curl "' .. token_files .. '" -F "chat_id=' .. msg.chat_id_ .. '" -F "document=@' .. 'Groups_Bot.txt' .. '"'
 io.popen(token_filess)
 send(msg.chat_id_, msg.id_, 1, '🔚┊ اهلا » *'..result.first_name_..'*\n🔰┊ جاري ارسال نسخه للمجموعات \n🌀┊ تحتوي على *('..num..')* مجموعه\n‏〰', 1, 'md')
@@ -7885,20 +7881,20 @@ if text == "فحص" then
 if not is_KP(msg) then
 send(msg.chat_id_, msg.id_, 1, '💲┊ للمطور الاساسي فقــــــــط', 1, 'md')
 else
-local botnamess = redis:get(KEEPER.."keepernams") or "كيبر"
-local kpSudos1 = redis:scard(KEEPER.."Bot:KpSudos") or "0"
-local kpAdmins = redis:scard(KEEPER.."Bot:Admins") or "0"
-local kpgban = redis:scard(KEEPER.."bot:gban:") or "0"
-local kpvipmems = redis:scard(KEEPER.."bot:vipmems:") or "0"
-local kpgps = redis:scard(KEEPER.."bot:groups") or "0"
-local kpusers = redis:scard(KEEPER.."bot:userss") or "0"
-send(msg.chat_id_, msg.id_, 1, "*- احصائيات البـــــوت ≈*\n*ﮧ -------------------»*\n👨🏼┊اسم البوت ≈ *" .. botnamess .. "*\n🃏┊عدد المطورين ≈ *"..kpSudos1.."*\n🔰┊عدد الادمنيه ≈ *"..kpAdmins.."*\n🔚┊عدد الكروبات ≈ * "..kpgps.."*\n👪┊عدد المشتركين خاص ≈ *" .. kpusers .. "*\n🔔┊عدد المحظورين عام ≈ *"..kpgban.."*\n🔘┊عدد المميزين عام ≈ * "..kpvipmems.."*\n🗯┊قناة السورس ≈ [keeper](t.me/keeper_ch)\n✓", 1,"md")
+local botnamess = redis:get(SAKURA.."SAKURAnams") or "ساكورا"
+local kpSudos1 = redis:scard(SAKURA.."Bot:KpSudos") or "0"
+local kpAdmins = redis:scard(SAKURA.."Bot:Admins") or "0"
+local kpgban = redis:scard(SAKURA.."bot:gban:") or "0"
+local kpvipmems = redis:scard(SAKURA.."bot:vipmems:") or "0"
+local kpgps = redis:scard(SAKURA.."bot:groups") or "0"
+local kpusers = redis:scard(SAKURA.."bot:userss") or "0"
+send(msg.chat_id_, msg.id_, 1, "*- احصائيات البـــــوت ≈*\n*ﮧ -------------------»*\n👨🏼┊اسم البوت ≈ *" .. botnamess .. "*\n🃏┊عدد المطورين ≈ *"..kpSudos1.."*\n🔰┊عدد الادمنيه ≈ *"..kpAdmins.."*\n🔚┊عدد الكروبات ≈ * "..kpgps.."*\n👪┊عدد المشتركين خاص ≈ *" .. kpusers .. "*\n🔔┊عدد المحظورين عام ≈ *"..kpgban.."*\n🔘┊عدد المميزين عام ≈ * "..kpvipmems.."*\n🗯┊قناة السورس ≈ [SAKURA](t.me/@SAKURATEM)\n✓", 1,"md")
 end
 end
 ------------------GPS AND USERS-------------------------------------------
 if text:match("^المجموعات$") or text:match("^الكروبات$") and is_admin(msg.sender_user_id_, msg.chat_id_) then
-local gps = redis:scard(KEEPER.."bot:groups")
-local users = redis:scard(KEEPER.."bot:userss")
+local gps = redis:scard(SAKURA.."bot:groups")
+local users = redis:scard(SAKURA.."bot:userss")
 send(msg.chat_id_, msg.id_, 1, "🚫┊ عدد الكروبات المفعله» *"..gps.."*\n🔰┊ عدد المشتركين » *"..users.."* مشترك\n✓‏", 1, 'md')
 end
 -----------------------bc--------------------------------------------------------
@@ -7908,8 +7904,8 @@ send(msg.chat_id_, msg.id_, 1, '💲┊ للمطور الاساسي فقــــ
 else
 function cb(a,b,c)
 local text = b.content_.text_
-local gps = redis:scard(KEEPER.."bot:groups") or 0
-local gpss = redis:smembers(KEEPER.."bot:groups") or 0
+local gps = redis:scard(SAKURA.."bot:groups") or 0
+local gpss = redis:smembers(SAKURA.."bot:groups") or 0
 local msgs = {
 [0] = id
 }
@@ -7927,8 +7923,8 @@ if not is_KP(msg) then
 send(msg.chat_id_, msg.id_, 1, '💲┊ للمطور الاساسي فقــــــــط', 1, 'md')
 else
 function cb(a,b,c)
-local gps = redis:scard(KEEPER.."bot:groups") or 0
-local gpss = redis:smembers(KEEPER.."bot:groups") or 0
+local gps = redis:scard(SAKURA.."bot:groups") or 0
+local gpss = redis:smembers(SAKURA.."bot:groups") or 0
 for k,v in pairs(gpss) do
 forwardMessages(v, msg.chat_id_, {[0] = b.id_}, 1)
 end
@@ -7944,8 +7940,8 @@ send(msg.chat_id_, msg.id_, 1, '💲┊ للمطور الاساسي فقــــ
 else
 function cb(a,b,c)
 local text = b.content_.text_
-local users = redis:scard(KEEPER.."bot:userss") or 0
-local userss = redis:smembers(KEEPER.."bot:userss") or 0
+local users = redis:scard(SAKURA.."bot:userss") or 0
+local userss = redis:smembers(SAKURA.."bot:userss") or 0
 local msgs = {
 [0] = id
 }
@@ -7963,8 +7959,8 @@ if not is_KP(msg) then
 send(msg.chat_id_, msg.id_, 1, '💲┊ للمطور الاساسي فقــــــــط', 1, 'md')
 else
 function cb(a,b,c)
-local users = redis:scard(KEEPER.."bot:userss") or 0
-local userss = redis:smembers(KEEPER.."bot:userss") or 0
+local users = redis:scard(SAKURA.."bot:userss") or 0
+local userss = redis:smembers(SAKURA.."bot:userss") or 0
 for k,v in pairs(userss) do
 forwardMessages(v, msg.chat_id_, {[0] = b.id_}, 1)
 end
@@ -7975,7 +7971,7 @@ end
 end
 ----------------LOCK FOSHN--------------------------------------------------
 if text:match("كس") or text:match("طيز") or text:match("ديس") or text:match("زب") or text:match("انيجمك") or text:match("انيج") or text:match("نيج") or text:match("ديوس") or text:match("عير") or text:match("كسختك") or text:match("كسمك") or text:match("كسربك") or text:match("بلاع") or text:match("ابو العيوره") or text:match("منيوج") or text:match("كحبه") or text:match("اخ الكحبه") or text:match("اخو الكحبه") or text:match("الكحبه") or text:match("كسك") or text:match("طيزك") or text:match("عير بطيزك") or text:match("كس امك") or text:match("امك الكحبه") or text:match("عيرك") or text:match("عير بيك") or text:match("صرمك") and is_momod(msg.sender_user_id_, msg.chat_id_) then
-if redis:get(KEEPER.."ffosh"..msg.chat_id_) and not is_momod(msg.sender_user_id_, msg.chat_id_) then
+if redis:get(SAKURA.."ffosh"..msg.chat_id_) and not is_momod(msg.sender_user_id_, msg.chat_id_) then
 local id = msg.id_
 local msgs = { [0] = id}
 local chat = msg.chat_id_
@@ -7986,32 +7982,32 @@ if text == "الرتبه" and msg.reply_to_message_id_ ~= 0 then
 function id_by_reply(extra, result, success)
 if result.id_ then
 if tonumber(result.sender_user_id_) == tonumber(Kp_Owner) then
-keeper3 = "مطور الاساسـي"
+SAKURA3 = "مطور الاساسـي"
 elseif is_sudoid(result.sender_user_id_) then
-keeper3 = "المطور"
+SAKURA3 = "المطور"
 elseif is_admin(result.sender_user_id_) then
-keeper3 = "ادمن في البوت"
+SAKURA3 = "ادمن في البوت"
 elseif is_vipmems(result.sender_user_id_) then
-keeper3 = "مميز عام"
+SAKURA3 = "مميز عام"
 elseif is_monshi(result.sender_user_id_, msg.chat_id_) then
-keeper3 = "منشىء الكروب"
+SAKURA3 = "منشىء الكروب"
 elseif is_owner(result.sender_user_id_, msg.chat_id_) then
-keeper3 = "المدير"
+SAKURA3 = "المدير"
 elseif is_momod(result.sender_user_id_, msg.chat_id_) then
-keeper3 = "ادمن المجموعه"
+SAKURA3 = "ادمن المجموعه"
 elseif is_vipmem(result.sender_user_id_, msg.chat_id_) then
-keeper3 = "عضو مميز"
+SAKURA3 = "عضو مميز"
 else
-keeper3 = "عـضـو"
+SAKURA3 = "عـضـو"
 end
 end
-send(msg.chat_id_, msg.id_, 1, "🚫┊ الرتبه » (*"..keeper3.."*) 🍃\n‏" , 1, "md")
+send(msg.chat_id_, msg.id_, 1, "🚫┊ الرتبه » (*"..SAKURA3.."*) 🍃\n‏" , 1, "md")
 end
 getMessage(msg.chat_id_, msg.reply_to_message_id_,id_by_reply)
 end
 ----------------LINK DELETE---------------------------------------------------
 if text:match("^رابط حذف$") or text:match("^رابط الحذف$") or text:match("^اريد رابط الحذف$") or  text:match("^رايد احذف حسابي$") or text:match("^اريد رابط حذف$") then
-if not redis:get(KEEPER..'lock:add'..msg.chat_id_) then
+if not redis:get(SAKURA..'lock:add'..msg.chat_id_) then
 local text =  [[
 ╗ » رابط الحذف 🔎
 ╣ » فكر قبل كولشي❗️
@@ -8020,31 +8016,23 @@ local text =  [[
 ]]
 send(msg.chat_id_, msg.id_, 1, text, 1, 'md')
 end end
-------------------SOURCE KEEPER---------------------------------------------------
-if text:match("^سورس$") or text:match("^السورس$") or text:match("^مطور السورس$") or text:match("^ياسورس$") or  text:match("^سورس كيبر$") or text:match("^اريد سورس$") then
-if not redis:get(KEEPER..'lock:add'..msg.chat_id_) then
+------------------SOURCE SAKURA---------------------------------------------------
+if text:match("^سورس$") or text:match("^السورس$") or text:match("^مطور السورس$") or text:match("^ياسورس$") or  text:match("^سورس ساكورا$") or text:match("^اريد سورس$") then
+if not redis:get(SAKURA..'lock:add'..msg.chat_id_) then
 local text =  [[
 ‏
 ‏
-🔍┊ *اهلا بك في سورس كيبر❗️
-🌀┊ اقوى السورسات العربية..
+🔰 Welcome to Source 🔰
 
-🔰┊ لتنصيب السورس ✔️
-👷┊ اضغط  لنسخ الكود ثم
-💢┊ ضعه في الترمنال واضغط Enter*
-
-`git clone https://github.com/alqaser/KEEPER.git && cd KEEPER && chmod +x keeper && ./keeper`
-
-🔱┊ *راح يطلب ايديك كـمطور
-💲┊ بعدها يطلب التــــوكن*
-يشتغل تلقائيا ميحتاج تسوي
-سكرين ....
-📮┊ *كود التشغيل :❗️*
-
-`killall screen && cd KEEPER && screen ./keeper`
-
-💬┊ *مطور السورس *≈ [@rr20r](t.me/rr20r)
-💲┊ *قناٌة السوٰرس *≈ [@keeper_ch](T.ME/keeper_ch)
+🌐┇SUKORATEAM 
+┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉
+📊┇ [Source Channel](https://t.me/SAKURATEM)
+ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉
+📋┇ [SAKURA Update](https://t.me/SAKURA57)
+ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ 
+📧┇ [TWS SAKURA](https://t.me/SAKURATEM_BOT)
+ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉
+[DEV SAKURA](https://t.me/MMMM_27)
 
 ‏
 ]]
@@ -8052,11 +8040,11 @@ send(msg.chat_id_, msg.id_, 1, text, 1, 'md')
 end end
 -------------helps--------------------------------------------------------------------------
 if text:match("^الاوامر$")  then
-local OwnerKP_ = redis:get(KEEPER.."Bot:KpOwnerBot")
-local user_info_ = redis:get(KEEPER.."user:Name" .. OwnerKP_)
-local UserKeeper = user_info_
+local OwnerKP_ = redis:get(SAKURA.."Bot:KpOwnerBot")
+local user_info_ = redis:get(SAKURA.."user:Name" .. OwnerKP_)
+local UserSAKURA = user_info_
 if user_info_ then
-if not redis:get(KEEPER..'lock:add'..msg.chat_id_) then
+if not redis:get(SAKURA..'lock:add'..msg.chat_id_) then
 if not is_momod(msg.sender_user_id_, msg.chat_id_)then
 send(msg.chat_id_, msg.id_, 1, '💲┊ للأدمنيـــــــه فقــــــــط', 1, 'md')
 else
@@ -8073,17 +8061,17 @@ local text = [[
 
 ⚜️┇ *⁽م6₎»* اوامر المطور الاساسي
 ‏┄┄┄┄┄┄┄┄┄┄┄┄
-🔱 » *المطور* : []] .. UserKeeper .. [[]
+🔱 » *المطور* : []] .. UserSAKURA .. [[]
 ‌]]
 send(msg.chat_id_, msg.id_, 1, text, 1, 'md')
 end end end end
 ---------------------------------------------------------------------------------------
 if text:match("^م1$")  then
-local OwnerKP_ = redis:get(KEEPER.."Bot:KpOwnerBot")
-local user_info_ = redis:get(KEEPER.."user:Name" .. OwnerKP_)
-local UserKeeper = user_info_
+local OwnerKP_ = redis:get(SAKURA.."Bot:KpOwnerBot")
+local user_info_ = redis:get(SAKURA.."user:Name" .. OwnerKP_)
+local UserSAKURA = user_info_
 if user_info_ then
-if not redis:get(KEEPER..'lock:add'..msg.chat_id_) then
+if not redis:get(SAKURA..'lock:add'..msg.chat_id_) then
 if not is_momod(msg.sender_user_id_, msg.chat_id_)then
 send(msg.chat_id_, msg.id_, 1, '💲┊ للأدمنيـــــــه فقــــــــط', 1, 'md')
 else
@@ -8118,16 +8106,16 @@ local text = [[
 ⚜️ ┇ التوجيـه ⌯ الماركدون
 ⚜️ ┇ المعرف ⌯ الكل
 ‏┄┄‏┄┄┄┄┄┄┄┄┄┄
-🔱 » *المطور* : []] .. UserKeeper .. [[]
+🔱 » *المطور* : []] .. UserSAKURA .. [[]
 ‌‏]]
 send(msg.chat_id_, msg.id_, 1, text, 1, 'md')
 end  end end end
 if text:match("^م2$")  then
-local OwnerKP_ = redis:get(KEEPER.."Bot:KpOwnerBot")
-local user_info_ = redis:get(KEEPER.."user:Name" .. OwnerKP_)
-local UserKeeper = user_info_
+local OwnerKP_ = redis:get(SAKURA.."Bot:KpOwnerBot")
+local user_info_ = redis:get(SAKURA.."user:Name" .. OwnerKP_)
+local UserSAKURA = user_info_
 if user_info_ then
-if not redis:get(KEEPER..'lock:add'..msg.chat_id_) then
+if not redis:get(SAKURA..'lock:add'..msg.chat_id_) then
 if not is_momod(msg.sender_user_id_, msg.chat_id_)then
 send(msg.chat_id_, msg.id_, 1, '💲┊ للأدمنيـــــــه فقــــــــط', 1, 'md')
 else
@@ -8164,16 +8152,16 @@ local text = [[
 🗯 ┇ قائمه العام
 🗯 ┇ المميزين
 ‏┄┄┄┄┄┄┄┄┄┄
-🔱 » *المطور* : []] .. UserKeeper .. [[]
+🔱 » *المطور* : []] .. UserSAKURA .. [[]
 ‌‏]]
 send(msg.chat_id_, msg.id_, 1, text, 1, 'md')
 end end end end
 if text:match("^م3$")  then
-local OwnerKP_ = redis:get(KEEPER.."Bot:KpOwnerBot")
-local user_info_ = redis:get(KEEPER.."user:Name" .. OwnerKP_)
-local UserKeeper = user_info_
+local OwnerKP_ = redis:get(SAKURA.."Bot:KpOwnerBot")
+local user_info_ = redis:get(SAKURA.."user:Name" .. OwnerKP_)
+local UserSAKURA = user_info_
 if user_info_ then
-if not redis:get(KEEPER..'lock:add'..msg.chat_id_) then
+if not redis:get(SAKURA..'lock:add'..msg.chat_id_) then
 if not is_momod(msg.sender_user_id_, msg.chat_id_)then
 send(msg.chat_id_, msg.id_, 1, '💲┊ للأدمنيـــــــه فقــــــــط', 1, 'md')
 else
@@ -8218,16 +8206,16 @@ local text = [[
 📌 ┇ المحظورين - المقيدين
 📌 ┇ الادمنيه - قائمه الــمنع
 ‏┄┄┄┄┄┄┄┄┄┄
-🔱 » *المطور* : []] .. UserKeeper .. [[]
+🔱 » *المطور* : []] .. UserSAKURA .. [[]
 ‌‏]]
 send(msg.chat_id_, msg.id_, 1, text, 1, 'md')
 end end end end
 if text:match("^م4$")  then
-local OwnerKP_ = redis:get(KEEPER.."Bot:KpOwnerBot")
-local user_info_ = redis:get(KEEPER.."user:Name" .. OwnerKP_)
-local UserKeeper = user_info_
+local OwnerKP_ = redis:get(SAKURA.."Bot:KpOwnerBot")
+local user_info_ = redis:get(SAKURA.."user:Name" .. OwnerKP_)
+local UserSAKURA = user_info_
 if user_info_ then
-if not redis:get(KEEPER..'lock:add'..msg.chat_id_) then
+if not redis:get(SAKURA..'lock:add'..msg.chat_id_) then
 if not is_sudo(msg)then
 send(msg.chat_id_, msg.id_, 1, '💲┊ للمطوريــــــــن فقــــــــط', 1, 'md')
 else
@@ -8254,16 +8242,16 @@ local text = [[
 🗯┇ فحص الشحن،
 🗯┇ تعطيل
 ‏┄┄┄┄┄‏┄┄┄┄┄┄
-🔱 » *المطور* : []] .. UserKeeper .. [[]
+🔱 » *المطور* : []] .. UserSAKURA .. [[]
 ‌‏]]
 send(msg.chat_id_, msg.id_, 1, text, 1, 'md')
 end end end end
 if text:match("^م5$")  then
-local OwnerKP_ = redis:get(KEEPER.."Bot:KpOwnerBot")
-local user_info_ = redis:get(KEEPER.."user:Name" .. OwnerKP_)
-local UserKeeper = user_info_
+local OwnerKP_ = redis:get(SAKURA.."Bot:KpOwnerBot")
+local user_info_ = redis:get(SAKURA.."user:Name" .. OwnerKP_)
+local UserSAKURA = user_info_
 if user_info_ then
-if not redis:get(KEEPER..'lock:add'..msg.chat_id_) then
+if not redis:get(SAKURA..'lock:add'..msg.chat_id_) then
 if not is_momod(msg.sender_user_id_, msg.chat_id_)then
 send(msg.chat_id_, msg.id_, 1, '💲┊ للأدمنيـــــــه فقــــــــط', 1, 'md')
 else
@@ -8291,16 +8279,16 @@ local text = [[
 📌 ┇ صورتي
 📌 ┇ موقعي
 ‏┄┄┄┄┄┄┄┄┄
-🔱 » *المطور* : []] .. UserKeeper .. [[]
+🔱 » *المطور* : []] .. UserSAKURA .. [[]
 ‌‏]]
 send(msg.chat_id_, msg.id_, 1, text, 1, 'md')
 end end end end
 if text:match("^م6$")  then
-local OwnerKP_ = redis:get(KEEPER.."Bot:KpOwnerBot")
-local user_info_ = redis:get(KEEPER.."user:Name" .. OwnerKP_)
-local UserKeeper = user_info_
+local OwnerKP_ = redis:get(SAKURA.."Bot:KpOwnerBot")
+local user_info_ = redis:get(SAKURA.."user:Name" .. OwnerKP_)
+local UserSAKURA = user_info_
 if user_info_ then
-if not redis:get(KEEPER..'lock:add'..msg.chat_id_) then
+if not redis:get(SAKURA..'lock:add'..msg.chat_id_) then
 if not is_KP(msg)then
 send(msg.chat_id_, msg.id_, 1, '💲┊ للمطور الاساسي فقــــــــط', 1, 'md')
 else
@@ -8338,19 +8326,19 @@ local text = [[
 📌┇ وضع اسم البوت
 📌┇ ارسال نسخه
 ‏┄┄┄┄┄┄┄┄┄
-🔱 » *المطور* : []] .. UserKeeper .. [[]
+🔱 » *المطور* : []] .. UserSAKURA .. [[]
 ‌‏]]
 send(msg.chat_id_, msg.id_, 1, text, 1, 'md')
 end end end end
 -------------------set welcome-------------------------------------------------------------
 if text:match('^وضع ترحيب (.*)') and is_momod(msg.sender_user_id_, msg.chat_id_) then
 local welcome = text:match('^وضع ترحيب (.*)')
-redis:set(KEEPER..'welcome:'..msg.chat_id_,welcome)
-send(msg.chat_id_, msg.id_, 1, "💬┊ بواسطه » "..tmkeeper(msg).."\n🎟┊ تم وضع الترحيب\n ✓ ", 1, 'md')
+redis:set(SAKURA..'welcome:'..msg.chat_id_,welcome)
+send(msg.chat_id_, msg.id_, 1, "💬┊ بواسطه » "..tmSAKURA(msg).."\n🎟┊ تم وضع الترحيب\n ✓ ", 1, 'md')
 end
 -----------------welcome------------------------------------------
 if text:match("^الترحيب$") and is_momod(msg.sender_user_id_, msg.chat_id_) then
-local wel = redis:get(KEEPER..'welcome:'..msg.chat_id_)
+local wel = redis:get(SAKURA..'welcome:'..msg.chat_id_)
 if wel then
 send(msg.chat_id_, msg.id_, 1, wel, 1, 'md')
 else
@@ -8358,39 +8346,39 @@ send(msg.chat_id_, msg.id_, 1, '🚫┊ لم يتم وضع الترحيب ❗️
 end end
 -----------------broadcast1 or broadcast2------------------------------------------------------------------------------------------
 if text:match("^توجيه$") then
-if not redis:get(KEEPER..'lock:add'..msg.chat_id_) then
+if not redis:get(SAKURA..'lock:add'..msg.chat_id_) then
 if not is_KP(msg) then
 send(msg.chat_id_, msg.id_, 1, '💲┊ للمطور الاساسي فقــــــــط', 1, 'md')
 else
-redis:setex(KEEPER.."broadcast" .. msg.chat_id_ .. ":" .. msg.sender_user_id_, 60, true)
+redis:setex(SAKURA.."broadcast" .. msg.chat_id_ .. ":" .. msg.sender_user_id_, 60, true)
 send(msg.chat_id_, msg.id_, 1, "🌀┊ ارسل لي الرساله الان📲\n🚫┊ للخروج ارسل لي الغاء 📍 ", 1, "md")
 end end end
 if text:match("^اذاعه$") then
-if not redis:get(KEEPER..'lock:add'..msg.chat_id_) then
+if not redis:get(SAKURA..'lock:add'..msg.chat_id_) then
 if not is_KP(msg) then
 send(msg.chat_id_, msg.id_, 1, '💲┊ للمطور الاساسي فقــــــــط', 1, 'md')
 else
-redis:setex(KEEPER.."broadcast2" .. msg.chat_id_ .. ":" .. msg.sender_user_id_, 60, true)
+redis:setex(SAKURA.."broadcast2" .. msg.chat_id_ .. ":" .. msg.sender_user_id_, 60, true)
 send(msg.chat_id_, msg.id_, 1, "🌀┊  ارسل لي الرساله الان📲\n🚫┊ للخروج ارسل لي الغاء 📍 ", 1, "md")
 end end end
 ----------------- info bot --------------------------------------------------------------
 if is_sudo(msg) and (text:match("^اعدادات البوت$") or text:match("^معلومات البوت$")) then
-if not redis:get(KEEPER..'lock:add'..msg.chat_id_) then
-local gps = redis:scard(KEEPER.."bot:groups")
-local users = redis:scard(KEEPER.."bot:userss")
-local allmgs = redis:get(KEEPER.."bot:allmsgs")
-if redis:get(KEEPER.."autoleave") == "On" then
+if not redis:get(SAKURA..'lock:add'..msg.chat_id_) then
+local gps = redis:scard(SAKURA.."bot:groups")
+local users = redis:scard(SAKURA.."bot:userss")
+local allmgs = redis:get(SAKURA.."bot:allmsgs")
+if redis:get(SAKURA.."autoleave") == "On" then
 autoleaveAR = "مفعل"
-elseif redis:get(KEEPER.."autoleave") == "Off" then
+elseif redis:get(SAKURA.."autoleave") == "Off" then
 autoleaveAR = "معطل"
-elseif not redis:get(KEEPER.."autoleave") then
+elseif not redis:get(SAKURA.."autoleave") then
 autoleaveAR = "معطل"
 end
-if redis:get(KEEPER.."joinbylink") == "On" then
+if redis:get(SAKURA.."joinbylink") == "On" then
 joinbylinkAR = "مفعل"
-elseif redis:get(KEEPER.."joinbylink") == "Off" then
+elseif redis:get(SAKURA.."joinbylink") == "Off" then
 joinbylinkAR = "معطل"
-elseif not redis:get(KEEPER.."joinbylink") then
+elseif not redis:get(SAKURA.."joinbylink") then
 joinbylinkAR = "معطل"
 end
 local cm = io.popen("uptime -p"):read("*all")
@@ -8400,7 +8388,7 @@ if lang == "Ar" then
 ResultUptimeServer = "تم التحديث ❗️"
 end
 end
-Uptime_1 = redis:get(KEEPER.."bot:Uptime")
+Uptime_1 = redis:get(SAKURA.."bot:Uptime")
 local osTime = os.time()
 Uptime_ = osTime - tonumber(Uptime_1)
 Uptime = getTimeUptime(Uptime_, lang)
@@ -8417,7 +8405,7 @@ if lang == "Ar" then
 ResultUptimeServer = "تم التحديث ❗️"
 end
 end
-Uptime_1 = redis:get(KEEPER.."bot:Uptime")
+Uptime_1 = redis:get(SAKURA.."bot:Uptime")
 local osTime = os.time()
 Uptime_ = osTime - tonumber(Uptime_1)
 Uptime = getTimeUptime(Uptime_, lang)
@@ -8427,1073 +8415,1073 @@ send(msg.chat_id_, msg.id_, 1, "*وقت تشغيل البوت »*\n*ﮧ --------
 end
 ----------------LOCK HELPS-----------------------------------------------------------------------------------------------
 if text:match("^قفل (.*)$")  then
-if not redis:get(KEEPER..'lock:add'..msg.chat_id_) then
-local lockKeeper = {string.match(text, "^(قفل) (.*)$")}
+if not redis:get(SAKURA..'lock:add'..msg.chat_id_) then
+local lockSAKURA = {string.match(text, "^(قفل) (.*)$")}
 if not is_momod(msg.sender_user_id_, msg.chat_id_)then
 send(msg.chat_id_, msg.id_, 1, '💲┊ للأدمنيـــــــه فقــــــــط', 1, 'md')
 else
-if lockKeeper[2] == "التعديل" then
-if not redis:get(KEEPER.."editmsg" .. msg.chat_id_) then
-send(msg.chat_id_, msg.id_, 1, "💬┊ تم قفل التعديل \n🎟┊ الأمر بواسطه » "..tmkeeper(msg).."\n ‏ ", 1, "md")
+if lockSAKURA[2] == "التعديل" then
+if not redis:get(SAKURA.."editmsg" .. msg.chat_id_) then
+send(msg.chat_id_, msg.id_, 1, "💬┊ تم قفل التعديل \n🎟┊ الأمر بواسطه » "..tmSAKURA(msg).."\n ‏ ", 1, "md")
 else
-send(msg.chat_id_, msg.id_, 1, "💬┊ التعديل مقفول سابقا \n🎟┊ الأمر بواسطه » "..tmkeeper(msg).."\n ‏ ", 1, "md")
+send(msg.chat_id_, msg.id_, 1, "💬┊ التعديل مقفول سابقا \n🎟┊ الأمر بواسطه » "..tmSAKURA(msg).."\n ‏ ", 1, "md")
 end
-redis:set(KEEPER..'editmsg'..msg.chat_id_,'delmsg')
+redis:set(SAKURA..'editmsg'..msg.chat_id_,'delmsg')
 end
-if lockKeeper[2] == "الاوامر" then
-if not redis:get(KEEPER.."bot:cmds" .. msg.chat_id_) then
-send(msg.chat_id_, msg.id_, 1, "💬┊ تم قفل الاوامر \n🎟┊ الأمر بواسطه » "..tmkeeper(msg).."\n ‏ ", 1, "md")
+if lockSAKURA[2] == "الاوامر" then
+if not redis:get(SAKURA.."bot:cmds" .. msg.chat_id_) then
+send(msg.chat_id_, msg.id_, 1, "💬┊ تم قفل الاوامر \n🎟┊ الأمر بواسطه » "..tmSAKURA(msg).."\n ‏ ", 1, "md")
 else
-send(msg.chat_id_, msg.id_, 1, "💬┊ الاوامر مقفوله سابقا \n🎟┊ الأمر بواسطه » "..tmkeeper(msg).."\n ‏ ", 1, "md")
+send(msg.chat_id_, msg.id_, 1, "💬┊ الاوامر مقفوله سابقا \n🎟┊ الأمر بواسطه » "..tmSAKURA(msg).."\n ‏ ", 1, "md")
 end
-redis:set(KEEPER.."bot:cmds" .. msg.chat_id_, true)
+redis:set(SAKURA.."bot:cmds" .. msg.chat_id_, true)
 end
-if lockKeeper[2] == "البوتات" then
-if not redis:get(KEEPER.."bot:bots:mute" .. msg.chat_id_) then
-send(msg.chat_id_, msg.id_, 1, "💬┊ تم قفل البوتات \n🎟┊ الأمر بواسطه » "..tmkeeper(msg).."\n ‏ ", 1, "md")
+if lockSAKURA[2] == "البوتات" then
+if not redis:get(SAKURA.."bot:bots:mute" .. msg.chat_id_) then
+send(msg.chat_id_, msg.id_, 1, "💬┊ تم قفل البوتات \n🎟┊ الأمر بواسطه » "..tmSAKURA(msg).."\n ‏ ", 1, "md")
 else
-send(msg.chat_id_, msg.id_, 1, "💬┊ البوتات مقفوله سابقا \n🎟┊ الأمر بواسطه » "..tmkeeper(msg).."\n ‏ ", 1, "md")
+send(msg.chat_id_, msg.id_, 1, "💬┊ البوتات مقفوله سابقا \n🎟┊ الأمر بواسطه » "..tmSAKURA(msg).."\n ‏ ", 1, "md")
 end
-redis:set(KEEPER.."bot:bots:mute" .. msg.chat_id_, true)
+redis:set(SAKURA.."bot:bots:mute" .. msg.chat_id_, true)
 end
-if lockKeeper[2] == "البوتات بالطرد" then
-if not redis:get(KEEPER.."bot:botskick" .. msg.chat_id_) then
-send(msg.chat_id_, msg.id_, 1, "💬┊ تم قفل البوتات بالطرد \n🎟┊ الأمر بواسطه » "..tmkeeper(msg).."\n ‏ ", 1, "md")
+if lockSAKURA[2] == "البوتات بالطرد" then
+if not redis:get(SAKURA.."bot:botskick" .. msg.chat_id_) then
+send(msg.chat_id_, msg.id_, 1, "💬┊ تم قفل البوتات بالطرد \n🎟┊ الأمر بواسطه » "..tmSAKURA(msg).."\n ‏ ", 1, "md")
 else
-send(msg.chat_id_, msg.id_, 1, "💬┊البوتات بالطرد مقفوله سابقا \n🎟┊ الأمر بواسطه » "..tmkeeper(msg).."\n ‏ ", 1, "md")
+send(msg.chat_id_, msg.id_, 1, "💬┊البوتات بالطرد مقفوله سابقا \n🎟┊ الأمر بواسطه » "..tmSAKURA(msg).."\n ‏ ", 1, "md")
 end
-redis:set(KEEPER.."bot:botskick" .. msg.chat_id_, true)
+redis:set(SAKURA.."bot:botskick" .. msg.chat_id_, true)
 end
-if lockKeeper[2] == "التكرار" then
-if not redis:get(KEEPER.."anti-flood:" .. msg.chat_id_) then
-send(msg.chat_id_, msg.id_, 1, "💬┊ تم قفل التكرار \n🎟┊ الأمر بواسطه » "..tmkeeper(msg).."\n ‏ ", 1, "md")
+if lockSAKURA[2] == "التكرار" then
+if not redis:get(SAKURA.."anti-flood:" .. msg.chat_id_) then
+send(msg.chat_id_, msg.id_, 1, "💬┊ تم قفل التكرار \n🎟┊ الأمر بواسطه » "..tmSAKURA(msg).."\n ‏ ", 1, "md")
 else
-send(msg.chat_id_, msg.id_, 1, "💬┊ التكرار مقفول سابقا \n🎟┊ الأمر بواسطه » "..tmkeeper(msg).."\n ‏ ", 1, "md")
+send(msg.chat_id_, msg.id_, 1, "💬┊ التكرار مقفول سابقا \n🎟┊ الأمر بواسطه » "..tmSAKURA(msg).."\n ‏ ", 1, "md")
 end
-redis:set(KEEPER.."anti-flood:" .. msg.chat_id_, true)
+redis:set(SAKURA.."anti-flood:" .. msg.chat_id_, true)
 end
-if lockKeeper[2] == "التثبيت" then
-if not redis:get(KEEPER.."bot:pin:mute" .. msg.chat_id_) then
-send(msg.chat_id_, msg.id_, 1, "💬┊ تم قفل التثبيت \n🎟┊ الأمر بواسطه » "..tmkeeper(msg).."\n ‏ ", 1, "md")
+if lockSAKURA[2] == "التثبيت" then
+if not redis:get(SAKURA.."bot:pin:mute" .. msg.chat_id_) then
+send(msg.chat_id_, msg.id_, 1, "💬┊ تم قفل التثبيت \n🎟┊ الأمر بواسطه » "..tmSAKURA(msg).."\n ‏ ", 1, "md")
 else
-send(msg.chat_id_, msg.id_, 1, "💬┊ التثبيت مقفول سابقا \n🎟┊ الأمر بواسطه » "..tmkeeper(msg).."\n ‏ ", 1, "md")
+send(msg.chat_id_, msg.id_, 1, "💬┊ التثبيت مقفول سابقا \n🎟┊ الأمر بواسطه » "..tmSAKURA(msg).."\n ‏ ", 1, "md")
 end
-redis:set(KEEPER.."bot:pin:mute" .. msg.chat_id_, true)
+redis:set(SAKURA.."bot:pin:mute" .. msg.chat_id_, true)
 end
-if lockKeeper[2] == "الكل" then
-if not redis:get(KEEPER.."bot:muteall" .. msg.chat_id_) then
-send(msg.chat_id_, msg.id_, 1, "💬┊ تم قفل الكل \n🎟┊ الأمر بواسطه » "..tmkeeper(msg).."\n ‏ ", 1, "md")
+if lockSAKURA[2] == "الكل" then
+if not redis:get(SAKURA.."bot:muteall" .. msg.chat_id_) then
+send(msg.chat_id_, msg.id_, 1, "💬┊ تم قفل الكل \n🎟┊ الأمر بواسطه » "..tmSAKURA(msg).."\n ‏ ", 1, "md")
 else
-send(msg.chat_id_, msg.id_, 1,  "💬┊ الكل مقفوله سابقا \n🎟┊ الأمر بواسطه » "..tmkeeper(msg).."\n ‏ ", 1, "md")
+send(msg.chat_id_, msg.id_, 1,  "💬┊ الكل مقفوله سابقا \n🎟┊ الأمر بواسطه » "..tmSAKURA(msg).."\n ‏ ", 1, "md")
 end
-redis:set(KEEPER.."bot:bots:mute" .. msg.chat_id_, true)
-redis:set(KEEPER.."anti-flood:" .. msg.chat_id_, true)
-redis:set(KEEPER.."bot:photo:mute" .. msg.chat_id_, true)
-redis:set(KEEPER.."bot:video:mute" .. msg.chat_id_, true)
-redis:set(KEEPER.."bot:selfvideo:mute" .. msg.chat_id_, true)
-redis:set(KEEPER.."bot:document:mute" .. msg.chat_id_, true)
-redis:set(KEEPER.."markdown:lock" .. msg.chat_id_, true)
-redis:set(KEEPER.."bot:gifs:mute" .. msg.chat_id_, true)
-redis:set(KEEPER.."bot:music:mute" .. msg.chat_id_, true)
-redis:set(KEEPER.."bot:voice:mute" .. msg.chat_id_, true)
-redis:set(KEEPER.."tags:lock" .. msg.chat_id_, true)
-redis:set(KEEPER.."bot:contact:mute" .. msg.chat_id_, true)
-redis:set(KEEPER.."bot:tgservice:mute" .. msg.chat_id_, true)
-redis:set(KEEPER.."bot:forward:mute" .. msg.chat_id_, true)
-redis:set(KEEPER.."ffosh"..msg.chat_id_, true)
+redis:set(SAKURA.."bot:bots:mute" .. msg.chat_id_, true)
+redis:set(SAKURA.."anti-flood:" .. msg.chat_id_, true)
+redis:set(SAKURA.."bot:photo:mute" .. msg.chat_id_, true)
+redis:set(SAKURA.."bot:video:mute" .. msg.chat_id_, true)
+redis:set(SAKURA.."bot:selfvideo:mute" .. msg.chat_id_, true)
+redis:set(SAKURA.."bot:document:mute" .. msg.chat_id_, true)
+redis:set(SAKURA.."markdown:lock" .. msg.chat_id_, true)
+redis:set(SAKURA.."bot:gifs:mute" .. msg.chat_id_, true)
+redis:set(SAKURA.."bot:music:mute" .. msg.chat_id_, true)
+redis:set(SAKURA.."bot:voice:mute" .. msg.chat_id_, true)
+redis:set(SAKURA.."tags:lock" .. msg.chat_id_, true)
+redis:set(SAKURA.."bot:contact:mute" .. msg.chat_id_, true)
+redis:set(SAKURA.."bot:tgservice:mute" .. msg.chat_id_, true)
+redis:set(SAKURA.."bot:forward:mute" .. msg.chat_id_, true)
+redis:set(SAKURA.."ffosh"..msg.chat_id_, true)
 end
-if lockKeeper[2] == "الدردشه" then
-if not redis:get(KEEPER.."bot:text:mute" .. msg.chat_id_) then
-send(msg.chat_id_, msg.id_, 1,  "💬┊ تم قفل الدردشه \n🎟┊ الأمر بواسطه » "..tmkeeper(msg).."\n ‏ ", 1, "md")
+if lockSAKURA[2] == "الدردشه" then
+if not redis:get(SAKURA.."bot:text:mute" .. msg.chat_id_) then
+send(msg.chat_id_, msg.id_, 1,  "💬┊ تم قفل الدردشه \n🎟┊ الأمر بواسطه » "..tmSAKURA(msg).."\n ‏ ", 1, "md")
 else
-send(msg.chat_id_, msg.id_, 1,  "💬┊ الدردشه مقفوله سابقا \n🎟┊ الأمر بواسطه » "..tmkeeper(msg).."\n ‏ ", 1, "md")
+send(msg.chat_id_, msg.id_, 1,  "💬┊ الدردشه مقفوله سابقا \n🎟┊ الأمر بواسطه » "..tmSAKURA(msg).."\n ‏ ", 1, "md")
 end
-redis:set(KEEPER.."bot:text:mute" .. msg.chat_id_, true)
+redis:set(SAKURA.."bot:text:mute" .. msg.chat_id_, true)
 end
-if lockKeeper[2] == "الصور" then
-if not redis:get(KEEPER.."bot:photo:mute" .. msg.chat_id_) then
-send(msg.chat_id_, msg.id_, 1,  "💬┊ تم قفل الصور \n🎟┊ الأمر بواسطه » "..tmkeeper(msg).."\n ‏ ", 1, "md")
+if lockSAKURA[2] == "الصور" then
+if not redis:get(SAKURA.."bot:photo:mute" .. msg.chat_id_) then
+send(msg.chat_id_, msg.id_, 1,  "💬┊ تم قفل الصور \n🎟┊ الأمر بواسطه » "..tmSAKURA(msg).."\n ‏ ", 1, "md")
 else
-send(msg.chat_id_, msg.id_, 1,  "💬┊ الصور مقفوله سابقا \n🎟┊ الأمر بواسطه » "..tmkeeper(msg).."\n ‏ ", 1, "md")
+send(msg.chat_id_, msg.id_, 1,  "💬┊ الصور مقفوله سابقا \n🎟┊ الأمر بواسطه » "..tmSAKURA(msg).."\n ‏ ", 1, "md")
 end
-redis:set(KEEPER.."bot:photo:mute" .. msg.chat_id_, true)
+redis:set(SAKURA.."bot:photo:mute" .. msg.chat_id_, true)
 end
-if lockKeeper[2] == "المشاركه" then
-if not redis:get(KEEPER.."bot:duplipost:mute" .. msg.chat_id_) then
-send(msg.chat_id_, msg.id_, 1,  "💬┊ تم قفل المشاركه \n🎟┊ الأمر بواسطه » "..tmkeeper(msg).."\n ‏ ", 1, "md")
+if lockSAKURA[2] == "المشاركه" then
+if not redis:get(SAKURA.."bot:duplipost:mute" .. msg.chat_id_) then
+send(msg.chat_id_, msg.id_, 1,  "💬┊ تم قفل المشاركه \n🎟┊ الأمر بواسطه » "..tmSAKURA(msg).."\n ‏ ", 1, "md")
 else
-send(msg.chat_id_, msg.id_, 1,  "💬┊ المشاركه مقفوله سابقا \n🎟┊ الأمر بواسطه » "..tmkeeper(msg).."\n ‏ ", 1, "md")
+send(msg.chat_id_, msg.id_, 1,  "💬┊ المشاركه مقفوله سابقا \n🎟┊ الأمر بواسطه » "..tmSAKURA(msg).."\n ‏ ", 1, "md")
 end
-redis:set(KEEPER.."bot:duplipost:mute" .. msg.chat_id_, true)
+redis:set(SAKURA.."bot:duplipost:mute" .. msg.chat_id_, true)
 end
-if lockKeeper[2] == "الكلايش" then
-if not redis:get(KEEPER.."bot:spam:mute" .. msg.chat_id_) then
-send(msg.chat_id_, msg.id_, 1,  "💬┊ تم قفل الكلايش \n🎟┊ الأمر بواسطه » "..tmkeeper(msg).."\n ‏ ", 1, "md")
+if lockSAKURA[2] == "الكلايش" then
+if not redis:get(SAKURA.."bot:spam:mute" .. msg.chat_id_) then
+send(msg.chat_id_, msg.id_, 1,  "💬┊ تم قفل الكلايش \n🎟┊ الأمر بواسطه » "..tmSAKURA(msg).."\n ‏ ", 1, "md")
 else
-send(msg.chat_id_, msg.id_, 1,  "💬┊ الكلايش مقفوله سابقا \n🎟┊ الأمر بواسطه » "..tmkeeper(msg).."\n ‏ ", 1, "md")
+send(msg.chat_id_, msg.id_, 1,  "💬┊ الكلايش مقفوله سابقا \n🎟┊ الأمر بواسطه » "..tmSAKURA(msg).."\n ‏ ", 1, "md")
 end
-redis:set(KEEPER.."bot:spam:mute" .. msg.chat_id_, true)
+redis:set(SAKURA.."bot:spam:mute" .. msg.chat_id_, true)
 end
-if lockKeeper[2] == "الفيديو" then
-if not redis:get(KEEPER.."bot:video:mute" .. msg.chat_id_) then
-send(msg.chat_id_, msg.id_, 1,  "💬┊ تم قفل الفيديو \n🎟┊ الأمر بواسطه » "..tmkeeper(msg).."\n ‏ ", 1, "md")
+if lockSAKURA[2] == "الفيديو" then
+if not redis:get(SAKURA.."bot:video:mute" .. msg.chat_id_) then
+send(msg.chat_id_, msg.id_, 1,  "💬┊ تم قفل الفيديو \n🎟┊ الأمر بواسطه » "..tmSAKURA(msg).."\n ‏ ", 1, "md")
 else
-send(msg.chat_id_, msg.id_, 1,  "💬┊ الفيديو مقفول سابقا \n🎟┊ الأمر بواسطه » "..tmkeeper(msg).."\n ‏ ", 1, "md")
+send(msg.chat_id_, msg.id_, 1,  "💬┊ الفيديو مقفول سابقا \n🎟┊ الأمر بواسطه » "..tmSAKURA(msg).."\n ‏ ", 1, "md")
 end
-redis:set(KEEPER.."bot:video:mute" .. msg.chat_id_, true)
+redis:set(SAKURA.."bot:video:mute" .. msg.chat_id_, true)
 end
 
-if lockKeeper[2] == "السيلفي" then
-if not redis:get(KEEPER.."bot:selfvideo:mute" .. msg.chat_id_) then
-send(msg.chat_id_, msg.id_, 1, "💬┊ تم قفل السيلفي \n🎟┊ الأمر بواسطه » "..tmkeeper(msg).."\n ‏ ", 1, "md")
+if lockSAKURA[2] == "السيلفي" then
+if not redis:get(SAKURA.."bot:selfvideo:mute" .. msg.chat_id_) then
+send(msg.chat_id_, msg.id_, 1, "💬┊ تم قفل السيلفي \n🎟┊ الأمر بواسطه » "..tmSAKURA(msg).."\n ‏ ", 1, "md")
 else
-send(msg.chat_id_, msg.id_, 1, "💬┊ السيلفي مقفول سابقا \n🎟┊ الأمر بواسطه » "..tmkeeper(msg).."\n ‏ ", 1, "md")
+send(msg.chat_id_, msg.id_, 1, "💬┊ السيلفي مقفول سابقا \n🎟┊ الأمر بواسطه » "..tmSAKURA(msg).."\n ‏ ", 1, "md")
 end
-redis:set(KEEPER.."bot:selfvideo:mute" .. msg.chat_id_, true)
+redis:set(SAKURA.."bot:selfvideo:mute" .. msg.chat_id_, true)
 end
-if lockKeeper[2] == "الفايلات" then
-if not redis:get(KEEPER.."bot:document:mute" .. msg.chat_id_) then
-send(msg.chat_id_, msg.id_, 1, "💬┊ تم قفل الفايلات \n🎟┊ الأمر بواسطه » "..tmkeeper(msg).."\n ‏ ", 1, "md")
+if lockSAKURA[2] == "الفايلات" then
+if not redis:get(SAKURA.."bot:document:mute" .. msg.chat_id_) then
+send(msg.chat_id_, msg.id_, 1, "💬┊ تم قفل الفايلات \n🎟┊ الأمر بواسطه » "..tmSAKURA(msg).."\n ‏ ", 1, "md")
 else
-send(msg.chat_id_, msg.id_, 1, "💬┊ الفايلات مقفوله سابقا \n🎟┊ الأمر بواسطه » "..tmkeeper(msg).."\n ‏ ", 1, "md")
+send(msg.chat_id_, msg.id_, 1, "💬┊ الفايلات مقفوله سابقا \n🎟┊ الأمر بواسطه » "..tmSAKURA(msg).."\n ‏ ", 1, "md")
 end
-redis:set(KEEPER.."bot:document:mute" .. msg.chat_id_, true)
+redis:set(SAKURA.."bot:document:mute" .. msg.chat_id_, true)
 end
-if lockKeeper[2] == "الالعاب" then
-if not redis:get(KEEPER.."Game:lock" .. msg.chat_id_) then
-send(msg.chat_id_, msg.id_, 1, "💬┊ تم قفل الالعاب \n🎟┊ الأمر بواسطه » "..tmkeeper(msg).."\n ‏ ", 1, "md")
+if lockSAKURA[2] == "الالعاب" then
+if not redis:get(SAKURA.."Game:lock" .. msg.chat_id_) then
+send(msg.chat_id_, msg.id_, 1, "💬┊ تم قفل الالعاب \n🎟┊ الأمر بواسطه » "..tmSAKURA(msg).."\n ‏ ", 1, "md")
 else
-send(msg.chat_id_, msg.id_, 1, "💬┊ الالعاب مقفوله سابقا \n🎟┊ الأمر بواسطه » "..tmkeeper(msg).."\n ‏ ", 1, "md")
+send(msg.chat_id_, msg.id_, 1, "💬┊ الالعاب مقفوله سابقا \n🎟┊ الأمر بواسطه » "..tmSAKURA(msg).."\n ‏ ", 1, "md")
 end
-redis:set(KEEPER.."Game:lock" .. msg.chat_id_, true)
+redis:set(SAKURA.."Game:lock" .. msg.chat_id_, true)
 end
-if lockKeeper[2] == "الانلاين" then
-if not redis:get(KEEPER.."bot:inline:mute" .. msg.chat_id_) then
-send(msg.chat_id_, msg.id_, 1, "💬┊ تم قفل الانلاين \n🎟┊ الأمر بواسطه » "..tmkeeper(msg).."\n ‏ ", 1, "md")
+if lockSAKURA[2] == "الانلاين" then
+if not redis:get(SAKURA.."bot:inline:mute" .. msg.chat_id_) then
+send(msg.chat_id_, msg.id_, 1, "💬┊ تم قفل الانلاين \n🎟┊ الأمر بواسطه » "..tmSAKURA(msg).."\n ‏ ", 1, "md")
 else
-send(msg.chat_id_, msg.id_, 1, "💬┊ الانلاين مقفوله سابقا \n🎟┊ الأمر بواسطه » "..tmkeeper(msg).."\n ‏ ", 1, "md")
+send(msg.chat_id_, msg.id_, 1, "💬┊ الانلاين مقفوله سابقا \n🎟┊ الأمر بواسطه » "..tmSAKURA(msg).."\n ‏ ", 1, "md")
 end
-redis:set(KEEPER.."bot:inline:mute" .. msg.chat_id_, true)
+redis:set(SAKURA.."bot:inline:mute" .. msg.chat_id_, true)
 end
-if lockKeeper[2] == "البوست" then
-if not redis:get(KEEPER.."post:lock" .. msg.chat_id_) then
-send(msg.chat_id_, msg.id_, 1, "💬┊ تم قفل البوست \n🎟┊ الأمر بواسطه » "..tmkeeper(msg).."\n ‏ ", 1, "md")
+if lockSAKURA[2] == "البوست" then
+if not redis:get(SAKURA.."post:lock" .. msg.chat_id_) then
+send(msg.chat_id_, msg.id_, 1, "💬┊ تم قفل البوست \n🎟┊ الأمر بواسطه » "..tmSAKURA(msg).."\n ‏ ", 1, "md")
 else
-send(msg.chat_id_, msg.id_, 1, "💬┊ البوست مقفوله سابقا \n🎟┊ الأمر بواسطه » "..tmkeeper(msg).."\n ‏ ", 1, "md")
+send(msg.chat_id_, msg.id_, 1, "💬┊ البوست مقفوله سابقا \n🎟┊ الأمر بواسطه » "..tmSAKURA(msg).."\n ‏ ", 1, "md")
 end
-redis:set(KEEPER.."post:lock" .. msg.chat_id_, true)
+redis:set(SAKURA.."post:lock" .. msg.chat_id_, true)
 end
-if lockKeeper[2] == "الماركدون" then
-if not redis:get(KEEPER.."markdown:lock" .. msg.chat_id_) then
-send(msg.chat_id_, msg.id_, 1, "💬┊ تم قفل الماركدون \n🎟┊ الأمر بواسطه » "..tmkeeper(msg).."\n ‏ ", 1, "md")
+if lockSAKURA[2] == "الماركدون" then
+if not redis:get(SAKURA.."markdown:lock" .. msg.chat_id_) then
+send(msg.chat_id_, msg.id_, 1, "💬┊ تم قفل الماركدون \n🎟┊ الأمر بواسطه » "..tmSAKURA(msg).."\n ‏ ", 1, "md")
 else
-send(msg.chat_id_, msg.id_, 1, "💬┊ الماركدون مقفوله سابقا \n🎟┊ الأمر بواسطه » "..tmkeeper(msg).."\n ‏ ", 1, "md")
+send(msg.chat_id_, msg.id_, 1, "💬┊ الماركدون مقفوله سابقا \n🎟┊ الأمر بواسطه » "..tmSAKURA(msg).."\n ‏ ", 1, "md")
 end
-redis:set(KEEPER.."markdown:lock" .. msg.chat_id_, true)
+redis:set(SAKURA.."markdown:lock" .. msg.chat_id_, true)
 end
-if lockKeeper[2] == "المتحركه" then
-if not redis:get(KEEPER.."bot:gifs:mute" .. msg.chat_id_) then
-send(msg.chat_id_, msg.id_, 1, "💬┊ تم قفل المتحركه \n🎟┊ الأمر بواسطه » "..tmkeeper(msg).."\n ‏ ", 1, "md")
+if lockSAKURA[2] == "المتحركه" then
+if not redis:get(SAKURA.."bot:gifs:mute" .. msg.chat_id_) then
+send(msg.chat_id_, msg.id_, 1, "💬┊ تم قفل المتحركه \n🎟┊ الأمر بواسطه » "..tmSAKURA(msg).."\n ‏ ", 1, "md")
 else
-send(msg.chat_id_, msg.id_, 1, "💬┊ المتحركه مقفوله سابقا \n🎟┊ الأمر بواسطه » "..tmkeeper(msg).."\n ‏ ", 1, "md")
+send(msg.chat_id_, msg.id_, 1, "💬┊ المتحركه مقفوله سابقا \n🎟┊ الأمر بواسطه » "..tmSAKURA(msg).."\n ‏ ", 1, "md")
 end
-redis:set(KEEPER.."bot:gifs:mute" .. msg.chat_id_, true)
+redis:set(SAKURA.."bot:gifs:mute" .. msg.chat_id_, true)
 end
-if lockKeeper[2] == "الاغاني" then
-if not redis:get(KEEPER.."bot:music:mute" .. msg.chat_id_) then
-send(msg.chat_id_, msg.id_, 1, "💬┊ تم قفل الاغاني \n🎟┊ الأمر بواسطه » "..tmkeeper(msg).."\n ‏ ", 1, "md")
+if lockSAKURA[2] == "الاغاني" then
+if not redis:get(SAKURA.."bot:music:mute" .. msg.chat_id_) then
+send(msg.chat_id_, msg.id_, 1, "💬┊ تم قفل الاغاني \n🎟┊ الأمر بواسطه » "..tmSAKURA(msg).."\n ‏ ", 1, "md")
 else
-send(msg.chat_id_, msg.id_, 1, "💬┊ الاغاني مقفوله سابقا \n🎟┊ الأمر بواسطه » "..tmkeeper(msg).."\n ‏ ", 1, "md")
+send(msg.chat_id_, msg.id_, 1, "💬┊ الاغاني مقفوله سابقا \n🎟┊ الأمر بواسطه » "..tmSAKURA(msg).."\n ‏ ", 1, "md")
 end
-redis:set(KEEPER.."bot:music:mute" .. msg.chat_id_, true)
+redis:set(SAKURA.."bot:music:mute" .. msg.chat_id_, true)
 end
-if lockKeeper[2] == "الصوت" then
-if not redis:get(KEEPER.."bot:voice:mute" .. msg.chat_id_) then
-send(msg.chat_id_, msg.id_, 1, "💬┊ تم قفل الصوت \n🎟┊ الأمر بواسطه » "..tmkeeper(msg).."\n ‏ ", 1, "md")
+if lockSAKURA[2] == "الصوت" then
+if not redis:get(SAKURA.."bot:voice:mute" .. msg.chat_id_) then
+send(msg.chat_id_, msg.id_, 1, "💬┊ تم قفل الصوت \n🎟┊ الأمر بواسطه » "..tmSAKURA(msg).."\n ‏ ", 1, "md")
 else
-send(msg.chat_id_, msg.id_, 1, "💬┊ الصوت مقفول سابقا \n🎟┊ الأمر بواسطه » "..tmkeeper(msg).."\n ‏ ", 1, "md")
+send(msg.chat_id_, msg.id_, 1, "💬┊ الصوت مقفول سابقا \n🎟┊ الأمر بواسطه » "..tmSAKURA(msg).."\n ‏ ", 1, "md")
 end
-redis:set(KEEPER.."bot:voice:mute" .. msg.chat_id_, true)
+redis:set(SAKURA.."bot:voice:mute" .. msg.chat_id_, true)
 end
-if lockKeeper[2] == "الروابط" then
-if not redis:get(KEEPER.."bot:links:mute" .. msg.chat_id_) then
-send(msg.chat_id_, msg.id_, 1, "💬┊ تم قفل الروابط \n🎟┊ الأمر بواسطه » "..tmkeeper(msg).."\n ‏ ", 1, "md")
+if lockSAKURA[2] == "الروابط" then
+if not redis:get(SAKURA.."bot:links:mute" .. msg.chat_id_) then
+send(msg.chat_id_, msg.id_, 1, "💬┊ تم قفل الروابط \n🎟┊ الأمر بواسطه » "..tmSAKURA(msg).."\n ‏ ", 1, "md")
 else
-send(msg.chat_id_, msg.id_, 1, "💬┊ الروابط مقفوله سابقا \n🎟┊ الأمر بواسطه » "..tmkeeper(msg).."\n ‏ ", 1, "md")
+send(msg.chat_id_, msg.id_, 1, "💬┊ الروابط مقفوله سابقا \n🎟┊ الأمر بواسطه » "..tmSAKURA(msg).."\n ‏ ", 1, "md")
 end
-redis:set(KEEPER.."bot:links:mute" .. msg.chat_id_, true)
+redis:set(SAKURA.."bot:links:mute" .. msg.chat_id_, true)
 end
-if lockKeeper[2] == "المواقع" then
-if not redis:get(KEEPER.."bot:location:mute" .. msg.chat_id_) then
-send(msg.chat_id_, msg.id_, 1, "💬┊ تم قفل المواقع \n🎟┊ الأمر بواسطه » "..tmkeeper(msg).."\n ‏ ", 1, "md")
+if lockSAKURA[2] == "المواقع" then
+if not redis:get(SAKURA.."bot:location:mute" .. msg.chat_id_) then
+send(msg.chat_id_, msg.id_, 1, "💬┊ تم قفل المواقع \n🎟┊ الأمر بواسطه » "..tmSAKURA(msg).."\n ‏ ", 1, "md")
 else
-send(msg.chat_id_, msg.id_, 1, "💬┊ المواقع مقفوله سابقا \n🎟┊ الأمر بواسطه » "..tmkeeper(msg).."\n ‏ ", 1, "md")
+send(msg.chat_id_, msg.id_, 1, "💬┊ المواقع مقفوله سابقا \n🎟┊ الأمر بواسطه » "..tmSAKURA(msg).."\n ‏ ", 1, "md")
 end
-redis:set(KEEPER.."bot:location:mute" .. msg.chat_id_, true)
+redis:set(SAKURA.."bot:location:mute" .. msg.chat_id_, true)
 end
-if lockKeeper[2] == "التاك" then
-if not redis:get(KEEPER.."tags:lock" .. msg.chat_id_) then
-send(msg.chat_id_, msg.id_, 1, "💬┊ تم قفل التاك \n🎟┊ الأمر بواسطه » "..tmkeeper(msg).."\n ‏ ", 1, "md")
+if lockSAKURA[2] == "التاك" then
+if not redis:get(SAKURA.."tags:lock" .. msg.chat_id_) then
+send(msg.chat_id_, msg.id_, 1, "💬┊ تم قفل التاك \n🎟┊ الأمر بواسطه » "..tmSAKURA(msg).."\n ‏ ", 1, "md")
 else
-send(msg.chat_id_, msg.id_, 1, "💬┊ التاك مقفول سابقا \n🎟┊ الأمر بواسطه » "..tmkeeper(msg).."\n ‏ ", 1, "md")
+send(msg.chat_id_, msg.id_, 1, "💬┊ التاك مقفول سابقا \n🎟┊ الأمر بواسطه » "..tmSAKURA(msg).."\n ‏ ", 1, "md")
 end
-redis:set(KEEPER.."tags:lock" .. msg.chat_id_, true)
+redis:set(SAKURA.."tags:lock" .. msg.chat_id_, true)
 end
-if lockKeeper[2] == "المعرف" then
-if not redis:get(KEEPER.."tags:lock" .. msg.chat_id_) then
-send(msg.chat_id_, msg.id_, 1, "💬┊ تم قفل المعرف \n🎟┊ الأمر بواسطه » "..tmkeeper(msg).."\n ‏ ", 1, "md")
+if lockSAKURA[2] == "المعرف" then
+if not redis:get(SAKURA.."tags:lock" .. msg.chat_id_) then
+send(msg.chat_id_, msg.id_, 1, "💬┊ تم قفل المعرف \n🎟┊ الأمر بواسطه » "..tmSAKURA(msg).."\n ‏ ", 1, "md")
 else
-send(msg.chat_id_, msg.id_, 1, "💬┊ المعرف مقفول سابقا \n🎟┊ الأمر بواسطه » "..tmkeeper(msg).."\n ‏ ", 1, "md")
+send(msg.chat_id_, msg.id_, 1, "💬┊ المعرف مقفول سابقا \n🎟┊ الأمر بواسطه » "..tmSAKURA(msg).."\n ‏ ", 1, "md")
 end
-redis:set(KEEPER.."tags:lock" .. msg.chat_id_, true)
+redis:set(SAKURA.."tags:lock" .. msg.chat_id_, true)
 end
-if lockKeeper[2] == "الهاشتاك" then
-if not redis:get(KEEPER.."bot:hashtag:mute" .. msg.chat_id_) then
-send(msg.chat_id_, msg.id_, 1, "💬┊ تم قفل الهاشتاك \n🎟┊ الأمر بواسطه » "..tmkeeper(msg).."\n ‏ ", 1, "md")
+if lockSAKURA[2] == "الهاشتاك" then
+if not redis:get(SAKURA.."bot:hashtag:mute" .. msg.chat_id_) then
+send(msg.chat_id_, msg.id_, 1, "💬┊ تم قفل الهاشتاك \n🎟┊ الأمر بواسطه » "..tmSAKURA(msg).."\n ‏ ", 1, "md")
 else
-send(msg.chat_id_, msg.id_, 1, "💬┊ الهاشتاك مقفوله سابقا \n🎟┊ الأمر بواسطه » "..tmkeeper(msg).."\n ‏ ", 1, "md")
+send(msg.chat_id_, msg.id_, 1, "💬┊ الهاشتاك مقفوله سابقا \n🎟┊ الأمر بواسطه » "..tmSAKURA(msg).."\n ‏ ", 1, "md")
 end
-redis:set(KEEPER.."bot:hashtag:mute" .. msg.chat_id_, true)
+redis:set(SAKURA.."bot:hashtag:mute" .. msg.chat_id_, true)
 end
-if lockKeeper[2] == "الجهات" then
-if not redis:get(KEEPER.."bot:contact:mute" .. msg.chat_id_) then
-send(msg.chat_id_, msg.id_, 1, "💬┊ تم قفل الجهات \n🎟┊ الأمر بواسطه » "..tmkeeper(msg).."\n ‏ ", 1, "md")
+if lockSAKURA[2] == "الجهات" then
+if not redis:get(SAKURA.."bot:contact:mute" .. msg.chat_id_) then
+send(msg.chat_id_, msg.id_, 1, "💬┊ تم قفل الجهات \n🎟┊ الأمر بواسطه » "..tmSAKURA(msg).."\n ‏ ", 1, "md")
 else
-send(msg.chat_id_, msg.id_, 1, "💬┊ الجهات مقفوله سابقا \n🎟┊ الأمر بواسطه » "..tmkeeper(msg).."\n ‏ ", 1, "md")
+send(msg.chat_id_, msg.id_, 1, "💬┊ الجهات مقفوله سابقا \n🎟┊ الأمر بواسطه » "..tmSAKURA(msg).."\n ‏ ", 1, "md")
 end
-redis:set(KEEPER.."bot:contact:mute" .. msg.chat_id_, true)
+redis:set(SAKURA.."bot:contact:mute" .. msg.chat_id_, true)
 end
-if lockKeeper[2] == "الويب" then
-if not redis:get(KEEPER.."bot:webpage:mute" .. msg.chat_id_) then
-send(msg.chat_id_, msg.id_, 1, "💬┊ تم قفل الويب \n🎟┊ الأمر بواسطه » "..tmkeeper(msg).."\n ‏ ", 1, "md")
+if lockSAKURA[2] == "الويب" then
+if not redis:get(SAKURA.."bot:webpage:mute" .. msg.chat_id_) then
+send(msg.chat_id_, msg.id_, 1, "💬┊ تم قفل الويب \n🎟┊ الأمر بواسطه » "..tmSAKURA(msg).."\n ‏ ", 1, "md")
 else
-send(msg.chat_id_, msg.id_, 1, "💬┊ الويب مقفوله سابقا \n🎟┊ الأمر بواسطه » "..tmkeeper(msg).."\n ‏ ", 1, "md")
+send(msg.chat_id_, msg.id_, 1, "💬┊ الويب مقفوله سابقا \n🎟┊ الأمر بواسطه » "..tmSAKURA(msg).."\n ‏ ", 1, "md")
 end
-redis:set(KEEPER.."bot:webpage:mute" .. msg.chat_id_, true)
+redis:set(SAKURA.."bot:webpage:mute" .. msg.chat_id_, true)
 end
-if lockKeeper[2] == "العربيه" then
-if not redis:get(KEEPER.."bot:arabic:mute" .. msg.chat_id_) then
-send(msg.chat_id_, msg.id_, 1, "💬┊ تم قفل العربيه \n🎟┊ الأمر بواسطه » "..tmkeeper(msg).."\n ‏ ", 1, "md")
+if lockSAKURA[2] == "العربيه" then
+if not redis:get(SAKURA.."bot:arabic:mute" .. msg.chat_id_) then
+send(msg.chat_id_, msg.id_, 1, "💬┊ تم قفل العربيه \n🎟┊ الأمر بواسطه » "..tmSAKURA(msg).."\n ‏ ", 1, "md")
 else
-send(msg.chat_id_, msg.id_, 1, "💬┊ العربيه مقفوله سابقا \n🎟┊ الأمر بواسطه » "..tmkeeper(msg).."\n ‏ ", 1, "md")
+send(msg.chat_id_, msg.id_, 1, "💬┊ العربيه مقفوله سابقا \n🎟┊ الأمر بواسطه » "..tmSAKURA(msg).."\n ‏ ", 1, "md")
 end
-redis:set(KEEPER.."bot:arabic:mute" .. msg.chat_id_, true)
+redis:set(SAKURA.."bot:arabic:mute" .. msg.chat_id_, true)
 end
-if lockKeeper[2] == "الانظمام" then
-if not redis:get(KEEPER.."bot:member:lock" .. msg.chat_id_) then
-send(msg.chat_id_, msg.id_, 1, "💬┊ تم قفل الانظمام \n🎟┊ الأمر بواسطه » "..tmkeeper(msg).."\n ‏ ", 1, "md")
+if lockSAKURA[2] == "الانظمام" then
+if not redis:get(SAKURA.."bot:member:lock" .. msg.chat_id_) then
+send(msg.chat_id_, msg.id_, 1, "💬┊ تم قفل الانظمام \n🎟┊ الأمر بواسطه » "..tmSAKURA(msg).."\n ‏ ", 1, "md")
 else
-send(msg.chat_id_, msg.id_, 1, "💬┊ الانظمام مقفوله سابقا \n🎟┊ الأمر بواسطه » "..tmkeeper(msg).."\n ‏ ", 1, "md")
+send(msg.chat_id_, msg.id_, 1, "💬┊ الانظمام مقفوله سابقا \n🎟┊ الأمر بواسطه » "..tmSAKURA(msg).."\n ‏ ", 1, "md")
 end
-redis:set(KEEPER.."bot:member:lock" .. msg.chat_id_, true)
+redis:set(SAKURA.."bot:member:lock" .. msg.chat_id_, true)
 end
-if lockKeeper[2] == "الانكليزيه" then
-if not redis:get(KEEPER.."bot:english:mute" .. msg.chat_id_) then
-send(msg.chat_id_, msg.id_, 1, "💬┊ تم قفل الانكليزي \n🎟┊ الأمر بواسطه » "..tmkeeper(msg).."\n ‏ ", 1, "md")
+if lockSAKURA[2] == "الانكليزيه" then
+if not redis:get(SAKURA.."bot:english:mute" .. msg.chat_id_) then
+send(msg.chat_id_, msg.id_, 1, "💬┊ تم قفل الانكليزي \n🎟┊ الأمر بواسطه » "..tmSAKURA(msg).."\n ‏ ", 1, "md")
 else
-send(msg.chat_id_, msg.id_, 1, "💬┊ الانكليزيه مقفوله سابقا \n🎟┊ الأمر بواسطه » "..tmkeeper(msg).."\n ‏ ", 1, "md")
+send(msg.chat_id_, msg.id_, 1, "💬┊ الانكليزيه مقفوله سابقا \n🎟┊ الأمر بواسطه » "..tmSAKURA(msg).."\n ‏ ", 1, "md")
 end
-redis:set(KEEPER.."bot:english:mute" .. msg.chat_id_, true)
+redis:set(SAKURA.."bot:english:mute" .. msg.chat_id_, true)
 end
-if lockKeeper[2] == "الاشعارات" then
-if not redis:get(KEEPER.."bot:tgservice:mute" .. msg.chat_id_) then
-send(msg.chat_id_, msg.id_, 1, "💬┊ تم قفل الاشعارات \n🎟┊ الأمر بواسطه » "..tmkeeper(msg).."\n ‏ ", 1, "md")
+if lockSAKURA[2] == "الاشعارات" then
+if not redis:get(SAKURA.."bot:tgservice:mute" .. msg.chat_id_) then
+send(msg.chat_id_, msg.id_, 1, "💬┊ تم قفل الاشعارات \n🎟┊ الأمر بواسطه » "..tmSAKURA(msg).."\n ‏ ", 1, "md")
 else
-send(msg.chat_id_, msg.id_, 1, "💬┊ الاشعارات مقفوله سابقا \n🎟┊ الأمر بواسطه » "..tmkeeper(msg).."\n ‏ ", 1, "md")
+send(msg.chat_id_, msg.id_, 1, "💬┊ الاشعارات مقفوله سابقا \n🎟┊ الأمر بواسطه » "..tmSAKURA(msg).."\n ‏ ", 1, "md")
 end
-redis:set(KEEPER.."bot:tgservice:mute" .. msg.chat_id_, true)
+redis:set(SAKURA.."bot:tgservice:mute" .. msg.chat_id_, true)
 end
-if lockKeeper[2] == "الملصقات" then
-if not redis:get(KEEPER.."bot:sticker:mute" .. msg.chat_id_) then
-send(msg.chat_id_, msg.id_, 1, "💬┊ تم قفل الملصقات \n🎟┊ الأمر بواسطه » "..tmkeeper(msg).."\n ‏ ", 1, "md")
+if lockSAKURA[2] == "الملصقات" then
+if not redis:get(SAKURA.."bot:sticker:mute" .. msg.chat_id_) then
+send(msg.chat_id_, msg.id_, 1, "💬┊ تم قفل الملصقات \n🎟┊ الأمر بواسطه » "..tmSAKURA(msg).."\n ‏ ", 1, "md")
 else
-send(msg.chat_id_, msg.id_, 1, "💬┊ الملصقات مقفوله سابقا \n🎟┊ الأمر بواسطه » "..tmkeeper(msg).."\n ‏ ", 1, "md")
+send(msg.chat_id_, msg.id_, 1, "💬┊ الملصقات مقفوله سابقا \n🎟┊ الأمر بواسطه » "..tmSAKURA(msg).."\n ‏ ", 1, "md")
 end
-redis:set(KEEPER.."bot:sticker:mute" .. msg.chat_id_, true)
+redis:set(SAKURA.."bot:sticker:mute" .. msg.chat_id_, true)
 end
-if lockKeeper[2] == "التوجيه" then
-if not redis:get(KEEPER.."bot:forward:mute" .. msg.chat_id_) then
-send(msg.chat_id_, msg.id_, 1, "💬┊ تم قفل التوجيه \n🎟┊ الأمر بواسطه » "..tmkeeper(msg).."\n ‏ ", 1, "md")
+if lockSAKURA[2] == "التوجيه" then
+if not redis:get(SAKURA.."bot:forward:mute" .. msg.chat_id_) then
+send(msg.chat_id_, msg.id_, 1, "💬┊ تم قفل التوجيه \n🎟┊ الأمر بواسطه » "..tmSAKURA(msg).."\n ‏ ", 1, "md")
 else
-send(msg.chat_id_, msg.id_, 1, "💬┊ التوجيه مقفوله سابقا \n🎟┊ الأمر بواسطه » "..tmkeeper(msg).."\n ‏ ", 1, "md")
+send(msg.chat_id_, msg.id_, 1, "💬┊ التوجيه مقفوله سابقا \n🎟┊ الأمر بواسطه » "..tmSAKURA(msg).."\n ‏ ", 1, "md")
 end
-redis:set(KEEPER.."bot:forward:mute" .. msg.chat_id_, true)
+redis:set(SAKURA.."bot:forward:mute" .. msg.chat_id_, true)
 end 
-if lockKeeper[2] == "الفشار" then
-if not redis:get(KEEPER.."ffosh" .. msg.chat_id_) then
-send(msg.chat_id_, msg.id_, 1, "💬┊ تم قفل الفشار \n🎟┊ الأمر بواسطه » "..tmkeeper(msg).."\n ‏ ", 1, "md")
+if lockSAKURA[2] == "الفشار" then
+if not redis:get(SAKURA.."ffosh" .. msg.chat_id_) then
+send(msg.chat_id_, msg.id_, 1, "💬┊ تم قفل الفشار \n🎟┊ الأمر بواسطه » "..tmSAKURA(msg).."\n ‏ ", 1, "md")
 else
-send(msg.chat_id_, msg.id_, 1, "💬┊ الفشار مقفوله سابقا \n🎟┊ الأمر بواسطه » "..tmkeeper(msg).."\n ‏ ", 1, "md")
+send(msg.chat_id_, msg.id_, 1, "💬┊ الفشار مقفوله سابقا \n🎟┊ الأمر بواسطه » "..tmSAKURA(msg).."\n ‏ ", 1, "md")
 end
-redis:set(KEEPER.."ffosh"..msg.chat_id_, true)
+redis:set(SAKURA.."ffosh"..msg.chat_id_, true)
 end 
 end
 end 
 end
 -----------UN LOCK HELPS--------------------------------------------------------------------------------------------------------------
 if text:match("^فتح (.*)$")  then
-if not redis:get(KEEPER..'lock:add'..msg.chat_id_) then
-local UNkeeper = { string.match(text, "^(فتح) (.*)$") }
+if not redis:get(SAKURA..'lock:add'..msg.chat_id_) then
+local UNSAKURA = { string.match(text, "^(فتح) (.*)$") }
 if not is_momod(msg.sender_user_id_, msg.chat_id_)then
 send(msg.chat_id_, msg.id_, 1, '💲┊ للأدمنيـــــــه فقــــــــط', 1, 'md')
 else
-if UNkeeper[2] == "التعديل" then
-if redis:get(KEEPER.."editmsg" .. msg.chat_id_) then
-send(msg.chat_id_, msg.id_, 1, "💬┊ تم فتح التعديل \n🎟┊ الأمر بواسطه » "..tmkeeper(msg).."\n ‏ ", 1, "md")
-redis:del(KEEPER.."editmsg" .. msg.chat_id_)
+if UNSAKURA[2] == "التعديل" then
+if redis:get(SAKURA.."editmsg" .. msg.chat_id_) then
+send(msg.chat_id_, msg.id_, 1, "💬┊ تم فتح التعديل \n🎟┊ الأمر بواسطه » "..tmSAKURA(msg).."\n ‏ ", 1, "md")
+redis:del(SAKURA.."editmsg" .. msg.chat_id_)
 else
-send(msg.chat_id_, msg.id_, 1, "💬┊ التعديل مفتوح سابقا \n🎟┊ الأمر بواسطه » "..tmkeeper(msg).."\n ‏ ", 1, "md")
+send(msg.chat_id_, msg.id_, 1, "💬┊ التعديل مفتوح سابقا \n🎟┊ الأمر بواسطه » "..tmSAKURA(msg).."\n ‏ ", 1, "md")
 end
 end
-if UNkeeper[2] == "الاوامر" then
-if redis:get(KEEPER.."bot:cmds" .. msg.chat_id_) then
-send(msg.chat_id_, msg.id_, 1, "💬┊ تم فتح الاوامر \n🎟┊ الأمر بواسطه » "..tmkeeper(msg).."\n ‏ ", 1, "md")
+if UNSAKURA[2] == "الاوامر" then
+if redis:get(SAKURA.."bot:cmds" .. msg.chat_id_) then
+send(msg.chat_id_, msg.id_, 1, "💬┊ تم فتح الاوامر \n🎟┊ الأمر بواسطه » "..tmSAKURA(msg).."\n ‏ ", 1, "md")
 else
-send(msg.chat_id_, msg.id_, 1, "💬┊ الاوامر مفتوحه سابقا \n🎟┊ الأمر بواسطه » "..tmkeeper(msg).."\n ‏ ", 1, "md")
+send(msg.chat_id_, msg.id_, 1, "💬┊ الاوامر مفتوحه سابقا \n🎟┊ الأمر بواسطه » "..tmSAKURA(msg).."\n ‏ ", 1, "md")
 end
-redis:del(KEEPER.."bot:cmds" .. msg.chat_id_)
+redis:del(SAKURA.."bot:cmds" .. msg.chat_id_)
 end
-if UNkeeper[2] == "البوتات" then
-if redis:get(KEEPER.."bot:bots:mute" .. msg.chat_id_) then
-send(msg.chat_id_, msg.id_, 1, "💬┊ تم فتح البوتات \n🎟┊ الأمر بواسطه » "..tmkeeper(msg).."\n ‏ ", 1, "md")
+if UNSAKURA[2] == "البوتات" then
+if redis:get(SAKURA.."bot:bots:mute" .. msg.chat_id_) then
+send(msg.chat_id_, msg.id_, 1, "💬┊ تم فتح البوتات \n🎟┊ الأمر بواسطه » "..tmSAKURA(msg).."\n ‏ ", 1, "md")
 else
-send(msg.chat_id_, msg.id_, 1, "💬┊ البوتات مفتوحه سابقا \n🎟┊ الأمر بواسطه » "..tmkeeper(msg).."\n ‏ ", 1, "md")
+send(msg.chat_id_, msg.id_, 1, "💬┊ البوتات مفتوحه سابقا \n🎟┊ الأمر بواسطه » "..tmSAKURA(msg).."\n ‏ ", 1, "md")
 end
-redis:del(KEEPER.."bot:bots:mute" .. msg.chat_id_)
+redis:del(SAKURA.."bot:bots:mute" .. msg.chat_id_)
 end
-if UNkeeper[2] == "البوتات بالطرد" then
-if redis:get(KEEPER.."bot:botskick" .. msg.chat_id_) then
-send(msg.chat_id_, msg.id_, 1, "💬┊ تم فتح البوتات بالطرد \n🎟┊ الأمر بواسطه » "..tmkeeper(msg).."\n ‏ ", 1, "md")
+if UNSAKURA[2] == "البوتات بالطرد" then
+if redis:get(SAKURA.."bot:botskick" .. msg.chat_id_) then
+send(msg.chat_id_, msg.id_, 1, "💬┊ تم فتح البوتات بالطرد \n🎟┊ الأمر بواسطه » "..tmSAKURA(msg).."\n ‏ ", 1, "md")
 else
-send(msg.chat_id_, msg.id_, 1, "💬┊ البوتات بالطرد مفتوحه سابقا \n🎟┊ الأمر بواسطه » "..tmkeeper(msg).."\n ‏ ", 1, "md")
+send(msg.chat_id_, msg.id_, 1, "💬┊ البوتات بالطرد مفتوحه سابقا \n🎟┊ الأمر بواسطه » "..tmSAKURA(msg).."\n ‏ ", 1, "md")
 end
-redis:del(KEEPER.."bot:botskick" .. msg.chat_id_)
+redis:del(SAKURA.."bot:botskick" .. msg.chat_id_)
 end
-if UNkeeper[2] == "التكرار" then
-if redis:get(KEEPER.."anti-flood:" .. msg.chat_id_) then
-send(msg.chat_id_, msg.id_, 1, "💬┊ تم فتح التكرار \n🎟┊ الأمر بواسطه » "..tmkeeper(msg).."\n ‏ ", 1, "md")
+if UNSAKURA[2] == "التكرار" then
+if redis:get(SAKURA.."anti-flood:" .. msg.chat_id_) then
+send(msg.chat_id_, msg.id_, 1, "💬┊ تم فتح التكرار \n🎟┊ الأمر بواسطه » "..tmSAKURA(msg).."\n ‏ ", 1, "md")
 else
-send(msg.chat_id_, msg.id_, 1, "💬┊ التكرار مفتوح سابقا \n🎟┊ الأمر بواسطه » "..tmkeeper(msg).."\n ‏ ", 1, "md")
+send(msg.chat_id_, msg.id_, 1, "💬┊ التكرار مفتوح سابقا \n🎟┊ الأمر بواسطه » "..tmSAKURA(msg).."\n ‏ ", 1, "md")
 end
-redis:del(KEEPER.."anti-flood:" .. msg.chat_id_)
+redis:del(SAKURA.."anti-flood:" .. msg.chat_id_)
 end
-if UNkeeper[2] == "التثبيت" then
-if redis:get(KEEPER.."bot:pin:mute" .. msg.chat_id_) then
-send(msg.chat_id_, msg.id_, 1, "💬┊ تم فتح التثبيت \n🎟┊ الأمر بواسطه » "..tmkeeper(msg).."\n ‏ ", 1, "md")
+if UNSAKURA[2] == "التثبيت" then
+if redis:get(SAKURA.."bot:pin:mute" .. msg.chat_id_) then
+send(msg.chat_id_, msg.id_, 1, "💬┊ تم فتح التثبيت \n🎟┊ الأمر بواسطه » "..tmSAKURA(msg).."\n ‏ ", 1, "md")
 else
-send(msg.chat_id_, msg.id_, 1, "💬┊ التثبيت مفتوح سابقا \n🎟┊ الأمر بواسطه » "..tmkeeper(msg).."\n ‏ ", 1, "md")
+send(msg.chat_id_, msg.id_, 1, "💬┊ التثبيت مفتوح سابقا \n🎟┊ الأمر بواسطه » "..tmSAKURA(msg).."\n ‏ ", 1, "md")
 end
-redis:del(KEEPER.."bot:pin:mute" .. msg.chat_id_)
+redis:del(SAKURA.."bot:pin:mute" .. msg.chat_id_)
 end
-if UNkeeper[2] == "الكل" then
-if redis:get(KEEPER.."bot:muteall" .. msg.chat_id_) then
-send(msg.chat_id_, msg.id_, 1, "💬┊ تم فتح الكل \n🎟┊ الأمر بواسطه » "..tmkeeper(msg).."\n ‏ ", 1, "md")
+if UNSAKURA[2] == "الكل" then
+if redis:get(SAKURA.."bot:muteall" .. msg.chat_id_) then
+send(msg.chat_id_, msg.id_, 1, "💬┊ تم فتح الكل \n🎟┊ الأمر بواسطه » "..tmSAKURA(msg).."\n ‏ ", 1, "md")
 else
-send(msg.chat_id_, msg.id_, 1,  "💬┊ الكل مفتوحه سابقا\n🎟┊ الأمر بواسطه » "..tmkeeper(msg).."\n ‏ ", 1, "md")
+send(msg.chat_id_, msg.id_, 1,  "💬┊ الكل مفتوحه سابقا\n🎟┊ الأمر بواسطه » "..tmSAKURA(msg).."\n ‏ ", 1, "md")
 end
-redis:del(KEEPER.."bot:bots:mute" .. msg.chat_id_)
-redis:del(KEEPER.."anti-flood:" .. msg.chat_id_)
-redis:del(KEEPER.."bot:photo:mute" .. msg.chat_id_)
-redis:del(KEEPER.."bot:video:mute" .. msg.chat_id_)
-redis:del(KEEPER.."bot:selfvideo:mute" .. msg.chat_id_)
-redis:del(KEEPER.."bot:document:mute" .. msg.chat_id_)
-redis:del(KEEPER.."markdown:lock" .. msg.chat_id_)
-redis:del(KEEPER.."bot:gifs:mute" .. msg.chat_id_)
-redis:del(KEEPER.."bot:music:mute" .. msg.chat_id_)
-redis:del(KEEPER.."bot:voice:mute" .. msg.chat_id_)
-redis:del(KEEPER.."tags:lock" .. msg.chat_id_)
-redis:del(KEEPER.."bot:contact:mute" .. msg.chat_id_)
-redis:del(KEEPER.."bot:tgservice:mute" .. msg.chat_id_)
-redis:del(KEEPER.."bot:forward:mute" .. msg.chat_id_)
-redis:del(KEEPER.."ffosh"..msg.chat_id_)
+redis:del(SAKURA.."bot:bots:mute" .. msg.chat_id_)
+redis:del(SAKURA.."anti-flood:" .. msg.chat_id_)
+redis:del(SAKURA.."bot:photo:mute" .. msg.chat_id_)
+redis:del(SAKURA.."bot:video:mute" .. msg.chat_id_)
+redis:del(SAKURA.."bot:selfvideo:mute" .. msg.chat_id_)
+redis:del(SAKURA.."bot:document:mute" .. msg.chat_id_)
+redis:del(SAKURA.."markdown:lock" .. msg.chat_id_)
+redis:del(SAKURA.."bot:gifs:mute" .. msg.chat_id_)
+redis:del(SAKURA.."bot:music:mute" .. msg.chat_id_)
+redis:del(SAKURA.."bot:voice:mute" .. msg.chat_id_)
+redis:del(SAKURA.."tags:lock" .. msg.chat_id_)
+redis:del(SAKURA.."bot:contact:mute" .. msg.chat_id_)
+redis:del(SAKURA.."bot:tgservice:mute" .. msg.chat_id_)
+redis:del(SAKURA.."bot:forward:mute" .. msg.chat_id_)
+redis:del(SAKURA.."ffosh"..msg.chat_id_)
 end
-if UNkeeper[2] == "الدردشه" then
-if redis:get(KEEPER.."bot:text:mute" .. msg.chat_id_) then
-send(msg.chat_id_, msg.id_, 1,  "💬┊ تم فتح الدردشه \n🎟┊ الأمر بواسطه » "..tmkeeper(msg).."\n ‏ ", 1, "md")
+if UNSAKURA[2] == "الدردشه" then
+if redis:get(SAKURA.."bot:text:mute" .. msg.chat_id_) then
+send(msg.chat_id_, msg.id_, 1,  "💬┊ تم فتح الدردشه \n🎟┊ الأمر بواسطه » "..tmSAKURA(msg).."\n ‏ ", 1, "md")
 else
-send(msg.chat_id_, msg.id_, 1,  "💬┊ الدردشه مفتوحه سابقا \n🎟┊ الأمر بواسطه » "..tmkeeper(msg).."\n ‏ ", 1, "md")
+send(msg.chat_id_, msg.id_, 1,  "💬┊ الدردشه مفتوحه سابقا \n🎟┊ الأمر بواسطه » "..tmSAKURA(msg).."\n ‏ ", 1, "md")
 end
-redis:del(KEEPER.."bot:text:mute" .. msg.chat_id_)
+redis:del(SAKURA.."bot:text:mute" .. msg.chat_id_)
 end
-if UNkeeper[2] == "الصور" then
-if redis:get(KEEPER.."bot:photo:mute" .. msg.chat_id_) then
-send(msg.chat_id_, msg.id_, 1,  "💬┊ تم فتح الصور \n🎟┊ الأمر بواسطه » "..tmkeeper(msg).."\n ‏ ", 1, "md")
+if UNSAKURA[2] == "الصور" then
+if redis:get(SAKURA.."bot:photo:mute" .. msg.chat_id_) then
+send(msg.chat_id_, msg.id_, 1,  "💬┊ تم فتح الصور \n🎟┊ الأمر بواسطه » "..tmSAKURA(msg).."\n ‏ ", 1, "md")
 else
-send(msg.chat_id_, msg.id_, 1,  "💬┊ الصور مفتوحه سابقا \n🎟┊ الأمر بواسطه » "..tmkeeper(msg).."\n ‏ ", 1, "md")
+send(msg.chat_id_, msg.id_, 1,  "💬┊ الصور مفتوحه سابقا \n🎟┊ الأمر بواسطه » "..tmSAKURA(msg).."\n ‏ ", 1, "md")
 end
-redis:del(KEEPER.."bot:photo:mute" .. msg.chat_id_)
+redis:del(SAKURA.."bot:photo:mute" .. msg.chat_id_)
 end
-if UNkeeper[2] == "المشاركه" then
-if redis:get(KEEPER.."bot:duplipost:mute" .. msg.chat_id_) then
-send(msg.chat_id_, msg.id_, 1,  "💬┊ تم فتح المشاركه \n🎟┊ الأمر بواسطه » "..tmkeeper(msg).."\n ‏ ", 1, "md")
+if UNSAKURA[2] == "المشاركه" then
+if redis:get(SAKURA.."bot:duplipost:mute" .. msg.chat_id_) then
+send(msg.chat_id_, msg.id_, 1,  "💬┊ تم فتح المشاركه \n🎟┊ الأمر بواسطه » "..tmSAKURA(msg).."\n ‏ ", 1, "md")
 else
-send(msg.chat_id_, msg.id_, 1,  "💬┊ المشاركه مفتوحه سابقا \n🎟┊ الأمر بواسطه » "..tmkeeper(msg).."\n ‏ ", 1, "md")
+send(msg.chat_id_, msg.id_, 1,  "💬┊ المشاركه مفتوحه سابقا \n🎟┊ الأمر بواسطه » "..tmSAKURA(msg).."\n ‏ ", 1, "md")
 end
-redis:del(KEEPER.."bot:duplipost:mute" .. msg.chat_id_)
+redis:del(SAKURA.."bot:duplipost:mute" .. msg.chat_id_)
 end
-if UNkeeper[2] == "الكلايش" then
-if redis:get(KEEPER.."bot:spam:mute" .. msg.chat_id_) then
-send(msg.chat_id_, msg.id_, 1,  "💬┊ تم فتح الكلايش \n🎟┊ الأمر بواسطه » "..tmkeeper(msg).."\n ‏ ", 1, "md")
+if UNSAKURA[2] == "الكلايش" then
+if redis:get(SAKURA.."bot:spam:mute" .. msg.chat_id_) then
+send(msg.chat_id_, msg.id_, 1,  "💬┊ تم فتح الكلايش \n🎟┊ الأمر بواسطه » "..tmSAKURA(msg).."\n ‏ ", 1, "md")
 else
-send(msg.chat_id_, msg.id_, 1,  "💬┊ الكلايش مفتوحه سابقا \n🎟┊ الأمر بواسطه » "..tmkeeper(msg).."\n ‏ ", 1, "md")
+send(msg.chat_id_, msg.id_, 1,  "💬┊ الكلايش مفتوحه سابقا \n🎟┊ الأمر بواسطه » "..tmSAKURA(msg).."\n ‏ ", 1, "md")
 end
-redis:del(KEEPER.."bot:spam:mute" .. msg.chat_id_)
+redis:del(SAKURA.."bot:spam:mute" .. msg.chat_id_)
 end
-if UNkeeper[2] == "الفيديو" then
-if redis:get(KEEPER.."bot:video:mute" .. msg.chat_id_) then
-send(msg.chat_id_, msg.id_, 1,  "💬┊ تم فتح الفيديو \n🎟┊ الأمر بواسطه » "..tmkeeper(msg).."\n ‏ ", 1, "md")
+if UNSAKURA[2] == "الفيديو" then
+if redis:get(SAKURA.."bot:video:mute" .. msg.chat_id_) then
+send(msg.chat_id_, msg.id_, 1,  "💬┊ تم فتح الفيديو \n🎟┊ الأمر بواسطه » "..tmSAKURA(msg).."\n ‏ ", 1, "md")
 else
-send(msg.chat_id_, msg.id_, 1,  "💬┊ الفيديو مفتوح سابقا \n🎟┊ الأمر بواسطه » "..tmkeeper(msg).."\n ‏ ", 1, "md")
+send(msg.chat_id_, msg.id_, 1,  "💬┊ الفيديو مفتوح سابقا \n🎟┊ الأمر بواسطه » "..tmSAKURA(msg).."\n ‏ ", 1, "md")
 end
-redis:del(KEEPER.."bot:video:mute" .. msg.chat_id_)
+redis:del(SAKURA.."bot:video:mute" .. msg.chat_id_)
 end
-if UNkeeper[2] == "السيلفي" then
-if redis:get(KEEPER.."bot:selfvideo:mute" .. msg.chat_id_) then
-send(msg.chat_id_, msg.id_, 1, "💬┊ تم فتح السيلفي \n🎟┊ الأمر بواسطه » "..tmkeeper(msg).."\n ‏ ", 1, "md")
+if UNSAKURA[2] == "السيلفي" then
+if redis:get(SAKURA.."bot:selfvideo:mute" .. msg.chat_id_) then
+send(msg.chat_id_, msg.id_, 1, "💬┊ تم فتح السيلفي \n🎟┊ الأمر بواسطه » "..tmSAKURA(msg).."\n ‏ ", 1, "md")
 else
-send(msg.chat_id_, msg.id_, 1, "💬┊ السيلفي مفتوح سابقا \n🎟┊ الأمر بواسطه » "..tmkeeper(msg).."\n ‏ ", 1, "md")
+send(msg.chat_id_, msg.id_, 1, "💬┊ السيلفي مفتوح سابقا \n🎟┊ الأمر بواسطه » "..tmSAKURA(msg).."\n ‏ ", 1, "md")
 end
-redis:del(KEEPER.."bot:selfvideo:mute" .. msg.chat_id_)
+redis:del(SAKURA.."bot:selfvideo:mute" .. msg.chat_id_)
 end
-if UNkeeper[2] == "الفايلات" then
-if redis:get(KEEPER.."bot:document:mute" .. msg.chat_id_) then
-send(msg.chat_id_, msg.id_, 1, "💬┊ تم فتح الفايلات \n🎟┊ الأمر بواسطه » "..tmkeeper(msg).."\n ‏ ", 1, "md")
+if UNSAKURA[2] == "الفايلات" then
+if redis:get(SAKURA.."bot:document:mute" .. msg.chat_id_) then
+send(msg.chat_id_, msg.id_, 1, "💬┊ تم فتح الفايلات \n🎟┊ الأمر بواسطه » "..tmSAKURA(msg).."\n ‏ ", 1, "md")
 else
-send(msg.chat_id_, msg.id_, 1, "💬┊ الفايلات مفتوحه سابقا \n🎟┊ الأمر بواسطه » "..tmkeeper(msg).."\n ‏ ", 1, "md")
+send(msg.chat_id_, msg.id_, 1, "💬┊ الفايلات مفتوحه سابقا \n🎟┊ الأمر بواسطه » "..tmSAKURA(msg).."\n ‏ ", 1, "md")
 end
-redis:del(KEEPER.."bot:document:mute" .. msg.chat_id_)
+redis:del(SAKURA.."bot:document:mute" .. msg.chat_id_)
 end
-if UNkeeper[2] == "الالعاب" then
-if redis:get(KEEPER.."Game:lock" .. msg.chat_id_) then
-send(msg.chat_id_, msg.id_, 1, "💬┊ تم فتح الالعاب \n🎟┊ الأمر بواسطه » "..tmkeeper(msg).."\n ‏ ", 1, "md")
+if UNSAKURA[2] == "الالعاب" then
+if redis:get(SAKURA.."Game:lock" .. msg.chat_id_) then
+send(msg.chat_id_, msg.id_, 1, "💬┊ تم فتح الالعاب \n🎟┊ الأمر بواسطه » "..tmSAKURA(msg).."\n ‏ ", 1, "md")
 else
-send(msg.chat_id_, msg.id_, 1, "💬┊ الالعاب مفتوحه سابقا \n🎟┊ الأمر بواسطه » "..tmkeeper(msg).."\n ‏ ", 1, "md")
+send(msg.chat_id_, msg.id_, 1, "💬┊ الالعاب مفتوحه سابقا \n🎟┊ الأمر بواسطه » "..tmSAKURA(msg).."\n ‏ ", 1, "md")
 end
-redis:del(KEEPER.."Game:lock" .. msg.chat_id_)
+redis:del(SAKURA.."Game:lock" .. msg.chat_id_)
 end
-if UNkeeper[2] == "الانلاين" then
-if redis:get(KEEPER.."bot:inline:mute" .. msg.chat_id_) then
-send(msg.chat_id_, msg.id_, 1, "💬┊ تم فتح الانلاين \n🎟┊ الأمر بواسطه » "..tmkeeper(msg).."\n ‏ ", 1, "md")
+if UNSAKURA[2] == "الانلاين" then
+if redis:get(SAKURA.."bot:inline:mute" .. msg.chat_id_) then
+send(msg.chat_id_, msg.id_, 1, "💬┊ تم فتح الانلاين \n🎟┊ الأمر بواسطه » "..tmSAKURA(msg).."\n ‏ ", 1, "md")
 else
-send(msg.chat_id_, msg.id_, 1, "💬┊ الانلاين مفتوحه سابقا \n🎟┊ الأمر بواسطه » "..tmkeeper(msg).."\n ‏ ", 1, "md")
+send(msg.chat_id_, msg.id_, 1, "💬┊ الانلاين مفتوحه سابقا \n🎟┊ الأمر بواسطه » "..tmSAKURA(msg).."\n ‏ ", 1, "md")
 end
-redis:del(KEEPER.."bot:inline:mute" .. msg.chat_id_)
+redis:del(SAKURA.."bot:inline:mute" .. msg.chat_id_)
 end
-if UNkeeper[2] == "البوست" then
-if redis:get(KEEPER.."post:lock" .. msg.chat_id_) then
-send(msg.chat_id_, msg.id_, 1, "💬┊ تم فتح البوست \n🎟┊ الأمر بواسطه » "..tmkeeper(msg).."\n ‏ ", 1, "md")            
+if UNSAKURA[2] == "البوست" then
+if redis:get(SAKURA.."post:lock" .. msg.chat_id_) then
+send(msg.chat_id_, msg.id_, 1, "💬┊ تم فتح البوست \n🎟┊ الأمر بواسطه » "..tmSAKURA(msg).."\n ‏ ", 1, "md")            
 else
-send(msg.chat_id_, msg.id_, 1, "💬┊ البوست مفتوح سابقا \n🎟┊ الأمر بواسطه » "..tmkeeper(msg).."\n ‏ ", 1, "md")
+send(msg.chat_id_, msg.id_, 1, "💬┊ البوست مفتوح سابقا \n🎟┊ الأمر بواسطه » "..tmSAKURA(msg).."\n ‏ ", 1, "md")
 end
-redis:del(KEEPER.."post:lock" .. msg.chat_id_)
+redis:del(SAKURA.."post:lock" .. msg.chat_id_)
 end
-if UNkeeper[2] == "الماركدون" then
-if redis:get(KEEPER.."markdown:lock" .. msg.chat_id_) then
-send(msg.chat_id_, msg.id_, 1, "💬┊ تم فتح الماركدون \n🎟┊ الأمر بواسطه » "..tmkeeper(msg).."\n ‏ ", 1, "md")
+if UNSAKURA[2] == "الماركدون" then
+if redis:get(SAKURA.."markdown:lock" .. msg.chat_id_) then
+send(msg.chat_id_, msg.id_, 1, "💬┊ تم فتح الماركدون \n🎟┊ الأمر بواسطه » "..tmSAKURA(msg).."\n ‏ ", 1, "md")
 else
-send(msg.chat_id_, msg.id_, 1, "💬┊ الماركدون مفتوحه سابقا \n🎟┊ الأمر بواسطه » "..tmkeeper(msg).."\n ‏ ", 1, "md")
+send(msg.chat_id_, msg.id_, 1, "💬┊ الماركدون مفتوحه سابقا \n🎟┊ الأمر بواسطه » "..tmSAKURA(msg).."\n ‏ ", 1, "md")
 end
-redis:del(KEEPER.."markdown:lock" .. msg.chat_id_)
+redis:del(SAKURA.."markdown:lock" .. msg.chat_id_)
 end
-if UNkeeper[2] == "المتحركه" then
-if redis:get(KEEPER.."bot:gifs:mute" .. msg.chat_id_) then
-send(msg.chat_id_, msg.id_, 1, "💬┊ تم فتح المتحركه \n🎟┊ الأمر بواسطه » "..tmkeeper(msg).."\n ‏ ", 1, "md")
+if UNSAKURA[2] == "المتحركه" then
+if redis:get(SAKURA.."bot:gifs:mute" .. msg.chat_id_) then
+send(msg.chat_id_, msg.id_, 1, "💬┊ تم فتح المتحركه \n🎟┊ الأمر بواسطه » "..tmSAKURA(msg).."\n ‏ ", 1, "md")
 else
-send(msg.chat_id_, msg.id_, 1, "💬┊ المتحركه مفتوحه سابقا \n🎟┊ الأمر بواسطه » "..tmkeeper(msg).."\n ‏ ", 1, "md")
+send(msg.chat_id_, msg.id_, 1, "💬┊ المتحركه مفتوحه سابقا \n🎟┊ الأمر بواسطه » "..tmSAKURA(msg).."\n ‏ ", 1, "md")
 end
-redis:del(KEEPER.."bot:gifs:mute" .. msg.chat_id_)
+redis:del(SAKURA.."bot:gifs:mute" .. msg.chat_id_)
 end
-if UNkeeper[2] == "الاغاني" then
-if redis:get(KEEPER.."bot:music:mute" .. msg.chat_id_) then
-send(msg.chat_id_, msg.id_, 1, "💬┊ تم فتح الاغاني \n🎟┊ الأمر بواسطه » "..tmkeeper(msg).."\n ‏ ", 1, "md")
+if UNSAKURA[2] == "الاغاني" then
+if redis:get(SAKURA.."bot:music:mute" .. msg.chat_id_) then
+send(msg.chat_id_, msg.id_, 1, "💬┊ تم فتح الاغاني \n🎟┊ الأمر بواسطه » "..tmSAKURA(msg).."\n ‏ ", 1, "md")
 else
-send(msg.chat_id_, msg.id_, 1, "💬┊ الاغاني مفتوحه سابقا \n🎟┊ الأمر بواسطه » "..tmkeeper(msg).."\n ‏ ", 1, "md")
+send(msg.chat_id_, msg.id_, 1, "💬┊ الاغاني مفتوحه سابقا \n🎟┊ الأمر بواسطه » "..tmSAKURA(msg).."\n ‏ ", 1, "md")
 end
-redis:del(KEEPER.."bot:music:mute" .. msg.chat_id_)
+redis:del(SAKURA.."bot:music:mute" .. msg.chat_id_)
 end
-if UNkeeper[2] == "الصوت" then
-if redis:get(KEEPER.."bot:voice:mute" .. msg.chat_id_) then
-send(msg.chat_id_, msg.id_, 1, "💬┊ تم فتح الصوت \n🎟┊ الأمر بواسطه » "..tmkeeper(msg).."\n ‏ ", 1, "md")
+if UNSAKURA[2] == "الصوت" then
+if redis:get(SAKURA.."bot:voice:mute" .. msg.chat_id_) then
+send(msg.chat_id_, msg.id_, 1, "💬┊ تم فتح الصوت \n🎟┊ الأمر بواسطه » "..tmSAKURA(msg).."\n ‏ ", 1, "md")
 else
-send(msg.chat_id_, msg.id_, 1, "💬┊ الصوت مفتوح سابقا \n🎟┊ الأمر بواسطه » "..tmkeeper(msg).."\n ‏ ", 1, "md")
+send(msg.chat_id_, msg.id_, 1, "💬┊ الصوت مفتوح سابقا \n🎟┊ الأمر بواسطه » "..tmSAKURA(msg).."\n ‏ ", 1, "md")
 end
-redis:del(KEEPER.."bot:voice:mute" .. msg.chat_id_)
+redis:del(SAKURA.."bot:voice:mute" .. msg.chat_id_)
 end
-if UNkeeper[2] == "الروابط" then
-if redis:get(KEEPER.."bot:links:mute" .. msg.chat_id_) then
-send(msg.chat_id_, msg.id_, 1, "💬┊ تم فتح الروابط \n🎟┊ الأمر بواسطه » "..tmkeeper(msg).."\n ‏ ", 1, "md")
+if UNSAKURA[2] == "الروابط" then
+if redis:get(SAKURA.."bot:links:mute" .. msg.chat_id_) then
+send(msg.chat_id_, msg.id_, 1, "💬┊ تم فتح الروابط \n🎟┊ الأمر بواسطه » "..tmSAKURA(msg).."\n ‏ ", 1, "md")
 else
-send(msg.chat_id_, msg.id_, 1, "💬┊ الروابط مفتوحه سابقا \n🎟┊ الأمر بواسطه » "..tmkeeper(msg).."\n ‏ ", 1, "md")
+send(msg.chat_id_, msg.id_, 1, "💬┊ الروابط مفتوحه سابقا \n🎟┊ الأمر بواسطه » "..tmSAKURA(msg).."\n ‏ ", 1, "md")
 end
-redis:del(KEEPER.."bot:links:mute" .. msg.chat_id_)
+redis:del(SAKURA.."bot:links:mute" .. msg.chat_id_)
 end
-if UNkeeper[2] == "المواقع" then
-if redis:get(KEEPER.."bot:location:mute" .. msg.chat_id_) then
-send(msg.chat_id_, msg.id_, 1, "💬┊ تم فتح المواقع \n🎟┊ الأمر بواسطه » "..tmkeeper(msg).."\n ‏ ", 1, "md")
+if UNSAKURA[2] == "المواقع" then
+if redis:get(SAKURA.."bot:location:mute" .. msg.chat_id_) then
+send(msg.chat_id_, msg.id_, 1, "💬┊ تم فتح المواقع \n🎟┊ الأمر بواسطه » "..tmSAKURA(msg).."\n ‏ ", 1, "md")
 else
-send(msg.chat_id_, msg.id_, 1, "💬┊ المواقع مفتوحه سابقا \n🎟┊ الأمر بواسطه » "..tmkeeper(msg).."\n ‏ ", 1, "md")
+send(msg.chat_id_, msg.id_, 1, "💬┊ المواقع مفتوحه سابقا \n🎟┊ الأمر بواسطه » "..tmSAKURA(msg).."\n ‏ ", 1, "md")
 end
-redis:del(KEEPER.."bot:location:mute" .. msg.chat_id_)
+redis:del(SAKURA.."bot:location:mute" .. msg.chat_id_)
 end
-if UNkeeper[2] == "التاك" then
-if redis:get(KEEPER.."tags:lock" .. msg.chat_id_) then
-send(msg.chat_id_, msg.id_, 1, "💬┊ تم فتح التاك \n🎟┊ الأمر بواسطه » "..tmkeeper(msg).."\n ‏ ", 1, "md")
+if UNSAKURA[2] == "التاك" then
+if redis:get(SAKURA.."tags:lock" .. msg.chat_id_) then
+send(msg.chat_id_, msg.id_, 1, "💬┊ تم فتح التاك \n🎟┊ الأمر بواسطه » "..tmSAKURA(msg).."\n ‏ ", 1, "md")
 else
-send(msg.chat_id_, msg.id_, 1, "💬┊ التاك مفتوح سابقا\n🎟┊ الأمر بواسطه » "..tmkeeper(msg).."\n ‏ ", 1, "md")
+send(msg.chat_id_, msg.id_, 1, "💬┊ التاك مفتوح سابقا\n🎟┊ الأمر بواسطه » "..tmSAKURA(msg).."\n ‏ ", 1, "md")
 end
-redis:del(KEEPER.."tags:lock" .. msg.chat_id_)
+redis:del(SAKURA.."tags:lock" .. msg.chat_id_)
 end
-if UNkeeper[2] == "المعرف" then
-if redis:get(KEEPER.."tags:lock" .. msg.chat_id_) then
-send(msg.chat_id_, msg.id_, 1, "💬┊ تم فتح المعرف \n🎟┊ الأمر بواسطه » "..tmkeeper(msg).."\n ‏ ", 1, "md")
+if UNSAKURA[2] == "المعرف" then
+if redis:get(SAKURA.."tags:lock" .. msg.chat_id_) then
+send(msg.chat_id_, msg.id_, 1, "💬┊ تم فتح المعرف \n🎟┊ الأمر بواسطه » "..tmSAKURA(msg).."\n ‏ ", 1, "md")
 else
-send(msg.chat_id_, msg.id_, 1, "💬┊ المعرف مفتوح سابقا \n🎟┊ الأمر بواسطه » "..tmkeeper(msg).."\n ‏ ", 1, "md")
+send(msg.chat_id_, msg.id_, 1, "💬┊ المعرف مفتوح سابقا \n🎟┊ الأمر بواسطه » "..tmSAKURA(msg).."\n ‏ ", 1, "md")
 end
-redis:del(KEEPER.."tags:lock" .. msg.chat_id_)
+redis:del(SAKURA.."tags:lock" .. msg.chat_id_)
 end
-if UNkeeper[2] == "الهاشتاك" then
-if redis:get(KEEPER.."bot:hashtag:mute" .. msg.chat_id_) then
-send(msg.chat_id_, msg.id_, 1, "💬┊ تم فتح الهاشتاك \n🎟┊ الأمر بواسطه » "..tmkeeper(msg).."\n ‏ ", 1, "md")
+if UNSAKURA[2] == "الهاشتاك" then
+if redis:get(SAKURA.."bot:hashtag:mute" .. msg.chat_id_) then
+send(msg.chat_id_, msg.id_, 1, "💬┊ تم فتح الهاشتاك \n🎟┊ الأمر بواسطه » "..tmSAKURA(msg).."\n ‏ ", 1, "md")
 else
-send(msg.chat_id_, msg.id_, 1, "💬┊ الهاشتاك مفتوحه سابقا \n🎟┊ الأمر بواسطه » "..tmkeeper(msg).."\n ‏ ", 1, "md")
+send(msg.chat_id_, msg.id_, 1, "💬┊ الهاشتاك مفتوحه سابقا \n🎟┊ الأمر بواسطه » "..tmSAKURA(msg).."\n ‏ ", 1, "md")
 end
-redis:del(KEEPER.."bot:hashtag:mute" .. msg.chat_id_)
+redis:del(SAKURA.."bot:hashtag:mute" .. msg.chat_id_)
 end
-if UNkeeper[2] == "الجهات" then
-if redis:get(KEEPER.."bot:contact:mute" .. msg.chat_id_) then
-send(msg.chat_id_, msg.id_, 1, "💬┊ تم فتح الجهات \n🎟┊ الأمر بواسطه » "..tmkeeper(msg).."\n ‏ ", 1, "md")
+if UNSAKURA[2] == "الجهات" then
+if redis:get(SAKURA.."bot:contact:mute" .. msg.chat_id_) then
+send(msg.chat_id_, msg.id_, 1, "💬┊ تم فتح الجهات \n🎟┊ الأمر بواسطه » "..tmSAKURA(msg).."\n ‏ ", 1, "md")
 else
-send(msg.chat_id_, msg.id_, 1, "💬┊ لجهات مفتوحه سابقا \n🎟┊ الأمر بواسطه » "..tmkeeper(msg).."\n ‏ ", 1, "md")
+send(msg.chat_id_, msg.id_, 1, "💬┊ لجهات مفتوحه سابقا \n🎟┊ الأمر بواسطه » "..tmSAKURA(msg).."\n ‏ ", 1, "md")
 end
-redis:del(KEEPER.."bot:contact:mute" .. msg.chat_id_)
+redis:del(SAKURA.."bot:contact:mute" .. msg.chat_id_)
 end
-if UNkeeper[2] == "الويب" then
-if redis:get(KEEPER.."bot:webpage:mute" .. msg.chat_id_) then
-send(msg.chat_id_, msg.id_, 1, "💬┊ تم فتح الويب \n🎟┊ الأمر بواسطه » "..tmkeeper(msg).."\n ‏ ", 1, "md")
+if UNSAKURA[2] == "الويب" then
+if redis:get(SAKURA.."bot:webpage:mute" .. msg.chat_id_) then
+send(msg.chat_id_, msg.id_, 1, "💬┊ تم فتح الويب \n🎟┊ الأمر بواسطه » "..tmSAKURA(msg).."\n ‏ ", 1, "md")
 else
-send(msg.chat_id_, msg.id_, 1, "💬┊ الويب مفتوح سابقا \n🎟┊ الأمر بواسطه » "..tmkeeper(msg).."\n ‏ ", 1, "md")
+send(msg.chat_id_, msg.id_, 1, "💬┊ الويب مفتوح سابقا \n🎟┊ الأمر بواسطه » "..tmSAKURA(msg).."\n ‏ ", 1, "md")
 end
-redis:del(KEEPER.."bot:webpage:mute" .. msg.chat_id_)
+redis:del(SAKURA.."bot:webpage:mute" .. msg.chat_id_)
 end
-if UNkeeper[2] == "العربيه" then
-if redis:get(KEEPER.."bot:arabic:mute" .. msg.chat_id_) then
-send(msg.chat_id_, msg.id_, 1, "💬┊ تم فتح العربيه \n🎟┊ الأمر بواسطه » "..tmkeeper(msg).."\n ‏ ", 1, "md")
+if UNSAKURA[2] == "العربيه" then
+if redis:get(SAKURA.."bot:arabic:mute" .. msg.chat_id_) then
+send(msg.chat_id_, msg.id_, 1, "💬┊ تم فتح العربيه \n🎟┊ الأمر بواسطه » "..tmSAKURA(msg).."\n ‏ ", 1, "md")
 else
-send(msg.chat_id_, msg.id_, 1, "💬┊ العربيه مفتوحه سابقا \n🎟┊ الأمر بواسطه » "..tmkeeper(msg).."\n ‏ ", 1, "md")
+send(msg.chat_id_, msg.id_, 1, "💬┊ العربيه مفتوحه سابقا \n🎟┊ الأمر بواسطه » "..tmSAKURA(msg).."\n ‏ ", 1, "md")
 end
-redis:del(KEEPER.."bot:arabic:mute" .. msg.chat_id_)
+redis:del(SAKURA.."bot:arabic:mute" .. msg.chat_id_)
 end
-if UNkeeper[2] == "الانظمام" then
-if redis:get(KEEPER.."bot:member:lock" .. msg.chat_id_) then
-send(msg.chat_id_, msg.id_, 1, "💬┊ تم فتح الانظمام \n🎟┊ الأمر بواسطه » "..tmkeeper(msg).."\n ‏ ", 1, "md")
+if UNSAKURA[2] == "الانظمام" then
+if redis:get(SAKURA.."bot:member:lock" .. msg.chat_id_) then
+send(msg.chat_id_, msg.id_, 1, "💬┊ تم فتح الانظمام \n🎟┊ الأمر بواسطه » "..tmSAKURA(msg).."\n ‏ ", 1, "md")
 else
-send(msg.chat_id_, msg.id_, 1, "💬┊ الانظمام مفتوح سابقا\n🎟┊ الأمر بواسطه » "..tmkeeper(msg).."\n ‏ ", 1, "md")
+send(msg.chat_id_, msg.id_, 1, "💬┊ الانظمام مفتوح سابقا\n🎟┊ الأمر بواسطه » "..tmSAKURA(msg).."\n ‏ ", 1, "md")
 end
-redis:del(KEEPER.."bot:member:lock" .. msg.chat_id_)
+redis:del(SAKURA.."bot:member:lock" .. msg.chat_id_)
 end
-if UNkeeper[2] == "الانكليزيه" then
-if redis:get(KEEPER.."bot:english:mute" .. msg.chat_id_) then
-send(msg.chat_id_, msg.id_, 1, "💬┊ تم فتح الانكليزي \n🎟┊ الأمر بواسطه » "..tmkeeper(msg).."\n ‏ ", 1, "md")
+if UNSAKURA[2] == "الانكليزيه" then
+if redis:get(SAKURA.."bot:english:mute" .. msg.chat_id_) then
+send(msg.chat_id_, msg.id_, 1, "💬┊ تم فتح الانكليزي \n🎟┊ الأمر بواسطه » "..tmSAKURA(msg).."\n ‏ ", 1, "md")
 else
-send(msg.chat_id_, msg.id_, 1, "💬┊ الانكليزيه مفتوحه سابقا \n🎟┊ الأمر بواسطه » "..tmkeeper(msg).."\n ‏ ", 1, "md")
+send(msg.chat_id_, msg.id_, 1, "💬┊ الانكليزيه مفتوحه سابقا \n🎟┊ الأمر بواسطه » "..tmSAKURA(msg).."\n ‏ ", 1, "md")
 end
-redis:del(KEEPER.."bot:english:mute" .. msg.chat_id_)
+redis:del(SAKURA.."bot:english:mute" .. msg.chat_id_)
 end
-if UNkeeper[2] == "الاشعارات" then
-if redis:get(KEEPER.."bot:tgservice:mute" .. msg.chat_id_) then
-send(msg.chat_id_, msg.id_, 1, "💬┊ تم فتح الاشعارات \n🎟┊ الأمر بواسطه » "..tmkeeper(msg).."\n ‏ ", 1, "md")
+if UNSAKURA[2] == "الاشعارات" then
+if redis:get(SAKURA.."bot:tgservice:mute" .. msg.chat_id_) then
+send(msg.chat_id_, msg.id_, 1, "💬┊ تم فتح الاشعارات \n🎟┊ الأمر بواسطه » "..tmSAKURA(msg).."\n ‏ ", 1, "md")
 else
-send(msg.chat_id_, msg.id_, 1, "💬┊ الاشعارات مفتوحه سابقا \n🎟┊ الأمر بواسطه » "..tmkeeper(msg).."\n ‏ ", 1, "md")
-redis:del(KEEPER.."bot:tgservice:mute" .. msg.chat_id_)
+send(msg.chat_id_, msg.id_, 1, "💬┊ الاشعارات مفتوحه سابقا \n🎟┊ الأمر بواسطه » "..tmSAKURA(msg).."\n ‏ ", 1, "md")
+redis:del(SAKURA.."bot:tgservice:mute" .. msg.chat_id_)
 end end
-if UNkeeper[2] == "الملصقات" then
-if redis:get(KEEPER.."bot:sticker:mute" .. msg.chat_id_) then
-send(msg.chat_id_, msg.id_, 1, "💬┊ تم فتح الملصقات \n🎟┊ الأمر بواسطه » "..tmkeeper(msg).."\n ‏ ", 1, "md")
+if UNSAKURA[2] == "الملصقات" then
+if redis:get(SAKURA.."bot:sticker:mute" .. msg.chat_id_) then
+send(msg.chat_id_, msg.id_, 1, "💬┊ تم فتح الملصقات \n🎟┊ الأمر بواسطه » "..tmSAKURA(msg).."\n ‏ ", 1, "md")
 else
-send(msg.chat_id_, msg.id_, 1, "💬┊ الملصقات مفتوحه سابقا\n🎟┊ الأمر بواسطه » "..tmkeeper(msg).."\n ‏ ", 1, "md")
+send(msg.chat_id_, msg.id_, 1, "💬┊ الملصقات مفتوحه سابقا\n🎟┊ الأمر بواسطه » "..tmSAKURA(msg).."\n ‏ ", 1, "md")
 end
-redis:del(KEEPER.."bot:sticker:mute" .. msg.chat_id_)
+redis:del(SAKURA.."bot:sticker:mute" .. msg.chat_id_)
 end
-if UNkeeper[2] == "التوجيه" then
-if redis:get(KEEPER.."bot:forward:mute" .. msg.chat_id_) then
-send(msg.chat_id_, msg.id_, 1, "💬┊ تم فتح التوجيه \n🎟┊ الأمر بواسطه » "..tmkeeper(msg).."\n ‏ ", 1, "md")
+if UNSAKURA[2] == "التوجيه" then
+if redis:get(SAKURA.."bot:forward:mute" .. msg.chat_id_) then
+send(msg.chat_id_, msg.id_, 1, "💬┊ تم فتح التوجيه \n🎟┊ الأمر بواسطه » "..tmSAKURA(msg).."\n ‏ ", 1, "md")
 else
-send(msg.chat_id_, msg.id_, 1, "💬┊ التوجيه مفتوح سابقا \n🎟┊ الأمر بواسطه » "..tmkeeper(msg).."\n ‏ ", 1, "md")
+send(msg.chat_id_, msg.id_, 1, "💬┊ التوجيه مفتوح سابقا \n🎟┊ الأمر بواسطه » "..tmSAKURA(msg).."\n ‏ ", 1, "md")
 end
-redis:del(KEEPER.."bot:forward:mute" .. msg.chat_id_)
+redis:del(SAKURA.."bot:forward:mute" .. msg.chat_id_)
 end 
-if UNkeeper[2] == "الفشار" then
-if redis:get(KEEPER.."ffosh"..msg.chat_id_) then
-send(msg.chat_id_, msg.id_, 1, "💬┊ تم فتح الفشار \n🎟┊ الأمر بواسطه » "..tmkeeper(msg).."\n ‏ ", 1, "md")
+if UNSAKURA[2] == "الفشار" then
+if redis:get(SAKURA.."ffosh"..msg.chat_id_) then
+send(msg.chat_id_, msg.id_, 1, "💬┊ تم فتح الفشار \n🎟┊ الأمر بواسطه » "..tmSAKURA(msg).."\n ‏ ", 1, "md")
 else
-send(msg.chat_id_, msg.id_, 1, "💬┊ الفشار مفتوح سابقا \n🎟┊ الأمر بواسطه » "..tmkeeper(msg).."\n ‏ ", 1, "md")
+send(msg.chat_id_, msg.id_, 1, "💬┊ الفشار مفتوح سابقا \n🎟┊ الأمر بواسطه » "..tmSAKURA(msg).."\n ‏ ", 1, "md")
 end
-redis:del(KEEPER.."ffosh"..msg.chat_id_)
+redis:del(SAKURA.."ffosh"..msg.chat_id_)
 end
 end 
 end 
 end
 ------------------lock help keed--------------------------------------------------------------------------------------------
 if is_momod(msg.sender_user_id_, msg.chat_id_) and text == "قفل الدردشه بالتقييد" then
-if not redis:get(KEEPER.."keed_text" .. msg.chat_id_) then
-send(msg.chat_id_, msg.id_, 1,  "💬┊ تم قفل الدردشه بالتقييد \n🎟┊ الأمر بواسطه » "..tmkeeper(msg).."\n ‏ ", 1, "md")
+if not redis:get(SAKURA.."keed_text" .. msg.chat_id_) then
+send(msg.chat_id_, msg.id_, 1,  "💬┊ تم قفل الدردشه بالتقييد \n🎟┊ الأمر بواسطه » "..tmSAKURA(msg).."\n ‏ ", 1, "md")
 else
-send(msg.chat_id_, msg.id_, 1,  "💬┊ الدردشه بالتقييد مقفوله \n🎟┊ الأمر بواسطه » "..tmkeeper(msg).."\n ‏ ", 1, "md")
+send(msg.chat_id_, msg.id_, 1,  "💬┊ الدردشه بالتقييد مقفوله \n🎟┊ الأمر بواسطه » "..tmSAKURA(msg).."\n ‏ ", 1, "md")
 end
-redis:set(KEEPER.."keed_text" .. msg.chat_id_, true)
+redis:set(SAKURA.."keed_text" .. msg.chat_id_, true)
 end
 if is_momod(msg.sender_user_id_, msg.chat_id_) and text == "قفل الصور بالتقييد" then
-if not redis:get(KEEPER.."keed_photo" .. msg.chat_id_) then
-send(msg.chat_id_, msg.id_, 1,  "💬┊ تم قفل الصور بالتقييد \n🎟┊ الأمر بواسطه » "..tmkeeper(msg).."\n ‏ ", 1, "md")
+if not redis:get(SAKURA.."keed_photo" .. msg.chat_id_) then
+send(msg.chat_id_, msg.id_, 1,  "💬┊ تم قفل الصور بالتقييد \n🎟┊ الأمر بواسطه » "..tmSAKURA(msg).."\n ‏ ", 1, "md")
 else
-send(msg.chat_id_, msg.id_, 1,  "💬┊ الصور بالتقييد مقفوله \n🎟┊ الأمر بواسطه » "..tmkeeper(msg).."\n ‏ ", 1, "md")
+send(msg.chat_id_, msg.id_, 1,  "💬┊ الصور بالتقييد مقفوله \n🎟┊ الأمر بواسطه » "..tmSAKURA(msg).."\n ‏ ", 1, "md")
 end
-redis:set(KEEPER.."keed_photo" .. msg.chat_id_, true)
+redis:set(SAKURA.."keed_photo" .. msg.chat_id_, true)
 end
 if is_momod(msg.sender_user_id_, msg.chat_id_) and text == "قفل الفيديو بالتقييد" then
-if not redis:get(KEEPER.."keed_video" .. msg.chat_id_) then
-send(msg.chat_id_, msg.id_, 1,  "💬┊ تم قفل الفيديو بالتقييد \n🎟┊ الأمر بواسطه » "..tmkeeper(msg).."\n ‏ ", 1, "md")
+if not redis:get(SAKURA.."keed_video" .. msg.chat_id_) then
+send(msg.chat_id_, msg.id_, 1,  "💬┊ تم قفل الفيديو بالتقييد \n🎟┊ الأمر بواسطه » "..tmSAKURA(msg).."\n ‏ ", 1, "md")
 else
-send(msg.chat_id_, msg.id_, 1,  "💬┊ الفيديو بالتقييد مقفول \n🎟┊ الأمر بواسطه » "..tmkeeper(msg).."\n ‏ ", 1, "md")
+send(msg.chat_id_, msg.id_, 1,  "💬┊ الفيديو بالتقييد مقفول \n🎟┊ الأمر بواسطه » "..tmSAKURA(msg).."\n ‏ ", 1, "md")
 end
-redis:set(KEEPER.."keed_video" .. msg.chat_id_, true)
+redis:set(SAKURA.."keed_video" .. msg.chat_id_, true)
 end
 if is_momod(msg.sender_user_id_, msg.chat_id_) and text == "قفل الفايلات بالتقييد" then
-if not redis:get(KEEPER.."keed_Document" .. msg.chat_id_) then
-send(msg.chat_id_, msg.id_, 1, "💬┊ تم قفل الفايلات بالتقييد \n🎟┊ الأمر بواسطه » "..tmkeeper(msg).."\n ‏ ", 1, "md")
+if not redis:get(SAKURA.."keed_Document" .. msg.chat_id_) then
+send(msg.chat_id_, msg.id_, 1, "💬┊ تم قفل الفايلات بالتقييد \n🎟┊ الأمر بواسطه » "..tmSAKURA(msg).."\n ‏ ", 1, "md")
 else
-send(msg.chat_id_, msg.id_, 1, "💬┊ الفايلات بالتقييد مقفوله \n🎟┊ الأمر بواسطه » "..tmkeeper(msg).."\n ‏ ", 1, "md")
+send(msg.chat_id_, msg.id_, 1, "💬┊ الفايلات بالتقييد مقفوله \n🎟┊ الأمر بواسطه » "..tmSAKURA(msg).."\n ‏ ", 1, "md")
 end
-redis:set(KEEPER.."keed_Document" .. msg.chat_id_, true)
+redis:set(SAKURA.."keed_Document" .. msg.chat_id_, true)
 end
 if is_momod(msg.sender_user_id_, msg.chat_id_) and text == "قفل الماركدون بالتقييد" then
-if not redis:get(KEEPER.."keed_markdon" .. msg.chat_id_) then
-send(msg.chat_id_, msg.id_, 1, "💬┊ تم قفل الماركدون بالتقييد \n🎟┊ الأمر بواسطه » "..tmkeeper(msg).."\n ‏ ", 1, "md")
+if not redis:get(SAKURA.."keed_markdon" .. msg.chat_id_) then
+send(msg.chat_id_, msg.id_, 1, "💬┊ تم قفل الماركدون بالتقييد \n🎟┊ الأمر بواسطه » "..tmSAKURA(msg).."\n ‏ ", 1, "md")
 else
-send(msg.chat_id_, msg.id_, 1, "💬┊ الماركدون بالتقييد مقفوله \n🎟┊ الأمر بواسطه » "..tmkeeper(msg).."\n ‏ ", 1, "md")
+send(msg.chat_id_, msg.id_, 1, "💬┊ الماركدون بالتقييد مقفوله \n🎟┊ الأمر بواسطه » "..tmSAKURA(msg).."\n ‏ ", 1, "md")
 end
-redis:set(KEEPER.."keed_markdon" .. msg.chat_id_, true)
+redis:set(SAKURA.."keed_markdon" .. msg.chat_id_, true)
 end
 if is_momod(msg.sender_user_id_, msg.chat_id_) and text == "قفل المتحركه بالتقييد" then
-if not redis:get(KEEPER.."keed_gif" .. msg.chat_id_) then
-send(msg.chat_id_, msg.id_, 1, "💬┊ تم قفل المتحركه بالتقييد \n🎟┊ الأمر بواسطه » "..tmkeeper(msg).."\n ‏ ", 1, "md")
+if not redis:get(SAKURA.."keed_gif" .. msg.chat_id_) then
+send(msg.chat_id_, msg.id_, 1, "💬┊ تم قفل المتحركه بالتقييد \n🎟┊ الأمر بواسطه » "..tmSAKURA(msg).."\n ‏ ", 1, "md")
 else
-send(msg.chat_id_, msg.id_, 1, "💬┊ المتحركه بالتقييد مقفوله \n🎟┊ الأمر بواسطه » "..tmkeeper(msg).."\n ‏ ", 1, "md")
+send(msg.chat_id_, msg.id_, 1, "💬┊ المتحركه بالتقييد مقفوله \n🎟┊ الأمر بواسطه » "..tmSAKURA(msg).."\n ‏ ", 1, "md")
 end
-redis:set(KEEPER.."keed_gif" .. msg.chat_id_, true)
+redis:set(SAKURA.."keed_gif" .. msg.chat_id_, true)
 end
 if is_momod(msg.sender_user_id_, msg.chat_id_) and text == "قفل الاغاني بالتقييد" then
-if not redis:get(KEEPER.."keed_audio" .. msg.chat_id_) then
-send(msg.chat_id_, msg.id_, 1, "💬┊ تم قفل الاغاني بالتقييد \n🎟┊ الأمر بواسطه » "..tmkeeper(msg).."\n ‏ ", 1, "md")
+if not redis:get(SAKURA.."keed_audio" .. msg.chat_id_) then
+send(msg.chat_id_, msg.id_, 1, "💬┊ تم قفل الاغاني بالتقييد \n🎟┊ الأمر بواسطه » "..tmSAKURA(msg).."\n ‏ ", 1, "md")
 else
-send(msg.chat_id_, msg.id_, 1, "💬┊ الاغاني بالتقييد مقفوله \n🎟┊ الأمر بواسطه » "..tmkeeper(msg).."\n ‏ ", 1, "md")
+send(msg.chat_id_, msg.id_, 1, "💬┊ الاغاني بالتقييد مقفوله \n🎟┊ الأمر بواسطه » "..tmSAKURA(msg).."\n ‏ ", 1, "md")
 end
-redis:set(KEEPER.."keed_audio" .. msg.chat_id_, true)
+redis:set(SAKURA.."keed_audio" .. msg.chat_id_, true)
 end
 if is_momod(msg.sender_user_id_, msg.chat_id_) and text == "قفل الصوت بالتقييد" then
-if not redis:get(KEEPER.."keed_voice" .. msg.chat_id_) then
-send(msg.chat_id_, msg.id_, 1, "💬┊ تم قفل الصوت بالتقييد \n🎟┊ الأمر بواسطه » "..tmkeeper(msg).."\n ‏ ", 1, "md")
+if not redis:get(SAKURA.."keed_voice" .. msg.chat_id_) then
+send(msg.chat_id_, msg.id_, 1, "💬┊ تم قفل الصوت بالتقييد \n🎟┊ الأمر بواسطه » "..tmSAKURA(msg).."\n ‏ ", 1, "md")
 else
-send(msg.chat_id_, msg.id_, 1, "💬┊ الصوت بالتقييد مقفول \n🎟┊ الأمر بواسطه » "..tmkeeper(msg).."\n ‏ ", 1, "md")
+send(msg.chat_id_, msg.id_, 1, "💬┊ الصوت بالتقييد مقفول \n🎟┊ الأمر بواسطه » "..tmSAKURA(msg).."\n ‏ ", 1, "md")
 end
-redis:set(KEEPER.."keed_voice" .. msg.chat_id_, true)
+redis:set(SAKURA.."keed_voice" .. msg.chat_id_, true)
 end
 if is_momod(msg.sender_user_id_, msg.chat_id_) and text == "قفل الروابط بالتقييد" then
-if not redis:get(KEEPER.."keed_link" .. msg.chat_id_) then
-send(msg.chat_id_, msg.id_, 1, "💬┊ تم قفل الروابط بالتقييد \n🎟┊ الأمر بواسطه » "..tmkeeper(msg).."\n ‏ ", 1, "md")
+if not redis:get(SAKURA.."keed_link" .. msg.chat_id_) then
+send(msg.chat_id_, msg.id_, 1, "💬┊ تم قفل الروابط بالتقييد \n🎟┊ الأمر بواسطه » "..tmSAKURA(msg).."\n ‏ ", 1, "md")
 else
-send(msg.chat_id_, msg.id_, 1, "💬┊ الروابط بالتقييد مقفوله \n🎟┊ الأمر بواسطه » "..tmkeeper(msg).."\n ‏ ", 1, "md")
+send(msg.chat_id_, msg.id_, 1, "💬┊ الروابط بالتقييد مقفوله \n🎟┊ الأمر بواسطه » "..tmSAKURA(msg).."\n ‏ ", 1, "md")
 end
-redis:set(KEEPER.."keed_link" .. msg.chat_id_, true)
+redis:set(SAKURA.."keed_link" .. msg.chat_id_, true)
 end
 if is_momod(msg.sender_user_id_, msg.chat_id_) and text == "قفل التاك بالتقييد" then
-if not redis:get(KEEPER.."keed_user" .. msg.chat_id_) then
-send(msg.chat_id_, msg.id_, 1, "💬┊ تم قفل التاك بالتقييد \n🎟┊ الأمر بواسطه » "..tmkeeper(msg).."\n ‏ ", 1, "md")
+if not redis:get(SAKURA.."keed_user" .. msg.chat_id_) then
+send(msg.chat_id_, msg.id_, 1, "💬┊ تم قفل التاك بالتقييد \n🎟┊ الأمر بواسطه » "..tmSAKURA(msg).."\n ‏ ", 1, "md")
 else
-send(msg.chat_id_, msg.id_, 1, "💬┊ التاك بالتقييد مقفول \n🎟┊ الأمر بواسطه » "..tmkeeper(msg).."\n ‏ ", 1, "md")
+send(msg.chat_id_, msg.id_, 1, "💬┊ التاك بالتقييد مقفول \n🎟┊ الأمر بواسطه » "..tmSAKURA(msg).."\n ‏ ", 1, "md")
 end
-redis:set(KEEPER.."keed_user" .. msg.chat_id_, true)
+redis:set(SAKURA.."keed_user" .. msg.chat_id_, true)
 end
 if is_momod(msg.sender_user_id_, msg.chat_id_) and text == "قفل المعرف بالتقييد" then
-if not redis:get(KEEPER.."keed_user" .. msg.chat_id_) then
-send(msg.chat_id_, msg.id_, 1, "💬┊ تم قفل المعرف بالتقييد \n🎟┊ الأمر بواسطه » "..tmkeeper(msg).."\n ‏ ", 1, "md")
+if not redis:get(SAKURA.."keed_user" .. msg.chat_id_) then
+send(msg.chat_id_, msg.id_, 1, "💬┊ تم قفل المعرف بالتقييد \n🎟┊ الأمر بواسطه » "..tmSAKURA(msg).."\n ‏ ", 1, "md")
 else
-send(msg.chat_id_, msg.id_, 1, "💬┊ المعرف بالتقييد مقفول \n🎟┊ الأمر بواسطه » "..tmkeeper(msg).."\n ‏ ", 1, "md")
+send(msg.chat_id_, msg.id_, 1, "💬┊ المعرف بالتقييد مقفول \n🎟┊ الأمر بواسطه » "..tmSAKURA(msg).."\n ‏ ", 1, "md")
 end
-redis:set(KEEPER.."keed_user" .. msg.chat_id_, true)
+redis:set(SAKURA.."keed_user" .. msg.chat_id_, true)
 end
 if is_momod(msg.sender_user_id_, msg.chat_id_) and text == "قفل الهاشتاك بالتقييد" then
-if not redis:get(KEEPER.."keed_hashtag" .. msg.chat_id_) then
-send(msg.chat_id_, msg.id_, 1, "💬┊ تم قفل الهاشتاك بالتقييد \n🎟┊ الأمر بواسطه » "..tmkeeper(msg).."\n ‏ ", 1, "md")
+if not redis:get(SAKURA.."keed_hashtag" .. msg.chat_id_) then
+send(msg.chat_id_, msg.id_, 1, "💬┊ تم قفل الهاشتاك بالتقييد \n🎟┊ الأمر بواسطه » "..tmSAKURA(msg).."\n ‏ ", 1, "md")
 else
-send(msg.chat_id_, msg.id_, 1, "💬┊ الهاشتاك بالتقييد مقفوله \n🎟┊ الأمر بواسطه » "..tmkeeper(msg).."\n ‏ ", 1, "md")
+send(msg.chat_id_, msg.id_, 1, "💬┊ الهاشتاك بالتقييد مقفوله \n🎟┊ الأمر بواسطه » "..tmSAKURA(msg).."\n ‏ ", 1, "md")
 end
-redis:set(KEEPER.."keed_hashtag" .. msg.chat_id_, true)
+redis:set(SAKURA.."keed_hashtag" .. msg.chat_id_, true)
 end
 if is_momod(msg.sender_user_id_, msg.chat_id_) and text == "قفل الجهات بالتقييد" then
-if not redis:get(KEEPER.."keed_contect" .. msg.chat_id_) then
-send(msg.chat_id_, msg.id_, 1, "💬┊ تم قفل الجهات بالتقييد \n🎟┊ الأمر بواسطه » "..tmkeeper(msg).."\n ‏ ", 1, "md")
+if not redis:get(SAKURA.."keed_contect" .. msg.chat_id_) then
+send(msg.chat_id_, msg.id_, 1, "💬┊ تم قفل الجهات بالتقييد \n🎟┊ الأمر بواسطه » "..tmSAKURA(msg).."\n ‏ ", 1, "md")
 else
-send(msg.chat_id_, msg.id_, 1, "💬┊ الجهات بالتقييد مقفوله \n🎟┊ الأمر بواسطه » "..tmkeeper(msg).."\n ‏ ", 1, "md")
+send(msg.chat_id_, msg.id_, 1, "💬┊ الجهات بالتقييد مقفوله \n🎟┊ الأمر بواسطه » "..tmSAKURA(msg).."\n ‏ ", 1, "md")
 end
-redis:set(KEEPER.."keed_contect" .. msg.chat_id_, true)
+redis:set(SAKURA.."keed_contect" .. msg.chat_id_, true)
 end
 if is_momod(msg.sender_user_id_, msg.chat_id_) and text == "قفل العربيه بالتقييد" then
-if not redis:get(KEEPER.."keed_arbic" .. msg.chat_id_) then
-send(msg.chat_id_, msg.id_, 1, "💬┊ تم قفل العربيه بالتقييد \n🎟┊ الأمر بواسطه » "..tmkeeper(msg).."\n ‏ ", 1, "md")
+if not redis:get(SAKURA.."keed_arbic" .. msg.chat_id_) then
+send(msg.chat_id_, msg.id_, 1, "💬┊ تم قفل العربيه بالتقييد \n🎟┊ الأمر بواسطه » "..tmSAKURA(msg).."\n ‏ ", 1, "md")
 else
-send(msg.chat_id_, msg.id_, 1, "💬┊العربيه بالتقييد مقفوله \n🎟┊ الأمر بواسطه » "..tmkeeper(msg).."\n ‏ ", 1, "md")
+send(msg.chat_id_, msg.id_, 1, "💬┊العربيه بالتقييد مقفوله \n🎟┊ الأمر بواسطه » "..tmSAKURA(msg).."\n ‏ ", 1, "md")
 end
-redis:set(KEEPER.."keed_arbic" .. msg.chat_id_, true)
+redis:set(SAKURA.."keed_arbic" .. msg.chat_id_, true)
 end
 if is_momod(msg.sender_user_id_, msg.chat_id_) and text == "قفل الانكليزيه بالتقييد" then
-if not redis:get(KEEPER.."keed_english" .. msg.chat_id_) then
-send(msg.chat_id_, msg.id_, 1, "💬┊ تم قفل الانكليزي بالتقييد \n🎟┊ الأمر بواسطه » "..tmkeeper(msg).."\n ‏ ", 1, "md")
+if not redis:get(SAKURA.."keed_english" .. msg.chat_id_) then
+send(msg.chat_id_, msg.id_, 1, "💬┊ تم قفل الانكليزي بالتقييد \n🎟┊ الأمر بواسطه » "..tmSAKURA(msg).."\n ‏ ", 1, "md")
 else
-send(msg.chat_id_, msg.id_, 1, "💬┊ الانكليزي بالتقييد مقفوله \n🎟┊ الأمر بواسطه » "..tmkeeper(msg).."\n ‏ ", 1, "md")
+send(msg.chat_id_, msg.id_, 1, "💬┊ الانكليزي بالتقييد مقفوله \n🎟┊ الأمر بواسطه » "..tmSAKURA(msg).."\n ‏ ", 1, "md")
 end
-redis:set(KEEPER.."keed_english" .. msg.chat_id_, true)
+redis:set(SAKURA.."keed_english" .. msg.chat_id_, true)
 end
 if is_momod(msg.sender_user_id_, msg.chat_id_) and text == "قفل الملصقات بالتقييد" then
-if not redis:get(KEEPER.."keed_stecker" .. msg.chat_id_) then
-send(msg.chat_id_, msg.id_, 1, "💬┊ تم قفل الملصقات بالتقييد \n🎟┊ الأمر بواسطه » "..tmkeeper(msg).."\n ‏ ", 1, "md")
+if not redis:get(SAKURA.."keed_stecker" .. msg.chat_id_) then
+send(msg.chat_id_, msg.id_, 1, "💬┊ تم قفل الملصقات بالتقييد \n🎟┊ الأمر بواسطه » "..tmSAKURA(msg).."\n ‏ ", 1, "md")
 else
-send(msg.chat_id_, msg.id_, 1, "💬┊ الملصقات بالتقييد مقفوله \n🎟┊ الأمر بواسطه » "..tmkeeper(msg).."\n ‏ ", 1, "md")
+send(msg.chat_id_, msg.id_, 1, "💬┊ الملصقات بالتقييد مقفوله \n🎟┊ الأمر بواسطه » "..tmSAKURA(msg).."\n ‏ ", 1, "md")
 end
-redis:set(KEEPER.."lock_stecker" .. msg.chat_id_, true)
+redis:set(SAKURA.."lock_stecker" .. msg.chat_id_, true)
 end
 if is_momod(msg.sender_user_id_, msg.chat_id_) and text == "قفل التوجيه بالتقييد" then
-if not redis:get(KEEPER.."keed_fwd" .. msg.chat_id_) then
-send(msg.chat_id_, msg.id_, 1, "💬┊ تم قفل التوجيه بالتقييد \n🎟┊ الأمر بواسطه » "..tmkeeper(msg).."\n ‏ ", 1, "md")
+if not redis:get(SAKURA.."keed_fwd" .. msg.chat_id_) then
+send(msg.chat_id_, msg.id_, 1, "💬┊ تم قفل التوجيه بالتقييد \n🎟┊ الأمر بواسطه » "..tmSAKURA(msg).."\n ‏ ", 1, "md")
 else
-send(msg.chat_id_, msg.id_, 1, "💬┊ التوجيه بالتقييد مقفول \n🎟┊ الأمر بواسطه » "..tmkeeper(msg).."\n ‏ ", 1, "md")
+send(msg.chat_id_, msg.id_, 1, "💬┊ التوجيه بالتقييد مقفول \n🎟┊ الأمر بواسطه » "..tmSAKURA(msg).."\n ‏ ", 1, "md")
 end
-redis:set(KEEPER.."keed_fwd" .. msg.chat_id_, true)
+redis:set(SAKURA.."keed_fwd" .. msg.chat_id_, true)
 end
 if is_momod(msg.sender_user_id_, msg.chat_id_) and text == "قفل البوتات بالتقييد" then
-if not redis:get(KEEPER.."keed_bots" .. msg.chat_id_) then
-send(msg.chat_id_, msg.id_, 1,  "💬┊ تم قفل البوتات بالتقييد \n🎟┊ الأمر بواسطه » "..tmkeeper(msg).."\n ‏ ", 1, "md")
+if not redis:get(SAKURA.."keed_bots" .. msg.chat_id_) then
+send(msg.chat_id_, msg.id_, 1,  "💬┊ تم قفل البوتات بالتقييد \n🎟┊ الأمر بواسطه » "..tmSAKURA(msg).."\n ‏ ", 1, "md")
 else
-send(msg.chat_id_, msg.id_, 1,  "💬┊ البوتات بالتقييد مقفوله \n🎟┊ الأمر بواسطه » "..tmkeeper(msg).."\n ‏ ", 1, "md")
+send(msg.chat_id_, msg.id_, 1,  "💬┊ البوتات بالتقييد مقفوله \n🎟┊ الأمر بواسطه » "..tmSAKURA(msg).."\n ‏ ", 1, "md")
 end
-redis:set(KEEPER.."keed_bots" .. msg.chat_id_, true)
+redis:set(SAKURA.."keed_bots" .. msg.chat_id_, true)
 end
 if is_momod(msg.sender_user_id_, msg.chat_id_) and text == "قفل الفشار بالتقييد" then
-if not redis:get(KEEPER.."keed_fosh" .. msg.chat_id_) then
-send(msg.chat_id_, msg.id_, 1, "💬┊ تم قفل الفشار بالتقييد \n🎟┊ الأمر بواسطه » "..tmkeeper(msg).."\n ‏ ", 1, "md")
+if not redis:get(SAKURA.."keed_fosh" .. msg.chat_id_) then
+send(msg.chat_id_, msg.id_, 1, "💬┊ تم قفل الفشار بالتقييد \n🎟┊ الأمر بواسطه » "..tmSAKURA(msg).."\n ‏ ", 1, "md")
 else
-send(msg.chat_id_, msg.id_, 1, "💬┊ الفشار بالتقييد مقفول \n🎟┊ الأمر بواسطه » "..tmkeeper(msg).."\n ‏ ", 1, "md")
+send(msg.chat_id_, msg.id_, 1, "💬┊ الفشار بالتقييد مقفول \n🎟┊ الأمر بواسطه » "..tmSAKURA(msg).."\n ‏ ", 1, "md")
 end
-redis:set(KEEPER.."keed_fosh" .. msg.chat_id_, true) 
+redis:set(SAKURA.."keed_fosh" .. msg.chat_id_, true) 
 end 
 ----------------------------------------------------------------------------------------
 if is_momod(msg.sender_user_id_, msg.chat_id_) and text == "فتح الدردشه بالتقييد" then
-if redis:get(KEEPER.."keed_text" .. msg.chat_id_) then
-send(msg.chat_id_, msg.id_, 1,  "💬┊ تم فتح الدردشه بالتقييد \n🎟┊ الأمر بواسطه » "..tmkeeper(msg).."\n ‏ ", 1, "md")
+if redis:get(SAKURA.."keed_text" .. msg.chat_id_) then
+send(msg.chat_id_, msg.id_, 1,  "💬┊ تم فتح الدردشه بالتقييد \n🎟┊ الأمر بواسطه » "..tmSAKURA(msg).."\n ‏ ", 1, "md")
 else
-send(msg.chat_id_, msg.id_, 1,  "💬┊ الدردشه بالتقييد مفتوحه \n🎟┊ الأمر بواسطه » "..tmkeeper(msg).."\n ‏ ", 1, "md")
+send(msg.chat_id_, msg.id_, 1,  "💬┊ الدردشه بالتقييد مفتوحه \n🎟┊ الأمر بواسطه » "..tmSAKURA(msg).."\n ‏ ", 1, "md")
 end
-redis:del(KEEPER.."keed_text" .. msg.chat_id_)
+redis:del(SAKURA.."keed_text" .. msg.chat_id_)
 end
 if is_momod(msg.sender_user_id_, msg.chat_id_) and text == "فتح الصور بالتقييد" then
-if redis:get(KEEPER.."keed_photo" .. msg.chat_id_) then
-send(msg.chat_id_, msg.id_, 1,  "💬┊ تم فتح الصور بالتقييد \n🎟┊ الأمر بواسطه » "..tmkeeper(msg).."\n ‏ ", 1, "md")
+if redis:get(SAKURA.."keed_photo" .. msg.chat_id_) then
+send(msg.chat_id_, msg.id_, 1,  "💬┊ تم فتح الصور بالتقييد \n🎟┊ الأمر بواسطه » "..tmSAKURA(msg).."\n ‏ ", 1, "md")
 else
-send(msg.chat_id_, msg.id_, 1,  "💬┊ الصور بالتقييد مفتوحه \n🎟┊ الأمر بواسطه » "..tmkeeper(msg).."\n ‏ ", 1, "md")
+send(msg.chat_id_, msg.id_, 1,  "💬┊ الصور بالتقييد مفتوحه \n🎟┊ الأمر بواسطه » "..tmSAKURA(msg).."\n ‏ ", 1, "md")
 end
-redis:del(KEEPER.."keed_photo" .. msg.chat_id_)
+redis:del(SAKURA.."keed_photo" .. msg.chat_id_)
 end
 if is_momod(msg.sender_user_id_, msg.chat_id_) and text == "فتح الفيديو بالتقييد" then
-if redis:get(KEEPER.."keed_video" .. msg.chat_id_) then
-send(msg.chat_id_, msg.id_, 1,  "💬┊ تم فتح الفيديو بالتقييد \n🎟┊ الأمر بواسطه » "..tmkeeper(msg).."\n ‏ ", 1, "md")
+if redis:get(SAKURA.."keed_video" .. msg.chat_id_) then
+send(msg.chat_id_, msg.id_, 1,  "💬┊ تم فتح الفيديو بالتقييد \n🎟┊ الأمر بواسطه » "..tmSAKURA(msg).."\n ‏ ", 1, "md")
 else
-send(msg.chat_id_, msg.id_, 1,  "💬┊ الفيديو بالتقييد مفتوح \n🎟┊ الأمر بواسطه » "..tmkeeper(msg).."\n ‏ ", 1, "md")
+send(msg.chat_id_, msg.id_, 1,  "💬┊ الفيديو بالتقييد مفتوح \n🎟┊ الأمر بواسطه » "..tmSAKURA(msg).."\n ‏ ", 1, "md")
 end
-redis:del(KEEPER.."keed_video" .. msg.chat_id_)
+redis:del(SAKURA.."keed_video" .. msg.chat_id_)
 end
 if is_momod(msg.sender_user_id_, msg.chat_id_) and text == "فتح الفايلات بالتقييد" then
-if redis:get(KEEPER.."keed_Document" .. msg.chat_id_) then
-send(msg.chat_id_, msg.id_, 1, "💬┊ تم فتح الفايلات بالتقييد \n🎟┊ الأمر بواسطه » "..tmkeeper(msg).."\n ‏ ", 1, "md")
+if redis:get(SAKURA.."keed_Document" .. msg.chat_id_) then
+send(msg.chat_id_, msg.id_, 1, "💬┊ تم فتح الفايلات بالتقييد \n🎟┊ الأمر بواسطه » "..tmSAKURA(msg).."\n ‏ ", 1, "md")
 else
-send(msg.chat_id_, msg.id_, 1, "💬┊ الفايلات بالتقييد مفتوحه \n🎟┊ الأمر بواسطه » "..tmkeeper(msg).."\n ‏ ", 1, "md")
+send(msg.chat_id_, msg.id_, 1, "💬┊ الفايلات بالتقييد مفتوحه \n🎟┊ الأمر بواسطه » "..tmSAKURA(msg).."\n ‏ ", 1, "md")
 end
-redis:del(KEEPER.."keed_Document" .. msg.chat_id_)
+redis:del(SAKURA.."keed_Document" .. msg.chat_id_)
 end
 if is_momod(msg.sender_user_id_, msg.chat_id_) and text == "فتح الماركدون بالتقييد" then
-if redis:get(KEEPER.."keed_markdon" .. msg.chat_id_) then
-send(msg.chat_id_, msg.id_, 1, "💬┊ تم فتح الماركدون بالتقييد \n🎟┊ الأمر بواسطه » "..tmkeeper(msg).."\n ‏ ", 1, "md")
+if redis:get(SAKURA.."keed_markdon" .. msg.chat_id_) then
+send(msg.chat_id_, msg.id_, 1, "💬┊ تم فتح الماركدون بالتقييد \n🎟┊ الأمر بواسطه » "..tmSAKURA(msg).."\n ‏ ", 1, "md")
 else
-send(msg.chat_id_, msg.id_, 1, "💬┊ الماركدون بالتقييد مفتوحه \n🎟┊ الأمر بواسطه » "..tmkeeper(msg).."\n ‏ ", 1, "md")
+send(msg.chat_id_, msg.id_, 1, "💬┊ الماركدون بالتقييد مفتوحه \n🎟┊ الأمر بواسطه » "..tmSAKURA(msg).."\n ‏ ", 1, "md")
 end
-redis:del(KEEPER.."keed_markdon" .. msg.chat_id_)
+redis:del(SAKURA.."keed_markdon" .. msg.chat_id_)
 end
 if is_momod(msg.sender_user_id_, msg.chat_id_) and text == "فتح المتحركه بالتقييد" then
-if redis:get(KEEPER.."keed_gif" .. msg.chat_id_) then
-send(msg.chat_id_, msg.id_, 1, "💬┊ تم فتح المتحركه بالتقييد \n🎟┊ الأمر بواسطه » "..tmkeeper(msg).."\n ‏ ", 1, "md")
+if redis:get(SAKURA.."keed_gif" .. msg.chat_id_) then
+send(msg.chat_id_, msg.id_, 1, "💬┊ تم فتح المتحركه بالتقييد \n🎟┊ الأمر بواسطه » "..tmSAKURA(msg).."\n ‏ ", 1, "md")
 else
-send(msg.chat_id_, msg.id_, 1, "💬┊ المتحركه بالتقييد مفتوحه \n🎟┊ الأمر بواسطه » "..tmkeeper(msg).."\n ‏ ", 1, "md")
+send(msg.chat_id_, msg.id_, 1, "💬┊ المتحركه بالتقييد مفتوحه \n🎟┊ الأمر بواسطه » "..tmSAKURA(msg).."\n ‏ ", 1, "md")
 end
-redis:del(KEEPER.."keed_gif" .. msg.chat_id_)
+redis:del(SAKURA.."keed_gif" .. msg.chat_id_)
 end
 if is_momod(msg.sender_user_id_, msg.chat_id_) and text == "فتح الاغاني بالتقييد" then
-if redis:get(KEEPER.."keed_audio" .. msg.chat_id_) then
-send(msg.chat_id_, msg.id_, 1, "💬┊ تم فتح الاغاني بالتقييد \n🎟┊ الأمر بواسطه » "..tmkeeper(msg).."\n ‏ ", 1, "md")
+if redis:get(SAKURA.."keed_audio" .. msg.chat_id_) then
+send(msg.chat_id_, msg.id_, 1, "💬┊ تم فتح الاغاني بالتقييد \n🎟┊ الأمر بواسطه » "..tmSAKURA(msg).."\n ‏ ", 1, "md")
 else
-send(msg.chat_id_, msg.id_, 1, "💬┊ الاغاني بالتقييد مفتوحه \n🎟┊ الأمر بواسطه » "..tmkeeper(msg).."\n ‏ ", 1, "md")
+send(msg.chat_id_, msg.id_, 1, "💬┊ الاغاني بالتقييد مفتوحه \n🎟┊ الأمر بواسطه » "..tmSAKURA(msg).."\n ‏ ", 1, "md")
 end
-redis:del(KEEPER.."keed_audio" .. msg.chat_id_)
+redis:del(SAKURA.."keed_audio" .. msg.chat_id_)
 end
 if is_momod(msg.sender_user_id_, msg.chat_id_) and text == "فتح الصوت بالتقييد" then
-if redis:get(KEEPER.."keed_voice" .. msg.chat_id_) then
-send(msg.chat_id_, msg.id_, 1, "💬┊ تم فتح الصوت بالتقييد \n🎟┊ الأمر بواسطه » "..tmkeeper(msg).."\n ‏ ", 1, "md")
+if redis:get(SAKURA.."keed_voice" .. msg.chat_id_) then
+send(msg.chat_id_, msg.id_, 1, "💬┊ تم فتح الصوت بالتقييد \n🎟┊ الأمر بواسطه » "..tmSAKURA(msg).."\n ‏ ", 1, "md")
 else
-send(msg.chat_id_, msg.id_, 1, "💬┊ الصوت بالتقييد مفتوح \n🎟┊ الأمر بواسطه » "..tmkeeper(msg).."\n ‏ ", 1, "md")
+send(msg.chat_id_, msg.id_, 1, "💬┊ الصوت بالتقييد مفتوح \n🎟┊ الأمر بواسطه » "..tmSAKURA(msg).."\n ‏ ", 1, "md")
 end
-redis:del(KEEPER.."keed_voice" .. msg.chat_id_)
+redis:del(SAKURA.."keed_voice" .. msg.chat_id_)
 end
 if is_momod(msg.sender_user_id_, msg.chat_id_) and text == "فتح الروابط بالتقييد" then
-if redis:get(KEEPER.."keed_link" .. msg.chat_id_) then
-send(msg.chat_id_, msg.id_, 1, "💬┊ تم فتح الروابط بالتقييد \n🎟┊ الأمر بواسطه » "..tmkeeper(msg).."\n ‏ ", 1, "md")
+if redis:get(SAKURA.."keed_link" .. msg.chat_id_) then
+send(msg.chat_id_, msg.id_, 1, "💬┊ تم فتح الروابط بالتقييد \n🎟┊ الأمر بواسطه » "..tmSAKURA(msg).."\n ‏ ", 1, "md")
 else
-send(msg.chat_id_, msg.id_, 1, "💬┊ الروابط بالتقييد مفتوحه \n🎟┊ الأمر بواسطه » "..tmkeeper(msg).."\n ‏ ", 1, "md")
+send(msg.chat_id_, msg.id_, 1, "💬┊ الروابط بالتقييد مفتوحه \n🎟┊ الأمر بواسطه » "..tmSAKURA(msg).."\n ‏ ", 1, "md")
 end
-redis:del(KEEPER.."keed_link" .. msg.chat_id_)
+redis:del(SAKURA.."keed_link" .. msg.chat_id_)
 end
 if is_momod(msg.sender_user_id_, msg.chat_id_) and text == "فتح التاك بالتقييد" then
-if redis:get(KEEPER.."keed_user" .. msg.chat_id_) then
-send(msg.chat_id_, msg.id_, 1, "💬┊ تم فتح التاك بالتقييد \n🎟┊ الأمر بواسطه » "..tmkeeper(msg).."\n ‏ ", 1, "md")
+if redis:get(SAKURA.."keed_user" .. msg.chat_id_) then
+send(msg.chat_id_, msg.id_, 1, "💬┊ تم فتح التاك بالتقييد \n🎟┊ الأمر بواسطه » "..tmSAKURA(msg).."\n ‏ ", 1, "md")
 else
-send(msg.chat_id_, msg.id_, 1, "💬┊ التاك بالتقييد مفتوح \n🎟┊ الأمر بواسطه » "..tmkeeper(msg).."\n ‏ ", 1, "md")
+send(msg.chat_id_, msg.id_, 1, "💬┊ التاك بالتقييد مفتوح \n🎟┊ الأمر بواسطه » "..tmSAKURA(msg).."\n ‏ ", 1, "md")
 end
-redis:del(KEEPER.."keed_user" .. msg.chat_id_)
+redis:del(SAKURA.."keed_user" .. msg.chat_id_)
 end
 if is_momod(msg.sender_user_id_, msg.chat_id_) and text == "فتح المعرف بالتقييد" then
-if redis:get(KEEPER.."keed_user" .. msg.chat_id_) then
-send(msg.chat_id_, msg.id_, 1, "💬┊ تم فتح المعرف بالتقييد \n🎟┊ الأمر بواسطه » "..tmkeeper(msg).."\n ‏ ", 1, "md")
+if redis:get(SAKURA.."keed_user" .. msg.chat_id_) then
+send(msg.chat_id_, msg.id_, 1, "💬┊ تم فتح المعرف بالتقييد \n🎟┊ الأمر بواسطه » "..tmSAKURA(msg).."\n ‏ ", 1, "md")
 else
-send(msg.chat_id_, msg.id_, 1, "💬┊ المعرف بالتقييد مفتوح \n🎟┊ الأمر بواسطه » "..tmkeeper(msg).."\n ‏ ", 1, "md")
+send(msg.chat_id_, msg.id_, 1, "💬┊ المعرف بالتقييد مفتوح \n🎟┊ الأمر بواسطه » "..tmSAKURA(msg).."\n ‏ ", 1, "md")
 end
-redis:del(KEEPER.."keed_user" .. msg.chat_id_)
+redis:del(SAKURA.."keed_user" .. msg.chat_id_)
 end
 if is_momod(msg.sender_user_id_, msg.chat_id_) and text == "فتح الهاشتاك بالتقييد" then
-if redis:get(KEEPER.."keed_hashtag" .. msg.chat_id_) then
-send(msg.chat_id_, msg.id_, 1, "💬┊ تم فتح الهاشتاك بالتقييد \n🎟┊ الأمر بواسطه » "..tmkeeper(msg).."\n ‏ ", 1, "md")
+if redis:get(SAKURA.."keed_hashtag" .. msg.chat_id_) then
+send(msg.chat_id_, msg.id_, 1, "💬┊ تم فتح الهاشتاك بالتقييد \n🎟┊ الأمر بواسطه » "..tmSAKURA(msg).."\n ‏ ", 1, "md")
 else
-send(msg.chat_id_, msg.id_, 1, "💬┊ الهاشتاك بالتقييد مفتوحه \n🎟┊ الأمر بواسطه » "..tmkeeper(msg).."\n ‏ ", 1, "md")
+send(msg.chat_id_, msg.id_, 1, "💬┊ الهاشتاك بالتقييد مفتوحه \n🎟┊ الأمر بواسطه » "..tmSAKURA(msg).."\n ‏ ", 1, "md")
 end
-redis:del(KEEPER.."keed_hashtag" .. msg.chat_id_)
+redis:del(SAKURA.."keed_hashtag" .. msg.chat_id_)
 end
 if is_momod(msg.sender_user_id_, msg.chat_id_) and text == "فتح الجهات بالتقييد" then
-if redis:get(KEEPER.."keed_contect" .. msg.chat_id_) then
-send(msg.chat_id_, msg.id_, 1, "💬┊ تم فتح الجهات بالتقييد \n🎟┊ الأمر بواسطه » "..tmkeeper(msg).."\n ‏ ", 1, "md")
+if redis:get(SAKURA.."keed_contect" .. msg.chat_id_) then
+send(msg.chat_id_, msg.id_, 1, "💬┊ تم فتح الجهات بالتقييد \n🎟┊ الأمر بواسطه » "..tmSAKURA(msg).."\n ‏ ", 1, "md")
 else
-send(msg.chat_id_, msg.id_, 1, "💬┊ الجهات بالتقييد مفتوحه \n🎟┊ الأمر بواسطه » "..tmkeeper(msg).."\n ‏ ", 1, "md")
+send(msg.chat_id_, msg.id_, 1, "💬┊ الجهات بالتقييد مفتوحه \n🎟┊ الأمر بواسطه » "..tmSAKURA(msg).."\n ‏ ", 1, "md")
 end
-redis:del(KEEPER.."keed_contect" .. msg.chat_id_)
+redis:del(SAKURA.."keed_contect" .. msg.chat_id_)
 end
 if is_momod(msg.sender_user_id_, msg.chat_id_) and text == "فتح العربيه بالتقييد" then
-if redis:get(KEEPER.."keed_arbic" .. msg.chat_id_) then
-send(msg.chat_id_, msg.id_, 1, "💬┊ تم فتح العربيه بالتقييد \n🎟┊ الأمر بواسطه » "..tmkeeper(msg).."\n ‏ ", 1, "md")
+if redis:get(SAKURA.."keed_arbic" .. msg.chat_id_) then
+send(msg.chat_id_, msg.id_, 1, "💬┊ تم فتح العربيه بالتقييد \n🎟┊ الأمر بواسطه » "..tmSAKURA(msg).."\n ‏ ", 1, "md")
 else
-send(msg.chat_id_, msg.id_, 1, "💬┊ العربيه بالتقييد مفتوحه \n🎟┊ الأمر بواسطه » "..tmkeeper(msg).."\n ‏ ", 1, "md")
+send(msg.chat_id_, msg.id_, 1, "💬┊ العربيه بالتقييد مفتوحه \n🎟┊ الأمر بواسطه » "..tmSAKURA(msg).."\n ‏ ", 1, "md")
 end
-redis:del(KEEPER.."keed_arbic" .. msg.chat_id_)
+redis:del(SAKURA.."keed_arbic" .. msg.chat_id_)
 end
 if is_momod(msg.sender_user_id_, msg.chat_id_) and text == "فتح الانكليزيه بالتقييد" then
-if redis:get(KEEPER.."keed_english" .. msg.chat_id_) then
-send(msg.chat_id_, msg.id_, 1, "💬┊ تم فتح الانكليزي بالتقييد \n🎟┊ الأمر بواسطه » "..tmkeeper(msg).."\n ‏ ", 1, "md")
+if redis:get(SAKURA.."keed_english" .. msg.chat_id_) then
+send(msg.chat_id_, msg.id_, 1, "💬┊ تم فتح الانكليزي بالتقييد \n🎟┊ الأمر بواسطه » "..tmSAKURA(msg).."\n ‏ ", 1, "md")
 else
-send(msg.chat_id_, msg.id_, 1, "💬┊ الانكليزي بالتقييد مفتوحه \n🎟┊ الأمر بواسطه » "..tmkeeper(msg).."\n ‏ ", 1, "md")
+send(msg.chat_id_, msg.id_, 1, "💬┊ الانكليزي بالتقييد مفتوحه \n🎟┊ الأمر بواسطه » "..tmSAKURA(msg).."\n ‏ ", 1, "md")
 end
-redis:del(KEEPER.."keed_english" .. msg.chat_id_)
+redis:del(SAKURA.."keed_english" .. msg.chat_id_)
 end
 if is_momod(msg.sender_user_id_, msg.chat_id_) and text == "فتح الملصقات بالتقييد" then
-if redis:get(KEEPER.."lock_stecker" .. msg.chat_id_) then
-send(msg.chat_id_, msg.id_, 1, "💬┊ تم فتح الملصقات بالتقييد \n🎟┊ الأمر بواسطه » "..tmkeeper(msg).."\n ‏ ", 1, "md")
+if redis:get(SAKURA.."lock_stecker" .. msg.chat_id_) then
+send(msg.chat_id_, msg.id_, 1, "💬┊ تم فتح الملصقات بالتقييد \n🎟┊ الأمر بواسطه » "..tmSAKURA(msg).."\n ‏ ", 1, "md")
 else
-send(msg.chat_id_, msg.id_, 1, "💬┊ الملصقات بالتقييد مفتوحه \n🎟┊ الأمر بواسطه » "..tmkeeper(msg).."\n ‏ ", 1, "md")
+send(msg.chat_id_, msg.id_, 1, "💬┊ الملصقات بالتقييد مفتوحه \n🎟┊ الأمر بواسطه » "..tmSAKURA(msg).."\n ‏ ", 1, "md")
 end
-redis:del(KEEPER.."lock_stecker" .. msg.chat_id_)
+redis:del(SAKURA.."lock_stecker" .. msg.chat_id_)
 end
 if is_momod(msg.sender_user_id_, msg.chat_id_) and text == "فتح التوجيه بالتقييد" then
-if redis:get(KEEPER.."keed_fwd" .. msg.chat_id_) then
-send(msg.chat_id_, msg.id_, 1, "💬┊ تم فتح التوجيه بالتقييد \n🎟┊ الأمر بواسطه » "..tmkeeper(msg).."\n ‏ ", 1, "md")
+if redis:get(SAKURA.."keed_fwd" .. msg.chat_id_) then
+send(msg.chat_id_, msg.id_, 1, "💬┊ تم فتح التوجيه بالتقييد \n🎟┊ الأمر بواسطه » "..tmSAKURA(msg).."\n ‏ ", 1, "md")
 else
-send(msg.chat_id_, msg.id_, 1, "💬┊ التوجيه بالتقييد مفتوح\n🎟┊ الأمر بواسطه » "..tmkeeper(msg).."\n ‏ ", 1, "md")
+send(msg.chat_id_, msg.id_, 1, "💬┊ التوجيه بالتقييد مفتوح\n🎟┊ الأمر بواسطه » "..tmSAKURA(msg).."\n ‏ ", 1, "md")
 end
-redis:del(KEEPER.."keed_fwd" .. msg.chat_id_)
+redis:del(SAKURA.."keed_fwd" .. msg.chat_id_)
 end
 if is_momod(msg.sender_user_id_, msg.chat_id_) and text == "فتح البوتات بالتقييد" then
-if redis:get(KEEPER.."keed_bots" .. msg.chat_id_) then
-send(msg.chat_id_, msg.id_, 1,  "💬┊ تم فتح البوتات بالتقييد \n🎟┊ الأمر بواسطه » "..tmkeeper(msg).."\n ‏ ", 1, "md")
+if redis:get(SAKURA.."keed_bots" .. msg.chat_id_) then
+send(msg.chat_id_, msg.id_, 1,  "💬┊ تم فتح البوتات بالتقييد \n🎟┊ الأمر بواسطه » "..tmSAKURA(msg).."\n ‏ ", 1, "md")
 else
-send(msg.chat_id_, msg.id_, 1,  "💬┊ البوتات بالتقييد مفتوحه \n🎟┊ الأمر بواسطه » "..tmkeeper(msg).."\n ‏ ", 1, "md")
+send(msg.chat_id_, msg.id_, 1,  "💬┊ البوتات بالتقييد مفتوحه \n🎟┊ الأمر بواسطه » "..tmSAKURA(msg).."\n ‏ ", 1, "md")
 end
-redis:del(KEEPER.."keed_bots" .. msg.chat_id_)
+redis:del(SAKURA.."keed_bots" .. msg.chat_id_)
 end
 if is_momod(msg.sender_user_id_, msg.chat_id_) and text == "فتح الفشار بالتقييد" then
-if redis:get(KEEPER.."keed_fosh" .. msg.chat_id_) then
-send(msg.chat_id_, msg.id_, 1, "💬┊ تم فتح الفشار بالتقييد \n🎟┊ الأمر بواسطه » "..tmkeeper(msg).."\n ‏ ", 1, "md")
+if redis:get(SAKURA.."keed_fosh" .. msg.chat_id_) then
+send(msg.chat_id_, msg.id_, 1, "💬┊ تم فتح الفشار بالتقييد \n🎟┊ الأمر بواسطه » "..tmSAKURA(msg).."\n ‏ ", 1, "md")
 else
-send(msg.chat_id_, msg.id_, 1, "💬┊ الفشار بالتقييد مفتوح \n🎟┊ الأمر بواسطه » "..tmkeeper(msg).."\n ‏ ", 1, "md")
+send(msg.chat_id_, msg.id_, 1, "💬┊ الفشار بالتقييد مفتوح \n🎟┊ الأمر بواسطه » "..tmSAKURA(msg).."\n ‏ ", 1, "md")
 end
-redis:del(KEEPER.."keed_fosh" .. msg.chat_id_)
+redis:del(SAKURA.."keed_fosh" .. msg.chat_id_)
 end
 if is_momod(msg.sender_user_id_, msg.chat_id_) and idf:match("-100(%d+)") and (text:match("^قفل الكل بالتقييد"))  then
-redis:set(KEEPER.."keed_bots" .. msg.chat_id_,true)
-redis:set(KEEPER.."keed_fosh" .. msg.chat_id_, true)
-redis:set(KEEPER.."keed_fwd" .. msg.chat_id_,true)
-redis:set(KEEPER.."lock_stecker" .. msg.chat_id_,true)
-redis:set(KEEPER.."keed_english" .. msg.chat_id_,true)
-redis:set(KEEPER.."keed_arbic" .. msg.chat_id_,true)
-redis:set(KEEPER.."keed_contect" .. msg.chat_id_,true)
-redis:set(KEEPER.."keed_hashtag" .. msg.chat_id_,true)
-redis:set(KEEPER.."keed_link" .. msg.chat_id_,true)
-redis:set(KEEPER.."keed_voice" .. msg.chat_id_,true)
-redis:set(KEEPER.."keed_audio" .. msg.chat_id_,true)
-redis:set(KEEPER.."keed_gif" .. msg.chat_id_,true)
-redis:set(KEEPER.."keed_markdon" .. msg.chat_id_,true)
-redis:set(KEEPER.."keed_Document" .. msg.chat_id_,true)
-redis:set(KEEPER.."keed_video" .. msg.chat_id_,true)
-redis:set(KEEPER.."keed_photo" .. msg.chat_id_,true)
-redis:set(KEEPER.."keed_user" .. msg.chat_id_,true)
-send(msg.chat_id_, msg.id_, 1, "💬┊ تم قفل الكل بالتقييد \n🎟┊ الأمر بواسطه » "..tmkeeper(msg).."\n ‏ ", 1, "md")
+redis:set(SAKURA.."keed_bots" .. msg.chat_id_,true)
+redis:set(SAKURA.."keed_fosh" .. msg.chat_id_, true)
+redis:set(SAKURA.."keed_fwd" .. msg.chat_id_,true)
+redis:set(SAKURA.."lock_stecker" .. msg.chat_id_,true)
+redis:set(SAKURA.."keed_english" .. msg.chat_id_,true)
+redis:set(SAKURA.."keed_arbic" .. msg.chat_id_,true)
+redis:set(SAKURA.."keed_contect" .. msg.chat_id_,true)
+redis:set(SAKURA.."keed_hashtag" .. msg.chat_id_,true)
+redis:set(SAKURA.."keed_link" .. msg.chat_id_,true)
+redis:set(SAKURA.."keed_voice" .. msg.chat_id_,true)
+redis:set(SAKURA.."keed_audio" .. msg.chat_id_,true)
+redis:set(SAKURA.."keed_gif" .. msg.chat_id_,true)
+redis:set(SAKURA.."keed_markdon" .. msg.chat_id_,true)
+redis:set(SAKURA.."keed_Document" .. msg.chat_id_,true)
+redis:set(SAKURA.."keed_video" .. msg.chat_id_,true)
+redis:set(SAKURA.."keed_photo" .. msg.chat_id_,true)
+redis:set(SAKURA.."keed_user" .. msg.chat_id_,true)
+send(msg.chat_id_, msg.id_, 1, "💬┊ تم قفل الكل بالتقييد \n🎟┊ الأمر بواسطه » "..tmSAKURA(msg).."\n ‏ ", 1, "md")
 end
 if is_momod(msg.sender_user_id_, msg.chat_id_) and idf:match("-100(%d+)") and (text:match("^فتح الكل بالتقييد"))  then
-redis:del(KEEPER.."keed_bots" .. msg.chat_id_)
-redis:del(KEEPER.."keed_fosh" .. msg.chat_id_)
-redis:del(KEEPER.."keed_fwd" .. msg.chat_id_)
-redis:del(KEEPER.."lock_stecker" .. msg.chat_id_)
-redis:del(KEEPER.."keed_english" .. msg.chat_id_)
-redis:del(KEEPER.."keed_arbic" .. msg.chat_id_)
-redis:del(KEEPER.."keed_contect" .. msg.chat_id_)
-redis:del(KEEPER.."keed_hashtag" .. msg.chat_id_)
-redis:del(KEEPER.."keed_link" .. msg.chat_id_)
-redis:del(KEEPER.."keed_voice" .. msg.chat_id_)
-redis:del(KEEPER.."keed_audio" .. msg.chat_id_)
-redis:del(KEEPER.."keed_gif" .. msg.chat_id_)
-redis:del(KEEPER.."keed_markdon" .. msg.chat_id_)
-redis:del(KEEPER.."keed_Document" .. msg.chat_id_)
-redis:del(KEEPER.."keed_video" .. msg.chat_id_)
-redis:del(KEEPER.."keed_photo" .. msg.chat_id_)
-redis:del(KEEPER.."keed_user" .. msg.chat_id_)
-send(msg.chat_id_, msg.id_, 1, "💬┊ تم فتح الكل بالتقييد \n🎟┊ الأمر بواسطه » "..tmkeeper(msg).."\n ‏ ", 1, "md")
+redis:del(SAKURA.."keed_bots" .. msg.chat_id_)
+redis:del(SAKURA.."keed_fosh" .. msg.chat_id_)
+redis:del(SAKURA.."keed_fwd" .. msg.chat_id_)
+redis:del(SAKURA.."lock_stecker" .. msg.chat_id_)
+redis:del(SAKURA.."keed_english" .. msg.chat_id_)
+redis:del(SAKURA.."keed_arbic" .. msg.chat_id_)
+redis:del(SAKURA.."keed_contect" .. msg.chat_id_)
+redis:del(SAKURA.."keed_hashtag" .. msg.chat_id_)
+redis:del(SAKURA.."keed_link" .. msg.chat_id_)
+redis:del(SAKURA.."keed_voice" .. msg.chat_id_)
+redis:del(SAKURA.."keed_audio" .. msg.chat_id_)
+redis:del(SAKURA.."keed_gif" .. msg.chat_id_)
+redis:del(SAKURA.."keed_markdon" .. msg.chat_id_)
+redis:del(SAKURA.."keed_Document" .. msg.chat_id_)
+redis:del(SAKURA.."keed_video" .. msg.chat_id_)
+redis:del(SAKURA.."keed_photo" .. msg.chat_id_)
+redis:del(SAKURA.."keed_user" .. msg.chat_id_)
+send(msg.chat_id_, msg.id_, 1, "💬┊ تم فتح الكل بالتقييد \n🎟┊ الأمر بواسطه » "..tmSAKURA(msg).."\n ‏ ", 1, "md")
 end
 ----------------------sitting keeds----------------------------------------
 if is_momod(msg.sender_user_id_, msg.chat_id_) and idf:match("-100(%d+)") and (text:match("^اعدادات التقييد"))  then
-if redis:get(KEEPER.."keed_bots" .. msg.chat_id_) then
+if redis:get(SAKURA.."keed_bots" .. msg.chat_id_) then
 keed_bots = "✅"
 else
 keed_bots = "✖️"
 end
-if redis:get(KEEPER.."keed_fosh" .. msg.chat_id_) then
+if redis:get(SAKURA.."keed_fosh" .. msg.chat_id_) then
 keed_fosh = "✅"
 else
 keed_fosh = "✖️"
 end
-if redis:get(KEEPER.."keed_fwd" .. msg.chat_id_) then
+if redis:get(SAKURA.."keed_fwd" .. msg.chat_id_) then
 keed_fwd = "✅"
 else
 keed_fwd = "✖️"
 end
-if redis:get(KEEPER.."lock_stecker" .. msg.chat_id_) then
+if redis:get(SAKURA.."lock_stecker" .. msg.chat_id_) then
 lock_stecker = "✅"
 else
 lock_stecker = "✖️"
 end
-if redis:get(KEEPER.."keed_user" .. msg.chat_id_) then
+if redis:get(SAKURA.."keed_user" .. msg.chat_id_) then
 keed_user = "✅"
 else
 keed_user = "✖️"
 end
-if redis:get(KEEPER.."keed_english" .. msg.chat_id_) then
+if redis:get(SAKURA.."keed_english" .. msg.chat_id_) then
 keed_english = "✅"
 else
 keed_english = "✖️"
 end
-if redis:get(KEEPER.."keed_arbic" .. msg.chat_id_) then
+if redis:get(SAKURA.."keed_arbic" .. msg.chat_id_) then
 keed_arbic = "✅"
 else
 keed_arbic = "✖️"
 end
-if redis:get(KEEPER.."keed_contect" .. msg.chat_id_) then
+if redis:get(SAKURA.."keed_contect" .. msg.chat_id_) then
 keed_contect = "✅"
 else
 keed_contect = "✖️"
 end
-if redis:get(KEEPER.."keed_hashtag" .. msg.chat_id_) then
+if redis:get(SAKURA.."keed_hashtag" .. msg.chat_id_) then
 keed_hashtag = "✅"
 else
 keed_hashtag = "✖️"
 end
-if redis:get(KEEPER.."keed_link" .. msg.chat_id_) then
+if redis:get(SAKURA.."keed_link" .. msg.chat_id_) then
 keed_link = "✅"
 else
 keed_link = "✖️"
 end
-if redis:get(KEEPER.."keed_voice" .. msg.chat_id_) then
+if redis:get(SAKURA.."keed_voice" .. msg.chat_id_) then
 keed_voice = "✅"
 else
 keed_voice = "✖️"
 end
-if redis:get(KEEPER.."keed_audio" .. msg.chat_id_) then
+if redis:get(SAKURA.."keed_audio" .. msg.chat_id_) then
 keed_audio = "✅"
 else
 keed_audio = "✖️"
 end
-if redis:get(KEEPER.."keed_gif" .. msg.chat_id_) then
+if redis:get(SAKURA.."keed_gif" .. msg.chat_id_) then
 keed_gif = "✅"
 else
 keed_gif = "✖️"
 end
-if redis:get(KEEPER.."keed_markdon" .. msg.chat_id_) then
+if redis:get(SAKURA.."keed_markdon" .. msg.chat_id_) then
 keed_markdon = "✅"
 else
 keed_markdon = "✖️"
 end
-if redis:get(KEEPER.."keed_Document" .. msg.chat_id_) then
+if redis:get(SAKURA.."keed_Document" .. msg.chat_id_) then
 keed_Document = "✅"
 else
 keed_Document = "✖️"
 end
-if redis:get(KEEPER.."keed_video" .. msg.chat_id_) then
+if redis:get(SAKURA.."keed_video" .. msg.chat_id_) then
 keed_video = "✅"
 else
 keed_video = "✖️"
 end
-if redis:get(KEEPER.."keed_photo" .. msg.chat_id_) then
+if redis:get(SAKURA.."keed_photo" .. msg.chat_id_) then
 keed_photo = "✅"
 else
 keed_photo = "✖️"
 end
-if redis:get(KEEPER.."keed_text" .. msg.chat_id_) then
+if redis:get(SAKURA.."keed_text" .. msg.chat_id_) then
 keed_text = "✅"
 else
 keed_text = "✖️"
 end
-local keed_helps = "- *اعدادات التقييد في المجموعه»*\n\n🎟┊ الروابط بالتقييد     » "..keed_link.."\n🏗┊ الدردشه بالتقييد   » "..keed_text.."\n🏗┊ الصور بالتقييد      » "..keed_photo.."\n🏗┊ الملصقات بالتقييد » "..lock_stecker.."\n🎟┊ المتحركه بالتقييد  » "..keed_gif.."\n💯┊ الفشار بالتقييد     » "..keed_fosh.."\n💯┊ الاغاني بالتقييد     » "..keed_audio.."\n💯┊ الصوت بالتقييد    » "..keed_voice.."\n💯┊ المعرف بالتقييد    » "..keed_user.."\n🎟┊ الهاشتاك بالتقييد  » "..keed_hashtag.."\n💯┊ البوتات بالتقييد     » "..keed_bots.."\n💯┊ التوجيه بالتقييد     » "..keed_fwd.."\n💯┊ الملفات بالتقييد    » "..keed_Document.."\n🎟┊ الاتصال بالتقييد     » "..keed_contect.."\n🏗┊ العربيه بالتقييد      » "..keed_arbic.."\n🏗┊ الانكليزيه بالتقييد   » "..keed_english.."\n🏗┊ الفيديو بالتقييد     » "..keed_video.."\n🎟┊ الماركدون بالتقييد » "..keed_markdon.."\n\n🗳┊ تابع » [@keeper_ch]\n ‌‏"
+local keed_helps = "- *اعدادات التقييد في المجموعه»*\n\n🎟┊ الروابط بالتقييد     » "..keed_link.."\n🏗┊ الدردشه بالتقييد   » "..keed_text.."\n🏗┊ الصور بالتقييد      » "..keed_photo.."\n🏗┊ الملصقات بالتقييد » "..lock_stecker.."\n🎟┊ المتحركه بالتقييد  » "..keed_gif.."\n💯┊ الفشار بالتقييد     » "..keed_fosh.."\n💯┊ الاغاني بالتقييد     » "..keed_audio.."\n💯┊ الصوت بالتقييد    » "..keed_voice.."\n💯┊ المعرف بالتقييد    » "..keed_user.."\n🎟┊ الهاشتاك بالتقييد  » "..keed_hashtag.."\n💯┊ البوتات بالتقييد     » "..keed_bots.."\n💯┊ التوجيه بالتقييد     » "..keed_fwd.."\n💯┊ الملفات بالتقييد    » "..keed_Document.."\n🎟┊ الاتصال بالتقييد     » "..keed_contect.."\n🏗┊ العربيه بالتقييد      » "..keed_arbic.."\n🏗┊ الانكليزيه بالتقييد   » "..keed_english.."\n🏗┊ الفيديو بالتقييد     » "..keed_video.."\n🎟┊ الماركدون بالتقييد » "..keed_markdon.."\n\n🗳┊ تابع » [@SAKURATEM]\n ‌‏"
 send(msg.chat_id_, msg.id_, 1, keed_helps, 1, "md")
 end
 ----------------------------------------------------------------------------------------------------------------
 if is_momod(msg.sender_user_id_, msg.chat_id_) and idf:match("-100(%d+)") and text:match("^ضع عدد احرف (%d+)$") then
-if not redis:get(KEEPER..'lock:add'..msg.chat_id_) then
+if not redis:get(SAKURA..'lock:add'..msg.chat_id_) then
 local sensspam = { string.match(text, "^(ضع عدد احرف) (%d+)$") }
 if 40 > tonumber(sensspam[2]) then
 send(msg.chat_id_, msg.id_, 1, "◽️↓ قم بوضع عدد من (100-40)❗️ ", 1, "md")
 else
-redis:set(KEEPER.."bot:sens:spam" .. msg.chat_id_, sensspam[2])
+redis:set(SAKURA.."bot:sens:spam" .. msg.chat_id_, sensspam[2])
 send(msg.chat_id_, msg.id_, 1, "▫️↓ تم وضع عدد احرف الكلايش \n " .. sensspam[2] .. " حـــرف🎈 ", 1, "md")
 end end end
 --------------------------------------------------------------------------------------------------------------
 if text:match("^مسح (.*)$")   then
-if not redis:get(KEEPER..'lock:add'..msg.chat_id_) then
+if not redis:get(SAKURA..'lock:add'..msg.chat_id_) then
 local txts = {string.match(text, "^(مسح) (.*)$")}
 if txts[2] == "المحظورين" and idf:match("-100(%d+)") then
 if not is_momod(msg.sender_user_id_, msg.chat_id_)then
 send(msg.chat_id_, msg.id_, 1, '💲┊ للأدمنيـــــــه فقــــــــط', 1, 'md')
 else
-local kpbanned = redis:scard(KEEPER.."bot:banned:" .. msg.chat_id_) or "0"
-redis:del(KEEPER.."bot:banned:" .. msg.chat_id_)
+local kpbanned = redis:scard(SAKURA.."bot:banned:" .. msg.chat_id_) or "0"
+redis:del(SAKURA.."bot:banned:" .. msg.chat_id_)
 send(msg.chat_id_, msg.id_, 1, "📉┊عدد المحضورين ≈ *"..kpbanned.."*\n🌀┊تـم مسحهم بنجـــــــــــاح ✓\n‏", 1, "md")
 end end
 ----------------------------------------
@@ -9501,8 +9489,8 @@ if txts[2] == "قائمه العام" then
 if not is_sudo(msg) then
 send(msg.chat_id_, msg.id_, 1, '💲┊ للمطوريـــــــن فقــــــــط', 1, 'md')
 else
-local kpgban = redis:scard(KEEPER.."bot:gban:") or "0"
-redis:del(KEEPER.."bot:gban:")
+local kpgban = redis:scard(SAKURA.."bot:gban:") or "0"
+redis:del(SAKURA.."bot:gban:")
 send(msg.chat_id_, msg.id_, 1, "📉┊عدد المحضورين عام ≈ *"..kpgban.."*\n🌀┊تـم مسحهم بنجـــــــــــاح ✓\n‏", 1, "md")
 end end
 ----------------------------------------
@@ -9532,7 +9520,7 @@ if not is_momod(msg.sender_user_id_, msg.chat_id_)then
 send(msg.chat_id_, msg.id_, 1, '💲┊ للأدمنيـــــــه فقــــــــط', 1, 'md')
 else
 send(msg.chat_id_, msg.id_, 1, "🌀┊ اهــــــــلاً عزيزي ...؟🕵🏻\n🚸┊  اذا اردت مسحهم\n👷┊ ارسل لي رقم (1) \n🔍┊ او ارسل (2) لأضافتهم.️\n‏",  1, "md")
-redis:setex(KEEPER.."CleanBlockList" .. msg.chat_id_ .. ":" .. msg.sender_user_id_, 35, true)
+redis:setex(SAKURA.."CleanBlockList" .. msg.chat_id_ .. ":" .. msg.sender_user_id_, 35, true)
 end end
 ----------------------------------------------
 if txts[2] == "البوتات" and idf:match("-100(%d+)") then
@@ -9553,83 +9541,83 @@ if txts[2] == "الادمنيه" and idf:match("-100(%d+)") then
 if not is_owner(msg.sender_user_id_, msg.chat_id_)then
 send(msg.chat_id_, msg.id_, 1, '💲┊ للمــــــدراء فقــــــــط', 1, 'md')
 else
-local kpmomod = redis:scard(KEEPER.."bot:momod:" .. msg.chat_id_) or "0"
+local kpmomod = redis:scard(SAKURA.."bot:momod:" .. msg.chat_id_) or "0"
 send(msg.chat_id_, msg.id_, 1, "📉┊عدد الأدمنيه ≈ *"..kpmomod.."*\n🌀┊ تـم مسحهم بنجـــــــــــاح ✓\n‏", 1, "md")
-redis:del(KEEPER.."bot:momod:" .. msg.chat_id_)
+redis:del(SAKURA.."bot:momod:" .. msg.chat_id_)
 end end
 -----------------------------------------------
 if txts[2] == "المدراء" and idf:match("-100(%d+)") then
 if not is_monshi(msg.sender_user_id_, msg.chat_id_)then
 send(msg.chat_id_, msg.id_, 1, '💲┊ للمنشئيـــــن فقــــــــط', 1, 'md')
 else
-local kpowners = redis:scard(KEEPER.."bot:owners:" .. msg.chat_id_) or "0"
+local kpowners = redis:scard(SAKURA.."bot:owners:" .. msg.chat_id_) or "0"
 send(msg.chat_id_, msg.id_, 1, "📉┊عدد المدراء ≈ *"..kpowners.."*\n🌀┊ تـم مسحهم بنجـــــــــــاح ✓\n‏", 1, "md")
-redis:del(KEEPER.."bot:owners:" .. msg.chat_id_)
+redis:del(SAKURA.."bot:owners:" .. msg.chat_id_)
 end end
 -----------------------------------------------
 if txts[2] == "المنشئين" and idf:match("-100(%d+)") then
 if not is_sudo(msg) then
 send(msg.chat_id_, msg.id_, 1, '💲┊ للمطوريـــــــن فقــــــــط', 1, 'md')
 else
-local kpmonshis = redis:scard(KEEPER.."bot:monshis:" .. msg.chat_id_) or "0"
+local kpmonshis = redis:scard(SAKURA.."bot:monshis:" .. msg.chat_id_) or "0"
 send(msg.chat_id_, msg.id_, 1, "📉┊عدد المنشئين ≈ *"..kpmonshis.."*\n🌀┊ تـم مسحهم بنجـــــــــــاح ✓\n‏", 1, "md")
-redis:del(KEEPER.."bot:monshis:" .. msg.chat_id_)
+redis:del(SAKURA.."bot:monshis:" .. msg.chat_id_)
 end end
---------DEL KEEPER_SUDO-----------------------------------------
+--------DEL SAKURA_SUDO-----------------------------------------
 if txts[2] == "المطورين" then
 if not is_KP(msg) then
 send(msg.chat_id_, msg.id_, 1, '💲┊ للمطور الاساسي فقــــــــط', 1, 'md')
 else
-local kpSudos1 = redis:scard(KEEPER.."Bot:KpSudos") or "0"
+local kpSudos1 = redis:scard(SAKURA.."Bot:KpSudos") or "0"
 send(msg.chat_id_, msg.id_, 1, "📉┊عدد المطورين ≈ *"..kpSudos1.."*\n🌀┊ تـم مسحهم بنجـــــــــــاح ✓\n‏", 1, "md")
 local hash = "Bot:KpSudos"
-local list = redis:smembers(KEEPER..hash)
+local list = redis:smembers(SAKURA..hash)
 for k, v in pairs(list) do
 local t = tonumber(v)
 table.remove(_config.Sudo_Users, getindex(_config.Sudo_Users, t))
 save_on_config()
 end
-redis:del(KEEPER.."Bot:KpSudos")
+redis:del(SAKURA.."Bot:KpSudos")
 end end
 --------------DEL Admins------------------------------------
 if txts[2] == "ادمنيه البوت" then
 if not is_KP(msg) then
 send(msg.chat_id_, msg.id_, 1, '💲┊ للمطور الاساسي فقــــــــط', 1, 'md')
 else
-local kpAdmins = redis:scard(KEEPER.."Bot:Admins") or "0"
+local kpAdmins = redis:scard(SAKURA.."Bot:Admins") or "0"
 send(msg.chat_id_, msg.id_, 1, "📉┊عدد ادمنيه البوت ≈ *"..kpAdmins.."*\n🌀┊ تـم مسحهم بنجـــــــــــاح ✓\n‏", 1, "md")
-redis:del(KEEPER.."Bot:Admins")
+redis:del(SAKURA.."Bot:Admins")
 end end
 -----------DEL vipmem-----------------------------------------------
 if txts[2] == "المميزين" and idf:match("-100(%d+)") then
 if not is_momod(msg.sender_user_id_, msg.chat_id_)then
 send(msg.chat_id_, msg.id_, 1, '💲┊ للأدمنيـــــــه فقــــــــط', 1, 'md')
 else
-local kpvipmem = redis:scard(KEEPER.."bot:vipmem:" .. msg.chat_id_) or "0"
+local kpvipmem = redis:scard(SAKURA.."bot:vipmem:" .. msg.chat_id_) or "0"
 send(msg.chat_id_, msg.id_, 1, "📉┊عدد المميزين ≈ *"..kpvipmem.."*\n🌀┊ تـم مسحهم بنجـــــــــــاح ✓\n‏", 1, "md")
-redis:del(KEEPER.."bot:vipmem:" .. msg.chat_id_)
+redis:del(SAKURA.."bot:vipmem:" .. msg.chat_id_)
 end  end
 ---------------keeed del --------------------------------------------
 if txts[2] == "المقيدين" and idf:match("-100(%d+)") then
 if not is_momod(msg.sender_user_id_, msg.chat_id_)then
 send(msg.chat_id_, msg.id_, 1, '💲┊ للأدمنيـــــــه فقــــــــط', 1, 'md')
 else
-local kpkeed = redis:scard(KEEPER.."bot:keed:" .. msg.chat_id_) or "0"
+local kpkeed = redis:scard(SAKURA.."bot:keed:" .. msg.chat_id_) or "0"
 send(msg.chat_id_, msg.id_, 1, "📉┊عدد المقيدين ≈ *"..kpkeed.."*\n🌀┊ تـم مسحهم بنجـــــــــــاح ✓\n‏", 1, "md")
 local hash = "bot:keed:" .. msg.chat_id_
-local list = redis:smembers(KEEPER..hash)
+local list = redis:smembers(SAKURA..hash)
 for k, v in pairs(list) do
-redis:del(KEEPER.."bot:keed:" .. msg.chat_id_)
-HTTPS.request("https://api.telegram.org/bot"..KEEPER_TOKEN.."/restrictChatMember?chat_id=" ..msg.chat_id_.. "&user_id=" ..v.."&can_send_messages=True&can_send_media_messages=True&can_send_other_messages=True&can_add_web_page_previews=True")
+redis:del(SAKURA.."bot:keed:" .. msg.chat_id_)
+HTTPS.request("https://api.telegram.org/bot"..SAKURA_TOKEN.."/restrictChatMember?chat_id=" ..msg.chat_id_.. "&user_id=" ..v.."&can_send_messages=True&can_send_media_messages=True&can_send_other_messages=True&can_add_web_page_previews=True")
 end end end
 ------------DEL vipmems-------------------------------------------
 if txts[2] == "المميزين عام" and idf:match("-100(%d+)") then
 if not is_KP(msg) then
 send(msg.chat_id_, msg.id_, 1, '💲┊ للمطور الاساسي فقــــــــط', 1, 'md')
 else
-local kpvipmems = redis:scard(KEEPER.."bot:vipmems:") or "0"
+local kpvipmems = redis:scard(SAKURA.."bot:vipmems:") or "0"
 send(msg.chat_id_, msg.id_, 1, "📉┊عدد المميزين عام ≈ *"..kpvipmems.."*\n🌀┊ تـم مسحهم بنجـــــــــــاح ✓\n‏", 1, "md")
-redis:del(KEEPER.."bot:vipmems:")
+redis:del(SAKURA.."bot:vipmems:")
 end end
 ------------DEL filters-----------------------------------------
 if txts[2] == "قائمه المنع" and idf:match("-100(%d+)") then
@@ -9637,7 +9625,7 @@ if not is_momod(msg.sender_user_id_, msg.chat_id_)then
 send(msg.chat_id_, msg.id_, 1, '💲┊ للأدمنيـــــــه فقــــــــط', 1, 'md')
 else
 local hash = "bot:filters:" .. msg.chat_id_
-redis:del(KEEPER..hash)
+redis:del(SAKURA..hash)
 send(msg.chat_id_, msg.id_, 1, "🌀┊ تم ✔ مسح قائمة المنع ✞", 1, "md")
 end end
 -------------DEL MUTE----------------------------------------
@@ -9645,8 +9633,8 @@ if txts[2] == "المكتومين" and idf:match("-100(%d+)") then
 if not is_momod(msg.sender_user_id_, msg.chat_id_)then
 send(msg.chat_id_, msg.id_, 1, '💲┊ للأدمنيـــــــه فقــــــــط', 1, 'md')
 else
-local kpmuted = redis:scard(KEEPER.."bot:muted:" .. msg.chat_id_) or "0"
-redis:del(KEEPER.."bot:muted:" .. msg.chat_id_)
+local kpmuted = redis:scard(SAKURA.."bot:muted:" .. msg.chat_id_) or "0"
+redis:del(SAKURA.."bot:muted:" .. msg.chat_id_)
 send(msg.chat_id_, msg.id_, 1, "📉┊عدد المكتومين ≈ *"..kpmuted.."*\n🌀┊ تـم مسحهم بنجـــــــــــاح ✓\n‏", 1, "md")
 end end end
 -------------------kickedlist--------------------------------------------
@@ -9662,26 +9650,26 @@ for i = 0, #list do
 add_user(msg.chat_id_, list[i].user_id_, 5)
 end
 end
-if redis:get(KEEPER.."CleanBlockList" .. msg.chat_id_ .. ":" .. msg.sender_user_id_) then
+if redis:get(SAKURA.."CleanBlockList" .. msg.chat_id_ .. ":" .. msg.sender_user_id_) then
 local d = 0
 if text:match("^1$") then
-redis:del(KEEPER.."CleanBlockList" .. msg.chat_id_ .. ":" .. msg.sender_user_id_)
+redis:del(SAKURA.."CleanBlockList" .. msg.chat_id_ .. ":" .. msg.sender_user_id_)
 for i = 1, NumberReturn do
 getChannelMembers(msg.chat_id_, d, "Kicked", 200, kickedlist)
 d = d + 200
 end
-if redis:get(KEEPER.."lang:gp:" .. msg.chat_id_) then
+if redis:get(SAKURA.."lang:gp:" .. msg.chat_id_) then
 send(msg.chat_id_, msg.id_, 1, "🌀┊ تم  مسح الاعظاء المحضورين في المجموعه 🎋🎈", 1, "md")
 else
 send(msg.chat_id_, msg.id_, 1, "🌀┊ تم  مسح الاعظاء المحضورين في المجموعه 🎋🎈", 1, "md")
 end
 elseif text:match("^2$") then
-redis:del(KEEPER.."CleanBlockList" .. msg.chat_id_ .. ":" .. msg.sender_user_id_)
+redis:del(SAKURA.."CleanBlockList" .. msg.chat_id_ .. ":" .. msg.sender_user_id_)
 for i = 1, NumberReturn do
 getChannelMembers(msg.chat_id_, d, "Kicked", 200, kickedlist2)
 d = d + 200
 end
-if redis:get(KEEPER.."lang:gp:" .. msg.chat_id_) then
+if redis:get(SAKURA.."lang:gp:" .. msg.chat_id_) then
 send(msg.chat_id_, msg.id_, 1, "🌀┊ تم  اضافه المحظورين الى المجموعه📍", 1, "md")
 else
 send(msg.chat_id_, msg.id_, 1, "🌀┊ تم  اضافه المحظورين الى المجموعه📍 ", 1, "md")
@@ -9719,212 +9707,212 @@ tdcli_function ({ID = "GetChannelMembers",channel_id_ = getChatId(msg.chat_id_).
 end end
 ----------------SETING-----------------------------------------------------------------------------------------
 if is_momod(msg.sender_user_id_, msg.chat_id_) and idf:match("-100(%d+)") and (text:match("^الاعدادات"))  then
-if not redis:get(KEEPER..'lock:add'..msg.chat_id_) then
-if redis:get(KEEPER.."bot:muteall" .. msg.chat_id_) then
+if not redis:get(SAKURA..'lock:add'..msg.chat_id_) then
+if redis:get(SAKURA.."bot:muteall" .. msg.chat_id_) then
 mute_all = "✅"
 else
 mute_all = "✖️"
 end
-if redis:get(KEEPER.."bot:text:mute" .. msg.chat_id_) then
+if redis:get(SAKURA.."bot:text:mute" .. msg.chat_id_) then
 mute_text = "✅"
 else
 mute_text = "✖️"
 end
-if redis:get(KEEPER.."bot:photo:mute" .. msg.chat_id_) then
+if redis:get(SAKURA.."bot:photo:mute" .. msg.chat_id_) then
 mute_photo = "✅"
 else
 mute_photo = "✖️"
 end
-if redis:get(KEEPER.."bot:video:mute" .. msg.chat_id_) then
+if redis:get(SAKURA.."bot:video:mute" .. msg.chat_id_) then
 mute_video = "✅"
 else
 mute_video = "✖️"
 end
-if redis:get(KEEPER.."bot:selfvideo:mute" .. msg.chat_id_) then
+if redis:get(SAKURA.."bot:selfvideo:mute" .. msg.chat_id_) then
 mute_selfvideo = "✅"
 else
 mute_selfvideo = "✖️"
 end
-if redis:get(KEEPER.."bot:gifs:mute" .. msg.chat_id_) then
+if redis:get(SAKURA.."bot:gifs:mute" .. msg.chat_id_) then
 mute_gifs = "✅"
 else
 mute_gifs = "✖️"
 end
-if redis:get(KEEPER.."anti-flood:" .. msg.chat_id_) then
+if redis:get(SAKURA.."anti-flood:" .. msg.chat_id_) then
 mute_flood = "✅"
 else
 mute_flood = "✖️"
 end
-if redis:get(KEEPER.."bot:muteall:Time" .. msg.chat_id_) then
+if redis:get(SAKURA.."bot:muteall:Time" .. msg.chat_id_) then
 auto_lock = "✅"
 else
 auto_lock = "✖️"
 end
-if not redis:get(KEEPER.."flood:max:" .. msg.chat_id_) then
+if not redis:get(SAKURA.."flood:max:" .. msg.chat_id_) then
 flood_m = 5
 else
-flood_m = redis:get(KEEPER.."flood:max:" .. msg.chat_id_)
+flood_m = redis:get(SAKURA.."flood:max:" .. msg.chat_id_)
 end
-if not redis:get(KEEPER.."bot:sens:spam" .. msg.chat_id_) then
+if not redis:get(SAKURA.."bot:sens:spam" .. msg.chat_id_) then
 spam_c = 400
 else
-spam_c = redis:get(KEEPER.."bot:sens:spam" .. msg.chat_id_)
+spam_c = redis:get(SAKURA.."bot:sens:spam" .. msg.chat_id_)
 end
-if redis:get(KEEPER.."warn:max:" .. msg.chat_id_) then
-sencwarn = tonumber(redis:get(KEEPER.."warn:max:" .. msg.chat_id_))
+if redis:get(SAKURA.."warn:max:" .. msg.chat_id_) then
+sencwarn = tonumber(redis:get(SAKURA.."warn:max:" .. msg.chat_id_))
 else
 sencwarn = 4
 end
-if redis:get(KEEPER.."floodstatus" .. msg.chat_id_) == "DelMsg" then
+if redis:get(SAKURA.."floodstatus" .. msg.chat_id_) == "DelMsg" then
 floodstatus = "المسح"
-elseif redis:get(KEEPER.."floodstatus" .. msg.chat_id_) == "Kicked" then
+elseif redis:get(SAKURA.."floodstatus" .. msg.chat_id_) == "Kicked" then
 floodstatus = "الطرد"
-elseif not redis:get(KEEPER.."floodstatus" .. msg.chat_id_) then
+elseif not redis:get(SAKURA.."floodstatus" .. msg.chat_id_) then
 floodstatus = "الطرد"
 end
-if redis:get(KEEPER.."warnstatus" .. msg.chat_id_) == "Muteuser" then
+if redis:get(SAKURA.."warnstatus" .. msg.chat_id_) == "Muteuser" then
 warnstatus = "الكتم"
-elseif redis:get(KEEPER.."warnstatus" .. msg.chat_id_) == "Remove" then
+elseif redis:get(SAKURA.."warnstatus" .. msg.chat_id_) == "Remove" then
 warnstatus = "الطرد"
-elseif not redis:get(KEEPER.."warnstatus" .. msg.chat_id_) then
+elseif not redis:get(SAKURA.."warnstatus" .. msg.chat_id_) then
 warnstatus = "الكتم"
 end
-if redis:get(KEEPER.."bot:music:mute" .. msg.chat_id_) then
+if redis:get(SAKURA.."bot:music:mute" .. msg.chat_id_) then
 mute_music = "✅"
 else
 mute_music = "✖️"
 end
-if redis:get(KEEPER.."bot:bots:mute" .. msg.chat_id_) then
+if redis:get(SAKURA.."bot:bots:mute" .. msg.chat_id_) then
 mute_bots = "✅"
 else
 mute_bots = "✖️"
 end
-if redis:get(KEEPER.."bot:duplipost:mute" .. msg.chat_id_) then
+if redis:get(SAKURA.."bot:duplipost:mute" .. msg.chat_id_) then
 duplipost = "✅"
 else
 duplipost = "✖️"
 end
-if redis:get(KEEPER.."bot:member:lock" .. msg.chat_id_) then
+if redis:get(SAKURA.."bot:member:lock" .. msg.chat_id_) then
 member = "✅"
 else
 member = "✖️"
 end
-if redis:get(KEEPER.."bot:inline:mute" .. msg.chat_id_) then
+if redis:get(SAKURA.."bot:inline:mute" .. msg.chat_id_) then
 mute_in = "✅"
 else
 mute_in = "✖️"
 end
-if redis:get(KEEPER.."bot:cmds" .. msg.chat_id_) then
+if redis:get(SAKURA.."bot:cmds" .. msg.chat_id_) then
 mute_cmd = "✅"
 else
 mute_cmd = "✖️"
 end
-if redis:get(KEEPER.."bot:voice:mute" .. msg.chat_id_) then
+if redis:get(SAKURA.."bot:voice:mute" .. msg.chat_id_) then
 mute_voice = "✅"
 else
 mute_voice = "✖️"
 end
-if redis:get(KEEPER.."editmsg" .. msg.chat_id_) then
+if redis:get(SAKURA.."editmsg" .. msg.chat_id_) then
 mute_edit = "✅"
 else
 mute_edit = "✖️"
 end
-if redis:get(KEEPER.."bot:links:mute" .. msg.chat_id_) then
+if redis:get(SAKURA.."bot:links:mute" .. msg.chat_id_) then
 mute_links = "✅"
 else
 mute_links = "✖️"
 end
-if redis:get(KEEPER.."bot:pin:mute" .. msg.chat_id_) then
+if redis:get(SAKURA.."bot:pin:mute" .. msg.chat_id_) then
 lock_pin = "✅"
 else
 lock_pin = "✖️"
 end
-if redis:get(KEEPER.."bot:sticker:mute" .. msg.chat_id_) then
+if redis:get(SAKURA.."bot:sticker:mute" .. msg.chat_id_) then
 lock_sticker = "✅"
 else
 lock_sticker = "✖️"
 end
-if redis:get(KEEPER.."bot:tgservice:mute" .. msg.chat_id_) then
+if redis:get(SAKURA.."bot:tgservice:mute" .. msg.chat_id_) then
 lock_tgservice = "✅"
 else
 lock_tgservice = "✖️"
 end
-if redis:get(KEEPER.."bot:webpage:mute" .. msg.chat_id_) then
+if redis:get(SAKURA.."bot:webpage:mute" .. msg.chat_id_) then
 lock_wp = "✅"
 else
 lock_wp = "✖️"
 end
-if redis:get(KEEPER.."bot:strict" .. msg.chat_id_) then
+if redis:get(SAKURA.."bot:strict" .. msg.chat_id_) then
 strict = "✅"
 else
 strict = "✖️"
 end
-if redis:get(KEEPER.."bot:hashtag:mute" .. msg.chat_id_) then
+if redis:get(SAKURA.."bot:hashtag:mute" .. msg.chat_id_) then
 lock_htag = "✅"
 else
 lock_htag = "✖️"
 end
-if redis:get(KEEPER.."tags:lock" .. msg.chat_id_) then
+if redis:get(SAKURA.."tags:lock" .. msg.chat_id_) then
 lock_tag = "✅"
 else
 lock_tag = "✖️"
 end
-if redis:get(KEEPER.."bot:location:mute" .. msg.chat_id_) then
+if redis:get(SAKURA.."bot:location:mute" .. msg.chat_id_) then
 lock_location = "✅"
 else
 lock_location = "✖️"
 end
-if redis:get(KEEPER.."bot:contact:mute" .. msg.chat_id_) then
+if redis:get(SAKURA.."bot:contact:mute" .. msg.chat_id_) then
 lock_contact = "✅"
 else
 lock_contact = "✖️"
 end
-if redis:get(KEEPER.."bot:english:mute" .. msg.chat_id_) then
+if redis:get(SAKURA.."bot:english:mute" .. msg.chat_id_) then
 lock_english = "✅"
 else
 lock_english = "✖️"
 end
-if redis:get(KEEPER.."bot:arabic:mute" .. msg.chat_id_) then
+if redis:get(SAKURA.."bot:arabic:mute" .. msg.chat_id_) then
 lock_arabic = "✅"
 else
 lock_arabic = "✖️"
 end
-if redis:get(KEEPER.."bot:forward:mute" .. msg.chat_id_) then
+if redis:get(SAKURA.."bot:forward:mute" .. msg.chat_id_) then
 lock_forward = "✅"
 else
 lock_forward = "✖️"
 end
-if redis:get(KEEPER.."bot:document:mute" .. msg.chat_id_) then
+if redis:get(SAKURA.."bot:document:mute" .. msg.chat_id_) then
 lock_file = "✅"
 else
 lock_file = "✖️"
 end
-if redis:get(KEEPER.."markdown:lock" .. msg.chat_id_) then
+if redis:get(SAKURA.."markdown:lock" .. msg.chat_id_) then
 markdown = "✅"
 else
 markdown = "✖️"
 end
-if redis:get(KEEPER.."Game:lock" .. msg.chat_id_) then
+if redis:get(SAKURA.."Game:lock" .. msg.chat_id_) then
 game = "✅"
 else
 game = "✖️"
 end
-if redis:get(KEEPER.."bot:spam:mute" .. msg.chat_id_) then
+if redis:get(SAKURA.."bot:spam:mute" .. msg.chat_id_) then
 lock_spam = "✅"
 else
 lock_spam = "✖️"
 end
-if redis:get(KEEPER.."post:lock" .. msg.chat_id_) then
+if redis:get(SAKURA.."post:lock" .. msg.chat_id_) then
 post = "✅"
 else
 post = "✖️"
 end
-if redis:get(KEEPER.."bot:welcome" .. msg.chat_id_) then
+if redis:get(SAKURA.."bot:welcome" .. msg.chat_id_) then
 send_welcome = "✅"
 else
 send_welcome = "✖️"
 end
-local settingkp = "*اعدادات المجموعــه* :\n🔰┊ قفل الكلايش  ≈ " .. lock_spam .. "\n🔰┊  قفل الروابط  ≈ " .. mute_links .. "\n🔰┊  قفل الويب ≈ " .. lock_wp .. "\n🔚┊  قفل التاك (@) ≈ " .. lock_tag .. "\n🔚┊  قفل الهاشتاك (#) ≈ " .. lock_htag .. "\n🔚┊  قفل التوجيه ≈ " .. lock_forward .. "\n💠┊  قفل المشاركه ≈ " .. duplipost .. "\n💠┊  قفل البوتات ≈ " .. mute_bots .. "\n💠┊  قفل التعديل ≈ " .. mute_edit .. "\n🚫┊  قفل التثبيت ≈ " .. lock_pin .. "\n🚫┊  قفل الانلاين ≈ " .. mute_in .. "\n🚫┊  قفل العربيه ≈  " .. lock_arabic .. "\n🔔┊  قفل الانكليزيه ≈ " .. lock_english .. "\n🔔┊  قفل الماركدون ≈ " .. markdown .. "\n🔔┊  قفل البوست ≈ " .. post .. "\n🔘┊  قفل التكرار ≈ " .. mute_flood .. "\n🔘┊  وضع التكرار ≈ " .. floodstatus .. "\n🔘┊ وضع التحذير ≈ " .. warnstatus .. "\n🏮┊ عدد التحذير ≈ [ " .. sencwarn .. " ]\n┉┉┉┉┉┉┉┉┉┉┉┉\n🔱 » *تابع CH* : [@keePer_ch]\n"
+local settingkp = "*اعدادات المجموعــه* :\n🔰┊ قفل الكلايش  ≈ " .. lock_spam .. "\n🔰┊  قفل الروابط  ≈ " .. mute_links .. "\n🔰┊  قفل الويب ≈ " .. lock_wp .. "\n🔚┊  قفل التاك (@) ≈ " .. lock_tag .. "\n🔚┊  قفل الهاشتاك (#) ≈ " .. lock_htag .. "\n🔚┊  قفل التوجيه ≈ " .. lock_forward .. "\n💠┊  قفل المشاركه ≈ " .. duplipost .. "\n💠┊  قفل البوتات ≈ " .. mute_bots .. "\n💠┊  قفل التعديل ≈ " .. mute_edit .. "\n🚫┊  قفل التثبيت ≈ " .. lock_pin .. "\n🚫┊  قفل الانلاين ≈ " .. mute_in .. "\n🚫┊  قفل العربيه ≈  " .. lock_arabic .. "\n🔔┊  قفل الانكليزيه ≈ " .. lock_english .. "\n🔔┊  قفل الماركدون ≈ " .. markdown .. "\n🔔┊  قفل البوست ≈ " .. post .. "\n🔘┊  قفل التكرار ≈ " .. mute_flood .. "\n🔘┊  وضع التكرار ≈ " .. floodstatus .. "\n🔘┊ وضع التحذير ≈ " .. warnstatus .. "\n🏮┊ عدد التحذير ≈ [ " .. sencwarn .. " ]\n┉┉┉┉┉┉┉┉┉┉┉┉\n🔱 » *تابع CH* : [@SAKURATEM]\n"
 if text:match("^الاعدادات$") then
 send(msg.chat_id_, msg.id_, 1, settingkp, 1, "md")
 end end end
@@ -9944,10 +9932,10 @@ if text == "تحديث السورس" then
 if not is_KP(msg) then
 send(msg.chat_id_, msg.id_, 1, '💲┊ للمطور الاساسي فقــــــــط', 1, 'md')
 else
-os.execute('rm -rf KEEPER.lua') 
-os.execute('wget https://raw.githubusercontent.com/alqaser/KEEPER/master/KEEPER.lua') 
-send(msg.chat_id_, msg.id_, 1, "💬┊ بواسطه » "..tmkeeper(msg).."\n🎟┊ تم تحديث السورس \n ✓ ", 1, 'md')
-dofile('KEEPER.lua')  
+os.execute('rm -rf SAKURA.lua') 
+os.execute('wget https://raw.githubusercontent.com/SAKURAboot/SAKURA/master/SAKURA.lua') 
+send(msg.chat_id_, msg.id_, 1, "💬┊ بواسطه » "..tmSAKURA(msg).."\n🎟┊ تم تحديث السورس \n ✓ ", 1, 'md')
+dofile('SAKURA.lua')  
 io.popen("rm -rf ~/.telegram-cli/data/audio/*") 
 io.popen("rm -rf ~/.telegram-cli/data/document/*") 
 io.popen("rm -rf ~/.telegram-cli/data/photo/*") 
@@ -9960,7 +9948,7 @@ io.popen("rm -rf ~/.telegram-cli/data/profile_photo/*")
 end end
 ---------load_config------------------------------------------------------------
 if is_sudo(msg) and (text:match("^تنشيط$")) then
-if not redis:get(KEEPER..'lock:add'..msg.chat_id_) then
+if not redis:get(SAKURA..'lock:add'..msg.chat_id_) then
 load_config()
 setnumbergp()
 send(msg.chat_id_, msg.id_, 1, "🌀┊ تــــم تنشيط البوت 🎈", 1, "md")
@@ -9968,21 +9956,21 @@ end end
 ----------SET rules-------------------------------------------------------------------------------
 if is_momod(msg.sender_user_id_, msg.chat_id_) and idf:match("-100(%d+)") then
 if (text:match("^ضع قوانين$"))  then
-if not redis:get(KEEPER..'lock:add'..msg.chat_id_) then
-redis:setex(KEEPER.."rules" .. msg.chat_id_ .. ":" .. msg.sender_user_id_, 60, true)
+if not redis:get(SAKURA..'lock:add'..msg.chat_id_) then
+redis:setex(SAKURA.."rules" .. msg.chat_id_ .. ":" .. msg.sender_user_id_, 60, true)
 send(msg.chat_id_, msg.id_, 1, "🌀┊  ارســـل القوانين الان 📤", 1, "md")
 end end
 ----------DEL rules -----------------------------------------------------------------------------
 if (text:match("^مسح القوانين$"))  then
-if not redis:get(KEEPER..'lock:add'..msg.chat_id_) then
-send(msg.chat_id_, msg.id_, 1, "💬┊ بواسطه » "..tmkeeper(msg).."\n🎟┊ تم مسح القوانين\n ✓ ", 1, 'md')
+if not redis:get(SAKURA..'lock:add'..msg.chat_id_) then
+send(msg.chat_id_, msg.id_, 1, "💬┊ بواسطه » "..tmSAKURA(msg).."\n🎟┊ تم مسح القوانين\n ✓ ", 1, 'md')
 end
-redis:del(KEEPER.."bot:rules" .. msg.chat_id_)
+redis:del(SAKURA.."bot:rules" .. msg.chat_id_)
 end end
 --------------rules--------------------------------------------------------------------------
 if is_momod(msg.sender_user_id_, msg.chat_id_) and idf:match("-100(%d+)") and (text:match("^القوانين$")) then
-if not redis:get(KEEPER..'lock:add'..msg.chat_id_) then
-local rules = redis:get(KEEPER.."bot:rules" .. msg.chat_id_)
+if not redis:get(SAKURA..'lock:add'..msg.chat_id_) then
+local rules = redis:get(SAKURA.."bot:rules" .. msg.chat_id_)
 if rules then
 send(msg.chat_id_, msg.id_, 1, rules, 1, nil)
 else
@@ -9990,39 +9978,39 @@ send(msg.chat_id_, msg.id_, 1, "🌀┊ لا توجــــد قوانين 📍"
 end end end
 ------------------------------------------------------------------------------------
 if text:match("^ضع صوره") and is_owner(msg.sender_user_id_, msg.chat_id_) then
-if not redis:get(KEEPER..'lock:add'..msg.chat_id_) then
-redis:set(KEEPER..'bot:setphoto'..msg.chat_id_..':'..msg.sender_user_id_,true)
+if not redis:get(SAKURA..'lock:add'..msg.chat_id_) then
+redis:set(SAKURA..'bot:setphoto'..msg.chat_id_..':'..msg.sender_user_id_,true)
 send(msg.chat_id_, msg.id_, 1, '🌀┊ قم بارسال صوره الان 📤', 1, 'md')
 end end
 -----------------SET NAME MSG---------------------------------------------------------------------------------------
 if is_momod(msg.sender_user_id_, msg.chat_id_) and idf:match("-100(%d+)") and text:match("^ضع اسم (.*)$")  then
-if not redis:get(KEEPER..'lock:add'..msg.chat_id_) then
+if not redis:get(SAKURA..'lock:add'..msg.chat_id_) then
 local txt = {string.match(text, "^(ضع اسم) (.*)$")}
 changetitle(msg.chat_id_, txt[2])
-send(msg.chat_id_, msg.id_, 1, "💬┊ بواسطه » "..tmkeeper(msg).."\n🎟┊ تم تغييــر اسم المجموعــه\n ✓ ", 1, 'md')
+send(msg.chat_id_, msg.id_, 1, "💬┊ بواسطه » "..tmSAKURA(msg).."\n🎟┊ تم تغييــر اسم المجموعــه\n ✓ ", 1, 'md')
 
 end end
 ----------------LEAVE GP------------------------------------------------------------------------------
 if text:match("^غادر (-%d+)$")  then
-if not redis:get(KEEPER..'lock:add'..msg.chat_id_) then
+if not redis:get(SAKURA..'lock:add'..msg.chat_id_) then
 local txt = { string.match(text, "^(غادر) (-%d+)$")}
 if not is_sudo(msg) then
 send(msg.chat_id_, msg.id_, 1, '💲┊ للمطوريـــــــن فقــــــــط', 1, 'md')
 else
-local OwnerKP_ = redis:get(KEEPER.."Bot:KpOwnerBot")
-local user_info_ = redis:get(KEEPER.."user:Name" .. OwnerKP_)
-local UserKeeper = user_info_
+local OwnerKP_ = redis:get(SAKURA.."Bot:KpOwnerBot")
+local user_info_ = redis:get(SAKURA.."user:Name" .. OwnerKP_)
+local UserSAKURA = user_info_
 if user_info_ then
 local leavegp = function(extra, result)
 if result.id_ then
 send(msg.chat_id_, msg.id_, 1, "🚺  المجموعــۿ : \n- " .. result.title_ .. "\n📛 تم اخراج البوت منها💯", 1, "md")
-if redis:get(KEEPER.."lang:gp:" .. result.id_) then
-send(result.id_, 0, 1, "🌀┊  تم اخراج البوت 🎐\n🔱┊ راسل المطور للتفعيل 📮\n🔰┊ *المطور* : [" .. UserKeeper .. "]\n‏", 1, "md")
+if redis:get(SAKURA.."lang:gp:" .. result.id_) then
+send(result.id_, 0, 1, "🌀┊  تم اخراج البوت 🎐\n🔱┊ راسل المطور للتفعيل 📮\n🔰┊ *المطور* : [" .. UserSAKURA .. "]\n‏", 1, "md")
 else
-send(result.id_, 0, 1, "🌀┊  تم اخراج البوت 🎐\n🔱┊ راسل المطور للتفعيل 📮\n🔰┊ *المطور* : [" .. UserKeeper .. "]\n‏", 1, "md")
+send(result.id_, 0, 1, "🌀┊  تم اخراج البوت 🎐\n🔱┊ راسل المطور للتفعيل 📮\n🔰┊ *المطور* : [" .. UserSAKURA .. "]\n‏", 1, "md")
 end
 chat_leave(result.id_, bot_id)
-redis:srem(KEEPER.."bot:groups", result.id_)
+redis:srem(SAKURA.."bot:groups", result.id_)
 else
 send(msg.chat_id_, msg.id_, 1, "🔹 لا توجد مجموعه مفعله ❗️", 1, "md")
 end  end
@@ -10038,7 +10026,7 @@ local get_data = function(extra, result)
 if result.id_ then
 if is_admin(result.id_) then
 local hash = "sudo:data:" .. result.id_
-local list = redis:smembers(KEEPER..hash)
+local list = redis:smembers(SAKURA..hash)
 if result.first_name_ then
 if #result.first_name_ < 25 then
 else
@@ -10063,20 +10051,20 @@ else
 send(msg.chat_id_, msg.id_, 1, "🔎┊ العضو ليس من المطورين📍 ", 1, "md")
 end
 end
-if redis:get(KEEPER.."bot:reloadingtime") then
+if redis:get(SAKURA.."bot:reloadingtime") then
 send(msg.chat_id_, msg.id_, 1, "🌀┊  تم تحديث البوت 🎐 ", 1, "md")
 else
 getUser(txt[2], get_data)
 end end end
-----------INFO KEEPER_SUDO BY REPLY----------------------------------------------------------------------------------------------------
+----------INFO SAKURA_SUDO BY REPLY----------------------------------------------------------------------------------------------------
 if text:match("^معلوماتي$")  and msg.reply_to_message_id_ == 0 then
 if not is_KP(msg) then
 send(msg.chat_id_, msg.id_, 1, '💲┊ للمطور الاساسي فقــــــــط', 1, 'md')
 else
-if not redis:get(KEEPER..'lock:add'..msg.chat_id_) then
+if not redis:get(SAKURA..'lock:add'..msg.chat_id_) then
 local get_data = function(extra, result)
 local hash = "sudo:data:" .. msg.sender_user_id_
-local list = redis:smembers(KEEPER..hash)
+local list = redis:smembers(SAKURA..hash)
 if result.first_name_ then
 if #result.first_name_ < 25 then
 else
@@ -10094,12 +10082,12 @@ local text = "*« معلوماتك هيـــه »*\n-----------------------\n�
 end
 send_large_msg(msg.chat_id_, msg.id_, 1, text, 1, "md")
 end
-if redis:get(KEEPER.."bot:reloadingtime") then
+if redis:get(SAKURA.."bot:reloadingtime") then
 send(msg.chat_id_, msg.id_, 1, "🌀┊  تم تحديث البوت 🎐 ", 1, "md")
 else
 getUser(msg.sender_user_id_, get_data)
 end end end end
---------- INFO KEEPER_SUDO---------------------------------------------------------------------------------------------------------
+--------- INFO SAKURA_SUDO---------------------------------------------------------------------------------------------------------
 if text:match("^معلومات المطور$")  and msg.reply_to_message_id_ ~= 0 then
 if not is_KP(msg) then
 send(msg.chat_id_, msg.id_, 1, '💲┊ للمطور الاساسي فقــــــــط', 1, 'md')
@@ -10108,7 +10096,7 @@ do
 local data_by_reply = function(extra, result)
 if is_admin(result.id_) then
 local hash = "sudo:data:" .. result.id_
-local list = redis:smembers(KEEPER..hash)
+local list = redis:smembers(SAKURA..hash)
 local fname = result.first_name_ or ""
 if result.first_name_ then
 if #result.first_name_ < 25 then
@@ -10136,7 +10124,7 @@ getMessage(msg.chat_id_, msg.reply_to_message_id_, start_get_data)
 end
 end
 end
-------------INFO KEEPER_SUDO BY USERNAME--------------------------------------------------------------------------------------
+------------INFO SAKURA_SUDO BY USERNAME--------------------------------------------------------------------------------------
 if text:match("^معلومات المطور @(%S+)$") then
 do
 local aps = {string.match(text, "^(معلومات المطور) @(%S+)$")}
@@ -10146,7 +10134,7 @@ else
 local data_by_username = function(extra, result)
 if is_admin(result.id_) then
 local hash = "sudo:data:" .. result.id_
-local list = redis:smembers(KEEPER..hash)
+local list = redis:smembers(SAKURA..hash)
 local fname = result.first_name_ or ""
 if result.first_name_ then
 if #result.first_name_ < 25 then
@@ -10174,7 +10162,7 @@ else
 send(msg.chat_id_, msg.id_, 1, "🌀┊  العضو ليس من المطورين📍 ", 1, "md")
 end
 end
-if redis:get(KEEPER.."bot:reloadingtime") then
+if redis:get(SAKURA.."bot:reloadingtime") then
 send(msg.chat_id_, msg.id_, 1, "🌀┊  تم تحديث البوت 🎐 ", 1, "md")
 else
 resolve_username(aps[2], data_start_username)
@@ -10187,11 +10175,11 @@ if text:match("^اذاعه خاص (.*)") then
 if not is_KP(msg) then
 send(msg.chat_id_, msg.id_, 1, '💲┊ للمطور الاساسي فقــــــــط', 1, 'md')
 else
-if not redis:get(KEEPER..'lock:add'..msg.chat_id_) then
+if not redis:get(SAKURA..'lock:add'..msg.chat_id_) then
 local tmkeep =  text:match("^اذاعه خاص (.*)")
 local tmkeep2 = "🌀┊ تم ارسال الاذاعه الى:\n( * GP * ) من الاعضاء\n‏"
-local gp = tonumber(redis:scard(KEEPER.."bot:userss"))
-gps = redis:smembers(KEEPER.."bot:userss")
+local gp = tonumber(redis:scard(SAKURA.."bot:userss"))
+gps = redis:smembers(SAKURA.."bot:userss")
 text = tmkeep2:gsub('GP',gp)
 for k,v in pairs(gps) do
 send(v, 0, 1,tmkeep, 1, 'md')
@@ -10203,24 +10191,24 @@ if (idf:match("-100(%d+)") or is_owner(msg.sender_user_id_, msg.chat_id_)) and t
 local function promote_admin(extra, result, success)
 local admins = result.members_
 for i=0 , #admins do
-redis:sadd(KEEPER..'bot:momod:'..msg.chat_id_,admins[i].user_id_)
+redis:sadd(SAKURA..'bot:momod:'..msg.chat_id_,admins[i].user_id_)
 if result.members_[i].status_.ID == "ChatMemberStatusCreator" then
 owner_id = admins[i].user_id_
-redis:sadd(KEEPER.."bot:owners:"..msg.chat_id_,owner_id)
+redis:sadd(SAKURA.."bot:owners:"..msg.chat_id_,owner_id)
 end
 end
-local kpmomod = redis:scard(KEEPER.."bot:momod:" .. msg.chat_id_) or "0"
+local kpmomod = redis:scard(SAKURA.."bot:momod:" .. msg.chat_id_) or "0"
 send(msg.chat_id_, msg.id_, 1, "📉┊عدد الأدمنيه ≈ *"..kpmomod.."*\n🌀┊ تـم رفعـهم بنجـــــــــــاح ✓\n‏", 1, "md")
 end
 getChannelMembers(msg.chat_id_, 0, 'Administrators', 200, promote_admin)
 end
 -------CLEN MSG---------------------------
 if text:match('^تنظيف (%d+)$') or text:match('^مسح (%d+)$') and is_momod(msg.sender_user_id_, msg.chat_id_) then
-if not redis:get(KEEPER..'lock:add'..msg.chat_id_) then
+if not redis:get(SAKURA..'lock:add'..msg.chat_id_) then
 local matches = {string.match(text, "^(تنظيف) (%d+)$")}
 local matches = {string.match(text, "^(مسح) (%d+)$")}
 if msg.chat_id_:match("^-100") then
-if not redis:get(KEEPER.."dellmssg"..msg.chat_id_) and not is_owner(msg.sender_user_id_, msg.chat_id_) then
+if not redis:get(SAKURA.."dellmssg"..msg.chat_id_) and not is_owner(msg.sender_user_id_, msg.chat_id_) then
 send(msg.chat_id_, msg.id_, 1, '🌀┊ خاصيه المسح معطله ', 1, 'md')
 return false
 end
@@ -10242,23 +10230,23 @@ send(msg.chat_id_, msg.id_, 1, pm, 1, 'md')
 end end end
 --------------PIN----------------------------------------------------------------------------
 if is_momod(msg.sender_user_id_, msg.chat_id_) and idf:match("-100(%d+)") and msg.reply_to_message_id_ ~= 0 and (text:match("^تثبيت$"))  then
-if not redis:get(KEEPER..'lock:add'..msg.chat_id_) then
-if not redis:get(KEEPER.."lock_pinn"..msg.chat_id_) and not is_owner(msg.sender_user_id_, msg.chat_id_) then
+if not redis:get(SAKURA..'lock:add'..msg.chat_id_) then
+if not redis:get(SAKURA.."lock_pinn"..msg.chat_id_) and not is_owner(msg.sender_user_id_, msg.chat_id_) then
 send(msg.chat_id_, msg.id_, 1, "🌀┊ التثبيت مقفول من قبل المدير 🍃", 1, "md")
 return false
 end
 local id = msg.id_
 local msgs = { [0] = id }
 pinmsg(msg.chat_id_, msg.reply_to_message_id_, 0)
-redis:set(KEEPER.."pinnedmsg" .. msg.chat_id_, msg.reply_to_message_id_)
-send(msg.chat_id_, msg.id_, 1, "💬┊ بواسطه » "..tmkeeper(msg).."\n🎟┊ تم  تثبيــت الرسالــۿ\n ✓ ", 1, 'md')
+redis:set(SAKURA.."pinnedmsg" .. msg.chat_id_, msg.reply_to_message_id_)
+send(msg.chat_id_, msg.id_, 1, "💬┊ بواسطه » "..tmSAKURA(msg).."\n🎟┊ تم  تثبيــت الرسالــۿ\n ✓ ", 1, 'md')
 end end
 ----------info gp --------------------------------------------------
 if is_momod(msg.sender_user_id_, msg.chat_id_) and idf:match("-100(%d+)") and text:match('احصائيات المجموعه')  then
-function gp_keeper_info(arg,data)
-local list = redis:smembers(KEEPER.."bot:owners:" .. msg.chat_id_)
+function gp_SAKURA_info(arg,data)
+local list = redis:smembers(SAKURA.."bot:owners:" .. msg.chat_id_)
 if list[1] or list[2] or list[3] or list[4] then
-user_info = redis:get(KEEPER.."user:Name" .. (list[1] or list[2] or list[3] or list[4]))
+user_info = redis:get(SAKURA.."user:Name" .. (list[1] or list[2] or list[3] or list[4]))
 end
 if user_info then
 owner = user_info
@@ -10271,58 +10259,58 @@ sudo = User
 else
 sudo = "No Found"
 end
-local bot_id = redis:get(KEEPER.."Bot:KpBotAccount") or tonumber(_redis.Bot_ID)
-local allmgs = redis:get(KEEPER.."bot:allmsgs")
-local kpmonshis = redis:scard(KEEPER.."bot:monshis:" .. msg.chat_id_) or "0"
-local kpbanned = redis:scard(KEEPER.."bot:banned:" .. msg.chat_id_) or "0"
-local kpowners = redis:scard(KEEPER.."bot:owners:" .. msg.chat_id_) or "0"
-local kpmuted = redis:scard(KEEPER.."bot:muted:" .. msg.chat_id_) or "0"
-local kpkeed = redis:scard(KEEPER.."bot:keed:" .. msg.chat_id_) or "0"
-local kpmomod = redis:scard(KEEPER.."bot:momod:" .. msg.chat_id_) or "0"
-local kpvipmem = redis:scard(KEEPER.."bot:vipmem:" .. msg.chat_id_) or "0"
-send(msg.chat_id_, msg.id_, 1, "*- احصائيات في المجموعه »*\n📌┊ المدير » [" .. owner .. "]\n🌋┊ عدد الاعضاء » `"..data.member_count_.."`\n🌋┊عدد الادمنيه » `"..data.administrator_count_.."`\n🌋┊عدد المحضورين » `"..data.kicked_count_.."`\n📌┊ المطور » [" .. sudo .. "]\n\n*- احصائيات في البــــوت » *\n📌┊ عدد المنشئين » *"..kpmonshis.."*\n🗯┊ عدد المحضورين » *"..kpbanned.."*\n🗯┊ عدد المــدراء » * "..kpowners.."*\n🗯┊ عدد المكتومين » * "..kpmuted.."*\n🗯┊ عدد المقيدين » *"..kpkeed.."*\n🗯┊ عدد الادمنيه » * "..kpmomod.."*\n📌┊ عدد المميزين » *"..kpvipmem.."*\n📌┊ اسم البوت » *"..(redis:get(KEEPER.."keepernams") or "كيبر").."*\n💠┊ الايدي » (`"..bot_id.."`)\n💠┊ ايدي المجموعه » 👇🏾\n💠┊ﮧ (`" .. msg.chat_id_ .. "`)\n💠┊ اسم المجموعه » 👇🏾\n📌┊ ﮧ ("..title_name(msg.chat_id_)..")\n‏\n", 1,"md")
+local bot_id = redis:get(SAKURA.."Bot:KpBotAccount") or tonumber(_redis.Bot_ID)
+local allmgs = redis:get(SAKURA.."bot:allmsgs")
+local kpmonshis = redis:scard(SAKURA.."bot:monshis:" .. msg.chat_id_) or "0"
+local kpbanned = redis:scard(SAKURA.."bot:banned:" .. msg.chat_id_) or "0"
+local kpowners = redis:scard(SAKURA.."bot:owners:" .. msg.chat_id_) or "0"
+local kpmuted = redis:scard(SAKURA.."bot:muted:" .. msg.chat_id_) or "0"
+local kpkeed = redis:scard(SAKURA.."bot:keed:" .. msg.chat_id_) or "0"
+local kpmomod = redis:scard(SAKURA.."bot:momod:" .. msg.chat_id_) or "0"
+local kpvipmem = redis:scard(SAKURA.."bot:vipmem:" .. msg.chat_id_) or "0"
+send(msg.chat_id_, msg.id_, 1, "*- احصائيات في المجموعه »*\n📌┊ المدير » [" .. owner .. "]\n🌋┊ عدد الاعضاء » `"..data.member_count_.."`\n🌋┊عدد الادمنيه » `"..data.administrator_count_.."`\n🌋┊عدد المحضورين » `"..data.kicked_count_.."`\n📌┊ المطور » [" .. sudo .. "]\n\n*- احصائيات في البــــوت » *\n📌┊ عدد المنشئين » *"..kpmonshis.."*\n🗯┊ عدد المحضورين » *"..kpbanned.."*\n🗯┊ عدد المــدراء » * "..kpowners.."*\n🗯┊ عدد المكتومين » * "..kpmuted.."*\n🗯┊ عدد المقيدين » *"..kpkeed.."*\n🗯┊ عدد الادمنيه » * "..kpmomod.."*\n📌┊ عدد المميزين » *"..kpvipmem.."*\n📌┊ اسم البوت » *"..(redis:get(SAKURA.."SAKURAnams") or "ساكورا").."*\n💠┊ الايدي » (`"..bot_id.."`)\n💠┊ ايدي المجموعه » 👇🏾\n💠┊ﮧ (`" .. msg.chat_id_ .. "`)\n💠┊ اسم المجموعه » 👇🏾\n📌┊ ﮧ ("..title_name(msg.chat_id_)..")\n‏\n", 1,"md")
 end
-getChannelFull(msg.chat_id_, gp_keeper_info, nil)
+getChannelFull(msg.chat_id_, gp_SAKURA_info, nil)
 end
 ---------------------add reply in group-------------------------------------
 text = msg.content_.text_
 if msg.content_.text_ == 'مسح رد' and  is_owner(msg.sender_user_id_, msg.chat_id_) then
-redis:set(KEEPER..'add:repgp'..msg.sender_user_id_..''..msg.chat_id_..'','del_repgp1')
+redis:set(SAKURA..'add:repgp'..msg.sender_user_id_..''..msg.chat_id_..'','del_repgp1')
 send(msg.chat_id_, msg.id_, 1, '📌┊ ارسل لي كلمه الرد لمسحها ❗️\n',1, 'md')
 return false
 end
 if msg.content_.text_ then
-local content_text = redis:get(KEEPER..'add:repgp'..msg.sender_user_id_..''..msg.chat_id_..'')
+local content_text = redis:get(SAKURA..'add:repgp'..msg.sender_user_id_..''..msg.chat_id_..'')
 if content_text == 'del_repgp1' then
-send(msg.chat_id_, msg.id_, 1, "💬┊ بواسطه » "..tmkeeper(msg).."\n🎟┊ تم مسح الرد بنجاح\n ✓ ", 1, 'md')
-redis:del(KEEPER..'add:repgp'..msg.sender_user_id_..''..msg.chat_id_..'')
-redis:del(KEEPER..'gif_repgp'..msg.content_.text_..''..msg.chat_id_..'')
-redis:del(KEEPER..'voice_repgp'..msg.content_.text_..''..msg.chat_id_..'')
-redis:del(KEEPER..'stecker_repgp'..msg.content_.text_..''..msg.chat_id_..'')
-redis:del(KEEPER..'video_repgp'..msg.content_.text_..''..msg.chat_id_..'')
-redis:del(KEEPER..'text_repgp'..msg.content_.text_..''..msg.chat_id_..'')
-redis:del(KEEPER..'rep_owner'..msg.content_.text_..''..msg.chat_id_..'')
+send(msg.chat_id_, msg.id_, 1, "💬┊ بواسطه » "..tmSAKURA(msg).."\n🎟┊ تم مسح الرد بنجاح\n ✓ ", 1, 'md')
+redis:del(SAKURA..'add:repgp'..msg.sender_user_id_..''..msg.chat_id_..'')
+redis:del(SAKURA..'gif_repgp'..msg.content_.text_..''..msg.chat_id_..'')
+redis:del(SAKURA..'voice_repgp'..msg.content_.text_..''..msg.chat_id_..'')
+redis:del(SAKURA..'stecker_repgp'..msg.content_.text_..''..msg.chat_id_..'')
+redis:del(SAKURA..'video_repgp'..msg.content_.text_..''..msg.chat_id_..'')
+redis:del(SAKURA..'text_repgp'..msg.content_.text_..''..msg.chat_id_..'')
+redis:del(SAKURA..'rep_owner'..msg.content_.text_..''..msg.chat_id_..'')
 return false
 end
 end
 --------------------------------------------------------------------------
 if msg.content_.text_ == 'اضف رد' and is_owner(msg.sender_user_id_, msg.chat_id_)  then
-redis:set(KEEPER..'add:repgp'..msg.sender_user_id_..''..msg.chat_id_..'','set_repgp')
+redis:set(SAKURA..'add:repgp'..msg.sender_user_id_..''..msg.chat_id_..'','set_repgp')
 send(msg.chat_id_, msg.id_, 1, '📌┊ ارسل لي كلمه الرد الان ❗️\n',1, 'md')
 return false    end
 if msg.content_.text_ then
-local content_keep = redis:get(KEEPER..'add:repgp'..msg.sender_user_id_..''..msg.chat_id_..'')
+local content_keep = redis:get(SAKURA..'add:repgp'..msg.sender_user_id_..''..msg.chat_id_..'')
 if content_keep == 'set_repgp' then
 send(msg.chat_id_, msg.id_, 1, '📌┊ ارسل جواب الرد قد يكون\n🗯┊ {نص-ملصق-بصمه...} ❗️\n' ,  1, 'md')
-redis:set(KEEPER..'add:repgp'..msg.sender_user_id_..''..msg.chat_id_..'','save_repgp')
-redis:set(KEEPER..'addreplaygp:'..msg.sender_user_id_..''..msg.chat_id_..'',msg.content_.text_)
-redis:sadd(KEEPER..'rep_owner'..msg.chat_id_..'',msg.content_.text_)
+redis:set(SAKURA..'add:repgp'..msg.sender_user_id_..''..msg.chat_id_..'','save_repgp')
+redis:set(SAKURA..'addreplaygp:'..msg.sender_user_id_..''..msg.chat_id_..'',msg.content_.text_)
+redis:sadd(SAKURA..'rep_owner'..msg.chat_id_..'',msg.content_.text_)
 return false
 end
 end
 -------------------------------------------------------------------------
 if  msg.content_.text_ == 'الردود' and is_owner(msg.sender_user_id_, msg.chat_id_) then
-local redod = redis:smembers(KEEPER..'rep_owner'..msg.chat_id_..'')
+local redod = redis:smembers(SAKURA..'rep_owner'..msg.chat_id_..'')
 if #redod == 0 then
 send(msg.chat_id_, msg.id_, 1,'📌┊ لا توجد ردود في المجموعه ❗️\n' ,1, 'md')
 else
@@ -10336,61 +10324,61 @@ return false
 end
 -------------------------------------------------------------------------------
 if msg.content_.text_ == 'مسح الردود' and is_owner(msg.sender_user_id_, msg.chat_id_) then
-local redod = redis:smembers(KEEPER..'rep_owner'..msg.chat_id_..'')
+local redod = redis:smembers(SAKURA..'rep_owner'..msg.chat_id_..'')
 if #redod == 0 then
 send(msg.chat_id_, msg.id_, 1,'📌┊ لا توجد ردود في المجموعه ❗️\n' ,1, 'md')
 else
 for k,v in pairs(redod) do
-redis:del(KEEPER..'add:repgp'..msg.sender_user_id_..''..msg.chat_id_..'')
-redis:del(KEEPER..'gif_repgp'..v..msg.chat_id_)
-redis:del(KEEPER..'voice_repgp'..v..msg.chat_id_)
-redis:del(KEEPER..'stecker_repgp'..v..msg.chat_id_)
-redis:del(KEEPER..'video_repgp'..v..msg.chat_id_)
-redis:del(KEEPER..'text_repgp'..v..msg.chat_id_)
-redis:del(KEEPER..'rep_owner'..msg.chat_id_..'',msg.content_.text_)
+redis:del(SAKURA..'add:repgp'..msg.sender_user_id_..''..msg.chat_id_..'')
+redis:del(SAKURA..'gif_repgp'..v..msg.chat_id_)
+redis:del(SAKURA..'voice_repgp'..v..msg.chat_id_)
+redis:del(SAKURA..'stecker_repgp'..v..msg.chat_id_)
+redis:del(SAKURA..'video_repgp'..v..msg.chat_id_)
+redis:del(SAKURA..'text_repgp'..v..msg.chat_id_)
+redis:del(SAKURA..'rep_owner'..msg.chat_id_..'',msg.content_.text_)
 end
-send(msg.chat_id_, msg.id_, 1, "💬┊ بواسطه » "..tmkeeper(msg).."\n🎟┊ تم مسح جميع الردود\n ✓ ", 1, 'md')
+send(msg.chat_id_, msg.id_, 1, "💬┊ بواسطه » "..tmSAKURA(msg).."\n🎟┊ تم مسح جميع الردود\n ✓ ", 1, 'md')
 return false
 end
 end
 ----------------------------------------------------------------------------
 text = msg.content_.text_
 if msg.content_.text_ == 'مسح رد للكل' and  is_sudo(msg) then
-redis:set(KEEPER.."add:repallt"..msg.sender_user_id_,'del_rep1')
+redis:set(SAKURA.."add:repallt"..msg.sender_user_id_,'del_rep1')
 send(msg.chat_id_, msg.id_, 1, "📌┊ ارسل لي كلمه الرد لمسحها ❗️\n",1, "md")
 return false
 end
 if msg.content_.text_ then
-local content_text = redis:get(KEEPER.."add:repallt"..msg.sender_user_id_)
+local content_text = redis:get(SAKURA.."add:repallt"..msg.sender_user_id_)
 if content_text == 'del_rep1' then
-send(msg.chat_id_, msg.id_, 1, "💬┊ بواسطه » "..tmkeeper(msg).."\n🎟┊ تم مسح الرد للكل\n ✓ ", 1, 'md')
-redis:del(KEEPER.."add:repallt"..msg.sender_user_id_)
-redis:del(KEEPER.."gif_repall"..msg.content_.text_)
-redis:del(KEEPER.."voice_repall"..msg.content_.text_)
-redis:del(KEEPER.."stecker_repall"..msg.content_.text_)
-redis:del(KEEPER.."video_repall"..msg.content_.text_)
-redis:del(KEEPER.."text_repall"..msg.content_.text_)
-redis:del(KEEPER.."rep_sudo",msg.content_.text_)
+send(msg.chat_id_, msg.id_, 1, "💬┊ بواسطه » "..tmSAKURA(msg).."\n🎟┊ تم مسح الرد للكل\n ✓ ", 1, 'md')
+redis:del(SAKURA.."add:repallt"..msg.sender_user_id_)
+redis:del(SAKURA.."gif_repall"..msg.content_.text_)
+redis:del(SAKURA.."voice_repall"..msg.content_.text_)
+redis:del(SAKURA.."stecker_repall"..msg.content_.text_)
+redis:del(SAKURA.."video_repall"..msg.content_.text_)
+redis:del(SAKURA.."text_repall"..msg.content_.text_)
+redis:del(SAKURA.."rep_sudo",msg.content_.text_)
 return false
 end
 end
 --------------------------------------------------------------------------
 if msg.content_.text_ == 'اضف رد للكل' and is_sudo(msg)  then
-redis:set(KEEPER.."add:repallt"..msg.sender_user_id_,'set_rep')
+redis:set(SAKURA.."add:repallt"..msg.sender_user_id_,'set_rep')
 send(msg.chat_id_, msg.id_, 1, "📌┊ ارسل لي كلمه الرد ❗️\n",1, "md")
 return false    end
 if msg.content_.text_ then
-local content_keep = redis:get(KEEPER.."add:repallt"..msg.sender_user_id_)
+local content_keep = redis:get(SAKURA.."add:repallt"..msg.sender_user_id_)
 if content_keep == 'set_rep' then
 send(msg.chat_id_, msg.id_, 1, "📌┊ ارسل جواب الرد قد يكون\n🗯┊ {نص-ملصق-بصمه...} ❗️\n" ,  1, "md")
-redis:set(KEEPER.."add:repallt"..msg.sender_user_id_,'save_rep')
-redis:set(KEEPER.."addreply2:"..msg.sender_user_id_, msg.content_.text_)
-redis:sadd(KEEPER.."rep_sudo",msg.content_.text_)
+redis:set(SAKURA.."add:repallt"..msg.sender_user_id_,'save_rep')
+redis:set(SAKURA.."addreply2:"..msg.sender_user_id_, msg.content_.text_)
+redis:sadd(SAKURA.."rep_sudo",msg.content_.text_)
 return false
 end    end
 ------------------------------------------------------------------------------------
 if  msg.content_.text_ == "ردود المطور" and is_sudo(msg) then
-local redod = redis:smembers(KEEPER.."rep_sudo")
+local redod = redis:smembers(SAKURA.."rep_sudo")
 if #redod == 0 then
 send(msg.chat_id_, msg.id_, 1,"📌┊ لا توجد ردود مضافه للمطور ❗️\n" ,1, "md")
 else
@@ -10405,20 +10393,20 @@ return false
 end
 -------------------------------------------------------------------------------
 if msg.content_.text_ == "مسح ردود المطور" and is_sudo(msg) then
-local redod = redis:smembers(KEEPER.."rep_sudo")
+local redod = redis:smembers(SAKURA.."rep_sudo")
 if #redod == 0 then
 send(msg.chat_id_, msg.id_, 1,"📌┊ لا توجد ردود مضافه للمطور ❗️\n" ,1, "md")
 else
 for k,v in pairs(redod) do
-redis:del(KEEPER.."add:repallt"..v)
-redis:del(KEEPER.."gif_repall"..v)
-redis:del(KEEPER.."voice_repall"..v)
-redis:del(KEEPER.."stecker_repall"..v)
-redis:del(KEEPER.."video_repall"..v)
-redis:del(KEEPER.."text_repall"..v)
-redis:del(KEEPER.."rep_sudo",msg.content_.text_)
+redis:del(SAKURA.."add:repallt"..v)
+redis:del(SAKURA.."gif_repall"..v)
+redis:del(SAKURA.."voice_repall"..v)
+redis:del(SAKURA.."stecker_repall"..v)
+redis:del(SAKURA.."video_repall"..v)
+redis:del(SAKURA.."text_repall"..v)
+redis:del(SAKURA.."rep_sudo",msg.content_.text_)
 end
-send(msg.chat_id_, msg.id_, 1, "💬┊ بواسطه » "..tmkeeper(msg).."\n🎟┊ تم مسح ردود المطور\n ✓ ", 1, 'md')
+send(msg.chat_id_, msg.id_, 1, "💬┊ بواسطه » "..tmSAKURA(msg).."\n🎟┊ تم مسح ردود المطور\n ✓ ", 1, 'md')
 return false
 end
 end
@@ -10428,11 +10416,11 @@ local chattid = text:match('كشف (-%d+)')
 if not is_sudo(msg) then
 send(msg.chat_id_, msg.id_, 1, '💲┊ للمطوريـــــــن فقــــــــط', 1, 'md')
 else
-function gp_keeper_info(arg,data)
+function gp_SAKURA_info(arg,data)
 function add_gps( arg,data )
-local list = redis:smembers(KEEPER.."bot:owners:" .. chattid)
+local list = redis:smembers(SAKURA.."bot:owners:" .. chattid)
 if list[1] or list[2] or list[3] or list[4] then
-user_info = redis:get(KEEPER.."user:Name" .. (list[1] or list[2] or list[3] or list[4]))
+user_info = redis:get(SAKURA.."user:Name" .. (list[1] or list[2] or list[3] or list[4]))
 end
 if user_info then
 owner = user_info
@@ -10445,50 +10433,50 @@ sudo = User
 else
 sudo = "لا يوجد"
 end
-local kpmonshis = redis:scard(KEEPER.."bot:monshis:" .. chattid) or "0"
-local kpbanned = redis:scard(KEEPER.."bot:banned:" .. chattid) or "0"
-local kpowners = redis:scard(KEEPER.."bot:owners:" .. chattid) or "0"
-local kpmuted = redis:scard(KEEPER.."bot:muted:" .. chattid) or "0"
-local kpkeed = redis:scard(KEEPER.."bot:keed:" .. chattid) or "0"
-local kpmomod = redis:scard(KEEPER.."bot:momod:" .. chattid) or "0"
-local kpvipmem = redis:scard(KEEPER.."bot:vipmem:" .. chattid) or "0"
-if not redis:get(KEEPER.."bot:group:link"..chattid) then
-local getlink = 'https://api.telegram.org/bot'..KEEPER_TOKEN..'/exportChatInviteLink?chat_id='..chattid
+local kpmonshis = redis:scard(SAKURA.."bot:monshis:" .. chattid) or "0"
+local kpbanned = redis:scard(SAKURA.."bot:banned:" .. chattid) or "0"
+local kpowners = redis:scard(SAKURA.."bot:owners:" .. chattid) or "0"
+local kpmuted = redis:scard(SAKURA.."bot:muted:" .. chattid) or "0"
+local kpkeed = redis:scard(SAKURA.."bot:keed:" .. chattid) or "0"
+local kpmomod = redis:scard(SAKURA.."bot:momod:" .. chattid) or "0"
+local kpvipmem = redis:scard(SAKURA.."bot:vipmem:" .. chattid) or "0"
+if not redis:get(SAKURA.."bot:group:link"..chattid) then
+local getlink = 'https://api.telegram.org/bot'..SAKURA_TOKEN..'/exportChatInviteLink?chat_id='..chattid
 local req = https.request(getlink)
 local link = KPJS:decode(req)
 if link.ok == true then 
-redis:set(KEEPER.."bot:group:link"..chattid,link.result)
+redis:set(SAKURA.."bot:group:link"..chattid,link.result)
 end
 end
-local lik_1 = redis:get(KEEPER.."bot:group:link"..chattid)
+local lik_1 = redis:get(SAKURA.."bot:group:link"..chattid)
 if lik_1 then
 link = lik_1 
 else
 link = link.result
 end
-send(msg.chat_id_, msg.id_, 1, "🕴┊ المدير » ["..owner.."]\n🥈┊ﮧ ["..title_name(chattid).."]("..(link or "t.me/keeper_ch")..")\n©️┊ عدد المــــدراء   » *"..kpowners.."*\n©️┊ عدد المنشئين   » *"..kpmonshis.."*\n🔆┊ عدد الادمنيـــه   » *"..kpmomod.."*\n🔰┊ عدد المكتومين  » *"..kpmuted.."*\n®️┊ عدد المحظورين » *"..kpbanned.."*\n®️┊ عدد المقيديــن   » *"..kpkeed.."*\n🗯┊ عدد المميزيـــن  » *"..kpvipmem.."*\n💠┊ﮧ `"..chattid.."`\n🏮┊ المطور » ["..sudo.."]\n✓", 1,"md")
+send(msg.chat_id_, msg.id_, 1, "🕴┊ المدير » ["..owner.."]\n🥈┊ﮧ ["..title_name(chattid).."]("..(link or "t.me/@SAKURATEM")..")\n©️┊ عدد المــــدراء   » *"..kpowners.."*\n©️┊ عدد المنشئين   » *"..kpmonshis.."*\n🔆┊ عدد الادمنيـــه   » *"..kpmomod.."*\n🔰┊ عدد المكتومين  » *"..kpmuted.."*\n®️┊ عدد المحظورين » *"..kpbanned.."*\n®️┊ عدد المقيديــن   » *"..kpkeed.."*\n🗯┊ عدد المميزيـــن  » *"..kpvipmem.."*\n💠┊ﮧ `"..chattid.."`\n🏮┊ المطور » ["..sudo.."]\n✓", 1,"md")
 end
 tdcli_function ({
 ID = "GetChannelFull",
 channel_id_ = getChatId(chattid).ID
 }, add_gps, nil)
 end
-getChannelFull(chattid, gp_keeper_info, nil)
+getChannelFull(chattid, gp_SAKURA_info, nil)
 end 
 end
 ------------UNPIN-----------------------------------------------
 if is_momod(msg.sender_user_id_, msg.chat_id_) and idf:match("-100(%d+)") and (text:match("^الغاء تثبيت$"))  then
-if not redis:get(KEEPER..'lock:add'..msg.chat_id_) then
+if not redis:get(SAKURA..'lock:add'..msg.chat_id_) then
 unpinmsg(msg.chat_id_)
-send(msg.chat_id_, msg.id_, 1, "💬┊ بواسطه » "..tmkeeper(msg).."\n🎟┊ تم الغاء تثبيــت الرسالــۿ\n ✓ ", 1, 'md')
+send(msg.chat_id_, msg.id_, 1, "💬┊ بواسطه » "..tmSAKURA(msg).."\n🎟┊ تم الغاء تثبيــت الرسالــۿ\n ✓ ", 1, 'md')
 end   end
 ------------SEND FILE------------------------------------------
 if text == 'ارسال نسخه' then
 if not is_KP(msg) then
 send(msg.chat_id_, msg.id_, 1, '💲┊ للمطور الاساسي فقــــــــط', 1, 'md')
 else
-if not redis:get(KEEPER..'lock:add'..msg.chat_id_) then
-tdcli.sendDocument(KEEPER_SUDO, 0, 0, 1, nil, './KEEPER.lua', dl_cb, nil)
+if not redis:get(SAKURA..'lock:add'..msg.chat_id_) then
+tdcli.sendDocument(SAKURA_SUDO, 0, 0, 1, nil, './SAKURA.lua', dl_cb, nil)
 send(msg.chat_id_, msg.id_, 1, '🌀┊ تم ارسال نسخه الى خاص البوت ✔️🍃', 1, 'md')
 end end end
 -----------REE FILS----------------------------------------------------
@@ -10496,8 +10484,8 @@ if text == 'تحديث' then
 if not is_KP(msg) then
 send(msg.chat_id_, msg.id_, 1, '💲┊ للمطور الاساسي فقــــــــط', 1, 'md')
 else
-if not redis:get(KEEPER..'lock:add'..msg.chat_id_) then
-dofile('KEEPER.lua')
+if not redis:get(SAKURA..'lock:add'..msg.chat_id_) then
+dofile('SAKURA.lua')
 io.popen("rm -rf ~/.telegram-cli/data/audio/*")
 io.popen("rm -rf ~/.telegram-cli/data/document/*") 
 io.popen("rm -rf ~/.telegram-cli/data/photo/*")
@@ -10507,7 +10495,7 @@ io.popen("rm -rf ~/.telegram-cli/data/thumb/*")
 io.popen("rm -rf ~/.telegram-cli/data/video/*") 
 io.popen("rm -rf ~/.telegram-cli/data/voice/*") 
 io.popen("rm -rf ~/.telegram-cli/data/profile_photo/*")
-send(msg.chat_id_, msg.id_, 1, "💬┊ بواسطه » "..tmkeeper(msg).."\n🎟┊ تم تحديث ملفات البوت\n ✓ ", 1, 'md')
+send(msg.chat_id_, msg.id_, 1, "💬┊ بواسطه » "..tmSAKURA(msg).."\n🎟┊ تم تحديث ملفات البوت\n ✓ ", 1, 'md')
 end end end
 -------------CHAT NAME--------------------------------------------------------------
 if text == 'اسم المجموعه' then
@@ -10515,13 +10503,13 @@ send(msg.chat_id_, msg.id_, 1, "🔱┊ الاسم : 👇🏾\n🏮┊ ("..title
 end
 ------------REE PIN----------------------------------------------------
 if is_momod(msg.sender_user_id_, msg.chat_id_) and idf:match("-100(%d+)") and (text:match("^اعادة تثبيت$"))  then
-if not redis:get(KEEPER..'lock:add'..msg.chat_id_) then
-local pin_id = redis:get(KEEPER.."pinnedmsg" .. msg.chat_id_)
+if not redis:get(SAKURA..'lock:add'..msg.chat_id_) then
+local pin_id = redis:get(SAKURA.."pinnedmsg" .. msg.chat_id_)
 if pin_id then
 send(msg.chat_id_, msg.id_, 1, "🌀┊  تم √ اعاده تثبــيت الرسالــۿ 🎐", 1, "md")
 end
 pinmsg(msg.chat_id_, pin_id, 0)
-elseif redis:get(KEEPER.."lang:gp:" .. msg.chat_id_) then
+elseif redis:get(SAKURA.."lang:gp:" .. msg.chat_id_) then
 send(msg.chat_id_, msg.id_, 1, "🌀┊  لا ✘ توجد رسالۿ مثبته 📬", 1, "md")
 end
 end
@@ -10554,27 +10542,27 @@ send(msg.chat_id_, msg.id_, 1, '🔚┊ انتهت مده ايقاف البوت\
 end end
 ------------ME-----------------------------------------------------------------------------
 if text:match("^موقعي$")  then
-if not redis:get(KEEPER..'lock:add'..msg.chat_id_) then
+if not redis:get(SAKURA..'lock:add'..msg.chat_id_) then
 local get_me = function(extra, result)
-local msgs = tonumber(redis:get(KEEPER.."msgs:"..msg.sender_user_id_..":"..msg.chat_id_))
+local msgs = tonumber(redis:get(SAKURA.."msgs:"..msg.sender_user_id_..":"..msg.chat_id_))
 if is_KpiD(result.id_) then
-keeper3 = "مطور الاساسـي 🍃"
+SAKURA3 = "مطور الاساسـي 🍃"
 elseif is_sudoid(result.id_) then
-keeper3 = "المطور 🌿"
+SAKURA3 = "المطور 🌿"
 elseif is_admin(result.id_) then
-keeper3 = "ادمن في البوت ✨"
+SAKURA3 = "ادمن في البوت ✨"
 elseif is_vipmems(result.id_) then
-keeper3 = "مميز عام 🍃"
+SAKURA3 = "مميز عام 🍃"
 elseif is_monshi(result.id_, msg.chat_id_) then
-keeper3 = "منشىء الكروب 🎐"
+SAKURA3 = "منشىء الكروب 🎐"
 elseif is_owner(result.id_, msg.chat_id_) then
-keeper3 = "المدير 🍂"
+SAKURA3 = "المدير 🍂"
 elseif is_momod(result.id_, msg.chat_id_) then
-keeper3 = "ادمن في البوت 🎌"
+SAKURA3 = "ادمن في البوت 🎌"
 elseif is_vipmem(result.id_, msg.chat_id_) then
-keeper3 = "عضو مميز ⚔️"
+SAKURA3 = "عضو مميز ⚔️"
 else
-keeper3 = "عـضـــو 🛩️"
+SAKURA3 = "عـضـــو 🛩️"
 end
 local susername = "@" .. result.username_ or "---"
 if result.first_name_ then
@@ -10584,9 +10572,9 @@ for kkkkk in string.gmatch(result.first_name_, "[^%s]+") do
 result.first_name_ = kkkkk
 break
 end end end
-local list = redis:smembers(KEEPER.."bot:owners:" .. msg.chat_id_)
+local list = redis:smembers(SAKURA.."bot:owners:" .. msg.chat_id_)
 if list[1] or list[2] or list[3] or list[4] then
-user_info = redis:get(KEEPER.."user:Name" .. (list[1] or list[2] or list[3] or list[4]))
+user_info = redis:get(SAKURA.."user:Name" .. (list[1] or list[2] or list[3] or list[4]))
 end
 if user_info then
 owner = user_info
@@ -10599,63 +10587,63 @@ sudo = User
 else
 sudo = "لا يوجد"
 end
-send(msg.chat_id_, msg.id_, 1, "*- موقعك ومعلوماتك الكامله »*\n-----------------------\n🚫┊ معرفك ≈ [" .. susername .. "]\n🔰┊ ايديك ≈ "..result.id_.."\n🔱┊ اسمك ≈ "..result.first_name_.."\n📝┊ رسائلك ≈ ( " .. msgs .. " ) رساله\n🔑┊ تفاعلك ≈ " .. KP_TM_NM(msgs) .. "\n🎗┊  الرتبۿ ≈ " .. keeper3 .. "\n\n‏ - *معلومات المجموعه* »\n-----------------------\n👨🏼┊ المدير ≈ [" .. owner .. "]\n🏮┊ المطور ≈ [" .. sudo .. "]\n📭┊ الاسم ≈ 👇🏾\n✔️┊ ("..title_name(msg.chat_id_)..")\n‏" , 1, "md")
+send(msg.chat_id_, msg.id_, 1, "*- موقعك ومعلوماتك الكامله »*\n-----------------------\n🚫┊ معرفك ≈ [" .. susername .. "]\n🔰┊ ايديك ≈ "..result.id_.."\n🔱┊ اسمك ≈ "..result.first_name_.."\n📝┊ رسائلك ≈ ( " .. msgs .. " ) رساله\n🔑┊ تفاعلك ≈ " .. KP_TM_NM(msgs) .. "\n🎗┊  الرتبۿ ≈ " .. SAKURA3 .. "\n\n‏ - *معلومات المجموعه* »\n-----------------------\n👨🏼┊ المدير ≈ [" .. owner .. "]\n🏮┊ المطور ≈ [" .. sudo .. "]\n📭┊ الاسم ≈ 👇🏾\n✔️┊ ("..title_name(msg.chat_id_)..")\n‏" , 1, "md")
 end
 getUser(msg.sender_user_id_, get_me)
 end end
 -------------------kick me-----------------------
 if text:match("^اطردني$") then
-if not redis:get(KEEPER.."lock_kickme"..msg.chat_id_) then
+if not redis:get(SAKURA.."lock_kickme"..msg.chat_id_) then
 send(msg.chat_id_, msg.id_, 1, "🌀┊ امر اطردني معطل 🍃", 1, "md")
 return false
 end
-redis:set(KEEPER.."kick_me"..msg.sender_user_id_..""..msg.chat_id_.."","kick_mee")
-redis:set(KEEPER.."unkick_me"..msg.sender_user_id_..""..msg.chat_id_.."","kick_no")
+redis:set(SAKURA.."kick_me"..msg.sender_user_id_..""..msg.chat_id_.."","kick_mee")
+redis:set(SAKURA.."unkick_me"..msg.sender_user_id_..""..msg.chat_id_.."","kick_no")
 send(msg.chat_id_, msg.id_, 1, "🔰┊ ارسل *{ نعم }* لطردك\n🚫┊ ارسل *{ لا } *لالغاء طردك", 1, "md")
 end
-local Kpkick = redis:get(KEEPER.."kick_me"..msg.sender_user_id_..""..msg.chat_id_.."")
+local Kpkick = redis:get(SAKURA.."kick_me"..msg.sender_user_id_..""..msg.chat_id_.."")
 if Kpkick == "kick_mee" then
 if text:match("^نعم$") then
 if is_vipmem(msg.sender_user_id_, msg.chat_id_) then
 send(msg.chat_id_, msg.id_, 1, '🌀┊ عذرا لا استطيع (حظر،طرد،كتم)المدراء والادمنيه والاعضاء المميزين ❗️', 1, 'md')
 else
-local Kpkick = redis:get(KEEPER.."kick_me"..msg.sender_user_id_..""..msg.chat_id_.."")
+local Kpkick = redis:get(SAKURA.."kick_me"..msg.sender_user_id_..""..msg.chat_id_.."")
 if Kpkick == "kick_mee" then
 chat_kick(msg.chat_id_, msg.sender_user_id_)
-redis:del(KEEPER.."kick_me"..msg.sender_user_id_..""..msg.chat_id_.."","kick_mee")
-redis:del(KEEPER.."unkick_me"..msg.sender_user_id_..""..msg.chat_id_.."","kick_no")
+redis:del(SAKURA.."kick_me"..msg.sender_user_id_..""..msg.chat_id_.."","kick_mee")
+redis:del(SAKURA.."unkick_me"..msg.sender_user_id_..""..msg.chat_id_.."","kick_no")
 send(msg.chat_id_, msg.id_, 1, "🔰┊ تم طردتك حياتي", 1, "md")
 end 
 end
 end
 if text:match("^لا$") then
-local Kpunkick = redis:get(KEEPER.."unkick_me"..msg.sender_user_id_..""..msg.chat_id_.."")
+local Kpunkick = redis:get(SAKURA.."unkick_me"..msg.sender_user_id_..""..msg.chat_id_.."")
 if Kpunkick == "kick_no" then
-redis:del(KEEPER.."kick_me"..msg.sender_user_id_..""..msg.chat_id_.."","kick_mee")
-redis:del(KEEPER.."unkick_me"..msg.sender_user_id_..""..msg.chat_id_.."","kick_no")
+redis:del(SAKURA.."kick_me"..msg.sender_user_id_..""..msg.chat_id_.."","kick_mee")
+redis:del(SAKURA.."unkick_me"..msg.sender_user_id_..""..msg.chat_id_.."","kick_no")
 send(msg.chat_id_, msg.id_, 1, "🔰┊ تم الغاء طردك", 1, "md")
 end
 end
 end
 ---------------------SEE viewget----------------------------------------
 if is_momod(msg.sender_user_id_, msg.chat_id_) and  (text:match("^عدد المشاهدات$")) then
-if not redis:get(KEEPER..'lock:add'..msg.chat_id_) then
-redis:set(KEEPER.."bot:viewget" .. msg.sender_user_id_, true)
+if not redis:get(SAKURA..'lock:add'..msg.chat_id_) then
+redis:set(SAKURA.."bot:viewget" .. msg.sender_user_id_, true)
 send(msg.chat_id_, msg.id_, 1, "🌀┊ ارسل لي توجيــۿ  للمنشــور 🎈: ", 1, "md")
 end end
 -----------------SEE ACAUNT---------------------------------------
 if is_momod(msg.sender_user_id_, msg.chat_id_) and text:match("^بروفايل (%d+)$")  then
-if not redis:get(KEEPER..'lock:add'..msg.chat_id_) then
+if not redis:get(SAKURA..'lock:add'..msg.chat_id_) then
 local apfa = {string.match(text, "^(بروفايل) (%d+)$")}
 local idinfocallbackfa = function(extra, result)
 if result.first_name_ then
 local _first_name_ = result.first_name_:gsub("#", "")
-if redis:get(KEEPER.."lang:gp:" .. msg.chat_id_) then
+if redis:get(SAKURA.."lang:gp:" .. msg.chat_id_) then
 sendmen(msg.chat_id_, msg.id_, "🔍┊ (اضغط هنا  عزيزي) 🍃", 2, 22, result.id_)
 else
 sendmen(msg.chat_id_, msg.id_, "🔍┊ (اضغط هنا  عزيزي) 🍃", 2, 22, result.id_)
 end
-elseif redis:get(KEEPER.."lang:gp:" .. msg.chat_id_) then
+elseif redis:get(SAKURA.."lang:gp:" .. msg.chat_id_) then
 send(msg.chat_id_, msg.id_, 1, "🔍┊ *User Not Found* !", 1, "md")
 else
 send(msg.chat_id_, msg.id_, 1, "🔍┊ لا يوجد حساب 🍂", 1, "md")
@@ -10674,7 +10662,7 @@ if text:match("^ايدي المجموعات$") then
 if not is_sudo(msg) then
 send(msg.chat_id_, msg.id_, 1, '💲┊ للمطوريـــــــن فقــــــــط', 1, 'md')
 else
-local list = redis:smembers(KEEPER.."bot:groups")
+local list = redis:smembers(SAKURA.."bot:groups")
 local t = '🌀┊ ايديات المجموعات \n'
 for k,v in pairs(list) do
 t = t..k.." » `"..v.."`\n"  end
@@ -10698,37 +10686,37 @@ if not is_KP(msg) then
 send(msg.chat_id_, msg.id_, 1, '💲┊ للمطور الاساسي فقــــــــط', 1, 'md')
 else
 send(msg.chat_id_, msg.id_, 1, '🌀┊ ارسال الان الكليشه ليتم حفظها🍃', 1, 'md')
-redis:set(KEEPER.."addstart1"..msg.sender_user_id_, "theaddstarts")
+redis:set(SAKURA.."addstart1"..msg.sender_user_id_, "theaddstarts")
 return false
 end end
 if text then
-local theaddstart = redis:get(KEEPER.."addstart1"..msg.sender_user_id_)
+local theaddstart = redis:get(SAKURA.."addstart1"..msg.sender_user_id_)
 if theaddstart == 'theaddstarts' then
 send(msg.chat_id_, msg.id_, 1, "🌀┊ تم حفظ الكليشه 🍃", 1, 'md')
-redis:del(KEEPER.."addstart1"..msg.sender_user_id_)
-redis:set(KEEPER.."startbot", text)
+redis:del(SAKURA.."addstart1"..msg.sender_user_id_)
+redis:set(SAKURA.."startbot", text)
 return false
 end end
 if text == "حذف كليشه ستارت" or text == "مسح كليشه ستارت" then
 if not is_KP(msg) then
 send(msg.chat_id_, msg.id_, 1, '💲┊ للمطور الاساسي فقــــــــط', 1, 'md')
 else
-redis:del(KEEPER.."startbot")
-send(msg.chat_id_, msg.id_, 1, "💬┊ بواسطه » "..tmkeeper(msg).."\n🎟┊ تم مسح كليشه start\n ✓ ", 1, 'md')
+redis:del(SAKURA.."startbot")
+send(msg.chat_id_, msg.id_, 1, "💬┊ بواسطه » "..tmSAKURA(msg).."\n🎟┊ تم مسح كليشه start\n ✓ ", 1, 'md')
 end end
 ---------------------cod msgs-------------------------
 if text:match("^رسائلي$") or text:match("^رسايلي$") then
-if not redis:get(KEEPER..'lock:add'..msg.chat_id_) then
+if not redis:get(SAKURA..'lock:add'..msg.chat_id_) then
 local get_me = function(extra, result)
-local msgs = (tonumber(redis:get(KEEPER.."msgs:"..msg.sender_user_id_..":"..msg.chat_id_)) or "0" )
-local kptext = (tonumber(redis:get(KEEPER.."text:"..msg.sender_user_id_..":"..msg.chat_id_.."")) or "0" )
-local kpsticker = (tonumber(redis:get(KEEPER.."sticker:"..msg.sender_user_id_..":"..msg.chat_id_.."")) or "0" )
-local pkPhoto = (tonumber(redis:get(KEEPER.."Photo:"..msg.sender_user_id_..":"..msg.chat_id_.."")) or "0" )
-local kpVoice = (tonumber(redis:get(KEEPER.."Voice:"..msg.sender_user_id_..":"..msg.chat_id_.."")) or "0" )
-local kpGif = (tonumber(redis:get(KEEPER.."Gif:"..msg.sender_user_id_..":"..msg.chat_id_.."")) or "0" )
-local kpVideo = (tonumber(redis:get(KEEPER.."Video:"..msg.sender_user_id_..":"..msg.chat_id_.."")) or "0" )
-local kpSelfVideo = (tonumber(redis:get(KEEPER.."SelfVideo:"..msg.sender_user_id_..":"..msg.chat_id_.."")) or "0" )
-local kpcon = (tonumber(redis:get(KEEPER.."kpaddcon"..msg.sender_user_id_..":"..msg.chat_id_.."")) or "0" )
+local msgs = (tonumber(redis:get(SAKURA.."msgs:"..msg.sender_user_id_..":"..msg.chat_id_)) or "0" )
+local kptext = (tonumber(redis:get(SAKURA.."text:"..msg.sender_user_id_..":"..msg.chat_id_.."")) or "0" )
+local kpsticker = (tonumber(redis:get(SAKURA.."sticker:"..msg.sender_user_id_..":"..msg.chat_id_.."")) or "0" )
+local pkPhoto = (tonumber(redis:get(SAKURA.."Photo:"..msg.sender_user_id_..":"..msg.chat_id_.."")) or "0" )
+local kpVoice = (tonumber(redis:get(SAKURA.."Voice:"..msg.sender_user_id_..":"..msg.chat_id_.."")) or "0" )
+local kpGif = (tonumber(redis:get(SAKURA.."Gif:"..msg.sender_user_id_..":"..msg.chat_id_.."")) or "0" )
+local kpVideo = (tonumber(redis:get(SAKURA.."Video:"..msg.sender_user_id_..":"..msg.chat_id_.."")) or "0" )
+local kpSelfVideo = (tonumber(redis:get(SAKURA.."SelfVideo:"..msg.sender_user_id_..":"..msg.chat_id_.."")) or "0" )
+local kpcon = (tonumber(redis:get(SAKURA.."kpaddcon"..msg.sender_user_id_..":"..msg.chat_id_.."")) or "0" )
 if result.first_name_ then
 if #result.first_name_ < 25 then
 else
@@ -10757,284 +10745,284 @@ end
 getUser(msg.sender_user_id_, get_me)
 end end
 --------------------------------------------------------
-if text == ''..(redis:get(KEEPER..'keepernams') or 'كيبر')..' هينه' or text == ''..(redis:get(KEEPER..'keepernams') or 'كيبر')..' رزله' then
+if text == ''..(redis:get(SAKURA..'SAKURAnams') or 'ساكورا')..' هينه' or text == ''..(redis:get(SAKURA..'SAKURAnams') or 'ساكورا')..' رزله' then
 function reep22(extra, result, success)
-if tonumber(result.sender_user_id_) == tonumber(KEEPER_SUDO) then
+if tonumber(result.sender_user_id_) == tonumber(SAKURA_SUDO) then
 send(msg.chat_id_, msg.id_, 1, 'انجب لك هذا مطوري العشق 😌💋', 1, 'md')
 return false  end
 if tonumber(result.sender_user_id_) == tonumber(bot_id) then
 send(msg.chat_id_, msg.id_, 1, 'لك مگدر اهين نفسي 😞😂', 1, 'md')
 return false  end
-local KEEPER = { "لك دايح ، احترم نفسك لا بال 👠😠","ها مصراع تراچي ، اگعد راحه تره روحي طالعه 😐🍃","ها ابن الحنينه، ليش متسكت وتنجب 🌚"}
-send(msg.chat_id_, result.id_, 1,''..KEEPER[math.random(#KEEPER)]..'', 1, 'md')
+local SAKURA = { "لك دايح ، احترم نفسك لا بال 👠😠","ها مصراع تراچي ، اگعد راحه تره روحي طالعه 😐🍃","ها ابن الحنينه، ليش متسكت وتنجب 🌚"}
+send(msg.chat_id_, result.id_, 1,''..SAKURA[math.random(#SAKURA)]..'', 1, 'md')
 end
 if tonumber(msg.reply_to_message_id_) == 0 then
 else
 getMessage(msg.chat_id_, tonumber(msg.reply_to_message_id_),reep22)
 end end
 --------------------------------------------------------------------------------------------
-if text == ''..(redis:get(KEEPER..'keepernams') or 'كيبر')..' بوسه' or text == ''..(redis:get(KEEPER..'keepernams') or 'كيبر')..' مصه' then
+if text == ''..(redis:get(SAKURA..'SAKURAnams') or 'ساكورا')..' بوسه' or text == ''..(redis:get(SAKURA..'SAKURAnams') or 'ساكورا')..' مصه' then
 function reep22(extra, result, success)
-if tonumber(result.sender_user_id_) == tonumber(KEEPER_SUDO) then
+if tonumber(result.sender_user_id_) == tonumber(SAKURA_SUDO) then
 send(msg.chat_id_, msg.id_, 1, 'موووووووووووواح 🌚💋', 1, 'md')
 return false  end
 if tonumber(result.sender_user_id_) == tonumber(bot_id) then
 send(msg.chat_id_, msg.id_, 1, 'جيبلي صورتي حتى ابوسها ☹️😹', 1, 'md')
 return false  end
-local KEEPER = { "اععع 🤢خده بي حب شباب الوصخ😹😹","موااح 💋 مواااح  حياتي💋😌🍃","💋😞نسخ لصق ع الشفه 👄"}
-send(msg.chat_id_, result.id_, 1,''..KEEPER[math.random(#KEEPER)]..'', 1, 'md')
+local SAKURA = { "اععع 🤢خده بي حب شباب الوصخ😹😹","موااح 💋 مواااح  حياتي💋😌🍃","💋😞نسخ لصق ع الشفه 👄"}
+send(msg.chat_id_, result.id_, 1,''..SAKURA[math.random(#SAKURA)]..'', 1, 'md')
 end
 if tonumber(msg.reply_to_message_id_) == 0 then
 else
 getMessage(msg.chat_id_, tonumber(msg.reply_to_message_id_),reep22)
 end end
 --------------------------------- rdood bot --------------------------------------------------
-if not redis:get(KEEPER.."lock_reeeep"..msg.chat_id_) then
+if not redis:get(SAKURA.."lock_reeeep"..msg.chat_id_) then
 if text == "السلام عليكم" or text == "سلام عليكم" or text == "سلام" then
-if not redis:get(KEEPER..'lock:add'..msg.chat_id_) then
-local KEEPER = {"وعليكم السلام والرحمه⇣😻","يمه هلا بالغالي 😻🍃","وعليكم السلام حبيبي ☺️🍃","كافي بس تسلمون 🌝💔" }
-send(msg.chat_id_, msg.id_, 1,''..KEEPER[math.random(#KEEPER)]..'', 1, 'md')
+if not redis:get(SAKURA..'lock:add'..msg.chat_id_) then
+local SAKURA = {"وعليكم السلام والرحمه⇣😻","يمه هلا بالغالي 😻🍃","وعليكم السلام حبيبي ☺️🍃","كافي بس تسلمون 🌝💔" }
+send(msg.chat_id_, msg.id_, 1,''..SAKURA[math.random(#SAKURA)]..'', 1, 'md')
 end
 end
 -----------------------------------------
 if text == "بوت" or text == "بوتت" or text == "البوت" then
-if not redis:get(KEEPER..'lock:add'..msg.chat_id_) then
-local KEEPER = {'اسمي '..(redis:get(KEEPER..'keepernams') or 'كيبر')..' 😌👌','تره اسمي '..(redis:get(KEEPER..'keepernams') or 'كيبر')..' يالجريذي ☹️😹'  }
-send(msg.chat_id_, msg.id_, 1,''..KEEPER[math.random(#KEEPER)]..'', 1, 'md')
+if not redis:get(SAKURA..'lock:add'..msg.chat_id_) then
+local SAKURA = {'اسمي '..(redis:get(SAKURA..'SAKURAnams') or 'ساكورا')..' 😌👌','تره اسمي '..(redis:get(SAKURA..'SAKURAnams') or 'ساكورا')..' يالجريذي ☹️😹'  }
+send(msg.chat_id_, msg.id_, 1,''..SAKURA[math.random(#SAKURA)]..'', 1, 'md')
 end
 end
 -----------------------------------------
-if text == ''..(redis:get(KEEPER..'keepernams') or 'كيبر')..'' then
-if not redis:get(KEEPER..'lock:add'..msg.chat_id_) then
-local KEEPER = {'اي نعم اني '..(redis:get(KEEPER..'keepernams') or 'كيبر')..' 🍃😐','اهو اجوي الملطلطين 😹😪','كافي تره كرهت اسمي 💔😠'}
-send(msg.chat_id_, msg.id_, 1,''..KEEPER[math.random(#KEEPER)]..'', 1, 'md')
+if text == ''..(redis:get(SAKURA..'SAKURAnams') or 'ساكورا')..'' then
+if not redis:get(SAKURA..'lock:add'..msg.chat_id_) then
+local SAKURA = {'اي نعم اني '..(redis:get(SAKURA..'SAKURAnams') or 'ساكورا')..' 🍃😐','اهو اجوي الملطلطين 😹😪','كافي تره كرهت اسمي 💔😠'}
+send(msg.chat_id_, msg.id_, 1,''..SAKURA[math.random(#SAKURA)]..'', 1, 'md')
 end
 end
 -------------------------------------------------
 if text == "هلو" or text == "هاي" or text == "هلاو" then
-if not redis:get(KEEPER..'lock:add'..msg.chat_id_) then
-local KEEPER = {"هلووووات  ⁽🙆♂✨₎ֆ","يمه هلا بالعافيه 😻🍃","لا هلا ولا مرحبه شلونك مشتاقين 😻😂","اخلاً وصخلا 😌😂" }
-send(msg.chat_id_, msg.id_, 1,''..KEEPER[math.random(#KEEPER)]..'', 1, 'md')
+if not redis:get(SAKURA..'lock:add'..msg.chat_id_) then
+local SAKURA = {"هلووووات  ⁽🙆♂✨₎ֆ","يمه هلا بالعافيه 😻🍃","لا هلا ولا مرحبه شلونك مشتاقين 😻😂","اخلاً وصخلا 😌😂" }
+send(msg.chat_id_, msg.id_, 1,''..SAKURA[math.random(#SAKURA)]..'', 1, 'md')
 end
 end
 -----------------------------------------
 if text == "شلونك" or text == "شلونكم" or text == "شلونج" or text == "شونج" then
-if not redis:get(KEEPER..'lock:add'..msg.chat_id_) then
-local KEEPER = {"تمام وانت/ي 😘🍃","شعليك انت 🧐😂","بخير انت/ي شلونك/ج ☺️","تمام وانت/ي ‏ ᵛ͢ᵎᵖ💛﴾" }
-send(msg.chat_id_, msg.id_, 1,''..KEEPER[math.random(#KEEPER)]..'', 1, 'md')
+if not redis:get(SAKURA..'lock:add'..msg.chat_id_) then
+local SAKURA = {"تمام وانت/ي 😘🍃","شعليك انت 🧐😂","بخير انت/ي شلونك/ج ☺️","تمام وانت/ي ‏ ᵛ͢ᵎᵖ💛﴾" }
+send(msg.chat_id_, msg.id_, 1,''..SAKURA[math.random(#SAKURA)]..'', 1, 'md')
 end
 end
 -----------------------------------------
 if text == "شنو هذا بوت" or text == "هذا بوت" then
-if not redis:get(KEEPER..'lock:add'..msg.chat_id_) then
-local KEEPER = {"عـٰٰـٰود لوتُٰي 🙀 يـٰگول بُِوت عبالـٰه طافٰـُٰي💔 ويضِٰل يمٰـٓسلت وينشٰٰر روابـٰٓط 😳🍃","اي بوت شتريد 😤" }
-send(msg.chat_id_, msg.id_, 1,''..KEEPER[math.random(#KEEPER)]..'', 1, 'md')
+if not redis:get(SAKURA..'lock:add'..msg.chat_id_) then
+local SAKURA = {"عـٰٰـٰود لوتُٰي 🙀 يـٰگول بُِوت عبالـٰه طافٰـُٰي💔 ويضِٰل يمٰـٓسلت وينشٰٰر روابـٰٓط 😳🍃","اي بوت شتريد 😤" }
+send(msg.chat_id_, msg.id_, 1,''..SAKURA[math.random(#SAKURA)]..'', 1, 'md')
 end
 end
 -----------------------------------------
 if text == "غني" or text == "غنيلي" then
-if not redis:get(KEEPER..'lock:add'..msg.chat_id_) then
-local KEEPER = {"شكلولك عليه كاولي 😶😂","صوتي محلو للاسف 😌💔","اشعجـب كاطع بيه ياراحتي النفسيه 😂💔","حرام  الغنا 😐🍃" }
-send(msg.chat_id_, msg.id_, 1,''..KEEPER[math.random(#KEEPER)]..'', 1, 'md')
+if not redis:get(SAKURA..'lock:add'..msg.chat_id_) then
+local SAKURA = {"شكلولك عليه كاولي 😶😂","صوتي محلو للاسف 😌💔","اشعجـب كاطع بيه ياراحتي النفسيه 😂💔","حرام  الغنا 😐🍃" }
+send(msg.chat_id_, msg.id_, 1,''..SAKURA[math.random(#SAKURA)]..'', 1, 'md')
 end
 end
 -----------------------------------------
 if text == "باي" or text == "رايح" then
-if not redis:get(KEEPER..'lock:add'..msg.chat_id_) then
-local KEEPER = {"بايات 💛🍃","گلعه 😶💔","الله الله الله وياك 😻😂","ثيمالا 🌝✋🏾" }
-send(msg.chat_id_, msg.id_, 1,''..KEEPER[math.random(#KEEPER)]..'', 1, 'md')
+if not redis:get(SAKURA..'lock:add'..msg.chat_id_) then
+local SAKURA = {"بايات 💛🍃","گلعه 😶💔","الله الله الله وياك 😻😂","ثيمالا 🌝✋🏾" }
+send(msg.chat_id_, msg.id_, 1,''..SAKURA[math.random(#SAKURA)]..'', 1, 'md')
 end
 end
 -----------------------------------------
 if text == "جاو" or text == "ججاو" then
-if not redis:get(KEEPER..'lock:add'..msg.chat_id_) then
-local KEEPER = {"منو ال أجوو👀😹","جااااوات  ₎✿💥😈 ❥" }
-send(msg.chat_id_, msg.id_, 1,''..KEEPER[math.random(#KEEPER)]..'', 1, 'md')
+if not redis:get(SAKURA..'lock:add'..msg.chat_id_) then
+local SAKURA = {"منو ال أجوو👀😹","جااااوات  ₎✿💥😈 ❥" }
+send(msg.chat_id_, msg.id_, 1,''..SAKURA[math.random(#SAKURA)]..'', 1, 'md')
 end
 end
 -----------------------------------------
 if text == "نورت" or text == "منور" or text == "منوره" or text == "نورتي" then
-if not redis:get(KEEPER..'lock:add'..msg.chat_id_) then
-local KEEPER = {"نورك/ج هذا ورده 🌝🍃","بوجودك/غلا تسلم 😻✨","انت/ي اصل النور 😋🍃","عماني نورك 😣😂" }
-send(msg.chat_id_, msg.id_, 1,''..KEEPER[math.random(#KEEPER)]..'', 1, 'md')
+if not redis:get(SAKURA..'lock:add'..msg.chat_id_) then
+local SAKURA = {"نورك/ج هذا ورده 🌝🍃","بوجودك/غلا تسلم 😻✨","انت/ي اصل النور 😋🍃","عماني نورك 😣😂" }
+send(msg.chat_id_, msg.id_, 1,''..SAKURA[math.random(#SAKURA)]..'', 1, 'md')
 end
 end
 -----------------------------------------
 if text == "بوسني" or text == "بوسه" then
-if not redis:get(KEEPER..'lock:add'..msg.chat_id_) then local KEEPER = {"مووووووووواححح💋😻","مابوس ولي😌😹","خدك/ج نضيف 😂🍃","البوسه بالف حمبي 🌝💋" }
-send(msg.chat_id_, msg.id_, 1,''..KEEPER[math.random(#KEEPER)]..'', 1, 'md')
+if not redis:get(SAKURA..'lock:add'..msg.chat_id_) then local SAKURA = {"مووووووووواححح💋😻","مابوس ولي😌😹","خدك/ج نضيف 😂🍃","البوسه بالف حمبي 🌝💋" }
+send(msg.chat_id_, msg.id_, 1,''..SAKURA[math.random(#SAKURA)]..'', 1, 'md')
 end
 end
 -----------------------------------------
 if text == "امك" or text == "امج" then
-if not redis:get(KEEPER..'lock:add'..msg.chat_id_) then
-local KEEPER = {"عيـــب 🙀😹","شبيه امك حمبي😋🍃" }
-send(msg.chat_id_, msg.id_, 1,''..KEEPER[math.random(#KEEPER)]..'', 1, 'md')
+if not redis:get(SAKURA..'lock:add'..msg.chat_id_) then
+local SAKURA = {"عيـــب 🙀😹","شبيه امك حمبي😋🍃" }
+send(msg.chat_id_, msg.id_, 1,''..SAKURA[math.random(#SAKURA)]..'', 1, 'md')
 end
 end
 -----------------------------------------
 if text == "خالتك" or text == "خالتج" then
-if not redis:get(KEEPER..'lock:add'..msg.chat_id_) then
-local KEEPER = {"شبيه الشكره ام الوصخ 🤭😹","حبيته فدوووه😻","شرايد من خالته 🤭😂","خالته تفلش 😶😹" }
-send(msg.chat_id_, msg.id_, 1,''..KEEPER[math.random(#KEEPER)]..'', 1, 'md')
+if not redis:get(SAKURA..'lock:add'..msg.chat_id_) then
+local SAKURA = {"شبيه الشكره ام الوصخ 🤭😹","حبيته فدوووه😻","شرايد من خالته 🤭😂","خالته تفلش 😶😹" }
+send(msg.chat_id_, msg.id_, 1,''..SAKURA[math.random(#SAKURA)]..'', 1, 'md')
 end
 end
 -----------------------------------------
 if text == "تف" or text == "تفف" then
-if not redis:get(KEEPER..'lock:add'..msg.chat_id_) then
-local KEEPER = {"تف عليك ادبسزز 😒😹","لا تتفل على وجهك 😻😹","ما اسمحلك هيلگ 😡😹","بدون تفال رجائاً 😹😹" }
-send(msg.chat_id_, msg.id_, 1,''..KEEPER[math.random(#KEEPER)]..'', 1, 'md')
+if not redis:get(SAKURA..'lock:add'..msg.chat_id_) then
+local SAKURA = {"تف عليك ادبسزز 😒😹","لا تتفل على وجهك 😻😹","ما اسمحلك هيلگ 😡😹","بدون تفال رجائاً 😹😹" }
+send(msg.chat_id_, msg.id_, 1,''..SAKURA[math.random(#SAKURA)]..'', 1, 'md')
 end
 end
 -----------------------------------------
 if text == "😂" or text == "😂😂" or text == "😂😂😂😂" or text == "😂😂😂" or text == "😹😹" or text == "😹😹😹" or text == "😹" or text == "😹😹😹😹" then
-if not redis:get(KEEPER..'lock:add'..msg.chat_id_) then
-local KEEPER = {"كافـي ضحــك 😐","لتضحك هواي وتصير فاول 🌝😹","هذ شبي يضحك 🙀😳","اضحك هيه الدنيا خربانه 😂😂" }
-send(msg.chat_id_, msg.id_, 1,''..KEEPER[math.random(#KEEPER)]..'', 1, 'md')
+if not redis:get(SAKURA..'lock:add'..msg.chat_id_) then
+local SAKURA = {"كافـي ضحــك 😐","لتضحك هواي وتصير فاول 🌝😹","هذ شبي يضحك 🙀😳","اضحك هيه الدنيا خربانه 😂😂" }
+send(msg.chat_id_, msg.id_, 1,''..SAKURA[math.random(#SAKURA)]..'', 1, 'md')
 end
 end
 -----------------------------------------
 if text == "😡" or text == "😡😡" or text == "😡😡😡" or text == "😡😡😡😡" then
-if not redis:get(KEEPER..'lock:add'..msg.chat_id_) then
-local KEEPER = {"لصير عصبي يرتفع ضغطـك 😌😂","صار وجه احمر مثل الطماطه 🙊😹","اوف شحلاتك وانت ضايج 😻","شبي هذا الله يستر 😼😹" }
-send(msg.chat_id_, msg.id_, 1,''..KEEPER[math.random(#KEEPER)]..'', 1, 'md')
+if not redis:get(SAKURA..'lock:add'..msg.chat_id_) then
+local SAKURA = {"لصير عصبي يرتفع ضغطـك 😌😂","صار وجه احمر مثل الطماطه 🙊😹","اوف شحلاتك وانت ضايج 😻","شبي هذا الله يستر 😼😹" }
+send(msg.chat_id_, msg.id_, 1,''..SAKURA[math.random(#SAKURA)]..'', 1, 'md')
 end
 end
 -----------------------------------------
 if text == "😒" or text == "😒😒" or text == "😒😒😒" or text == "😒😒😒😒" then
-if not redis:get(KEEPER..'lock:add'..msg.chat_id_) then
-local KEEPER = {"لضوج متسوووه 🤭😹","يمه زعلان الحلو ما يكلي مرحبا 😻😹","اعدل وجهك لا اعدله الك/ج 😼👊🏼" }
-send(msg.chat_id_, msg.id_, 1,''..KEEPER[math.random(#KEEPER)]..'', 1, 'md')
+if not redis:get(SAKURA..'lock:add'..msg.chat_id_) then
+local SAKURA = {"لضوج متسوووه 🤭😹","يمه زعلان الحلو ما يكلي مرحبا 😻😹","اعدل وجهك لا اعدله الك/ج 😼👊🏼" }
+send(msg.chat_id_, msg.id_, 1,''..SAKURA[math.random(#SAKURA)]..'', 1, 'md')
 end
 end
 -----------------------------------------
 if text == "🌝" or text == "🌝🌝" then
-if not redis:get(KEEPER..'lock:add'..msg.chat_id_) then
-local KEEPER = {"يمه الگمر عذبني حبه 🙊😻","عو نضيف الوصخ 😹😹","طفي ضواك عميتني 😼😹" }
-send(msg.chat_id_, msg.id_, 1,''..KEEPER[math.random(#KEEPER)]..'', 1, 'md')
+if not redis:get(SAKURA..'lock:add'..msg.chat_id_) then
+local SAKURA = {"يمه الگمر عذبني حبه 🙊😻","عو نضيف الوصخ 😹😹","طفي ضواك عميتني 😼😹" }
+send(msg.chat_id_, msg.id_, 1,''..SAKURA[math.random(#SAKURA)]..'', 1, 'md')
 end
 end
 -----------------------------------------
 if text == "💋" or text == "💋💋" then
-if not redis:get(KEEPER..'lock:add'..msg.chat_id_) then
-local KEEPER = {"كبر 🙀 جان استحيتو 😹😹","عســـل 😋🙊" }
-send(msg.chat_id_, msg.id_, 1,''..KEEPER[math.random(#KEEPER)]..'', 1, 'md')
+if not redis:get(SAKURA..'lock:add'..msg.chat_id_) then
+local SAKURA = {"كبر 🙀 جان استحيتو 😹😹","عســـل 😋🙊" }
+send(msg.chat_id_, msg.id_, 1,''..SAKURA[math.random(#SAKURA)]..'', 1, 'md')
 end
 end
 -----------------------------------------
 if text == "💔" or text == "💔💔" then
-if not redis:get(KEEPER..'lock:add'..msg.chat_id_) then
-local KEEPER = {"شبي مكسور 😔💔","موجوع كلبي والتعب بيه 😔😹","اكل بصل وانسه الحصل 😻😹" }
-send(msg.chat_id_, msg.id_, 1,''..KEEPER[math.random(#KEEPER)]..'', 1, 'md')
+if not redis:get(SAKURA..'lock:add'..msg.chat_id_) then
+local SAKURA = {"شبي مكسور 😔💔","موجوع كلبي والتعب بيه 😔😹","اكل بصل وانسه الحصل 😻😹" }
+send(msg.chat_id_, msg.id_, 1,''..SAKURA[math.random(#SAKURA)]..'', 1, 'md')
 end
 end
 -----------------------------------------
 if text == "😻" or text == "😻😻" or text == "😍😍" or text == "😍" then
-if not redis:get(KEEPER..'lock:add'..msg.chat_id_) then
-local KEEPER = {"شوفو الحب صاعد فول 😻😹","ها ناوي تزحف 😹😹","فدوووه لهاي العيون 🙊😻" }
-send(msg.chat_id_, msg.id_, 1,''..KEEPER[math.random(#KEEPER)]..'', 1, 'md')
+if not redis:get(SAKURA..'lock:add'..msg.chat_id_) then
+local SAKURA = {"شوفو الحب صاعد فول 😻😹","ها ناوي تزحف 😹😹","فدوووه لهاي العيون 🙊😻" }
+send(msg.chat_id_, msg.id_, 1,''..SAKURA[math.random(#SAKURA)]..'', 1, 'md')
 end
 end
 -----------------------------------------
 if text == "😐" or text == "🙂" then
-if not redis:get(KEEPER..'lock:add'..msg.chat_id_) then
-local KEEPER = {"شبيك حبيبي 😂💔","منور محمد الاعمى 😐😹" }
-send(msg.chat_id_, msg.id_, 1,''..KEEPER[math.random(#KEEPER)]..'', 1, 'md')
+if not redis:get(SAKURA..'lock:add'..msg.chat_id_) then
+local SAKURA = {"شبيك حبيبي 😂💔","منور محمد الاعمى 😐😹" }
+send(msg.chat_id_, msg.id_, 1,''..SAKURA[math.random(#SAKURA)]..'', 1, 'md')
 end
 end
 -----------------------------------------
 if text == "جوعان" or text == "جوعانه" then
-if not redis:get(KEEPER..'lock:add'..msg.chat_id_) then
-local KEEPER = {"شطبخلك/ج  🙊😋" }
-send(msg.chat_id_, msg.id_, 1,''..KEEPER[math.random(#KEEPER)]..'', 1, 'md')
+if not redis:get(SAKURA..'lock:add'..msg.chat_id_) then
+local SAKURA = {"شطبخلك/ج  🙊😋" }
+send(msg.chat_id_, msg.id_, 1,''..SAKURA[math.random(#SAKURA)]..'', 1, 'md')
 end
 end
 -----------------------------------------
 if text == "ههه" or text == "هههه" or text == "ههههه" or text == "هههههه" or text == "ههههههه" then
-if not redis:get(KEEPER..'lock:add'..msg.chat_id_) then
-local KEEPER = {"دووم الضحكه 🙊🍃","دوم الضحكه ℡̮⇣┆👑😻⇣ۦ ٰ" }
-send(msg.chat_id_, msg.id_, 1,''..KEEPER[math.random(#KEEPER)]..'', 1, 'md')
+if not redis:get(SAKURA..'lock:add'..msg.chat_id_) then
+local SAKURA = {"دووم الضحكه 🙊🍃","دوم الضحكه ℡̮⇣┆👑😻⇣ۦ ٰ" }
+send(msg.chat_id_, msg.id_, 1,''..SAKURA[math.random(#SAKURA)]..'', 1, 'md')
 end
 end
 -----------------------------------------
 if text == "اكلك" or text == "اكلج" then
-if not redis:get(KEEPER..'lock:add'..msg.chat_id_) then
-local KEEPER = {"اي غرد/ي دا اسمع 👂🏽😹","كول😹 (كول لو هدف)😔😹","ها حياتي 🙊" }
-send(msg.chat_id_, msg.id_, 1,''..KEEPER[math.random(#KEEPER)]..'', 1, 'md')
+if not redis:get(SAKURA..'lock:add'..msg.chat_id_) then
+local SAKURA = {"اي غرد/ي دا اسمع 👂🏽😹","كول😹 (كول لو هدف)😔😹","ها حياتي 🙊" }
+send(msg.chat_id_, msg.id_, 1,''..SAKURA[math.random(#SAKURA)]..'', 1, 'md')
 end
 end
 -----------------------------------------
 if text == "شبيك" or text == "شبيك انت" then
-if not redis:get(KEEPER..'lock:add'..msg.chat_id_) then
-local KEEPER = {"انت/ي شبيك/ج😣","مابيه شي تسلم 💋😹" }
-send(msg.chat_id_, msg.id_, 1,''..KEEPER[math.random(#KEEPER)]..'', 1, 'md')
+if not redis:get(SAKURA..'lock:add'..msg.chat_id_) then
+local SAKURA = {"انت/ي شبيك/ج😣","مابيه شي تسلم 💋😹" }
+send(msg.chat_id_, msg.id_, 1,''..SAKURA[math.random(#SAKURA)]..'', 1, 'md')
 end
 end
 ----------------------------------------
 if text == "🌚💔" or text == "💔" then
-if not redis:get(KEEPER..'lock:add'..msg.chat_id_) then
-local KEEPER = {"هم اجانه محترك وجه😂♥️","هاي منو كاسر كلبك😡","اهو هم اجانه صخام🐸👌" }
-send(msg.chat_id_, msg.id_, 1,''..KEEPER[math.random(#KEEPER)]..'', 1, 'md')
+if not redis:get(SAKURA..'lock:add'..msg.chat_id_) then
+local SAKURA = {"هم اجانه محترك وجه😂♥️","هاي منو كاسر كلبك😡","اهو هم اجانه صخام🐸👌" }
+send(msg.chat_id_, msg.id_, 1,''..SAKURA[math.random(#SAKURA)]..'', 1, 'md')
 end
 end
 ---------------------------------------
 if text == "فديتك" or text == "فديتج" then
-if not redis:get(KEEPER..'lock:add'..msg.chat_id_) then
-local KEEPER = {"ها بدت حبجيه ✨😂","لتلح عود يعني احبج🙈😹","كافي درينه مشتاقله 😒" }
-send(msg.chat_id_, msg.id_, 1,''..KEEPER[math.random(#KEEPER)]..'', 1, 'md')
+if not redis:get(SAKURA..'lock:add'..msg.chat_id_) then
+local SAKURA = {"ها بدت حبجيه ✨😂","لتلح عود يعني احبج🙈😹","كافي درينه مشتاقله 😒" }
+send(msg.chat_id_, msg.id_, 1,''..SAKURA[math.random(#SAKURA)]..'', 1, 'md')
 end
 end
 ---------------------------------------
 if text == "😢" or text == "😢😢" then
-if not redis:get(KEEPER..'lock:add'..msg.chat_id_) then
-local KEEPER = {"يبجي دلوع😜😹","هاي عود انت جبير كاعد تبجي😑💔","لتلح درينه تبجي😒"}
-send(msg.chat_id_, msg.id_, 1,''..KEEPER[math.random(#KEEPER)]..'', 1, 'md')
+if not redis:get(SAKURA..'lock:add'..msg.chat_id_) then
+local SAKURA = {"يبجي دلوع😜😹","هاي عود انت جبير كاعد تبجي😑💔","لتلح درينه تبجي😒"}
+send(msg.chat_id_, msg.id_, 1,''..SAKURA[math.random(#SAKURA)]..'', 1, 'md')
 end
 end
 --------------------------------------
 if text == "ميتين" or text == "اصنام" then
-if not redis:get(KEEPER..'lock:add'..msg.chat_id_) then
-local KEEPER = {"علساس انت متفاعل😒😒","اي عندك اعتراض🤔","اني معليه احرسكم😎" }
-send(msg.chat_id_, msg.id_, 1,''..KEEPER[math.random(#KEEPER)]..'', 1, 'md')
+if not redis:get(SAKURA..'lock:add'..msg.chat_id_) then
+local SAKURA = {"علساس انت متفاعل😒😒","اي عندك اعتراض🤔","اني معليه احرسكم😎" }
+send(msg.chat_id_, msg.id_, 1,''..SAKURA[math.random(#SAKURA)]..'', 1, 'md')
 end
 end
 ------------------------------------
 if text == "☺️" or text == "??" then
-if not redis:get(KEEPER..'lock:add'..msg.chat_id_) then
-local KEEPER = {"عود اني حباب ونت شيطان يتعلم منك🙈😂😂","وجهك ميساعد🤢😂" }
-send(msg.chat_id_, msg.id_, 1,''..KEEPER[math.random(#KEEPER)]..'', 1, 'md')
+if not redis:get(SAKURA..'lock:add'..msg.chat_id_) then
+local SAKURA = {"عود اني حباب ونت شيطان يتعلم منك🙈😂😂","وجهك ميساعد🤢😂" }
+send(msg.chat_id_, msg.id_, 1,''..SAKURA[math.random(#SAKURA)]..'', 1, 'md')
 end
 end
 -----------------------------------------
 if text == "اجه" or text == "اجت" then
-if not redis:get(KEEPER..'lock:add'..msg.chat_id_) then
-local KEEPER = {"اهو لا هلا بيه ✨😂","خي ولي مزاعله ✨😂","اهلا بيه بس اطرده اذا اجه😒😂" }
-send(msg.chat_id_, msg.id_, 1,''..KEEPER[math.random(#KEEPER)]..'', 1, 'md')
+if not redis:get(SAKURA..'lock:add'..msg.chat_id_) then
+local SAKURA = {"اهو لا هلا بيه ✨😂","خي ولي مزاعله ✨😂","اهلا بيه بس اطرده اذا اجه😒😂" }
+send(msg.chat_id_, msg.id_, 1,''..SAKURA[math.random(#SAKURA)]..'', 1, 'md')
 end
 end
 ------------------------------------------------------------
 if text == "الخميس" or text == "خميس" then
-if not redis:get(KEEPER..'lock:add'..msg.chat_id_) then
-local KEEPER = {"وخرو وخرو🤓 هلا بلخميس تيرارا وياي يلا😍😹","هلا بلخميس عطله وكذا ركصو يلا😍😂" }
-send(msg.chat_id_, msg.id_, 1,''..KEEPER[math.random(#KEEPER)]..'', 1, 'md')
+if not redis:get(SAKURA..'lock:add'..msg.chat_id_) then
+local SAKURA = {"وخرو وخرو🤓 هلا بلخميس تيرارا وياي يلا😍😹","هلا بلخميس عطله وكذا ركصو يلا😍😂" }
+send(msg.chat_id_, msg.id_, 1,''..SAKURA[math.random(#SAKURA)]..'', 1, 'md')
 end
 end
 -----------------------------------------
 if text == "🙊" or text == "🙈" then
-if not redis:get(KEEPER..'lock:add'..msg.chat_id_) then
-local KEEPER = {"اول مره اشوف قرد يستحي🤔😂","ما مرجيه منك هايه صاير تستحي انته هوايه 😍😂😂" }
-send(msg.chat_id_, msg.id_, 1,''..KEEPER[math.random(#KEEPER)]..'', 1, 'md')
+if not redis:get(SAKURA..'lock:add'..msg.chat_id_) then
+local SAKURA = {"اول مره اشوف قرد يستحي🤔😂","ما مرجيه منك هايه صاير تستحي انته هوايه 😍😂😂" }
+send(msg.chat_id_, msg.id_, 1,''..SAKURA[math.random(#SAKURA)]..'', 1, 'md')
 end
 end
 --------------------------------------
 if text == "ممكن نزوج" or text == "ممكن نرتبط" then
-if not redis:get(KEEPER..'lock:add'..msg.chat_id_) then
-local KEEPER = {"ها ها يمعودين احنه هنا😒😹","اعتقد اكو خاص وخطبو وهنا زفه بسيارتي🚗😂" }
-send(msg.chat_id_, msg.id_, 1,''..KEEPER[math.random(#KEEPER)]..'', 1, 'md')
+if not redis:get(SAKURA..'lock:add'..msg.chat_id_) then
+local SAKURA = {"ها ها يمعودين احنه هنا😒😹","اعتقد اكو خاص وخطبو وهنا زفه بسيارتي🚗😂" }
+send(msg.chat_id_, msg.id_, 1,''..SAKURA[math.random(#SAKURA)]..'', 1, 'md')
 end
 end
 end
---«««««««««««««««««««««««« Developer By Karrar KeePer »»»»»»»»»»»»»»»»»»»»»»»»»»»--
+--«««««««««««««««««««««««« Developer By Karrar SAKURA »»»»»»»»»»»»»»»»»»»»»»»»»»»--
 elseif data.ID == "UpdateChat" then
 chat = data.chat_
 chats[chat.id_] = chat
@@ -11042,8 +11030,8 @@ elseif data.ID == "UpdateUserAction" then
 local chat = data.chat_id_
 local user = data.user_id_
 local idf = tostring(chat)
-if idf:match("-100(%d+)") and not redis:get(KEEPER.."bot:muted:Time" .. chat .. ":" .. user) and redis:sismember(KEEPER.."bot:muted:" .. chat, user) then
-redis:srem(KEEPER.."bot:muted:" .. chat, user)
+if idf:match("-100(%d+)") and not redis:get(SAKURA.."bot:muted:Time" .. chat .. ":" .. user) and redis:sismember(SAKURA.."bot:muted:" .. chat, user) then
+redis:srem(SAKURA.."bot:muted:" .. chat, user)
 end
 elseif data.ID == "UpdateMessageEdited" then
 local msg = data
@@ -11059,68 +11047,68 @@ return false
 end
 if not is_vipmem(result.sender_user_id_, result.chat_id_) then
 check_filter_words(result, text)
-if redis:get(KEEPER.."editmsg" .. msg.chat_id_) then
+if redis:get(SAKURA.."editmsg" .. msg.chat_id_) then
 local msgs = {
 [0] = data.message_id_
 }
 delete_msg(msg.chat_id_, msgs)
 end
-if (text:match("[Tt][Ee][Ll][Ee][Gg][Rr][Aa][Mm].[Mm][Ee]") or text:match("[Tt][Ll][Gg][Rr][Mm].[Mm][Ee]") or text:match("[Tt].[Mm][Ee]")) and redis:get(KEEPER.."bot:links:mute" .. result.chat_id_) then
+if (text:match("[Tt][Ee][Ll][Ee][Gg][Rr][Aa][Mm].[Mm][Ee]") or text:match("[Tt][Ll][Gg][Rr][Mm].[Mm][Ee]") or text:match("[Tt].[Mm][Ee]")) and redis:get(SAKURA.."bot:links:mute" .. result.chat_id_) then
 local msgs = {
 [0] = data.message_id_
 }
 delete_msg(msg.chat_id_, msgs)
 end
-if result.content_.entities_ and result.content_.entities_[0] and (result.content_.entities_[0].ID == "MessageEntityTextUrl" or result.content_.entities_[0].ID == "MessageEntityUrl") and redis:get(KEEPER.."bot:webpage:mute" .. result.chat_id_) then
+if result.content_.entities_ and result.content_.entities_[0] and (result.content_.entities_[0].ID == "MessageEntityTextUrl" or result.content_.entities_[0].ID == "MessageEntityUrl") and redis:get(SAKURA.."bot:webpage:mute" .. result.chat_id_) then
 local msgs = {
 [0] = data.message_id_
 }
 delete_msg(msg.chat_id_, msgs)
 end
-if result.content_.web_page_ and redis:get(KEEPER.."bot:webpage:mute" .. result.chat_id_) then
+if result.content_.web_page_ and redis:get(SAKURA.."bot:webpage:mute" .. result.chat_id_) then
 local msgs = {
 [0] = data.message_id_
 }
 delete_msg(msg.chat_id_, msgs)
 end
-if (text:match("[Hh][Tt][Tt][Pp]") or text:match("[Ww][Ww][Ww]") or text:match(".[Cc][Oo]") or text:match(".[Oo][Rr][Gg]") or text:match(".[Ii][Rr]")) and redis:get(KEEPER.."bot:webpage:mute" .. result.chat_id_) then
+if (text:match("[Hh][Tt][Tt][Pp]") or text:match("[Ww][Ww][Ww]") or text:match(".[Cc][Oo]") or text:match(".[Oo][Rr][Gg]") or text:match(".[Ii][Rr]")) and redis:get(SAKURA.."bot:webpage:mute" .. result.chat_id_) then
 local msgs = {
 [0] = data.message_id_
 }
 delete_msg(msg.chat_id_, msgs)
 end
-if text:match("@") and redis:get(KEEPER.."tags:lock" .. msg.chat_id_) then
+if text:match("@") and redis:get(SAKURA.."tags:lock" .. msg.chat_id_) then
 local msgs = {
 [0] = data.message_id_
 }
 delete_msg(msg.chat_id_, msgs)
 end
-if text:match("#") and redis:get(KEEPER.."bot:hashtag:mute" .. result.chat_id_) then
+if text:match("#") and redis:get(SAKURA.."bot:hashtag:mute" .. result.chat_id_) then
 local msgs = {
 [0] = data.message_id_
 }
 delete_msg(msg.chat_id_, msgs)
 end
-if text:match("[\216-\219][\128-\191]") and redis:get(KEEPER.."bot:arabic:mute" .. result.chat_id_) then
+if text:match("[\216-\219][\128-\191]") and redis:get(SAKURA.."bot:arabic:mute" .. result.chat_id_) then
 local msgs = {
 [0] = data.message_id_
 }
 delete_msg(msg.chat_id_, msgs)
 end
 if text:match("[ASDFGHJKLQWERTYUIOPZXCVBNMasdfghjklqwertyuiopzxcvbnm]") then
-if redis:get(KEEPER..'bot:english:mute'..result.chat_id_) then
+if redis:get(SAKURA..'bot:english:mute'..result.chat_id_) then
 local msgs = {[0] = data.message_id_}
 delete_msg(msg.chat_id_,msgs)
 end
 end
-if redis:get(KEEPER..'editmsg'..msg.chat_id_) == 'delmsg' then
+if redis:get(SAKURA..'editmsg'..msg.chat_id_) == 'delmsg' then
 local id = msg.message_id_
 local msgs = {[0] = id}
 local chat = msg.chat_id_
 delete_msg(chat,msgs)
-elseif redis:get(KEEPER..'editmsg'..msg.chat_id_) == 'didam' then
-if redis:get(KEEPER..'bot:editid'..msg.message_id_) then
-local old_text = redis:get(KEEPER..'bot:editid'..msg.message_id_)
+elseif redis:get(SAKURA..'editmsg'..msg.chat_id_) == 'didam' then
+if redis:get(SAKURA..'bot:editid'..msg.message_id_) then
+local old_text = redis:get(SAKURA..'bot:editid'..msg.message_id_)
 send(msg.chat_id_, msg.message_id_, 1, '🔹 ممنوع التعديل رسالتك المعدله :\n*'..old_text..'*', 1, 'md')
 end end end end
 getMessage(msg.chat_id_, msg.message_id_, get_msg_contact)
@@ -11129,7 +11117,7 @@ local msg = data.message_
 local d = data.disable_notification_
 local chat = chats[msg.chat_id_]
 local text = msg.content_.text_
-redis:sadd(KEEPER.."groups:users" .. msg.chat_id_, msg.sender_user_id_)
+redis:sadd(SAKURA.."groups:users" .. msg.chat_id_, msg.sender_user_id_)
 if text then
 if text:match("✺⇣  راجع مطور البوت  لتفعيله في مجموعتك🏌️🎈") then
 pinmsg(msg.chat_id_, msg.id_, 0)
@@ -11143,6 +11131,6 @@ offset_chat_id_ = 0,
 limit_ = 30
 }, dl_cb, nil)
 if data.value_.value_ then
-redis:set(KEEPER.."Bot:KpBotAccount", data.value_.value_)
+redis:set(SAKURA.."Bot:KpBotAccount", data.value_.value_)
 end end end end  end
------ End Source By Karrar KeePer »»»»»»»»»»»»»»»»»»»
+----- End Source By Karrar SAKURA »»»»»»»»»»»»»»»»»»»
