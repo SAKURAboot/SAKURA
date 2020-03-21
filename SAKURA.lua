@@ -6,6 +6,7 @@
 ┗━━┓┃┃┗━┛┃┃┏┓┃━┃┃━┃┃┃┏┓┏┛┃┗━┛┃
 ┃┗━┛┃┃┏━┓┃┃┃┃┗┓┃┗━┛┃┃┃┃┗┓┃┏━┓┃
 ┗━━━┛┗┛━┗┛┗┛┗━┛┗━━━┛┗┛┗━┛┗┛━┗┛
+تم برمجة من قبل > @JJEJJ
 تم برمجة من قبل > @MMMM_27
 ]]
 --- Start Source By Karrar SAKURA »»»»»»»
@@ -423,6 +424,7 @@ print("\27[0;31m>>"..[[
  \____)_) (_)_) (_)_____)_) (_)_) (_)
 ]].."\n\027[00m")
 print("\27[0;35m>>"..[[
+تم برمجة من قبل > @JJEJJ
 تم برمجة من قبل > @MMMM_27
 ]].."\n\027[00m")
 -----------------------function is_KP----------by SAKURA------------------------
@@ -7671,7 +7673,7 @@ end end end
 -----------------------getidstatus-----------------------------------------------------------------
 if is_momod(msg.sender_user_id_, msg.chat_id_) and idf:match("-100(%d+)") and text:match("^تفعيل (.*)$")  then
 local status = { string.match(text, "^(تفعيل) (.*)$")}
-if status[2] == "الايدي" then
+if status[2] == "الايدي بالصوره" then
 if redis:get(SAKURA.."getidstatus" .. msg.chat_id_) == "Photo" then
 send(msg.chat_id_, msg.id_, 1, "💬┊ بواسطه » "..tmSAKURA(msg).."\n🎟┊ تم تفعيل الايدي بالصوره\n ✓ ", 1, 'md')
 else
@@ -7680,7 +7682,7 @@ redis:set(SAKURA.."getidstatus" .. msg.chat_id_, "Photo")
 end end  end
 if is_momod(msg.sender_user_id_, msg.chat_id_) and idf:match("-100(%d+)") and text:match("^تعطيل (.*)$")  then
 local status = {string.match(text, "^(تعطيل) (.*)$")}
-if status[2] == "الايدي" then
+if status[2] == "الايدي بالصوره" then
 if redis:get(SAKURA.."getidstatus" .. msg.chat_id_) == "Simple" then
 send(msg.chat_id_, msg.id_, 1, "💬┊ بواسطه » "..tmSAKURA(msg).."\n🎟┊ تم تعطيل الايدي بالصوره\n ✓ ", 1, 'md')
 else
@@ -10071,7 +10073,7 @@ result.first_name_ = kkkkk
 break
 end end end
 local susername = "@" .. result.username_ or ""
-local text = "*« معلوماتك هيـــه »*\n-----------------------\n🚫┊ معرفك : [" .. susername .. "]\n🔰┊ ايديك : "..msg.sender_user_id_.."\n🔱┊ اسمك : "..result.first_name_.."\n-----------------------\n✔️┊ *المجموعات التي ضافها *:\n"
+local text = "*« معلوماتك هيـــه »*\n-----------------------\n🚫┊ معرفك : [" .. susername .. "]\n??┊ ايديك : "..msg.sender_user_id_.."\n🔱┊ اسمك : "..result.first_name_.."\n-----------------------\n✔️┊ *المجموعات التي ضافها *:\n"
 for k, v in pairs(list) do
 text = text .. k .. " » `(" .. v .. ")`\n"
 end
